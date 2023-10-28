@@ -37,11 +37,8 @@
             this.PasswordTxtBLP = new System.Windows.Forms.TextBox();
             this.AdminPanel = new System.Windows.Forms.Panel();
             this.InterfaceAP = new System.Windows.Forms.Panel();
-            this.SalesRepPanel = new System.Windows.Forms.Panel();
             this.HomePanelAP = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
-            this.SettingPanelAP = new System.Windows.Forms.Panel();
-            this.logoutBtn = new System.Windows.Forms.Button();
             this.AddMenuPanelAP = new System.Windows.Forms.Panel();
             this.button4 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
@@ -59,6 +56,7 @@
             this.MealNTxtB = new System.Windows.Forms.TextBox();
             this.MenuPic = new System.Windows.Forms.PictureBox();
             this.FoodTbl = new System.Windows.Forms.DataGridView();
+            this.SalesRepPanel = new System.Windows.Forms.Panel();
             this.AccManagePanel = new System.Windows.Forms.Panel();
             this.EditAccPanel = new System.Windows.Forms.Panel();
             this.CancelBtn = new System.Windows.Forms.Button();
@@ -116,7 +114,7 @@
             this.LastNTxtB_AP = new System.Windows.Forms.TextBox();
             this.NavigationPanelAP = new System.Windows.Forms.Panel();
             this.SalesRepLbl = new System.Windows.Forms.Label();
-            this.SettingsLbl = new System.Windows.Forms.Label();
+            this.LogoutLbl = new System.Windows.Forms.Label();
             this.AddMenuLbl = new System.Windows.Forms.Label();
             this.AccManageLbl = new System.Windows.Forms.Label();
             this.ManagerPanel = new System.Windows.Forms.Panel();
@@ -125,13 +123,13 @@
             this.label4 = new System.Windows.Forms.Label();
             this.AdminPanelContainer = new Syncfusion.Windows.Forms.Tools.CardLayout(this.components);
             this.AccManageContainer = new Syncfusion.Windows.Forms.Tools.CardLayout(this.components);
+            this.ImgTxtB = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.MainLoginContainer)).BeginInit();
             this.LoginPanel.SuspendLayout();
             this.PanelLP.SuspendLayout();
             this.AdminPanel.SuspendLayout();
             this.InterfaceAP.SuspendLayout();
             this.HomePanelAP.SuspendLayout();
-            this.SettingPanelAP.SuspendLayout();
             this.AddMenuPanelAP.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.MenuPic)).BeginInit();
@@ -229,7 +227,6 @@
             // InterfaceAP
             // 
             this.InterfaceAP.Controls.Add(this.HomePanelAP);
-            this.InterfaceAP.Controls.Add(this.SettingPanelAP);
             this.InterfaceAP.Controls.Add(this.AddMenuPanelAP);
             this.InterfaceAP.Controls.Add(this.SalesRepPanel);
             this.InterfaceAP.Controls.Add(this.AccManagePanel);
@@ -238,17 +235,6 @@
             this.InterfaceAP.Name = "InterfaceAP";
             this.InterfaceAP.Size = new System.Drawing.Size(1221, 697);
             this.InterfaceAP.TabIndex = 2;
-            // 
-            // SalesRepPanel
-            // 
-            this.SalesRepPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            this.AdminPanelContainer.SetCardName(this.SalesRepPanel, "Card5");
-            this.SalesRepPanel.Location = new System.Drawing.Point(0, 0);
-            this.AdminPanelContainer.SetMinimumSize(this.SalesRepPanel, new System.Drawing.Size(200, 100));
-            this.SalesRepPanel.Name = "SalesRepPanel";
-            this.AdminPanelContainer.SetPreferredSize(this.SalesRepPanel, new System.Drawing.Size(200, 100));
-            this.SalesRepPanel.Size = new System.Drawing.Size(1221, 697);
-            this.SalesRepPanel.TabIndex = 4;
             // 
             // HomePanelAP
             // 
@@ -265,35 +251,11 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(483, 274);
+            this.label2.Location = new System.Drawing.Point(584, 356);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(44, 16);
             this.label2.TabIndex = 0;
             this.label2.Text = "Home";
-            // 
-            // SettingPanelAP
-            // 
-            this.SettingPanelAP.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.AdminPanelContainer.SetCardName(this.SettingPanelAP, "Card3");
-            this.SettingPanelAP.Controls.Add(this.logoutBtn);
-            this.SettingPanelAP.Location = new System.Drawing.Point(0, 0);
-            this.SettingPanelAP.Margin = new System.Windows.Forms.Padding(4);
-            this.AdminPanelContainer.SetMinimumSize(this.SettingPanelAP, new System.Drawing.Size(200, 100));
-            this.SettingPanelAP.Name = "SettingPanelAP";
-            this.AdminPanelContainer.SetPreferredSize(this.SettingPanelAP, new System.Drawing.Size(200, 100));
-            this.SettingPanelAP.Size = new System.Drawing.Size(1221, 697);
-            this.SettingPanelAP.TabIndex = 2;
-            // 
-            // logoutBtn
-            // 
-            this.logoutBtn.Location = new System.Drawing.Point(91, 113);
-            this.logoutBtn.Margin = new System.Windows.Forms.Padding(4);
-            this.logoutBtn.Name = "logoutBtn";
-            this.logoutBtn.Size = new System.Drawing.Size(169, 48);
-            this.logoutBtn.TabIndex = 0;
-            this.logoutBtn.Text = "Log-Out";
-            this.logoutBtn.UseVisualStyleBackColor = true;
-            this.logoutBtn.Click += new System.EventHandler(this.logoutBtn_Click);
             // 
             // AddMenuPanelAP
             // 
@@ -444,7 +406,7 @@
             // 
             // MenuPic
             // 
-            this.MenuPic.Location = new System.Drawing.Point(778, 205);
+            this.MenuPic.Location = new System.Drawing.Point(797, 205);
             this.MenuPic.Name = "MenuPic";
             this.MenuPic.Size = new System.Drawing.Size(120, 120);
             this.MenuPic.TabIndex = 1;
@@ -459,6 +421,17 @@
             this.FoodTbl.RowTemplate.Height = 24;
             this.FoodTbl.Size = new System.Drawing.Size(661, 534);
             this.FoodTbl.TabIndex = 0;
+            // 
+            // SalesRepPanel
+            // 
+            this.SalesRepPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.AdminPanelContainer.SetCardName(this.SalesRepPanel, "Card5");
+            this.SalesRepPanel.Location = new System.Drawing.Point(0, 0);
+            this.AdminPanelContainer.SetMinimumSize(this.SalesRepPanel, new System.Drawing.Size(200, 100));
+            this.SalesRepPanel.Name = "SalesRepPanel";
+            this.AdminPanelContainer.SetPreferredSize(this.SalesRepPanel, new System.Drawing.Size(200, 100));
+            this.SalesRepPanel.Size = new System.Drawing.Size(1221, 697);
+            this.SalesRepPanel.TabIndex = 4;
             // 
             // AccManagePanel
             // 
@@ -800,6 +773,7 @@
             // 
             this.AccCreatePanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.AccManageContainer.SetCardName(this.AccCreatePanel, "Card1");
+            this.AccCreatePanel.Controls.Add(this.ImgTxtB);
             this.AccCreatePanel.Controls.Add(this.ActiveAccLbl);
             this.AccCreatePanel.Controls.Add(this.AccCreateLbl);
             this.AccCreatePanel.Controls.Add(this.label6);
@@ -979,21 +953,22 @@
             // SelectImgBtn
             // 
             this.SelectImgBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SelectImgBtn.Location = new System.Drawing.Point(24, 432);
+            this.SelectImgBtn.Location = new System.Drawing.Point(24, 626);
             this.SelectImgBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.SelectImgBtn.Name = "SelectImgBtn";
             this.SelectImgBtn.Size = new System.Drawing.Size(161, 28);
             this.SelectImgBtn.TabIndex = 12;
             this.SelectImgBtn.Text = "Select Image";
             this.SelectImgBtn.UseVisualStyleBackColor = true;
+            this.SelectImgBtn.Click += new System.EventHandler(this.SelectImgBtn_Click);
             // 
             // UserPicB
             // 
             this.UserPicB.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.UserPicB.Location = new System.Drawing.Point(24, 476);
+            this.UserPicB.Location = new System.Drawing.Point(24, 462);
             this.UserPicB.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.UserPicB.Name = "UserPicB";
-            this.UserPicB.Size = new System.Drawing.Size(149, 150);
+            this.UserPicB.Size = new System.Drawing.Size(160, 160);
             this.UserPicB.TabIndex = 11;
             this.UserPicB.TabStop = false;
             // 
@@ -1122,7 +1097,7 @@
             // 
             this.NavigationPanelAP.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.NavigationPanelAP.Controls.Add(this.SalesRepLbl);
-            this.NavigationPanelAP.Controls.Add(this.SettingsLbl);
+            this.NavigationPanelAP.Controls.Add(this.LogoutLbl);
             this.NavigationPanelAP.Controls.Add(this.AddMenuLbl);
             this.NavigationPanelAP.Controls.Add(this.AccManageLbl);
             this.NavigationPanelAP.Location = new System.Drawing.Point(0, 0);
@@ -1142,17 +1117,17 @@
             this.SalesRepLbl.Text = "Sales Report";
             this.SalesRepLbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // SettingsLbl
+            // LogoutLbl
             // 
-            this.SettingsLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SettingsLbl.Location = new System.Drawing.Point(4, 624);
-            this.SettingsLbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.SettingsLbl.Name = "SettingsLbl";
-            this.SettingsLbl.Size = new System.Drawing.Size(228, 73);
-            this.SettingsLbl.TabIndex = 2;
-            this.SettingsLbl.Text = "Settings";
-            this.SettingsLbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.SettingsLbl.Click += new System.EventHandler(this.SettingsLbl_Click);
+            this.LogoutLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LogoutLbl.Location = new System.Drawing.Point(4, 624);
+            this.LogoutLbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.LogoutLbl.Name = "LogoutLbl";
+            this.LogoutLbl.Size = new System.Drawing.Size(228, 73);
+            this.LogoutLbl.TabIndex = 2;
+            this.LogoutLbl.Text = "Log-Out";
+            this.LogoutLbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.LogoutLbl.Click += new System.EventHandler(this.LogoutLbl_Click);
             // 
             // AddMenuLbl
             // 
@@ -1228,13 +1203,24 @@
             // 
             this.AdminPanelContainer.ContainerControl = this.InterfaceAP;
             this.AdminPanelContainer.LayoutMode = Syncfusion.Windows.Forms.Tools.CardLayoutMode.Fill;
-            this.AdminPanelContainer.SelectedCard = "Card3";
+            this.AdminPanelContainer.SelectedCard = "Card1";
             // 
             // AccManageContainer
             // 
             this.AccManageContainer.ContainerControl = this.AccManagePanel;
             this.AccManageContainer.LayoutMode = Syncfusion.Windows.Forms.Tools.CardLayoutMode.Fill;
-            this.AccManageContainer.SelectedCard = "Card2";
+            this.AccManageContainer.SelectedCard = "Card1";
+            // 
+            // ImgTxtB
+            // 
+            this.ImgTxtB.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ImgTxtB.Location = new System.Drawing.Point(24, 428);
+            this.ImgTxtB.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.ImgTxtB.Multiline = true;
+            this.ImgTxtB.Name = "ImgTxtB";
+            this.ImgTxtB.Size = new System.Drawing.Size(160, 30);
+            this.ImgTxtB.TabIndex = 26;
+            this.ImgTxtB.Text = "Choose picture";
             // 
             // CafeDeLunaDashboard
             // 
@@ -1257,7 +1243,6 @@
             this.InterfaceAP.ResumeLayout(false);
             this.HomePanelAP.ResumeLayout(false);
             this.HomePanelAP.PerformLayout();
-            this.SettingPanelAP.ResumeLayout(false);
             this.AddMenuPanelAP.ResumeLayout(false);
             this.AddMenuPanelAP.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
@@ -1301,9 +1286,8 @@
         private System.Windows.Forms.Label AddMenuLbl;
         private System.Windows.Forms.Label AccManageLbl;
         private Syncfusion.Windows.Forms.Tools.CardLayout AdminPanelContainer;
-        private System.Windows.Forms.Label SettingsLbl;
+        private System.Windows.Forms.Label LogoutLbl;
         private System.Windows.Forms.Panel HomePanelAP;
-        private System.Windows.Forms.Panel SettingPanelAP;
         private System.Windows.Forms.Panel AddMenuPanelAP;
         private System.Windows.Forms.Panel AccManagePanel;
         private System.Windows.Forms.Label label2;
@@ -1361,7 +1345,6 @@
         private System.Windows.Forms.TextBox textBox8;
         private System.Windows.Forms.Label ActiveAccLbl;
         private System.Windows.Forms.Label AccCreateLbl;
-        private System.Windows.Forms.Button logoutBtn;
         private System.Windows.Forms.Button CancelBtn;
         private System.Windows.Forms.Panel SalesRepPanel;
         private System.Windows.Forms.Label SalesRepLbl;
@@ -1381,6 +1364,7 @@
         private System.Windows.Forms.TextBox textBox12;
         private System.Windows.Forms.ComboBox comboBox2;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.TextBox ImgTxtB;
     }
 }
 

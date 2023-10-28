@@ -34,14 +34,12 @@ namespace CafeDeLunaSystem
         //Admin Panel
         private readonly Panel HomePanelAP;
         private readonly Panel AccManagePanelAP;
-        private readonly Panel SettingPanelAP;
         private readonly Panel AddMenuPanelAP;
 
-        public PanelManagerAP(Panel homePanelAP, Panel accManagePanelAP, Panel settingPanelAP, Panel addMenuPanelAP)
+        public PanelManagerAP(Panel homePanelAP, Panel accManagePanelAP, Panel addMenuPanelAP)
         {
             HomePanelAP = homePanelAP;
             AccManagePanelAP = accManagePanelAP;
-            SettingPanelAP = settingPanelAP;
             AddMenuPanelAP = addMenuPanelAP;
         }
 
@@ -50,7 +48,6 @@ namespace CafeDeLunaSystem
             //Admin Panel
             HomePanelAP.Hide();
             AccManagePanelAP.Hide();
-            SettingPanelAP.Hide();
             AddMenuPanelAP.Hide();
 
             panelToShow.Show();
