@@ -32,5 +32,11 @@ namespace CafeDeLunaSystem
                 }
             }
         }
+        public static void SetPlaceholder(TextBox textBox, string placeholderText)
+        {
+            PlaceholderHandler handler = new PlaceholderHandler(placeholderText);
+            textBox.Enter += handler.Enter;
+            textBox.Leave += handler.Leave;
+        }
     }
 }

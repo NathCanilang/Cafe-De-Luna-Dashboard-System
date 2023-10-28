@@ -117,7 +117,6 @@
     <Compile Include="General Methods\ComBTxtPlaceholder.cs" />
     <Compile Include="General Methods\Encryptor.cs" />
     <Compile Include="General Methods\PanelManager.cs" />
-    <Compile Include="General Methods\PlaceholdersSetup.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="General Methods\TxtPlaceholders.cs" />

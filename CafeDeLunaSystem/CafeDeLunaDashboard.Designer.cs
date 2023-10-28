@@ -1007,6 +1007,7 @@
             // 
             // EmployeeIDTxtB_AP
             // 
+            this.EmployeeIDTxtB_AP.Enabled = false;
             this.EmployeeIDTxtB_AP.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.EmployeeIDTxtB_AP.Location = new System.Drawing.Point(380, 430);
             this.EmployeeIDTxtB_AP.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -1051,6 +1052,7 @@
             // 
             // AgeTxtB_AP
             // 
+            this.AgeTxtB_AP.Enabled = false;
             this.AgeTxtB_AP.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.AgeTxtB_AP.Location = new System.Drawing.Point(380, 245);
             this.AgeTxtB_AP.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -1213,6 +1215,7 @@
             // 
             // ImgTxtB
             // 
+            this.ImgTxtB.Enabled = false;
             this.ImgTxtB.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ImgTxtB.Location = new System.Drawing.Point(24, 428);
             this.ImgTxtB.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);

@@ -12,7 +12,7 @@ namespace CafeDeLunaSystem
         public class PlaceholderHandler
         {
             private readonly string placeholderComBText;
-            public PlaceholderHandler(string placeholderText) 
+            public PlaceholderHandler(string placeholderText)
             {
                 this.placeholderComBText = placeholderText;
             }
@@ -33,6 +33,12 @@ namespace CafeDeLunaSystem
                     comBox.Text = this.placeholderComBText;
                 }
             }
+        }
+        public static void SetPlaceholder(ComboBox comBox, string placeholderText)
+        {
+            PlaceholderHandler handler = new PlaceholderHandler(placeholderText);
+            comBox.Enter += handler.Enter;
+            comBox.Leave += handler.Leave;
         }
     }
 }

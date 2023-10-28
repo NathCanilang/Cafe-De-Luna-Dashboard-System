@@ -15,6 +15,7 @@ namespace CafeDeLunaSystem
         private readonly PanelManagerAMC panelManagerAMC;
 
         //Admin Panel
+        private ImageResize imageResizer = new ImageResize();
         private readonly string[] position = { "Manager", "Cashier" };
         public CafeDeLunaDashboard()
         {
@@ -26,49 +27,17 @@ namespace CafeDeLunaSystem
             panelManagerAMC = new PanelManagerAMC(AccCreatePanel, EditAccPanel);
 
             //Placeholders
-            TxtPlaceholder.PlaceholderHandler usernamePlaceholder = new TxtPlaceholder.PlaceholderHandler("Enter your Username");
-            UsernameTxtBLP.Enter += usernamePlaceholder.Enter;
-            UsernameTxtBLP.Leave += usernamePlaceholder.Leave;
-
-            TxtPlaceholder.PlaceholderHandler passwordPlaceholder = new TxtPlaceholder.PlaceholderHandler("Enter your Password");
-            PasswordTxtBLP.Enter += passwordPlaceholder.Enter;
-            PasswordTxtBLP.Leave += passwordPlaceholder.Leave;
-
-            TxtPlaceholder.PlaceholderHandler lastNamePlaceholder = new TxtPlaceholder.PlaceholderHandler("Enter last name");
-            LastNTxtB_AP.Enter += lastNamePlaceholder.Enter;
-            LastNTxtB_AP.Leave += lastNamePlaceholder.Leave;
-
-            TxtPlaceholder.PlaceholderHandler firstNamePlaceholder = new TxtPlaceholder.PlaceholderHandler("Enter first name");
-            FirstNTxtB_AP.Enter += firstNamePlaceholder.Enter;
-            FirstNTxtB_AP.Leave += firstNamePlaceholder.Leave;
-
-            TxtPlaceholder.PlaceholderHandler middleNamePlaceholder = new TxtPlaceholder.PlaceholderHandler("Enter middle name");
-            MiddleNTxtB_AP.Enter += middleNamePlaceholder.Enter;
-            MiddleNTxtB_AP.Leave += middleNamePlaceholder.Leave;
-
-            TxtPlaceholder.PlaceholderHandler agePlaceholder = new TxtPlaceholder.PlaceholderHandler("Enter age");
-            AgeTxtB_AP.Enter += agePlaceholder.Enter;
-            AgeTxtB_AP.Leave += agePlaceholder.Leave;
-
-            TxtPlaceholder.PlaceholderHandler emailPlaceholder = new TxtPlaceholder.PlaceholderHandler("Enter e-mail");
-            EmailTxtB_AP.Enter += emailPlaceholder.Enter;
-            EmailTxtB_AP.Leave += emailPlaceholder.Leave;
-
-            TxtPlaceholder.PlaceholderHandler username_APPlaceholder = new TxtPlaceholder.PlaceholderHandler("Enter username");
-            UsernameTxtB_AP.Enter += username_APPlaceholder.Enter;
-            UsernameTxtB_AP.Leave += username_APPlaceholder.Leave;
-
-            TxtPlaceholder.PlaceholderHandler password_APPlaceholder = new TxtPlaceholder.PlaceholderHandler("Enter password");
-            PasswordTxtB_AP.Enter += password_APPlaceholder.Enter;
-            PasswordTxtB_AP.Leave += password_APPlaceholder.Leave;
-
-            TxtPlaceholder.PlaceholderHandler employeeIDPlaceholder = new TxtPlaceholder.PlaceholderHandler("Enter ID");
-            EmployeeIDTxtB_AP.Enter += employeeIDPlaceholder.Enter;
-            EmployeeIDTxtB_AP.Leave += employeeIDPlaceholder.Leave;
-
-            ComBTxtPlaceholder.PlaceholderHandler positionPlaceholder = new ComBTxtPlaceholder.PlaceholderHandler("Choose position");
-            PositionComB_AP.Enter += positionPlaceholder.Enter;
-            PositionComB_AP.Leave += positionPlaceholder.Leave;
+            TxtPlaceholder.SetPlaceholder(UsernameTxtBLP, "Enter your Username");
+            TxtPlaceholder.SetPlaceholder(PasswordTxtBLP, "Enter your Password");
+            TxtPlaceholder.SetPlaceholder(LastNTxtB_AP, "Enter last name");
+            TxtPlaceholder.SetPlaceholder(FirstNTxtB_AP, "Enter first name");
+            TxtPlaceholder.SetPlaceholder(MiddleNTxtB_AP, "Enter middle name");
+            TxtPlaceholder.SetPlaceholder(AgeTxtB_AP, "Enter age");
+            TxtPlaceholder.SetPlaceholder(EmailTxtB_AP, "Enter e-mail");
+            TxtPlaceholder.SetPlaceholder(UsernameTxtB_AP, "Enter username");
+            TxtPlaceholder.SetPlaceholder(PasswordTxtB_AP, "Enter password");
+            TxtPlaceholder.SetPlaceholder(EmployeeIDTxtB_AP, "Enter ID");
+            ComBTxtPlaceholder.SetPlaceholder(PositionComB_AP, "Choose position");
 
             //Panel Startup
             panelManager.ShowPanel(LoginPanel);
@@ -165,35 +134,6 @@ namespace CafeDeLunaSystem
             }
         }
 
-        public Bitmap ResizeImage(Image sourceImage, int maxWidth, int maxHeight)
-        {
-            double aspectRatio = (double)sourceImage.Width / sourceImage.Height;
-            int newWidth, newHeight;
-
-            if (sourceImage.Width > sourceImage.Height)
-            {
-                newWidth = maxWidth;
-                newHeight = (int)(maxWidth / aspectRatio);
-            }
-            else
-            {
-                newHeight = maxHeight;
-                newWidth = (int)(maxHeight * aspectRatio);
-            }
-
-            using (Bitmap resizedImage = new Bitmap(newWidth, newHeight))
-            using (Graphics graphics = Graphics.FromImage(resizedImage))
-            {
-                graphics.CompositingQuality = System.Drawing.Drawing2D.CompositingQuality.HighQuality;
-                graphics.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
-                graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
-
-                graphics.DrawImage(sourceImage, 0, 0, newWidth, newHeight);
-
-                return new Bitmap(resizedImage);
-            }
-        }
-
         private void SelectImgBtn_Click(object sender, System.EventArgs e)
         {
             using (OpenFileDialog openFileDialog = new OpenFileDialog())
@@ -214,7 +154,7 @@ namespace CafeDeLunaSystem
                         int maxWidth = 800;
                         int maxHeight = 600;
 
-                        Bitmap resizedImage = ResizeImage(selectedImage, maxWidth, maxHeight);
+                        Bitmap resizedImage = imageResizer.ResizeImage(selectedImage, maxWidth, maxHeight);
 
                         UserPicB.Image = resizedImage;
                     }
