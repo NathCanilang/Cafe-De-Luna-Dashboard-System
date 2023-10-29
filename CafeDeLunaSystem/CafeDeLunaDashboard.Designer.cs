@@ -40,21 +40,23 @@
             this.HomePanelAP = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.AddMenuPanelAP = new System.Windows.Forms.Panel();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.textBox13 = new System.Windows.Forms.TextBox();
-            this.textBox12 = new System.Windows.Forms.TextBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.textBox11 = new System.Windows.Forms.TextBox();
-            this.textBox10 = new System.Windows.Forms.TextBox();
-            this.textBox9 = new System.Windows.Forms.TextBox();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.MenuFilePathTxtB = new System.Windows.Forms.TextBox();
+            this.VarietyFilePathTxtB = new System.Windows.Forms.TextBox();
+            this.DeleteMenulBtn = new System.Windows.Forms.Button();
+            this.EditMealBtn = new System.Windows.Forms.Button();
+            this.VariationIDTxtBox = new System.Windows.Forms.TextBox();
+            this.MealIDTxtB = new System.Windows.Forms.TextBox();
+            this.MenuSelectComB = new System.Windows.Forms.ComboBox();
+            this.VarietyAddImgBtn = new System.Windows.Forms.Button();
+            this.AddVarietyBtn = new System.Windows.Forms.Button();
+            this.VariationDescTxtB = new System.Windows.Forms.TextBox();
+            this.VariationCostTxtB = new System.Windows.Forms.TextBox();
+            this.VariationNmTxtB = new System.Windows.Forms.TextBox();
+            this.VariationPicB = new System.Windows.Forms.PictureBox();
             this.AddMenuBtn = new System.Windows.Forms.Button();
-            this.AddImgBtn = new System.Windows.Forms.Button();
-            this.MealNTxtB = new System.Windows.Forms.TextBox();
-            this.MenuPic = new System.Windows.Forms.PictureBox();
+            this.MenuAddImgBtn = new System.Windows.Forms.Button();
+            this.MenuNTxtB = new System.Windows.Forms.TextBox();
+            this.MenuPicB = new System.Windows.Forms.PictureBox();
             this.FoodTbl = new System.Windows.Forms.DataGridView();
             this.SalesRepPanel = new System.Windows.Forms.Panel();
             this.AccManagePanel = new System.Windows.Forms.Panel();
@@ -131,8 +133,8 @@
             this.InterfaceAP.SuspendLayout();
             this.HomePanelAP.SuspendLayout();
             this.AddMenuPanelAP.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.MenuPic)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.VariationPicB)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MenuPicB)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.FoodTbl)).BeginInit();
             this.AccManagePanel.SuspendLayout();
             this.EditAccPanel.SuspendLayout();
@@ -261,21 +263,23 @@
             // 
             this.AddMenuPanelAP.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
             this.AdminPanelContainer.SetCardName(this.AddMenuPanelAP, "Card2");
-            this.AddMenuPanelAP.Controls.Add(this.button4);
-            this.AddMenuPanelAP.Controls.Add(this.button3);
-            this.AddMenuPanelAP.Controls.Add(this.textBox13);
-            this.AddMenuPanelAP.Controls.Add(this.textBox12);
-            this.AddMenuPanelAP.Controls.Add(this.comboBox2);
-            this.AddMenuPanelAP.Controls.Add(this.button2);
-            this.AddMenuPanelAP.Controls.Add(this.button1);
-            this.AddMenuPanelAP.Controls.Add(this.textBox11);
-            this.AddMenuPanelAP.Controls.Add(this.textBox10);
-            this.AddMenuPanelAP.Controls.Add(this.textBox9);
-            this.AddMenuPanelAP.Controls.Add(this.pictureBox3);
+            this.AddMenuPanelAP.Controls.Add(this.MenuFilePathTxtB);
+            this.AddMenuPanelAP.Controls.Add(this.VarietyFilePathTxtB);
+            this.AddMenuPanelAP.Controls.Add(this.DeleteMenulBtn);
+            this.AddMenuPanelAP.Controls.Add(this.EditMealBtn);
+            this.AddMenuPanelAP.Controls.Add(this.VariationIDTxtBox);
+            this.AddMenuPanelAP.Controls.Add(this.MealIDTxtB);
+            this.AddMenuPanelAP.Controls.Add(this.MenuSelectComB);
+            this.AddMenuPanelAP.Controls.Add(this.VarietyAddImgBtn);
+            this.AddMenuPanelAP.Controls.Add(this.AddVarietyBtn);
+            this.AddMenuPanelAP.Controls.Add(this.VariationDescTxtB);
+            this.AddMenuPanelAP.Controls.Add(this.VariationCostTxtB);
+            this.AddMenuPanelAP.Controls.Add(this.VariationNmTxtB);
+            this.AddMenuPanelAP.Controls.Add(this.VariationPicB);
             this.AddMenuPanelAP.Controls.Add(this.AddMenuBtn);
-            this.AddMenuPanelAP.Controls.Add(this.AddImgBtn);
-            this.AddMenuPanelAP.Controls.Add(this.MealNTxtB);
-            this.AddMenuPanelAP.Controls.Add(this.MenuPic);
+            this.AddMenuPanelAP.Controls.Add(this.MenuAddImgBtn);
+            this.AddMenuPanelAP.Controls.Add(this.MenuNTxtB);
+            this.AddMenuPanelAP.Controls.Add(this.MenuPicB);
             this.AddMenuPanelAP.Controls.Add(this.FoodTbl);
             this.AddMenuPanelAP.Location = new System.Drawing.Point(0, 0);
             this.AddMenuPanelAP.Margin = new System.Windows.Forms.Padding(4);
@@ -285,98 +289,117 @@
             this.AddMenuPanelAP.Size = new System.Drawing.Size(1221, 697);
             this.AddMenuPanelAP.TabIndex = 1;
             // 
-            // button4
+            // MenuFilePathTxtB
             // 
-            this.button4.Location = new System.Drawing.Point(971, 632);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(171, 35);
-            this.button4.TabIndex = 15;
-            this.button4.Text = "Add Menu";
-            this.button4.UseVisualStyleBackColor = true;
+            this.MenuFilePathTxtB.Location = new System.Drawing.Point(797, 331);
+            this.MenuFilePathTxtB.Name = "MenuFilePathTxtB";
+            this.MenuFilePathTxtB.Size = new System.Drawing.Size(120, 22);
+            this.MenuFilePathTxtB.TabIndex = 17;
+            this.MenuFilePathTxtB.Visible = false;
             // 
-            // button3
+            // VarietyFilePathTxtB
             // 
-            this.button3.Location = new System.Drawing.Point(794, 632);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(171, 35);
-            this.button3.TabIndex = 14;
-            this.button3.Text = "Edit Meal";
-            this.button3.UseVisualStyleBackColor = true;
+            this.VarietyFilePathTxtB.Location = new System.Drawing.Point(723, 525);
+            this.VarietyFilePathTxtB.Name = "VarietyFilePathTxtB";
+            this.VarietyFilePathTxtB.Size = new System.Drawing.Size(120, 22);
+            this.VarietyFilePathTxtB.TabIndex = 16;
+            this.VarietyFilePathTxtB.Visible = false;
             // 
-            // textBox13
+            // DeleteMenulBtn
             // 
-            this.textBox13.Location = new System.Drawing.Point(971, 591);
-            this.textBox13.Multiline = true;
-            this.textBox13.Name = "textBox13";
-            this.textBox13.Size = new System.Drawing.Size(171, 35);
-            this.textBox13.TabIndex = 13;
+            this.DeleteMenulBtn.Location = new System.Drawing.Point(971, 632);
+            this.DeleteMenulBtn.Name = "DeleteMenulBtn";
+            this.DeleteMenulBtn.Size = new System.Drawing.Size(171, 35);
+            this.DeleteMenulBtn.TabIndex = 15;
+            this.DeleteMenulBtn.Text = "Delete Menu";
+            this.DeleteMenulBtn.UseVisualStyleBackColor = true;
             // 
-            // textBox12
+            // EditMealBtn
             // 
-            this.textBox12.Location = new System.Drawing.Point(794, 591);
-            this.textBox12.Multiline = true;
-            this.textBox12.Name = "textBox12";
-            this.textBox12.Size = new System.Drawing.Size(171, 35);
-            this.textBox12.TabIndex = 12;
+            this.EditMealBtn.Location = new System.Drawing.Point(794, 632);
+            this.EditMealBtn.Name = "EditMealBtn";
+            this.EditMealBtn.Size = new System.Drawing.Size(171, 35);
+            this.EditMealBtn.TabIndex = 14;
+            this.EditMealBtn.Text = "Edit Meal";
+            this.EditMealBtn.UseVisualStyleBackColor = true;
             // 
-            // comboBox2
+            // VariationIDTxtBox
             // 
-            this.comboBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(1025, 403);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(171, 33);
-            this.comboBox2.TabIndex = 11;
+            this.VariationIDTxtBox.Location = new System.Drawing.Point(971, 591);
+            this.VariationIDTxtBox.Multiline = true;
+            this.VariationIDTxtBox.Name = "VariationIDTxtBox";
+            this.VariationIDTxtBox.Size = new System.Drawing.Size(171, 35);
+            this.VariationIDTxtBox.TabIndex = 13;
             // 
-            // button2
+            // MealIDTxtB
             // 
-            this.button2.Location = new System.Drawing.Point(1025, 447);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(171, 35);
-            this.button2.TabIndex = 10;
-            this.button2.Text = "Add Image";
-            this.button2.UseVisualStyleBackColor = true;
+            this.MealIDTxtB.Location = new System.Drawing.Point(794, 591);
+            this.MealIDTxtB.Multiline = true;
+            this.MealIDTxtB.Name = "MealIDTxtB";
+            this.MealIDTxtB.Size = new System.Drawing.Size(171, 35);
+            this.MealIDTxtB.TabIndex = 12;
             // 
-            // button1
+            // MenuSelectComB
             // 
-            this.button1.Location = new System.Drawing.Point(1025, 488);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(171, 35);
-            this.button1.TabIndex = 9;
-            this.button1.Text = "Add Variation";
-            this.button1.UseVisualStyleBackColor = true;
+            this.MenuSelectComB.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MenuSelectComB.FormattingEnabled = true;
+            this.MenuSelectComB.Location = new System.Drawing.Point(1026, 399);
+            this.MenuSelectComB.Name = "MenuSelectComB";
+            this.MenuSelectComB.Size = new System.Drawing.Size(171, 33);
+            this.MenuSelectComB.TabIndex = 11;
             // 
-            // textBox11
+            // VarietyAddImgBtn
             // 
-            this.textBox11.Location = new System.Drawing.Point(848, 447);
-            this.textBox11.Multiline = true;
-            this.textBox11.Name = "textBox11";
-            this.textBox11.Size = new System.Drawing.Size(171, 35);
-            this.textBox11.TabIndex = 8;
+            this.VarietyAddImgBtn.Location = new System.Drawing.Point(1026, 443);
+            this.VarietyAddImgBtn.Name = "VarietyAddImgBtn";
+            this.VarietyAddImgBtn.Size = new System.Drawing.Size(171, 35);
+            this.VarietyAddImgBtn.TabIndex = 10;
+            this.VarietyAddImgBtn.Text = "Add Variety Image";
+            this.VarietyAddImgBtn.UseVisualStyleBackColor = true;
+            this.VarietyAddImgBtn.Click += new System.EventHandler(this.VarietyAddImgBtn_Click);
             // 
-            // textBox10
+            // AddVarietyBtn
             // 
-            this.textBox10.Location = new System.Drawing.Point(848, 488);
-            this.textBox10.Multiline = true;
-            this.textBox10.Name = "textBox10";
-            this.textBox10.Size = new System.Drawing.Size(171, 35);
-            this.textBox10.TabIndex = 7;
+            this.AddVarietyBtn.Location = new System.Drawing.Point(1026, 484);
+            this.AddVarietyBtn.Name = "AddVarietyBtn";
+            this.AddVarietyBtn.Size = new System.Drawing.Size(171, 35);
+            this.AddVarietyBtn.TabIndex = 9;
+            this.AddVarietyBtn.Text = "Add Variation";
+            this.AddVarietyBtn.UseVisualStyleBackColor = true;
+            this.AddVarietyBtn.Click += new System.EventHandler(this.AddVarietyBtn_Click);
             // 
-            // textBox9
+            // VariationDescTxtB
             // 
-            this.textBox9.Location = new System.Drawing.Point(848, 403);
-            this.textBox9.Multiline = true;
-            this.textBox9.Name = "textBox9";
-            this.textBox9.Size = new System.Drawing.Size(171, 35);
-            this.textBox9.TabIndex = 6;
+            this.VariationDescTxtB.Location = new System.Drawing.Point(849, 443);
+            this.VariationDescTxtB.Multiline = true;
+            this.VariationDescTxtB.Name = "VariationDescTxtB";
+            this.VariationDescTxtB.Size = new System.Drawing.Size(171, 35);
+            this.VariationDescTxtB.TabIndex = 8;
             // 
-            // pictureBox3
+            // VariationCostTxtB
             // 
-            this.pictureBox3.Location = new System.Drawing.Point(722, 403);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(120, 120);
-            this.pictureBox3.TabIndex = 5;
-            this.pictureBox3.TabStop = false;
+            this.VariationCostTxtB.Location = new System.Drawing.Point(849, 484);
+            this.VariationCostTxtB.Multiline = true;
+            this.VariationCostTxtB.Name = "VariationCostTxtB";
+            this.VariationCostTxtB.Size = new System.Drawing.Size(171, 35);
+            this.VariationCostTxtB.TabIndex = 7;
+            // 
+            // VariationNmTxtB
+            // 
+            this.VariationNmTxtB.Location = new System.Drawing.Point(849, 399);
+            this.VariationNmTxtB.Multiline = true;
+            this.VariationNmTxtB.Name = "VariationNmTxtB";
+            this.VariationNmTxtB.Size = new System.Drawing.Size(171, 35);
+            this.VariationNmTxtB.TabIndex = 6;
+            // 
+            // VariationPicB
+            // 
+            this.VariationPicB.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.VariationPicB.Location = new System.Drawing.Point(723, 399);
+            this.VariationPicB.Name = "VariationPicB";
+            this.VariationPicB.Size = new System.Drawing.Size(120, 120);
+            this.VariationPicB.TabIndex = 5;
+            this.VariationPicB.TabStop = false;
             // 
             // AddMenuBtn
             // 
@@ -386,31 +409,34 @@
             this.AddMenuBtn.TabIndex = 4;
             this.AddMenuBtn.Text = "Add Menu";
             this.AddMenuBtn.UseVisualStyleBackColor = true;
+            this.AddMenuBtn.Click += new System.EventHandler(this.AddMenuBtn_Click);
             // 
-            // AddImgBtn
+            // MenuAddImgBtn
             // 
-            this.AddImgBtn.Location = new System.Drawing.Point(923, 249);
-            this.AddImgBtn.Name = "AddImgBtn";
-            this.AddImgBtn.Size = new System.Drawing.Size(205, 35);
-            this.AddImgBtn.TabIndex = 3;
-            this.AddImgBtn.Text = "Add Image";
-            this.AddImgBtn.UseVisualStyleBackColor = true;
+            this.MenuAddImgBtn.Location = new System.Drawing.Point(923, 249);
+            this.MenuAddImgBtn.Name = "MenuAddImgBtn";
+            this.MenuAddImgBtn.Size = new System.Drawing.Size(205, 35);
+            this.MenuAddImgBtn.TabIndex = 3;
+            this.MenuAddImgBtn.Text = "Add Menu Image ";
+            this.MenuAddImgBtn.UseVisualStyleBackColor = true;
+            this.MenuAddImgBtn.Click += new System.EventHandler(this.MenuAddImgBtn_Click);
             // 
-            // MealNTxtB
+            // MenuNTxtB
             // 
-            this.MealNTxtB.Location = new System.Drawing.Point(923, 205);
-            this.MealNTxtB.Multiline = true;
-            this.MealNTxtB.Name = "MealNTxtB";
-            this.MealNTxtB.Size = new System.Drawing.Size(205, 35);
-            this.MealNTxtB.TabIndex = 2;
+            this.MenuNTxtB.Location = new System.Drawing.Point(923, 205);
+            this.MenuNTxtB.Multiline = true;
+            this.MenuNTxtB.Name = "MenuNTxtB";
+            this.MenuNTxtB.Size = new System.Drawing.Size(205, 35);
+            this.MenuNTxtB.TabIndex = 2;
             // 
-            // MenuPic
+            // MenuPicB
             // 
-            this.MenuPic.Location = new System.Drawing.Point(797, 205);
-            this.MenuPic.Name = "MenuPic";
-            this.MenuPic.Size = new System.Drawing.Size(120, 120);
-            this.MenuPic.TabIndex = 1;
-            this.MenuPic.TabStop = false;
+            this.MenuPicB.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.MenuPicB.Location = new System.Drawing.Point(797, 205);
+            this.MenuPicB.Name = "MenuPicB";
+            this.MenuPicB.Size = new System.Drawing.Size(120, 120);
+            this.MenuPicB.TabIndex = 1;
+            this.MenuPicB.TabStop = false;
             // 
             // FoodTbl
             // 
@@ -1218,7 +1244,7 @@
             // 
             this.AdminPanelContainer.ContainerControl = this.InterfaceAP;
             this.AdminPanelContainer.LayoutMode = Syncfusion.Windows.Forms.Tools.CardLayoutMode.Fill;
-            this.AdminPanelContainer.SelectedCard = "Card1";
+            this.AdminPanelContainer.SelectedCard = "Card2";
             // 
             // AccManageContainer
             // 
@@ -1249,8 +1275,8 @@
             this.HomePanelAP.PerformLayout();
             this.AddMenuPanelAP.ResumeLayout(false);
             this.AddMenuPanelAP.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.MenuPic)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.VariationPicB)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MenuPicB)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.FoodTbl)).EndInit();
             this.AccManagePanel.ResumeLayout(false);
             this.EditAccPanel.ResumeLayout(false);
@@ -1352,23 +1378,25 @@
         private System.Windows.Forms.Button CancelBtn;
         private System.Windows.Forms.Panel SalesRepPanel;
         private System.Windows.Forms.Label SalesRepLbl;
-        private System.Windows.Forms.DataGridView FoodTbl;
-        private System.Windows.Forms.PictureBox MenuPic;
-        private System.Windows.Forms.TextBox MealNTxtB;
-        private System.Windows.Forms.PictureBox pictureBox3;
+        public System.Windows.Forms.DataGridView FoodTbl;
+        private System.Windows.Forms.PictureBox MenuPicB;
+        private System.Windows.Forms.TextBox MenuNTxtB;
+        private System.Windows.Forms.PictureBox VariationPicB;
         private System.Windows.Forms.Button AddMenuBtn;
-        private System.Windows.Forms.Button AddImgBtn;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TextBox textBox11;
-        private System.Windows.Forms.TextBox textBox10;
-        private System.Windows.Forms.TextBox textBox9;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.TextBox textBox13;
-        private System.Windows.Forms.TextBox textBox12;
-        private System.Windows.Forms.ComboBox comboBox2;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button MenuAddImgBtn;
+        private System.Windows.Forms.Button AddVarietyBtn;
+        private System.Windows.Forms.TextBox VariationDescTxtB;
+        private System.Windows.Forms.TextBox VariationCostTxtB;
+        private System.Windows.Forms.TextBox VariationNmTxtB;
+        private System.Windows.Forms.Button DeleteMenulBtn;
+        private System.Windows.Forms.Button EditMealBtn;
+        private System.Windows.Forms.TextBox VariationIDTxtBox;
+        private System.Windows.Forms.TextBox MealIDTxtB;
+        public System.Windows.Forms.ComboBox MenuSelectComB;
+        private System.Windows.Forms.Button VarietyAddImgBtn;
         private System.Windows.Forms.TextBox ImgTxtB;
+        private System.Windows.Forms.TextBox VarietyFilePathTxtB;
+        private System.Windows.Forms.TextBox MenuFilePathTxtB;
     }
 }
 
