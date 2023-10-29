@@ -86,6 +86,7 @@
             this.textBox7 = new System.Windows.Forms.TextBox();
             this.textBox8 = new System.Windows.Forms.TextBox();
             this.AccCreatePanel = new System.Windows.Forms.Panel();
+            this.ImgTxtB = new System.Windows.Forms.TextBox();
             this.ActiveAccLbl = new System.Windows.Forms.Label();
             this.AccCreateLbl = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -123,7 +124,6 @@
             this.label4 = new System.Windows.Forms.Label();
             this.AdminPanelContainer = new Syncfusion.Windows.Forms.Tools.CardLayout(this.components);
             this.AccManageContainer = new Syncfusion.Windows.Forms.Tools.CardLayout(this.components);
-            this.ImgTxtB = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.MainLoginContainer)).BeginInit();
             this.LoginPanel.SuspendLayout();
             this.PanelLP.SuspendLayout();
@@ -808,6 +808,18 @@
             this.AccCreatePanel.Size = new System.Drawing.Size(1221, 697);
             this.AccCreatePanel.TabIndex = 0;
             // 
+            // ImgTxtB
+            // 
+            this.ImgTxtB.Enabled = false;
+            this.ImgTxtB.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ImgTxtB.Location = new System.Drawing.Point(24, 428);
+            this.ImgTxtB.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.ImgTxtB.Multiline = true;
+            this.ImgTxtB.Name = "ImgTxtB";
+            this.ImgTxtB.Size = new System.Drawing.Size(160, 30);
+            this.ImgTxtB.TabIndex = 26;
+            this.ImgTxtB.Text = "Choose picture";
+            // 
             // ActiveAccLbl
             // 
             this.ActiveAccLbl.AutoSize = true;
@@ -949,6 +961,7 @@
             this.CreateBtn.TabIndex = 13;
             this.CreateBtn.Text = "Create Account";
             this.CreateBtn.UseVisualStyleBackColor = true;
+            this.CreateBtn.Click += new System.EventHandler(this.CreateBtn_Click);
             // 
             // SelectImgBtn
             // 
@@ -1213,18 +1226,6 @@
             this.AccManageContainer.LayoutMode = Syncfusion.Windows.Forms.Tools.CardLayoutMode.Fill;
             this.AccManageContainer.SelectedCard = "Card1";
             // 
-            // ImgTxtB
-            // 
-            this.ImgTxtB.Enabled = false;
-            this.ImgTxtB.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ImgTxtB.Location = new System.Drawing.Point(24, 428);
-            this.ImgTxtB.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.ImgTxtB.Multiline = true;
-            this.ImgTxtB.Name = "ImgTxtB";
-            this.ImgTxtB.Size = new System.Drawing.Size(160, 30);
-            this.ImgTxtB.TabIndex = 26;
-            this.ImgTxtB.Text = "Choose picture";
-            // 
             // CafeDeLunaDashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1300,7 +1301,7 @@
         private System.Windows.Forms.TextBox LastNTxtB_AP;
         private System.Windows.Forms.ComboBox PositionComB_AP;
         private System.Windows.Forms.DateTimePicker UserBirthdate;
-        private System.Windows.Forms.TextBox EmployeeIDTxtB_AP;
+        public System.Windows.Forms.TextBox EmployeeIDTxtB_AP;
         private System.Windows.Forms.TextBox PasswordTxtB_AP;
         private System.Windows.Forms.TextBox UsernameTxtB_AP;
         private System.Windows.Forms.TextBox EmailTxtB_AP;
@@ -1311,7 +1312,7 @@
         private System.Windows.Forms.Button CreateBtn;
         private System.Windows.Forms.Button SelectImgBtn;
         private System.Windows.Forms.PictureBox UserPicB;
-        private System.Windows.Forms.DataGridView AccDataTbl;
+        public System.Windows.Forms.DataGridView AccDataTbl;
         private System.Windows.Forms.Label NameLbl;
         private System.Windows.Forms.Label PositionLbl;
         private System.Windows.Forms.Label PasswordLbl;

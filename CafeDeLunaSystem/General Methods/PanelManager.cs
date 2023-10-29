@@ -1,4 +1,7 @@
-﻿using System.Security.Cryptography.X509Certificates;
+﻿using MySql.Data.MySqlClient;
+using System;
+using System.Data;
+using System.Security.Cryptography.X509Certificates;
 using System.Windows.Forms;
 
 namespace CafeDeLunaSystem
@@ -55,11 +58,15 @@ namespace CafeDeLunaSystem
     }
     internal class PanelManagerAMC
     {
+        private readonly MySqlConnection conn;
         private readonly Panel AccCreatePanel;
         private readonly Panel EditAccPanel;
 
         public PanelManagerAMC(Panel accCreatePanel, Panel editAccPanel)
         {
+            string mysqlcon = "server=localhost;user=root;database=dashboarddb;password=";
+            conn = new MySqlConnection(mysqlcon);
+
             AccCreatePanel = accCreatePanel;
             EditAccPanel = editAccPanel;
         }
@@ -69,6 +76,31 @@ namespace CafeDeLunaSystem
             EditAccPanel.Hide();
 
             panelToShow.Show();
+
+            if (panelToShow == AccCreatePanel)
+            {
+                GenerateAndSetRandomNumber();
+                RefreshTbl();
+
+
+            }
+        }
+        private void GenerateAndSetRandomNumber()
+        {
+            Random random = new Random();
+            int random6Digit = random.Next(100000, 1000000);
+            CafeDeLunaDashboard.cafeDeLunaInstance.EmployeeIDTxtB_AP.Text = random6Digit.ToString();
+        }
+
+        public void RefreshTbl()
+        {
+            string query = "SELECT * FROM employee_acc";
+            MySqlCommand cmd = new MySqlCommand(query, conn);
+            MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
+            DataTable dataTable = new DataTable();
+            adapter.Fill(dataTable);
+
+            CafeDeLunaDashboard.cafeDeLunaInstance.AccDataTbl.DataSource = dataTable;
         }
     }
 }

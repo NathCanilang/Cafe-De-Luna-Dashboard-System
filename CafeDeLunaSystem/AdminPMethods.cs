@@ -4,10 +4,11 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace CafeDeLunaSystem
 {
-    internal class ImageResize
+    internal class CreateAndEditAcc
     {
         public Bitmap ResizeImage(Image sourceImage, int maxWidth, int maxHeight)
         {
@@ -36,6 +37,14 @@ namespace CafeDeLunaSystem
 
                 return new Bitmap(resizedImage);
             }
+        }
+
+        public int AgeCalculation(DateTime employeeBirth)
+        {
+            int years = DateTime.Now.Year - employeeBirth.Year;
+
+            if (employeeBirth.AddYears(years) > DateTime.Now) years--;
+            return years;
         }
     }
 }
