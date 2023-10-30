@@ -4,12 +4,20 @@ using System;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
+using System.Runtime.CompilerServices;
 using System.Windows.Forms;
 
 namespace CafeDeLunaSystem
 {
     public partial class CafeDeLunaDashboard : Form
     {
+        MySqlConnection cn;
+        MySqlCommand cm;
+        MySqlDataReader dr;
+        private PictureBox pic;
+        private Label price;
+        private Label mealname;
+
         public static CafeDeLunaDashboard cafeDeLunaInstance;
         private readonly MySqlConnection conn;
         private readonly PanelManager panelManager;
@@ -50,6 +58,8 @@ namespace CafeDeLunaSystem
             //Admin Panel section
             PositionComB_AP.Items.AddRange(position);
             UserBirthdate.ValueChanged += CalculateAge;
+
+
         }
 
         //Login Section
@@ -63,6 +73,12 @@ namespace CafeDeLunaSystem
             {
                 MessageBox.Show("Admin login successful");
                 panelManager.ShowPanel(AdminPanel);
+            }
+            else if (usernameInput == "staff" && passwordInput == "staff123")
+            {
+                MessageBox.Show("Staff login successful");
+                panelManager.ShowPanel(StaffPanel);
+                GetData();
             }
             else
             {
@@ -100,8 +116,8 @@ namespace CafeDeLunaSystem
                 }
             }
         }
-        //Admin Panel
 
+        //Admin Panel
         private void AccManageLbl_Click(object sender, System.EventArgs e)
         {
             panelManagerAP.ShowPanel(AccManagePanel);
@@ -270,6 +286,251 @@ namespace CafeDeLunaSystem
                 {
                     conn.Close();
                 }
+            }
+        }
+
+        //Staff panel
+        private void GetData()
+        {
+            flowLayoutPanel1.Controls.Clear();
+            conn.Open();
+            cm = new MySqlCommand("SELECT MealName, Price, MealImg FROM meal", conn);
+            dr = cm.ExecuteReader();
+
+            while (dr.Read())
+            {
+                string mealName = dr["MealName"].ToString();
+
+                if (!dr.IsDBNull(dr.GetOrdinal("MealImg")))
+                {
+                    byte[] imageBytes = (byte[])dr["MealImg"];
+
+                    using (MemoryStream ms = new MemoryStream(imageBytes))
+                    {
+                        Image mealImage = Image.FromStream(ms);
+                        pic = new PictureBox
+                        {
+                            Width = 150,
+                            Height = 150,
+                            BackgroundImage = mealImage,
+                            BackgroundImageLayout = ImageLayout.Stretch,
+                        };
+
+                        price = new Label
+                        {
+                            Text = dr["Price"].ToString(),
+                            Width = 25,
+                            Height = 15,
+                            TextAlign = ContentAlignment.TopLeft,
+                            Dock = DockStyle.Top,
+                            
+                        };
+
+                        mealname = new Label
+                        {
+                            Text = dr["MealName"].ToString(),                            
+                            Width= 25,
+                            Height = 15,
+                            TextAlign = ContentAlignment.BottomCenter,
+                            Dock = DockStyle.Bottom
+                        };
+
+                        pic.Controls.Add(mealname);
+                        pic.Controls.Add(price);
+                        flowLayoutPanel1.Controls.Add(pic);
+                    }
+                }
+            }
+
+            dr.Close();
+            conn.Close();
+        }
+
+        private void allBtn_Click(object sender, EventArgs e)
+        {
+            GetData();
+        }
+        private void coffeeBtn_Click(object sender, EventArgs e)
+        {
+            flowLayoutPanel1.Controls.Clear(); 
+
+            using (conn)
+            {
+                conn.Open();
+                cm = new MySqlCommand("SELECT MealName, Price, MealImg FROM meal WHERE Type = 'Coffee'", conn);
+                dr = cm.ExecuteReader();
+
+                while (dr.Read())
+                {
+                    byte[] imageBytes = (byte[])dr["MealImg"];
+
+                    using (MemoryStream ms = new MemoryStream(imageBytes))
+                    {
+                        Image mealImage = Image.FromStream(ms);
+                        pic = new PictureBox
+                        {
+                            Width = 150,
+                            Height = 150,
+                            BackgroundImage = mealImage,
+                            BackgroundImageLayout = ImageLayout.Stretch,
+                           
+                        };
+
+                        price = new Label
+                        {
+                            Text = dr["Price"].ToString(),
+                            Width = 25,
+                            Height = 15,
+                            TextAlign = ContentAlignment.TopLeft,
+                            Dock = DockStyle.Top,
+                        };
+
+                        mealname = new Label
+                        {
+                            Text = dr["MealName"].ToString(),
+                            Width = 25,
+                            Height = 15,
+                            TextAlign = ContentAlignment.BottomCenter,
+                            Dock = DockStyle.Bottom
+                        };
+
+                        pic.Controls.Add(mealname);
+                        pic.Controls.Add(price);
+                        flowLayoutPanel1.Controls.Add(pic);
+                    }
+                }
+                dr.Close();
+                conn.Close();
+            }
+        }
+
+        private void breakBtn_Click(object sender, EventArgs e)
+        {
+            flowLayoutPanel1.Controls.Clear();
+
+            using (conn)
+            {
+                conn.Open();
+                cm = new MySqlCommand("SELECT MealName, Price, MealImg FROM meal WHERE Type = 'Breakfast'", conn);
+                dr = cm.ExecuteReader();
+
+                while (dr.Read())
+                {
+                    byte[] imageBytes = (byte[])dr["MealImg"];
+
+                    using (MemoryStream ms = new MemoryStream(imageBytes))
+                    {
+                        Image mealImage = Image.FromStream(ms);
+                        pic = new PictureBox
+                        {
+                            Width = 150,
+                            Height = 150,
+                            BackgroundImage = mealImage,
+                            BackgroundImageLayout = ImageLayout.Stretch,
+                        };
+
+                        price = new Label
+                        {
+                            Text = dr["Price"].ToString(),
+                            Width = 25,
+                            Height = 15,
+                            TextAlign = ContentAlignment.TopLeft,
+                            Dock = DockStyle.Top,
+                        };
+
+                        mealname = new Label
+                        {
+                            Text = dr["MealName"].ToString(),
+                            Width = 25,
+                            Height = 15,
+                            TextAlign = ContentAlignment.BottomCenter,
+                            Dock = DockStyle.Bottom
+                        };
+
+                        pic.Controls.Add(mealname);
+                        pic.Controls.Add(price);
+                        flowLayoutPanel1.Controls.Add(pic);
+                    }
+                }
+                dr.Close();
+                conn.Close();
+            }
+        }
+
+        private void snackBtn_Click(object sender, EventArgs e)
+        {
+            flowLayoutPanel1.Controls.Clear();
+
+            using (conn)
+            {
+                conn.Open();
+                cm = new MySqlCommand("SELECT MealName, Price, MealImg FROM meal WHERE Type = 'Snack'", conn);
+                dr = cm.ExecuteReader();
+
+                while (dr.Read())
+                {
+                    byte[] imageBytes = (byte[])dr["MealImg"];
+
+                    using (MemoryStream ms = new MemoryStream(imageBytes))
+                    {
+                        Image mealImage = Image.FromStream(ms);
+                        pic = new PictureBox
+                        {
+                            Width = 150,
+                            Height = 150,
+                            BackgroundImage = mealImage,
+                            BackgroundImageLayout = ImageLayout.Stretch,
+                        };
+
+                        price = new Label
+                        {
+                            Text = dr["Price"].ToString(),
+                            Width = 25,
+                            Height = 15,
+                            TextAlign = ContentAlignment.TopLeft,
+                            Dock = DockStyle.Top,
+                        };
+
+                        mealname = new Label
+                        {
+                            Text = dr["MealName"].ToString(),
+                            Width = 25,
+                            Height = 15,
+                            TextAlign = ContentAlignment.BottomCenter,
+                            Dock = DockStyle.Bottom
+                        };
+
+                        pic.Controls.Add(mealname);
+                        pic.Controls.Add(price);
+                        flowLayoutPanel1.Controls.Add(pic);
+                    }
+                }
+                dr.Close();
+                conn.Close();
+            }
+        }
+
+
+        private void SearchTxtBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void SearchTxtBox_Enter(object sender, EventArgs e)
+        {
+            if (SearchTxtBox.Text.Equals("Type here to search"))
+            {
+                SearchTxtBox.Text = null;
+                SearchTxtBox.ForeColor = Color.Black;
+            }
+        }
+
+        private void SearchTxtBox_Leave(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(SearchTxtBox.Text))
+            {
+                SearchTxtBox.Text = "Type here to search";
+                SearchTxtBox.ForeColor = Color.LightGray;
             }
         }
     }

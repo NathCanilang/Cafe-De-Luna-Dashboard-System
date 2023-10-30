@@ -121,9 +121,14 @@
             this.ManagerPanel = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.StaffPanel = new System.Windows.Forms.Panel();
-            this.label4 = new System.Windows.Forms.Label();
+            this.allBtn = new System.Windows.Forms.Button();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.snackBtn = new System.Windows.Forms.Button();
+            this.breakBtn = new System.Windows.Forms.Button();
+            this.coffeeBtn = new System.Windows.Forms.Button();
             this.AdminPanelContainer = new Syncfusion.Windows.Forms.Tools.CardLayout(this.components);
             this.AccManageContainer = new Syncfusion.Windows.Forms.Tools.CardLayout(this.components);
+            this.SearchTxtBox = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.MainLoginContainer)).BeginInit();
             this.LoginPanel.SuspendLayout();
             this.PanelLP.SuspendLayout();
@@ -152,7 +157,7 @@
             // 
             this.MainLoginContainer.ContainerControl = this;
             this.MainLoginContainer.LayoutMode = Syncfusion.Windows.Forms.Tools.CardLayoutMode.Fill;
-            this.MainLoginContainer.SelectedCard = "Card2";
+            this.MainLoginContainer.SelectedCard = "Card4";
             // 
             // LoginPanel
             // 
@@ -160,11 +165,10 @@
             this.MainLoginContainer.SetCardName(this.LoginPanel, "Card1");
             this.LoginPanel.Controls.Add(this.PanelLP);
             this.LoginPanel.Location = new System.Drawing.Point(0, 0);
-            this.LoginPanel.Margin = new System.Windows.Forms.Padding(4);
             this.MainLoginContainer.SetMinimumSize(this.LoginPanel, new System.Drawing.Size(200, 100));
             this.LoginPanel.Name = "LoginPanel";
             this.MainLoginContainer.SetPreferredSize(this.LoginPanel, new System.Drawing.Size(200, 100));
-            this.LoginPanel.Size = new System.Drawing.Size(1457, 697);
+            this.LoginPanel.Size = new System.Drawing.Size(1028, 566);
             this.LoginPanel.TabIndex = 0;
             // 
             // PanelLP
@@ -173,18 +177,16 @@
             this.PanelLP.Controls.Add(this.LogBtnLP);
             this.PanelLP.Controls.Add(this.UsernameTxtBLP);
             this.PanelLP.Controls.Add(this.PasswordTxtBLP);
-            this.PanelLP.Location = new System.Drawing.Point(355, 123);
-            this.PanelLP.Margin = new System.Windows.Forms.Padding(4);
+            this.PanelLP.Location = new System.Drawing.Point(266, 100);
             this.PanelLP.Name = "PanelLP";
-            this.PanelLP.Size = new System.Drawing.Size(763, 498);
+            this.PanelLP.Size = new System.Drawing.Size(572, 405);
             this.PanelLP.TabIndex = 0;
             // 
             // LogBtnLP
             // 
-            this.LogBtnLP.Location = new System.Drawing.Point(285, 402);
-            this.LogBtnLP.Margin = new System.Windows.Forms.Padding(4);
+            this.LogBtnLP.Location = new System.Drawing.Point(214, 327);
             this.LogBtnLP.Name = "LogBtnLP";
-            this.LogBtnLP.Size = new System.Drawing.Size(175, 39);
+            this.LogBtnLP.Size = new System.Drawing.Size(131, 32);
             this.LogBtnLP.TabIndex = 2;
             this.LogBtnLP.Text = "Log-In";
             this.LogBtnLP.UseVisualStyleBackColor = true;
@@ -192,21 +194,19 @@
             // 
             // UsernameTxtBLP
             // 
-            this.UsernameTxtBLP.Location = new System.Drawing.Point(235, 154);
-            this.UsernameTxtBLP.Margin = new System.Windows.Forms.Padding(4);
+            this.UsernameTxtBLP.Location = new System.Drawing.Point(176, 125);
             this.UsernameTxtBLP.Multiline = true;
             this.UsernameTxtBLP.Name = "UsernameTxtBLP";
-            this.UsernameTxtBLP.Size = new System.Drawing.Size(281, 38);
+            this.UsernameTxtBLP.Size = new System.Drawing.Size(212, 32);
             this.UsernameTxtBLP.TabIndex = 1;
             this.UsernameTxtBLP.Text = "Enter your Username";
             // 
             // PasswordTxtBLP
             // 
-            this.PasswordTxtBLP.Location = new System.Drawing.Point(235, 257);
-            this.PasswordTxtBLP.Margin = new System.Windows.Forms.Padding(4);
+            this.PasswordTxtBLP.Location = new System.Drawing.Point(176, 209);
             this.PasswordTxtBLP.Multiline = true;
             this.PasswordTxtBLP.Name = "PasswordTxtBLP";
-            this.PasswordTxtBLP.Size = new System.Drawing.Size(281, 38);
+            this.PasswordTxtBLP.Size = new System.Drawing.Size(212, 32);
             this.PasswordTxtBLP.TabIndex = 0;
             this.PasswordTxtBLP.Text = "Enter your Password";
             // 
@@ -217,11 +217,10 @@
             this.AdminPanel.Controls.Add(this.InterfaceAP);
             this.AdminPanel.Controls.Add(this.NavigationPanelAP);
             this.AdminPanel.Location = new System.Drawing.Point(0, 0);
-            this.AdminPanel.Margin = new System.Windows.Forms.Padding(4);
             this.MainLoginContainer.SetMinimumSize(this.AdminPanel, new System.Drawing.Size(200, 100));
             this.AdminPanel.Name = "AdminPanel";
             this.MainLoginContainer.SetPreferredSize(this.AdminPanel, new System.Drawing.Size(200, 100));
-            this.AdminPanel.Size = new System.Drawing.Size(1457, 697);
+            this.AdminPanel.Size = new System.Drawing.Size(1028, 566);
             this.AdminPanel.TabIndex = 1;
             // 
             // InterfaceAP
@@ -230,10 +229,9 @@
             this.InterfaceAP.Controls.Add(this.AddMenuPanelAP);
             this.InterfaceAP.Controls.Add(this.SalesRepPanel);
             this.InterfaceAP.Controls.Add(this.AccManagePanel);
-            this.InterfaceAP.Location = new System.Drawing.Point(236, 0);
-            this.InterfaceAP.Margin = new System.Windows.Forms.Padding(4);
+            this.InterfaceAP.Location = new System.Drawing.Point(177, 0);
             this.InterfaceAP.Name = "InterfaceAP";
-            this.InterfaceAP.Size = new System.Drawing.Size(1221, 697);
+            this.InterfaceAP.Size = new System.Drawing.Size(916, 566);
             this.InterfaceAP.TabIndex = 2;
             // 
             // HomePanelAP
@@ -241,19 +239,19 @@
             this.AdminPanelContainer.SetCardName(this.HomePanelAP, "Card4");
             this.HomePanelAP.Controls.Add(this.label2);
             this.HomePanelAP.Location = new System.Drawing.Point(0, 0);
-            this.HomePanelAP.Margin = new System.Windows.Forms.Padding(4);
             this.AdminPanelContainer.SetMinimumSize(this.HomePanelAP, new System.Drawing.Size(200, 100));
             this.HomePanelAP.Name = "HomePanelAP";
             this.AdminPanelContainer.SetPreferredSize(this.HomePanelAP, new System.Drawing.Size(200, 100));
-            this.HomePanelAP.Size = new System.Drawing.Size(1221, 697);
+            this.HomePanelAP.Size = new System.Drawing.Size(916, 566);
             this.HomePanelAP.TabIndex = 3;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(584, 356);
+            this.label2.Location = new System.Drawing.Point(438, 289);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(44, 16);
+            this.label2.Size = new System.Drawing.Size(35, 13);
             this.label2.TabIndex = 0;
             this.label2.Text = "Home";
             // 
@@ -278,148 +276,163 @@
             this.AddMenuPanelAP.Controls.Add(this.MenuPic);
             this.AddMenuPanelAP.Controls.Add(this.FoodTbl);
             this.AddMenuPanelAP.Location = new System.Drawing.Point(0, 0);
-            this.AddMenuPanelAP.Margin = new System.Windows.Forms.Padding(4);
             this.AdminPanelContainer.SetMinimumSize(this.AddMenuPanelAP, new System.Drawing.Size(200, 100));
             this.AddMenuPanelAP.Name = "AddMenuPanelAP";
             this.AdminPanelContainer.SetPreferredSize(this.AddMenuPanelAP, new System.Drawing.Size(200, 100));
-            this.AddMenuPanelAP.Size = new System.Drawing.Size(1221, 697);
+            this.AddMenuPanelAP.Size = new System.Drawing.Size(916, 566);
             this.AddMenuPanelAP.TabIndex = 1;
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(971, 632);
+            this.button4.Location = new System.Drawing.Point(728, 514);
+            this.button4.Margin = new System.Windows.Forms.Padding(2);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(171, 35);
+            this.button4.Size = new System.Drawing.Size(128, 28);
             this.button4.TabIndex = 15;
             this.button4.Text = "Add Menu";
             this.button4.UseVisualStyleBackColor = true;
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(794, 632);
+            this.button3.Location = new System.Drawing.Point(596, 514);
+            this.button3.Margin = new System.Windows.Forms.Padding(2);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(171, 35);
+            this.button3.Size = new System.Drawing.Size(128, 28);
             this.button3.TabIndex = 14;
             this.button3.Text = "Edit Meal";
             this.button3.UseVisualStyleBackColor = true;
             // 
             // textBox13
             // 
-            this.textBox13.Location = new System.Drawing.Point(971, 591);
+            this.textBox13.Location = new System.Drawing.Point(728, 480);
+            this.textBox13.Margin = new System.Windows.Forms.Padding(2);
             this.textBox13.Multiline = true;
             this.textBox13.Name = "textBox13";
-            this.textBox13.Size = new System.Drawing.Size(171, 35);
+            this.textBox13.Size = new System.Drawing.Size(129, 29);
             this.textBox13.TabIndex = 13;
             // 
             // textBox12
             // 
-            this.textBox12.Location = new System.Drawing.Point(794, 591);
+            this.textBox12.Location = new System.Drawing.Point(596, 480);
+            this.textBox12.Margin = new System.Windows.Forms.Padding(2);
             this.textBox12.Multiline = true;
             this.textBox12.Name = "textBox12";
-            this.textBox12.Size = new System.Drawing.Size(171, 35);
+            this.textBox12.Size = new System.Drawing.Size(129, 29);
             this.textBox12.TabIndex = 12;
             // 
             // comboBox2
             // 
             this.comboBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(1025, 403);
+            this.comboBox2.Location = new System.Drawing.Point(769, 327);
+            this.comboBox2.Margin = new System.Windows.Forms.Padding(2);
             this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(171, 33);
+            this.comboBox2.Size = new System.Drawing.Size(129, 28);
             this.comboBox2.TabIndex = 11;
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(1025, 447);
+            this.button2.Location = new System.Drawing.Point(769, 363);
+            this.button2.Margin = new System.Windows.Forms.Padding(2);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(171, 35);
+            this.button2.Size = new System.Drawing.Size(128, 28);
             this.button2.TabIndex = 10;
             this.button2.Text = "Add Image";
             this.button2.UseVisualStyleBackColor = true;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(1025, 488);
+            this.button1.Location = new System.Drawing.Point(769, 396);
+            this.button1.Margin = new System.Windows.Forms.Padding(2);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(171, 35);
+            this.button1.Size = new System.Drawing.Size(128, 28);
             this.button1.TabIndex = 9;
             this.button1.Text = "Add Variation";
             this.button1.UseVisualStyleBackColor = true;
             // 
             // textBox11
             // 
-            this.textBox11.Location = new System.Drawing.Point(848, 447);
+            this.textBox11.Location = new System.Drawing.Point(636, 363);
+            this.textBox11.Margin = new System.Windows.Forms.Padding(2);
             this.textBox11.Multiline = true;
             this.textBox11.Name = "textBox11";
-            this.textBox11.Size = new System.Drawing.Size(171, 35);
+            this.textBox11.Size = new System.Drawing.Size(129, 29);
             this.textBox11.TabIndex = 8;
             // 
             // textBox10
             // 
-            this.textBox10.Location = new System.Drawing.Point(848, 488);
+            this.textBox10.Location = new System.Drawing.Point(636, 396);
+            this.textBox10.Margin = new System.Windows.Forms.Padding(2);
             this.textBox10.Multiline = true;
             this.textBox10.Name = "textBox10";
-            this.textBox10.Size = new System.Drawing.Size(171, 35);
+            this.textBox10.Size = new System.Drawing.Size(129, 29);
             this.textBox10.TabIndex = 7;
             // 
             // textBox9
             // 
-            this.textBox9.Location = new System.Drawing.Point(848, 403);
+            this.textBox9.Location = new System.Drawing.Point(636, 327);
+            this.textBox9.Margin = new System.Windows.Forms.Padding(2);
             this.textBox9.Multiline = true;
             this.textBox9.Name = "textBox9";
-            this.textBox9.Size = new System.Drawing.Size(171, 35);
+            this.textBox9.Size = new System.Drawing.Size(129, 29);
             this.textBox9.TabIndex = 6;
             // 
             // pictureBox3
             // 
-            this.pictureBox3.Location = new System.Drawing.Point(722, 403);
+            this.pictureBox3.Location = new System.Drawing.Point(542, 327);
+            this.pictureBox3.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(120, 120);
+            this.pictureBox3.Size = new System.Drawing.Size(90, 98);
             this.pictureBox3.TabIndex = 5;
             this.pictureBox3.TabStop = false;
             // 
             // AddMenuBtn
             // 
-            this.AddMenuBtn.Location = new System.Drawing.Point(923, 290);
+            this.AddMenuBtn.Location = new System.Drawing.Point(692, 236);
+            this.AddMenuBtn.Margin = new System.Windows.Forms.Padding(2);
             this.AddMenuBtn.Name = "AddMenuBtn";
-            this.AddMenuBtn.Size = new System.Drawing.Size(205, 35);
+            this.AddMenuBtn.Size = new System.Drawing.Size(154, 28);
             this.AddMenuBtn.TabIndex = 4;
             this.AddMenuBtn.Text = "Add Menu";
             this.AddMenuBtn.UseVisualStyleBackColor = true;
             // 
             // AddImgBtn
             // 
-            this.AddImgBtn.Location = new System.Drawing.Point(923, 249);
+            this.AddImgBtn.Location = new System.Drawing.Point(692, 202);
+            this.AddImgBtn.Margin = new System.Windows.Forms.Padding(2);
             this.AddImgBtn.Name = "AddImgBtn";
-            this.AddImgBtn.Size = new System.Drawing.Size(205, 35);
+            this.AddImgBtn.Size = new System.Drawing.Size(154, 28);
             this.AddImgBtn.TabIndex = 3;
             this.AddImgBtn.Text = "Add Image";
             this.AddImgBtn.UseVisualStyleBackColor = true;
             // 
             // MealNTxtB
             // 
-            this.MealNTxtB.Location = new System.Drawing.Point(923, 205);
+            this.MealNTxtB.Location = new System.Drawing.Point(692, 167);
+            this.MealNTxtB.Margin = new System.Windows.Forms.Padding(2);
             this.MealNTxtB.Multiline = true;
             this.MealNTxtB.Name = "MealNTxtB";
-            this.MealNTxtB.Size = new System.Drawing.Size(205, 35);
+            this.MealNTxtB.Size = new System.Drawing.Size(155, 29);
             this.MealNTxtB.TabIndex = 2;
             // 
             // MenuPic
             // 
-            this.MenuPic.Location = new System.Drawing.Point(797, 205);
+            this.MenuPic.Location = new System.Drawing.Point(598, 167);
+            this.MenuPic.Margin = new System.Windows.Forms.Padding(2);
             this.MenuPic.Name = "MenuPic";
-            this.MenuPic.Size = new System.Drawing.Size(120, 120);
+            this.MenuPic.Size = new System.Drawing.Size(90, 98);
             this.MenuPic.TabIndex = 1;
             this.MenuPic.TabStop = false;
             // 
             // FoodTbl
             // 
             this.FoodTbl.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.FoodTbl.Location = new System.Drawing.Point(36, 133);
+            this.FoodTbl.Location = new System.Drawing.Point(27, 108);
+            this.FoodTbl.Margin = new System.Windows.Forms.Padding(2);
             this.FoodTbl.Name = "FoodTbl";
             this.FoodTbl.RowHeadersWidth = 51;
             this.FoodTbl.RowTemplate.Height = 24;
-            this.FoodTbl.Size = new System.Drawing.Size(661, 534);
+            this.FoodTbl.Size = new System.Drawing.Size(496, 434);
             this.FoodTbl.TabIndex = 0;
             // 
             // SalesRepPanel
@@ -427,10 +440,11 @@
             this.SalesRepPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
             this.AdminPanelContainer.SetCardName(this.SalesRepPanel, "Card5");
             this.SalesRepPanel.Location = new System.Drawing.Point(0, 0);
+            this.SalesRepPanel.Margin = new System.Windows.Forms.Padding(2);
             this.AdminPanelContainer.SetMinimumSize(this.SalesRepPanel, new System.Drawing.Size(200, 100));
             this.SalesRepPanel.Name = "SalesRepPanel";
             this.AdminPanelContainer.SetPreferredSize(this.SalesRepPanel, new System.Drawing.Size(200, 100));
-            this.SalesRepPanel.Size = new System.Drawing.Size(1221, 697);
+            this.SalesRepPanel.Size = new System.Drawing.Size(916, 566);
             this.SalesRepPanel.TabIndex = 4;
             // 
             // AccManagePanel
@@ -440,11 +454,10 @@
             this.AccManagePanel.Controls.Add(this.EditAccPanel);
             this.AccManagePanel.Controls.Add(this.AccCreatePanel);
             this.AccManagePanel.Location = new System.Drawing.Point(0, 0);
-            this.AccManagePanel.Margin = new System.Windows.Forms.Padding(4);
             this.AdminPanelContainer.SetMinimumSize(this.AccManagePanel, new System.Drawing.Size(200, 100));
             this.AccManagePanel.Name = "AccManagePanel";
             this.AdminPanelContainer.SetPreferredSize(this.AccManagePanel, new System.Drawing.Size(200, 100));
-            this.AccManagePanel.Size = new System.Drawing.Size(1221, 697);
+            this.AccManagePanel.Size = new System.Drawing.Size(916, 566);
             this.AccManagePanel.TabIndex = 0;
             // 
             // EditAccPanel
@@ -478,20 +491,20 @@
             this.EditAccPanel.Controls.Add(this.textBox7);
             this.EditAccPanel.Controls.Add(this.textBox8);
             this.EditAccPanel.Location = new System.Drawing.Point(0, 0);
-            this.EditAccPanel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.EditAccPanel.Margin = new System.Windows.Forms.Padding(2);
             this.AccManageContainer.SetMinimumSize(this.EditAccPanel, new System.Drawing.Size(200, 100));
             this.EditAccPanel.Name = "EditAccPanel";
             this.AccManageContainer.SetPreferredSize(this.EditAccPanel, new System.Drawing.Size(200, 100));
-            this.EditAccPanel.Size = new System.Drawing.Size(1221, 697);
+            this.EditAccPanel.Size = new System.Drawing.Size(916, 566);
             this.EditAccPanel.TabIndex = 1;
             // 
             // CancelBtn
             // 
             this.CancelBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CancelBtn.Location = new System.Drawing.Point(393, 521);
-            this.CancelBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.CancelBtn.Location = new System.Drawing.Point(295, 423);
+            this.CancelBtn.Margin = new System.Windows.Forms.Padding(2);
             this.CancelBtn.Name = "CancelBtn";
-            this.CancelBtn.Size = new System.Drawing.Size(156, 34);
+            this.CancelBtn.Size = new System.Drawing.Size(117, 28);
             this.CancelBtn.TabIndex = 52;
             this.CancelBtn.Text = "Cancel";
             this.CancelBtn.UseVisualStyleBackColor = true;
@@ -501,10 +514,9 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(628, 36);
-            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label7.Location = new System.Drawing.Point(471, 29);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(419, 52);
+            this.label7.Size = new System.Drawing.Size(335, 39);
             this.label7.TabIndex = 51;
             this.label7.Text = "Employee Accounts:";
             // 
@@ -512,10 +524,9 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(23, 36);
-            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label8.Location = new System.Drawing.Point(17, 29);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(305, 52);
+            this.label8.Size = new System.Drawing.Size(243, 39);
             this.label8.TabIndex = 50;
             this.label8.Text = "Account Editor";
             // 
@@ -523,10 +534,9 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(27, 388);
-            this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label9.Location = new System.Drawing.Point(20, 315);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(80, 29);
+            this.label9.Size = new System.Drawing.Size(62, 24);
             this.label9.TabIndex = 49;
             this.label9.Text = "Image";
             // 
@@ -534,10 +544,9 @@
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(383, 385);
-            this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label10.Location = new System.Drawing.Point(287, 313);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(157, 29);
+            this.label10.Size = new System.Drawing.Size(123, 24);
             this.label10.TabIndex = 48;
             this.label10.Text = "Employee ID:";
             // 
@@ -545,10 +554,9 @@
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(205, 388);
-            this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label11.Location = new System.Drawing.Point(154, 315);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(94, 29);
+            this.label11.Size = new System.Drawing.Size(72, 24);
             this.label11.TabIndex = 47;
             this.label11.Text = "Postion";
             // 
@@ -556,10 +564,9 @@
             // 
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(204, 290);
-            this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label12.Location = new System.Drawing.Point(153, 236);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(126, 29);
+            this.label12.Size = new System.Drawing.Size(97, 24);
             this.label12.TabIndex = 46;
             this.label12.Text = "Password:";
             // 
@@ -567,10 +574,9 @@
             // 
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(27, 290);
-            this.label13.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label13.Location = new System.Drawing.Point(20, 236);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(130, 29);
+            this.label13.Size = new System.Drawing.Size(102, 24);
             this.label13.TabIndex = 45;
             this.label13.Text = "Username:";
             // 
@@ -578,10 +584,9 @@
             // 
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(383, 288);
-            this.label14.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label14.Location = new System.Drawing.Point(287, 234);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(88, 29);
+            this.label14.Size = new System.Drawing.Size(68, 24);
             this.label14.TabIndex = 44;
             this.label14.Text = "E-mail:";
             // 
@@ -589,10 +594,9 @@
             // 
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(383, 201);
-            this.label15.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label15.Location = new System.Drawing.Point(287, 163);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(62, 29);
+            this.label15.Size = new System.Drawing.Size(50, 24);
             this.label15.TabIndex = 43;
             this.label15.Text = "Age:";
             // 
@@ -600,29 +604,29 @@
             // 
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(27, 198);
-            this.label16.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label16.Location = new System.Drawing.Point(20, 161);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(121, 29);
+            this.label16.Size = new System.Drawing.Size(93, 24);
             this.label16.TabIndex = 42;
             this.label16.Text = "Birthdate: ";
             // 
             // label17
             // 
             this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.Location = new System.Drawing.Point(27, 105);
+            this.label17.Location = new System.Drawing.Point(20, 85);
+            this.label17.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(92, 23);
+            this.label17.Size = new System.Drawing.Size(69, 19);
             this.label17.TabIndex = 41;
             this.label17.Text = "Name:";
             // 
             // UpdateBtn
             // 
             this.UpdateBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.UpdateBtn.Location = new System.Drawing.Point(216, 521);
-            this.UpdateBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.UpdateBtn.Location = new System.Drawing.Point(162, 423);
+            this.UpdateBtn.Margin = new System.Windows.Forms.Padding(2);
             this.UpdateBtn.Name = "UpdateBtn";
-            this.UpdateBtn.Size = new System.Drawing.Size(156, 34);
+            this.UpdateBtn.Size = new System.Drawing.Size(117, 28);
             this.UpdateBtn.TabIndex = 40;
             this.UpdateBtn.Text = "Update Account";
             this.UpdateBtn.UseVisualStyleBackColor = true;
@@ -630,10 +634,10 @@
             // SelectImgBtn2
             // 
             this.SelectImgBtn2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SelectImgBtn2.Location = new System.Drawing.Point(32, 420);
-            this.SelectImgBtn2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.SelectImgBtn2.Location = new System.Drawing.Point(24, 341);
+            this.SelectImgBtn2.Margin = new System.Windows.Forms.Padding(2);
             this.SelectImgBtn2.Name = "SelectImgBtn2";
-            this.SelectImgBtn2.Size = new System.Drawing.Size(161, 28);
+            this.SelectImgBtn2.Size = new System.Drawing.Size(121, 23);
             this.SelectImgBtn2.TabIndex = 38;
             this.SelectImgBtn2.Text = "Select Image";
             this.SelectImgBtn2.UseVisualStyleBackColor = true;
@@ -641,10 +645,10 @@
             // pictureBox1
             // 
             this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox1.Location = new System.Drawing.Point(32, 464);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pictureBox1.Location = new System.Drawing.Point(24, 377);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(160, 160);
+            this.pictureBox1.Size = new System.Drawing.Size(120, 130);
             this.pictureBox1.TabIndex = 37;
             this.pictureBox1.TabStop = false;
             // 
@@ -652,22 +656,22 @@
             // 
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(637, 90);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.dataGridView1.Location = new System.Drawing.Point(478, 73);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(563, 575);
+            this.dataGridView1.Size = new System.Drawing.Size(422, 467);
             this.dataGridView1.TabIndex = 36;
             // 
             // comboBox1
             // 
             this.comboBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(211, 417);
-            this.comboBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.comboBox1.Location = new System.Drawing.Point(158, 339);
+            this.comboBox1.Margin = new System.Windows.Forms.Padding(2);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(160, 28);
+            this.comboBox1.Size = new System.Drawing.Size(121, 25);
             this.comboBox1.TabIndex = 35;
             this.comboBox1.TabStop = false;
             this.comboBox1.Text = "Choose position";
@@ -675,97 +679,97 @@
             // dateTimePicker1
             // 
             this.dateTimePicker1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateTimePicker1.Location = new System.Drawing.Point(32, 230);
-            this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.dateTimePicker1.Location = new System.Drawing.Point(24, 187);
+            this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(2);
             this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(335, 27);
+            this.dateTimePicker1.Size = new System.Drawing.Size(252, 23);
             this.dateTimePicker1.TabIndex = 34;
             // 
             // textBox1
             // 
             this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(388, 417);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.textBox1.Location = new System.Drawing.Point(291, 339);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(2);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(160, 30);
+            this.textBox1.Size = new System.Drawing.Size(121, 25);
             this.textBox1.TabIndex = 33;
             this.textBox1.Text = "Enter ID";
             // 
             // textBox2
             // 
             this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.Location = new System.Drawing.Point(209, 320);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.textBox2.Location = new System.Drawing.Point(157, 260);
+            this.textBox2.Margin = new System.Windows.Forms.Padding(2);
             this.textBox2.Multiline = true;
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(160, 30);
+            this.textBox2.Size = new System.Drawing.Size(121, 25);
             this.textBox2.TabIndex = 32;
             this.textBox2.Text = "Enter password";
             // 
             // textBox3
             // 
             this.textBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox3.Location = new System.Drawing.Point(32, 320);
-            this.textBox3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.textBox3.Location = new System.Drawing.Point(24, 260);
+            this.textBox3.Margin = new System.Windows.Forms.Padding(2);
             this.textBox3.Multiline = true;
             this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(160, 30);
+            this.textBox3.Size = new System.Drawing.Size(121, 25);
             this.textBox3.TabIndex = 31;
             this.textBox3.Text = "Enter username";
             // 
             // textBox4
             // 
             this.textBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox4.Location = new System.Drawing.Point(388, 320);
-            this.textBox4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.textBox4.Location = new System.Drawing.Point(291, 260);
+            this.textBox4.Margin = new System.Windows.Forms.Padding(2);
             this.textBox4.Multiline = true;
             this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(160, 30);
+            this.textBox4.Size = new System.Drawing.Size(121, 25);
             this.textBox4.TabIndex = 30;
             this.textBox4.Text = "Enter e-mail";
             // 
             // textBox5
             // 
             this.textBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox5.Location = new System.Drawing.Point(388, 233);
-            this.textBox5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.textBox5.Location = new System.Drawing.Point(291, 189);
+            this.textBox5.Margin = new System.Windows.Forms.Padding(2);
             this.textBox5.Multiline = true;
             this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(160, 30);
+            this.textBox5.Size = new System.Drawing.Size(121, 25);
             this.textBox5.TabIndex = 29;
             this.textBox5.Text = "Enter age";
             // 
             // textBox6
             // 
             this.textBox6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox6.Location = new System.Drawing.Point(388, 130);
-            this.textBox6.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.textBox6.Location = new System.Drawing.Point(291, 106);
+            this.textBox6.Margin = new System.Windows.Forms.Padding(2);
             this.textBox6.Multiline = true;
             this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(160, 30);
+            this.textBox6.Size = new System.Drawing.Size(121, 25);
             this.textBox6.TabIndex = 28;
             this.textBox6.Text = "Enter middle name";
             // 
             // textBox7
             // 
             this.textBox7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox7.Location = new System.Drawing.Point(209, 130);
-            this.textBox7.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.textBox7.Location = new System.Drawing.Point(157, 106);
+            this.textBox7.Margin = new System.Windows.Forms.Padding(2);
             this.textBox7.Multiline = true;
             this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(160, 30);
+            this.textBox7.Size = new System.Drawing.Size(121, 25);
             this.textBox7.TabIndex = 27;
             this.textBox7.Text = "Enter first name";
             // 
             // textBox8
             // 
             this.textBox8.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox8.Location = new System.Drawing.Point(32, 130);
-            this.textBox8.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.textBox8.Location = new System.Drawing.Point(24, 106);
+            this.textBox8.Margin = new System.Windows.Forms.Padding(2);
             this.textBox8.Multiline = true;
             this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(160, 30);
+            this.textBox8.Size = new System.Drawing.Size(121, 25);
             this.textBox8.TabIndex = 26;
             this.textBox8.Text = "Enter last name";
             // 
@@ -801,22 +805,22 @@
             this.AccCreatePanel.Controls.Add(this.FirstNTxtB_AP);
             this.AccCreatePanel.Controls.Add(this.LastNTxtB_AP);
             this.AccCreatePanel.Location = new System.Drawing.Point(0, 0);
-            this.AccCreatePanel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.AccCreatePanel.Margin = new System.Windows.Forms.Padding(2);
             this.AccManageContainer.SetMinimumSize(this.AccCreatePanel, new System.Drawing.Size(200, 100));
             this.AccCreatePanel.Name = "AccCreatePanel";
             this.AccManageContainer.SetPreferredSize(this.AccCreatePanel, new System.Drawing.Size(200, 100));
-            this.AccCreatePanel.Size = new System.Drawing.Size(1221, 697);
+            this.AccCreatePanel.Size = new System.Drawing.Size(916, 566);
             this.AccCreatePanel.TabIndex = 0;
             // 
             // ImgTxtB
             // 
             this.ImgTxtB.Enabled = false;
             this.ImgTxtB.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ImgTxtB.Location = new System.Drawing.Point(24, 428);
-            this.ImgTxtB.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.ImgTxtB.Location = new System.Drawing.Point(18, 348);
+            this.ImgTxtB.Margin = new System.Windows.Forms.Padding(2);
             this.ImgTxtB.Multiline = true;
             this.ImgTxtB.Name = "ImgTxtB";
-            this.ImgTxtB.Size = new System.Drawing.Size(160, 30);
+            this.ImgTxtB.Size = new System.Drawing.Size(121, 25);
             this.ImgTxtB.TabIndex = 26;
             this.ImgTxtB.Text = "Choose picture";
             // 
@@ -824,10 +828,9 @@
             // 
             this.ActiveAccLbl.AutoSize = true;
             this.ActiveAccLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ActiveAccLbl.Location = new System.Drawing.Point(620, 48);
-            this.ActiveAccLbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.ActiveAccLbl.Location = new System.Drawing.Point(465, 39);
             this.ActiveAccLbl.Name = "ActiveAccLbl";
-            this.ActiveAccLbl.Size = new System.Drawing.Size(344, 52);
+            this.ActiveAccLbl.Size = new System.Drawing.Size(276, 39);
             this.ActiveAccLbl.TabIndex = 25;
             this.ActiveAccLbl.Text = "Active Accounts:";
             // 
@@ -835,10 +838,9 @@
             // 
             this.AccCreateLbl.AutoSize = true;
             this.AccCreateLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AccCreateLbl.Location = new System.Drawing.Point(15, 48);
-            this.AccCreateLbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.AccCreateLbl.Location = new System.Drawing.Point(11, 39);
             this.AccCreateLbl.Name = "AccCreateLbl";
-            this.AccCreateLbl.Size = new System.Drawing.Size(356, 52);
+            this.AccCreateLbl.Size = new System.Drawing.Size(283, 39);
             this.AccCreateLbl.TabIndex = 24;
             this.AccCreateLbl.Text = "Account Creation";
             // 
@@ -846,10 +848,9 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(19, 400);
-            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label6.Location = new System.Drawing.Point(14, 325);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(80, 29);
+            this.label6.Size = new System.Drawing.Size(62, 24);
             this.label6.TabIndex = 23;
             this.label6.Text = "Image";
             // 
@@ -857,10 +858,9 @@
             // 
             this.EmployeeIDLbl.AutoSize = true;
             this.EmployeeIDLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.EmployeeIDLbl.Location = new System.Drawing.Point(375, 398);
-            this.EmployeeIDLbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.EmployeeIDLbl.Location = new System.Drawing.Point(281, 323);
             this.EmployeeIDLbl.Name = "EmployeeIDLbl";
-            this.EmployeeIDLbl.Size = new System.Drawing.Size(157, 29);
+            this.EmployeeIDLbl.Size = new System.Drawing.Size(123, 24);
             this.EmployeeIDLbl.TabIndex = 22;
             this.EmployeeIDLbl.Text = "Employee ID:";
             // 
@@ -868,10 +868,9 @@
             // 
             this.PositionLbl.AutoSize = true;
             this.PositionLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PositionLbl.Location = new System.Drawing.Point(197, 400);
-            this.PositionLbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.PositionLbl.Location = new System.Drawing.Point(148, 325);
             this.PositionLbl.Name = "PositionLbl";
-            this.PositionLbl.Size = new System.Drawing.Size(100, 29);
+            this.PositionLbl.Size = new System.Drawing.Size(76, 24);
             this.PositionLbl.TabIndex = 21;
             this.PositionLbl.Text = "Position";
             // 
@@ -879,10 +878,9 @@
             // 
             this.PasswordLbl.AutoSize = true;
             this.PasswordLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PasswordLbl.Location = new System.Drawing.Point(196, 303);
-            this.PasswordLbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.PasswordLbl.Location = new System.Drawing.Point(147, 246);
             this.PasswordLbl.Name = "PasswordLbl";
-            this.PasswordLbl.Size = new System.Drawing.Size(126, 29);
+            this.PasswordLbl.Size = new System.Drawing.Size(97, 24);
             this.PasswordLbl.TabIndex = 20;
             this.PasswordLbl.Text = "Password:";
             // 
@@ -890,10 +888,9 @@
             // 
             this.UsernameLbl.AutoSize = true;
             this.UsernameLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.UsernameLbl.Location = new System.Drawing.Point(19, 303);
-            this.UsernameLbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.UsernameLbl.Location = new System.Drawing.Point(14, 246);
             this.UsernameLbl.Name = "UsernameLbl";
-            this.UsernameLbl.Size = new System.Drawing.Size(130, 29);
+            this.UsernameLbl.Size = new System.Drawing.Size(102, 24);
             this.UsernameLbl.TabIndex = 19;
             this.UsernameLbl.Text = "Username:";
             // 
@@ -901,10 +898,9 @@
             // 
             this.EmailLbl.AutoSize = true;
             this.EmailLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.EmailLbl.Location = new System.Drawing.Point(375, 300);
-            this.EmailLbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.EmailLbl.Location = new System.Drawing.Point(281, 244);
             this.EmailLbl.Name = "EmailLbl";
-            this.EmailLbl.Size = new System.Drawing.Size(88, 29);
+            this.EmailLbl.Size = new System.Drawing.Size(68, 24);
             this.EmailLbl.TabIndex = 18;
             this.EmailLbl.Text = "E-mail:";
             // 
@@ -912,10 +908,9 @@
             // 
             this.Agelbl.AutoSize = true;
             this.Agelbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Agelbl.Location = new System.Drawing.Point(375, 213);
-            this.Agelbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.Agelbl.Location = new System.Drawing.Point(281, 173);
             this.Agelbl.Name = "Agelbl";
-            this.Agelbl.Size = new System.Drawing.Size(62, 29);
+            this.Agelbl.Size = new System.Drawing.Size(50, 24);
             this.Agelbl.TabIndex = 17;
             this.Agelbl.Text = "Age:";
             // 
@@ -923,29 +918,29 @@
             // 
             this.BirthdateLbl.AutoSize = true;
             this.BirthdateLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BirthdateLbl.Location = new System.Drawing.Point(19, 210);
-            this.BirthdateLbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.BirthdateLbl.Location = new System.Drawing.Point(14, 171);
             this.BirthdateLbl.Name = "BirthdateLbl";
-            this.BirthdateLbl.Size = new System.Drawing.Size(121, 29);
+            this.BirthdateLbl.Size = new System.Drawing.Size(93, 24);
             this.BirthdateLbl.TabIndex = 16;
             this.BirthdateLbl.Text = "Birthdate: ";
             // 
             // NameLbl
             // 
             this.NameLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.NameLbl.Location = new System.Drawing.Point(19, 117);
+            this.NameLbl.Location = new System.Drawing.Point(14, 95);
+            this.NameLbl.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.NameLbl.Name = "NameLbl";
-            this.NameLbl.Size = new System.Drawing.Size(92, 23);
+            this.NameLbl.Size = new System.Drawing.Size(69, 19);
             this.NameLbl.TabIndex = 15;
             this.NameLbl.Text = "Name:";
             // 
             // EditBtn
             // 
             this.EditBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.EditBtn.Location = new System.Drawing.Point(385, 533);
-            this.EditBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.EditBtn.Location = new System.Drawing.Point(289, 433);
+            this.EditBtn.Margin = new System.Windows.Forms.Padding(2);
             this.EditBtn.Name = "EditBtn";
-            this.EditBtn.Size = new System.Drawing.Size(156, 34);
+            this.EditBtn.Size = new System.Drawing.Size(117, 28);
             this.EditBtn.TabIndex = 14;
             this.EditBtn.Text = "Edit Account";
             this.EditBtn.UseVisualStyleBackColor = true;
@@ -954,10 +949,10 @@
             // CreateBtn
             // 
             this.CreateBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CreateBtn.Location = new System.Drawing.Point(208, 533);
-            this.CreateBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.CreateBtn.Location = new System.Drawing.Point(156, 433);
+            this.CreateBtn.Margin = new System.Windows.Forms.Padding(2);
             this.CreateBtn.Name = "CreateBtn";
-            this.CreateBtn.Size = new System.Drawing.Size(156, 34);
+            this.CreateBtn.Size = new System.Drawing.Size(117, 28);
             this.CreateBtn.TabIndex = 13;
             this.CreateBtn.Text = "Create Account";
             this.CreateBtn.UseVisualStyleBackColor = true;
@@ -966,10 +961,10 @@
             // SelectImgBtn
             // 
             this.SelectImgBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SelectImgBtn.Location = new System.Drawing.Point(24, 626);
-            this.SelectImgBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.SelectImgBtn.Location = new System.Drawing.Point(18, 509);
+            this.SelectImgBtn.Margin = new System.Windows.Forms.Padding(2);
             this.SelectImgBtn.Name = "SelectImgBtn";
-            this.SelectImgBtn.Size = new System.Drawing.Size(161, 28);
+            this.SelectImgBtn.Size = new System.Drawing.Size(121, 23);
             this.SelectImgBtn.TabIndex = 12;
             this.SelectImgBtn.Text = "Select Image";
             this.SelectImgBtn.UseVisualStyleBackColor = true;
@@ -978,10 +973,10 @@
             // UserPicB
             // 
             this.UserPicB.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.UserPicB.Location = new System.Drawing.Point(24, 462);
-            this.UserPicB.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.UserPicB.Location = new System.Drawing.Point(18, 375);
+            this.UserPicB.Margin = new System.Windows.Forms.Padding(2);
             this.UserPicB.Name = "UserPicB";
-            this.UserPicB.Size = new System.Drawing.Size(160, 160);
+            this.UserPicB.Size = new System.Drawing.Size(120, 130);
             this.UserPicB.TabIndex = 11;
             this.UserPicB.TabStop = false;
             // 
@@ -989,22 +984,22 @@
             // 
             this.AccDataTbl.AllowUserToAddRows = false;
             this.AccDataTbl.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.AccDataTbl.Location = new System.Drawing.Point(629, 102);
-            this.AccDataTbl.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.AccDataTbl.Location = new System.Drawing.Point(472, 83);
+            this.AccDataTbl.Margin = new System.Windows.Forms.Padding(2);
             this.AccDataTbl.Name = "AccDataTbl";
             this.AccDataTbl.RowHeadersWidth = 51;
             this.AccDataTbl.RowTemplate.Height = 24;
-            this.AccDataTbl.Size = new System.Drawing.Size(563, 575);
+            this.AccDataTbl.Size = new System.Drawing.Size(422, 467);
             this.AccDataTbl.TabIndex = 10;
             // 
             // PositionComB_AP
             // 
             this.PositionComB_AP.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.PositionComB_AP.FormattingEnabled = true;
-            this.PositionComB_AP.Location = new System.Drawing.Point(203, 430);
-            this.PositionComB_AP.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.PositionComB_AP.Location = new System.Drawing.Point(152, 349);
+            this.PositionComB_AP.Margin = new System.Windows.Forms.Padding(2);
             this.PositionComB_AP.Name = "PositionComB_AP";
-            this.PositionComB_AP.Size = new System.Drawing.Size(160, 28);
+            this.PositionComB_AP.Size = new System.Drawing.Size(121, 25);
             this.PositionComB_AP.TabIndex = 9;
             this.PositionComB_AP.TabStop = false;
             this.PositionComB_AP.Text = "Choose position";
@@ -1012,54 +1007,54 @@
             // UserBirthdate
             // 
             this.UserBirthdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.UserBirthdate.Location = new System.Drawing.Point(24, 242);
-            this.UserBirthdate.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.UserBirthdate.Location = new System.Drawing.Point(18, 197);
+            this.UserBirthdate.Margin = new System.Windows.Forms.Padding(2);
             this.UserBirthdate.Name = "UserBirthdate";
-            this.UserBirthdate.Size = new System.Drawing.Size(335, 27);
+            this.UserBirthdate.Size = new System.Drawing.Size(252, 23);
             this.UserBirthdate.TabIndex = 8;
             // 
             // EmployeeIDTxtB_AP
             // 
             this.EmployeeIDTxtB_AP.Enabled = false;
             this.EmployeeIDTxtB_AP.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.EmployeeIDTxtB_AP.Location = new System.Drawing.Point(380, 430);
-            this.EmployeeIDTxtB_AP.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.EmployeeIDTxtB_AP.Location = new System.Drawing.Point(285, 349);
+            this.EmployeeIDTxtB_AP.Margin = new System.Windows.Forms.Padding(2);
             this.EmployeeIDTxtB_AP.Multiline = true;
             this.EmployeeIDTxtB_AP.Name = "EmployeeIDTxtB_AP";
-            this.EmployeeIDTxtB_AP.Size = new System.Drawing.Size(160, 30);
+            this.EmployeeIDTxtB_AP.Size = new System.Drawing.Size(121, 25);
             this.EmployeeIDTxtB_AP.TabIndex = 7;
             this.EmployeeIDTxtB_AP.Text = "Enter ID";
             // 
             // PasswordTxtB_AP
             // 
             this.PasswordTxtB_AP.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PasswordTxtB_AP.Location = new System.Drawing.Point(201, 332);
-            this.PasswordTxtB_AP.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.PasswordTxtB_AP.Location = new System.Drawing.Point(151, 270);
+            this.PasswordTxtB_AP.Margin = new System.Windows.Forms.Padding(2);
             this.PasswordTxtB_AP.Multiline = true;
             this.PasswordTxtB_AP.Name = "PasswordTxtB_AP";
-            this.PasswordTxtB_AP.Size = new System.Drawing.Size(160, 30);
+            this.PasswordTxtB_AP.Size = new System.Drawing.Size(121, 25);
             this.PasswordTxtB_AP.TabIndex = 6;
             this.PasswordTxtB_AP.Text = "Enter password";
             // 
             // UsernameTxtB_AP
             // 
             this.UsernameTxtB_AP.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.UsernameTxtB_AP.Location = new System.Drawing.Point(24, 332);
-            this.UsernameTxtB_AP.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.UsernameTxtB_AP.Location = new System.Drawing.Point(18, 270);
+            this.UsernameTxtB_AP.Margin = new System.Windows.Forms.Padding(2);
             this.UsernameTxtB_AP.Multiline = true;
             this.UsernameTxtB_AP.Name = "UsernameTxtB_AP";
-            this.UsernameTxtB_AP.Size = new System.Drawing.Size(160, 30);
+            this.UsernameTxtB_AP.Size = new System.Drawing.Size(121, 25);
             this.UsernameTxtB_AP.TabIndex = 5;
             this.UsernameTxtB_AP.Text = "Enter username";
             // 
             // EmailTxtB_AP
             // 
             this.EmailTxtB_AP.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.EmailTxtB_AP.Location = new System.Drawing.Point(380, 332);
-            this.EmailTxtB_AP.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.EmailTxtB_AP.Location = new System.Drawing.Point(285, 270);
+            this.EmailTxtB_AP.Margin = new System.Windows.Forms.Padding(2);
             this.EmailTxtB_AP.Multiline = true;
             this.EmailTxtB_AP.Name = "EmailTxtB_AP";
-            this.EmailTxtB_AP.Size = new System.Drawing.Size(160, 30);
+            this.EmailTxtB_AP.Size = new System.Drawing.Size(121, 25);
             this.EmailTxtB_AP.TabIndex = 4;
             this.EmailTxtB_AP.Text = "Enter e-mail";
             // 
@@ -1067,44 +1062,44 @@
             // 
             this.AgeTxtB_AP.Enabled = false;
             this.AgeTxtB_AP.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AgeTxtB_AP.Location = new System.Drawing.Point(380, 245);
-            this.AgeTxtB_AP.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.AgeTxtB_AP.Location = new System.Drawing.Point(285, 199);
+            this.AgeTxtB_AP.Margin = new System.Windows.Forms.Padding(2);
             this.AgeTxtB_AP.Multiline = true;
             this.AgeTxtB_AP.Name = "AgeTxtB_AP";
-            this.AgeTxtB_AP.Size = new System.Drawing.Size(160, 30);
+            this.AgeTxtB_AP.Size = new System.Drawing.Size(121, 25);
             this.AgeTxtB_AP.TabIndex = 3;
             this.AgeTxtB_AP.Text = "Enter age";
             // 
             // MiddleNTxtB_AP
             // 
             this.MiddleNTxtB_AP.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.MiddleNTxtB_AP.Location = new System.Drawing.Point(380, 143);
-            this.MiddleNTxtB_AP.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.MiddleNTxtB_AP.Location = new System.Drawing.Point(285, 116);
+            this.MiddleNTxtB_AP.Margin = new System.Windows.Forms.Padding(2);
             this.MiddleNTxtB_AP.Multiline = true;
             this.MiddleNTxtB_AP.Name = "MiddleNTxtB_AP";
-            this.MiddleNTxtB_AP.Size = new System.Drawing.Size(160, 30);
+            this.MiddleNTxtB_AP.Size = new System.Drawing.Size(121, 25);
             this.MiddleNTxtB_AP.TabIndex = 2;
             this.MiddleNTxtB_AP.Text = "Enter middle name";
             // 
             // FirstNTxtB_AP
             // 
             this.FirstNTxtB_AP.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FirstNTxtB_AP.Location = new System.Drawing.Point(201, 143);
-            this.FirstNTxtB_AP.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.FirstNTxtB_AP.Location = new System.Drawing.Point(151, 116);
+            this.FirstNTxtB_AP.Margin = new System.Windows.Forms.Padding(2);
             this.FirstNTxtB_AP.Multiline = true;
             this.FirstNTxtB_AP.Name = "FirstNTxtB_AP";
-            this.FirstNTxtB_AP.Size = new System.Drawing.Size(160, 30);
+            this.FirstNTxtB_AP.Size = new System.Drawing.Size(121, 25);
             this.FirstNTxtB_AP.TabIndex = 1;
             this.FirstNTxtB_AP.Text = "Enter first name";
             // 
             // LastNTxtB_AP
             // 
             this.LastNTxtB_AP.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LastNTxtB_AP.Location = new System.Drawing.Point(24, 143);
-            this.LastNTxtB_AP.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.LastNTxtB_AP.Location = new System.Drawing.Point(18, 116);
+            this.LastNTxtB_AP.Margin = new System.Windows.Forms.Padding(2);
             this.LastNTxtB_AP.Multiline = true;
             this.LastNTxtB_AP.Name = "LastNTxtB_AP";
-            this.LastNTxtB_AP.Size = new System.Drawing.Size(160, 30);
+            this.LastNTxtB_AP.Size = new System.Drawing.Size(121, 25);
             this.LastNTxtB_AP.TabIndex = 0;
             this.LastNTxtB_AP.Text = "Enter last name";
             // 
@@ -1116,18 +1111,16 @@
             this.NavigationPanelAP.Controls.Add(this.AddMenuLbl);
             this.NavigationPanelAP.Controls.Add(this.AccManageLbl);
             this.NavigationPanelAP.Location = new System.Drawing.Point(0, 0);
-            this.NavigationPanelAP.Margin = new System.Windows.Forms.Padding(4);
             this.NavigationPanelAP.Name = "NavigationPanelAP";
-            this.NavigationPanelAP.Size = new System.Drawing.Size(236, 697);
+            this.NavigationPanelAP.Size = new System.Drawing.Size(177, 566);
             this.NavigationPanelAP.TabIndex = 1;
             // 
             // SalesRepLbl
             // 
             this.SalesRepLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SalesRepLbl.Location = new System.Drawing.Point(4, 339);
-            this.SalesRepLbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.SalesRepLbl.Location = new System.Drawing.Point(3, 275);
             this.SalesRepLbl.Name = "SalesRepLbl";
-            this.SalesRepLbl.Size = new System.Drawing.Size(228, 73);
+            this.SalesRepLbl.Size = new System.Drawing.Size(171, 59);
             this.SalesRepLbl.TabIndex = 3;
             this.SalesRepLbl.Text = "Sales Report";
             this.SalesRepLbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1135,10 +1128,9 @@
             // LogoutLbl
             // 
             this.LogoutLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LogoutLbl.Location = new System.Drawing.Point(4, 624);
-            this.LogoutLbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.LogoutLbl.Location = new System.Drawing.Point(3, 507);
             this.LogoutLbl.Name = "LogoutLbl";
-            this.LogoutLbl.Size = new System.Drawing.Size(228, 73);
+            this.LogoutLbl.Size = new System.Drawing.Size(171, 59);
             this.LogoutLbl.TabIndex = 2;
             this.LogoutLbl.Text = "Log-Out";
             this.LogoutLbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1147,10 +1139,9 @@
             // AddMenuLbl
             // 
             this.AddMenuLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AddMenuLbl.Location = new System.Drawing.Point(4, 266);
-            this.AddMenuLbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.AddMenuLbl.Location = new System.Drawing.Point(3, 216);
             this.AddMenuLbl.Name = "AddMenuLbl";
-            this.AddMenuLbl.Size = new System.Drawing.Size(228, 73);
+            this.AddMenuLbl.Size = new System.Drawing.Size(171, 59);
             this.AddMenuLbl.TabIndex = 1;
             this.AddMenuLbl.Text = "Add Menu/Variety";
             this.AddMenuLbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1159,10 +1150,9 @@
             // AccManageLbl
             // 
             this.AccManageLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AccManageLbl.Location = new System.Drawing.Point(4, 193);
-            this.AccManageLbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.AccManageLbl.Location = new System.Drawing.Point(3, 157);
             this.AccManageLbl.Name = "AccManageLbl";
-            this.AccManageLbl.Size = new System.Drawing.Size(228, 73);
+            this.AccManageLbl.Size = new System.Drawing.Size(171, 59);
             this.AccManageLbl.TabIndex = 0;
             this.AccManageLbl.Text = "Account Management";
             this.AccManageLbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1174,45 +1164,90 @@
             this.MainLoginContainer.SetCardName(this.ManagerPanel, "Card3");
             this.ManagerPanel.Controls.Add(this.label1);
             this.ManagerPanel.Location = new System.Drawing.Point(0, 0);
-            this.ManagerPanel.Margin = new System.Windows.Forms.Padding(4);
             this.MainLoginContainer.SetMinimumSize(this.ManagerPanel, new System.Drawing.Size(200, 100));
             this.ManagerPanel.Name = "ManagerPanel";
             this.MainLoginContainer.SetPreferredSize(this.ManagerPanel, new System.Drawing.Size(200, 100));
-            this.ManagerPanel.Size = new System.Drawing.Size(1457, 697);
+            this.ManagerPanel.Size = new System.Drawing.Size(1028, 566);
             this.ManagerPanel.TabIndex = 2;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(880, 214);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(660, 174);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(61, 16);
+            this.label1.Size = new System.Drawing.Size(49, 13);
             this.label1.TabIndex = 0;
             this.label1.Text = "Manager";
             // 
             // StaffPanel
             // 
-            this.StaffPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.StaffPanel.BackColor = System.Drawing.Color.Transparent;
             this.MainLoginContainer.SetCardName(this.StaffPanel, "Card4");
-            this.StaffPanel.Controls.Add(this.label4);
+            this.StaffPanel.Controls.Add(this.SearchTxtBox);
+            this.StaffPanel.Controls.Add(this.allBtn);
+            this.StaffPanel.Controls.Add(this.flowLayoutPanel1);
+            this.StaffPanel.Controls.Add(this.snackBtn);
+            this.StaffPanel.Controls.Add(this.breakBtn);
+            this.StaffPanel.Controls.Add(this.coffeeBtn);
             this.StaffPanel.Location = new System.Drawing.Point(0, 0);
-            this.StaffPanel.Margin = new System.Windows.Forms.Padding(4);
             this.MainLoginContainer.SetMinimumSize(this.StaffPanel, new System.Drawing.Size(200, 100));
             this.StaffPanel.Name = "StaffPanel";
             this.MainLoginContainer.SetPreferredSize(this.StaffPanel, new System.Drawing.Size(200, 100));
-            this.StaffPanel.Size = new System.Drawing.Size(1457, 697);
+            this.StaffPanel.Size = new System.Drawing.Size(1028, 566);
             this.StaffPanel.TabIndex = 3;
             // 
-            // label4
+            // allBtn
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(832, 247);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(31, 16);
-            this.label4.TabIndex = 0;
-            this.label4.Text = "staff";
+            this.allBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.allBtn.Location = new System.Drawing.Point(38, 12);
+            this.allBtn.Name = "allBtn";
+            this.allBtn.Size = new System.Drawing.Size(125, 91);
+            this.allBtn.TabIndex = 5;
+            this.allBtn.Text = "All Categories";
+            this.allBtn.UseVisualStyleBackColor = true;
+            this.allBtn.Click += new System.EventHandler(this.allBtn_Click);
+            // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.flowLayoutPanel1.AutoScroll = true;
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(183, 80);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(493, 451);
+            this.flowLayoutPanel1.TabIndex = 4;
+            // 
+            // snackBtn
+            // 
+            this.snackBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.snackBtn.Location = new System.Drawing.Point(38, 328);
+            this.snackBtn.Name = "snackBtn";
+            this.snackBtn.Size = new System.Drawing.Size(125, 91);
+            this.snackBtn.TabIndex = 3;
+            this.snackBtn.Text = "Snacks and Pastries";
+            this.snackBtn.UseVisualStyleBackColor = true;
+            this.snackBtn.Click += new System.EventHandler(this.snackBtn_Click);
+            // 
+            // breakBtn
+            // 
+            this.breakBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.breakBtn.Location = new System.Drawing.Point(38, 231);
+            this.breakBtn.Name = "breakBtn";
+            this.breakBtn.Size = new System.Drawing.Size(125, 91);
+            this.breakBtn.TabIndex = 2;
+            this.breakBtn.Text = "Gourmet Breakfast";
+            this.breakBtn.UseVisualStyleBackColor = true;
+            this.breakBtn.Click += new System.EventHandler(this.breakBtn_Click);
+            // 
+            // coffeeBtn
+            // 
+            this.coffeeBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.coffeeBtn.Location = new System.Drawing.Point(38, 134);
+            this.coffeeBtn.Name = "coffeeBtn";
+            this.coffeeBtn.Size = new System.Drawing.Size(125, 91);
+            this.coffeeBtn.TabIndex = 1;
+            this.coffeeBtn.Text = "Coffee Delights";
+            this.coffeeBtn.UseVisualStyleBackColor = true;
+            this.coffeeBtn.Click += new System.EventHandler(this.coffeeBtn_Click);
             // 
             // AdminPanelContainer
             // 
@@ -1226,16 +1261,31 @@
             this.AccManageContainer.LayoutMode = Syncfusion.Windows.Forms.Tools.CardLayoutMode.Fill;
             this.AccManageContainer.SelectedCard = "Card1";
             // 
+            // SearchTxtBox
+            // 
+            this.SearchTxtBox.BackColor = System.Drawing.Color.White;
+            this.SearchTxtBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SearchTxtBox.ForeColor = System.Drawing.Color.LightGray;
+            this.SearchTxtBox.Location = new System.Drawing.Point(183, 40);
+            this.SearchTxtBox.Multiline = true;
+            this.SearchTxtBox.Name = "SearchTxtBox";
+            this.SearchTxtBox.Size = new System.Drawing.Size(400, 25);
+            this.SearchTxtBox.TabIndex = 6;
+            this.SearchTxtBox.TabStop = false;
+            this.SearchTxtBox.Text = "Type here to search";
+            this.SearchTxtBox.TextChanged += new System.EventHandler(this.SearchTxtBox_TextChanged);
+            this.SearchTxtBox.Enter += new System.EventHandler(this.SearchTxtBox_Enter);
+            this.SearchTxtBox.Leave += new System.EventHandler(this.SearchTxtBox_Leave);
+            // 
             // CafeDeLunaDashboard
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1457, 697);
+            this.ClientSize = new System.Drawing.Size(1028, 566);
             this.Controls.Add(this.StaffPanel);
             this.Controls.Add(this.ManagerPanel);
             this.Controls.Add(this.AdminPanel);
             this.Controls.Add(this.LoginPanel);
-            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "CafeDeLunaDashboard";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Cafe De Luna";
@@ -1278,7 +1328,6 @@
         private System.Windows.Forms.Panel LoginPanel;
         private System.Windows.Forms.Panel AdminPanel;
         private System.Windows.Forms.Panel StaffPanel;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Panel ManagerPanel;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel PanelLP;
@@ -1369,6 +1418,12 @@
         private System.Windows.Forms.ComboBox comboBox2;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.TextBox ImgTxtB;
+        private System.Windows.Forms.Button snackBtn;
+        private System.Windows.Forms.Button breakBtn;
+        private System.Windows.Forms.Button coffeeBtn;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.Button allBtn;
+        private System.Windows.Forms.TextBox SearchTxtBox;
     }
 }
 
