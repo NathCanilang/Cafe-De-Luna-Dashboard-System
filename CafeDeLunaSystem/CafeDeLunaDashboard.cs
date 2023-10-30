@@ -50,6 +50,9 @@ namespace CafeDeLunaSystem
             panelManagerAP.ShowPanel(HomePanelAP);
 
             //Admin Panel section
+            FoodTbl.DataError += new DataGridViewDataErrorEventHandler(createAndEditAcc.FoodTable_DataError);
+            FoodTbl.RowPostPaint += new DataGridViewRowPostPaintEventHandler(createAndEditAcc.FoodTable_RowPostPaint);
+
             MenuSelectComB.DropDownStyle = ComboBoxStyle.DropDownList;
             createAndEditAcc.PopulateMealComboBox();
 
@@ -239,7 +242,7 @@ namespace CafeDeLunaSystem
                 {
                     conn.Open();
                     cmdDataBase.ExecuteNonQuery();
-                    panelManagerAMC.RefreshTbl();
+                    createAndEditAcc.RefreshTbl();
                     MessageBox.Show("Account Created!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
 
@@ -422,7 +425,7 @@ namespace CafeDeLunaSystem
                     using (MySqlConnection connection = new MySqlConnection(connectionString))
                     {
                         connection.Open();
-                        string insertQuery = "INSERT INTO mealvariation (VariationName, MealID, VariationDescription, VariationCost, MealImage) VALUES (@variationName, @mealID, @variationDescription, @variationCost, @imagePath)";
+                        string insertQuery = "INSERT INTO mealvariation (MealImage, MealID, VariationName, VariationDescription, VariationCost) VALUES (@imagePath, @mealID, @variationName, @variationDescription, @variationCost)";
                         using (MySqlCommand command = new MySqlCommand(insertQuery, connection))
                         {
                             command.Parameters.AddWithValue("@mealID", mealID);
@@ -435,9 +438,6 @@ namespace CafeDeLunaSystem
 
                         MessageBox.Show("New variation added successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
-                    VariationNmTxtB.Text = "";
-                    VariationDescTxtB.Text = "";
-                    VariationCostTxtB.Text = "";
                     MenuSelectComB.SelectedIndex = -1;
                 }
                 catch (Exception ex)
