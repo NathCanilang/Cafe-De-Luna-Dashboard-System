@@ -398,6 +398,7 @@
             this.VariationPicB.Location = new System.Drawing.Point(723, 399);
             this.VariationPicB.Name = "VariationPicB";
             this.VariationPicB.Size = new System.Drawing.Size(120, 120);
+            this.VariationPicB.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.VariationPicB.TabIndex = 5;
             this.VariationPicB.TabStop = false;
             // 
@@ -435,11 +436,13 @@
             this.MenuPicB.Location = new System.Drawing.Point(797, 205);
             this.MenuPicB.Name = "MenuPicB";
             this.MenuPicB.Size = new System.Drawing.Size(120, 120);
+            this.MenuPicB.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.MenuPicB.TabIndex = 1;
             this.MenuPicB.TabStop = false;
             // 
             // FoodTbl
             // 
+            this.FoodTbl.AllowUserToAddRows = false;
             this.FoodTbl.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.FoodTbl.Location = new System.Drawing.Point(36, 133);
             this.FoodTbl.Name = "FoodTbl";
@@ -1008,6 +1011,7 @@
             this.UserPicB.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.UserPicB.Name = "UserPicB";
             this.UserPicB.Size = new System.Drawing.Size(160, 160);
+            this.UserPicB.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.UserPicB.TabIndex = 11;
             this.UserPicB.TabStop = false;
             // 
@@ -1337,7 +1341,7 @@
         private System.Windows.Forms.Button EditBtn;
         private System.Windows.Forms.Button CreateBtn;
         private System.Windows.Forms.Button SelectImgBtn;
-        private System.Windows.Forms.PictureBox UserPicB;
+        public System.Windows.Forms.PictureBox UserPicB;
         public System.Windows.Forms.DataGridView AccDataTbl;
         private System.Windows.Forms.Label NameLbl;
         private System.Windows.Forms.Label PositionLbl;

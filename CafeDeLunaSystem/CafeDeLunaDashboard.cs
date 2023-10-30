@@ -1,10 +1,17 @@
 ﻿using MySql.Data.MySqlClient;
 using MySqlX.XDevAPI.Common;
+using Syncfusion.Windows.Forms.Tools;
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
+using System.Linq;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using System.Xml.Linq;
 
 namespace CafeDeLunaSystem
 {
@@ -18,6 +25,7 @@ namespace CafeDeLunaSystem
         private string employeeFullFilePath;
         private string menuFullFilePath;
         private string varietyFullFilePath;
+        private byte[] imageData;
 
         //Admin Panel
         private readonly CreateAndEditAcc createAndEditAcc = new CreateAndEditAcc();
@@ -132,7 +140,64 @@ namespace CafeDeLunaSystem
             DialogResult result = MessageBox.Show("Are you sure you want to edit accounts?", "Information", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result == DialogResult.Yes)
             {
-                panelManagerAMC.ShowPanel(EditAccPanel);
+                //panelManagerAMC.ShowPanel(EditAccPanel);
+                if (AccDataTbl.SelectedRows.Count == 1)
+                {
+                    DataGridViewRow selectedRow = AccDataTbl.SelectedRows[0];
+                    string nameColumn = selectedRow.Cells["Name"].Value.ToString();
+                    string birthdayColumn = selectedRow.Cells["Birthday"].Value.ToString().Trim();
+                    string ageColumn = selectedRow.Cells["Age"].Value.ToString();
+                    string emailColumn = selectedRow.Cells["Email"].Value.ToString();
+                    string usernameColumn = selectedRow.Cells["Username"].Value.ToString();
+                    string positionColumn = selectedRow.Cells["Position"].Value.ToString();
+                    int employeeIDColumn = Convert.ToInt32(AccDataTbl.SelectedRows[0].Cells["EmployeeID"].Value);
+                    string[] nameParts = nameColumn.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+
+                    //string[] nameParts = nameColumn.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+
+                    if (nameParts.Length > 0)
+                    {
+                        string lastName = nameParts[0].Trim();      // Trim the last name
+                        LastNTxtB_AP.Text = lastName;
+                    }
+
+                    if (nameParts.Length > 1)
+                    {
+                        string[] firstMiddleNameParts = nameParts[1].Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+
+                        if (firstMiddleNameParts.Length > 0)
+                        {
+                            string firstName = firstMiddleNameParts[0].Trim();     // Trim the first name
+                            FirstNTxtB_AP.Text = firstName;
+                        }
+
+                        if (firstMiddleNameParts.Length > 1)
+                        {
+                            string middleName = firstMiddleNameParts[1].Trim();    // Trim the middle name
+                            MiddleNTxtB_AP.Text = middleName;
+                        }
+                    }
+                    if (DateTime.TryParse(birthdayColumn, out DateTime birthday))
+                    {
+                        UserBirthdate.Value = birthday;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Invalid date format in the 'Birthday' column.");
+                    }
+
+                    AgeTxtB_AP.Text = ageColumn;
+                    EmailTxtB_AP.Text = emailColumn;
+                    UsernameTxtB_AP.Text = usernameColumn;
+                    PositionComB_AP.Text = positionColumn;
+                    EmployeeIDTxtB_AP.Text = employeeIDColumn.ToString();
+                    createAndEditAcc.LoadMenuItemImage(employeeIDColumn);
+                }
+                else
+                {
+                    MessageBox.Show("Please select a single row for editing.");
+                }
+
             }
         }
 
@@ -163,28 +228,55 @@ namespace CafeDeLunaSystem
 
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
-                    string selectedFileName = Path.GetFileName(openFileDialog.FileName); // Get just the file name
-                    string selectedDirectory = Path.GetDirectoryName(openFileDialog.FileName); // Get the directory
-                    employeeFullFilePath = Path.Combine(selectedDirectory, selectedFileName); // Create the full file path
-
-                    ImgTxtB.Text = selectedFileName;
+                    string selectedFilePath = openFileDialog.FileName;
+                    ImgTxtB.Text = selectedFilePath;
 
                     try
                     {
-                        Image selectedImage = Image.FromFile(employeeFullFilePath);
-                        int maxWidth = 160;
-                        int maxHeight = 160;
+                        // Load the selected image
+                        Image selectedImage = Image.FromFile(selectedFilePath);
 
-                        Bitmap resizedImage = createAndEditAcc.ResizeImage(selectedImage, maxWidth, maxHeight);
-
-                        UserPicB.Image = resizedImage;
+                        // Check if the image dimensions are 64x64 pixels
+                        if (selectedImage.Width == 64 && selectedImage.Height == 64)
+                        {
+                            UserPicB.Image = selectedImage;
+                        }
+                        else
+                        {
+                            MessageBox.Show("Please select an image with dimensions of 64x64 pixels.");
+                        }
                     }
                     catch (Exception ex)
                     {
+                        // Handle any exceptions that may occur when loading the image
                         MessageBox.Show("Error loading the image: " + ex.Message);
                     }
                 }
             }
+
+
+
+
+            /*
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.Filter = "Image Files|.jpg;.jpeg;.png;.gif;*.bmp";
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    // Load the selected image into the PictureBox
+                    Image selectedImage = Image.FromFile(openFileDialog.FileName);
+
+                    // Check if the image dimensions are 64x64 pixels
+                    if (selectedImage.Width == 64 && selectedImage.Height == 64)
+                    {
+                        UserPicB.Image = selectedImage;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Please select an image with dimensions of 64x64 pixels.");
+                    }
+                }
+            }*/
         }
 
         private void CreateBtn_Click(object sender, EventArgs e)
@@ -193,17 +285,8 @@ namespace CafeDeLunaSystem
             DateTime selectedDate = UserBirthdate.Value;
             string employeeFullName = $"{LastNTxtB_AP.Text}, {FirstNTxtB_AP.Text} {MiddleNTxtB_AP.Text}";
             string userImagePath = ImgTxtB.Text;
-            byte[] imageData = null;
 
-            if (!string.IsNullOrEmpty(userImagePath) && File.Exists(employeeFullFilePath))
-            {
-                using (FileStream fs = new FileStream(employeeFullFilePath, FileMode.Open, FileAccess.Read))
-                {
-                    imageData = new byte[fs.Length];
-                    fs.Read(imageData, 0, (int)fs.Length);
-                }
-            }
-            else
+            if (string.IsNullOrWhiteSpace(userImagePath) || !File.Exists(userImagePath))
             {
                 MessageBox.Show("Invalid image file path.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -229,30 +312,35 @@ namespace CafeDeLunaSystem
                 return;
             }
 
-            DialogResult choices = MessageBox.Show("Are you sure to the information that you have entered?", "Notice", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult choices = MessageBox.Show("Are you sure the information you have entered is correct?", "Notice", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
             if (choices == DialogResult.Yes)
             {
-                string insertQuery = "INSERT INTO employee_acc (Name, Birthday, Age, Email, Username, Password, Position, EmployeeID, EmployeeIMG) " +
-                    "values('" + employeeFullName + "', '" + selectedDate + "', '" + AgeTxtB_AP.Text + "', '" + EmailTxtB_AP.Text + "', '" + UsernameTxtB_AP.Text + "', " +
-                    "'" + Encryptor.HashPassword(PasswordTxtB_AP.Text) + "', '" + PositionComB_AP.SelectedItem.ToString() + "','" + EmployeeIDTxtB_AP.Text + "','" + imageData + "')";
-                MySqlCommand cmdDataBase = new MySqlCommand(insertQuery, conn);
-
                 try
                 {
                     conn.Open();
+                    using (MemoryStream ms = new MemoryStream())
+                    {
+                        UserPicB.Image.Save(ms, ImageFormat.Jpeg); // You can choose the format you want
+                        imageData = ms.ToArray();
+                    }
+                    string insertQuery = "INSERT INTO employee_acc(Name, Birthday, Age, Email, Username, Password, Position, EmployeeID, EmployeeIMG) " +
+                        "VALUES (@Name, @Birthday, @Age, @Email, @Username, @Password, @Position, @EmployeeID, @EmployeeIMG)";
+
+                    MySqlCommand cmdDataBase = new MySqlCommand(insertQuery, conn); cmdDataBase.Parameters.AddWithValue("@Name", employeeFullName);
+                    cmdDataBase.Parameters.AddWithValue("@Birthday", selectedDate);
+                    cmdDataBase.Parameters.AddWithValue("@Age", AgeTxtB_AP.Text);
+                    cmdDataBase.Parameters.AddWithValue("@Email", EmailTxtB_AP.Text);
+                    cmdDataBase.Parameters.AddWithValue("@Username", UsernameTxtB_AP.Text);
+                    cmdDataBase.Parameters.AddWithValue("@Password", Encryptor.HashPassword(PasswordTxtB_AP.Text));
+                    cmdDataBase.Parameters.AddWithValue("@Position", PositionComB_AP.SelectedItem.ToString());
+                    cmdDataBase.Parameters.AddWithValue("@EmployeeID", EmployeeIDTxtB_AP.Text);
+                    cmdDataBase.Parameters.AddWithValue("@EmployeeIMG", imageData);
                     cmdDataBase.ExecuteNonQuery();
+
                     createAndEditAcc.RefreshTbl();
                     MessageBox.Show("Account Created!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-
-                    /*Name.Clear();
-                    UsernameTxtBox.Clear();
-                    PasswordTxtBox.Clear();
-                    EmailTxtBox.Clear();
-                    PositionComBox.SelectedItem = null;*/
                 }
-
                 catch (MySqlException a)
                 {
                     if (a.Number == 1062)
@@ -265,12 +353,10 @@ namespace CafeDeLunaSystem
                         MessageBox.Show(a.Message, "Registration", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
-
                 catch (Exception b)
                 {
                     MessageBox.Show(b.Message);
                 }
-
                 finally
                 {
                     conn.Close();
@@ -282,32 +368,20 @@ namespace CafeDeLunaSystem
         {
             using (OpenFileDialog openFileDialog = new OpenFileDialog())
             {
-                openFileDialog.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.gif;*.bmp";
-                openFileDialog.Title = "Select an Image File";
-
+                openFileDialog.Filter = "Image Files|.jpg;.jpeg;.png;.gif;*.bmp";
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
-                    string selectedFileName = Path.GetFileName(openFileDialog.FileName); // Get just the file name
-                    string selectedDirectory = Path.GetDirectoryName(openFileDialog.FileName); // Get the directory
-                    menuFullFilePath = Path.Combine(selectedDirectory, selectedFileName); // Create the full file path
+                    // Load the selected image into the PictureBox
+                    Image selectedImage = Image.FromFile(openFileDialog.FileName);
 
-                    MenuFilePathTxtB.Text = selectedFileName;
-
-                    try
+                    // Check if the image dimensions are 64x64 pixels
+                    if (selectedImage.Width == 64 && selectedImage.Height == 64)
                     {
-                        Image selectedImage = Image.FromFile(menuFullFilePath);
-
-                        // Define maximum width and height for resizing
-                        int maxWidth = 120;
-                        int maxHeight = 120;
-
-                        Bitmap resizedImage = createAndEditAcc.ResizeImage(selectedImage, maxWidth, maxHeight);
-
-                        MenuPicB.Image = resizedImage;
+                        MenuPicB.Image = selectedImage;
                     }
-                    catch (Exception ex)
+                    else
                     {
-                        MessageBox.Show("Error loading the image: " + ex.Message);
+                        MessageBox.Show("Please select an image with dimensions of 64x64 pixels.");
                     }
                 }
             }
@@ -361,31 +435,20 @@ namespace CafeDeLunaSystem
         {
             using (OpenFileDialog openFileDialog = new OpenFileDialog())
             {
-                openFileDialog.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.gif;*.bmp";
-                openFileDialog.Title = "Select an Image File";
-
+                openFileDialog.Filter = "Image Files|.jpg;.jpeg;.png;.gif;*.bmp";
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
-                    string selectedFileName = Path.GetFileName(openFileDialog.FileName); // Get just the file name
-                    string selectedDirectory = Path.GetDirectoryName(openFileDialog.FileName); // Get the directory
-                    varietyFullFilePath = Path.Combine(selectedDirectory, selectedFileName); // Create the full file path
+                    // Load the selected image into the PictureBox
+                    Image selectedImage = Image.FromFile(openFileDialog.FileName);
 
-                    VarietyFilePathTxtB.Text = selectedFileName;
-
-                    try
+                    // Check if the image dimensions are 64x64 pixels
+                    if (selectedImage.Width == 64 && selectedImage.Height == 64)
                     {
-                        Image selectedImage = Image.FromFile(varietyFullFilePath);
-
-                        int maxWidth = 120;
-                        int maxHeight = 120;
-
-                        Bitmap resizedImage = createAndEditAcc.ResizeImage(selectedImage, maxWidth, maxHeight);
-
-                        VariationPicB.Image = resizedImage;
+                        VariationPicB.Image = selectedImage;
                     }
-                    catch (Exception ex)
+                    else
                     {
-                        MessageBox.Show("Error loading the image: " + ex.Message);
+                        MessageBox.Show("Please select an image with dimensions of 64x64 pixels.");
                     }
                 }
             }
@@ -442,7 +505,7 @@ namespace CafeDeLunaSystem
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Error Test: " + ex.Message, "Information", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
             else
