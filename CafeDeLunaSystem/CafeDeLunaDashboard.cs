@@ -15,10 +15,12 @@ namespace CafeDeLunaSystem
         private readonly PanelManager panelManager;
         private readonly PanelManagerAP panelManagerAP;
         private readonly PanelManagerAMC panelManagerAMC;
-        private string fullFilePath;
+        private string employeeFullFilePath;
+        private string menuFullFilePath;
+        private string varietyFullFilePath;
 
         //Admin Panel
-        private CreateAndEditAcc createAndEditAcc = new CreateAndEditAcc();
+        private readonly CreateAndEditAcc createAndEditAcc = new CreateAndEditAcc();
         private readonly string[] position = { "Manager", "Cashier" };
         public CafeDeLunaDashboard()
         {
@@ -48,7 +50,15 @@ namespace CafeDeLunaSystem
             panelManagerAP.ShowPanel(HomePanelAP);
 
             //Admin Panel section
+            FoodTbl.DataError += new DataGridViewDataErrorEventHandler(createAndEditAcc.FoodTable_DataError);
+            FoodTbl.RowPostPaint += new DataGridViewRowPostPaintEventHandler(createAndEditAcc.FoodTable_RowPostPaint);
+
+            MenuSelectComB.DropDownStyle = ComboBoxStyle.DropDownList;
+            createAndEditAcc.PopulateMealComboBox();
+
             PositionComB_AP.Items.AddRange(position);
+            PositionComB_AP.DropDownStyle = ComboBoxStyle.DropDownList;
+
             UserBirthdate.ValueChanged += CalculateAge;
         }
 
@@ -101,7 +111,12 @@ namespace CafeDeLunaSystem
             }
         }
         //Admin Panel
-
+        private void CalculateAge(object sender, EventArgs e)
+        {
+            DateTime selectedDate = UserBirthdate.Value;
+            int age = createAndEditAcc.AgeCalculation(selectedDate);
+            AgeTxtB_AP.Text = age.ToString();
+        }
         private void AccManageLbl_Click(object sender, System.EventArgs e)
         {
             panelManagerAP.ShowPanel(AccManagePanel);
@@ -150,15 +165,13 @@ namespace CafeDeLunaSystem
                 {
                     string selectedFileName = Path.GetFileName(openFileDialog.FileName); // Get just the file name
                     string selectedDirectory = Path.GetDirectoryName(openFileDialog.FileName); // Get the directory
-                    fullFilePath = Path.Combine(selectedDirectory, selectedFileName); // Create the full file path
+                    employeeFullFilePath = Path.Combine(selectedDirectory, selectedFileName); // Create the full file path
 
                     ImgTxtB.Text = selectedFileName;
 
                     try
                     {
-                        Image selectedImage = Image.FromFile(fullFilePath);
-
-                        // Define maximum width and height for resizing
+                        Image selectedImage = Image.FromFile(employeeFullFilePath);
                         int maxWidth = 160;
                         int maxHeight = 160;
 
@@ -173,13 +186,6 @@ namespace CafeDeLunaSystem
                 }
             }
         }
-        private void CalculateAge(object sender, EventArgs e)
-        {
-            DateTime selectedDate = UserBirthdate.Value;
-            int age = createAndEditAcc.AgeCalculation(selectedDate);
-
-            AgeTxtB_AP.Text = age.ToString();
-        }
 
         private void CreateBtn_Click(object sender, EventArgs e)
         {
@@ -188,11 +194,10 @@ namespace CafeDeLunaSystem
             string employeeFullName = $"{LastNTxtB_AP.Text}, {FirstNTxtB_AP.Text} {MiddleNTxtB_AP.Text}";
             string userImagePath = ImgTxtB.Text;
             byte[] imageData = null;
-            //byte[] userImageData = File.ReadAllBytes(userImagePath);
 
-            if (!string.IsNullOrEmpty(userImagePath) && File.Exists(fullFilePath))
+            if (!string.IsNullOrEmpty(userImagePath) && File.Exists(employeeFullFilePath))
             {
-                using (FileStream fs = new FileStream(fullFilePath, FileMode.Open, FileAccess.Read))
+                using (FileStream fs = new FileStream(employeeFullFilePath, FileMode.Open, FileAccess.Read))
                 {
                     imageData = new byte[fs.Length];
                     fs.Read(imageData, 0, (int)fs.Length);
@@ -210,7 +215,7 @@ namespace CafeDeLunaSystem
                 (string.IsNullOrWhiteSpace(AgeTxtB_AP.Text) || AgeTxtB_AP.Text == "Enter age") ||
                 (string.IsNullOrWhiteSpace(UsernameTxtB_AP.Text) || UsernameTxtB_AP.Text == "Enter username") ||
                 (string.IsNullOrWhiteSpace(PasswordTxtB_AP.Text) || PasswordTxtB_AP.Text == "Enter password") ||
-                PositionComB_AP.SelectedItem == null || 
+                PositionComB_AP.SelectedItem == null ||
                 string.IsNullOrEmpty(EmployeeIDTxtB_AP.Text) || EmployeeIDTxtB_AP.Text == "Enter ID" ||
                 string.IsNullOrEmpty(EmailTxtB_AP.Text) || EmailTxtB_AP.Text == "Enter e-mail")
             {
@@ -229,15 +234,15 @@ namespace CafeDeLunaSystem
             if (choices == DialogResult.Yes)
             {
                 string insertQuery = "INSERT INTO employee_acc (Name, Birthday, Age, Email, Username, Password, Position, EmployeeID, EmployeeIMG) " +
-                    "values('" + employeeFullName + "', '" + selectedDate + "', '" + AgeTxtB_AP.Text + "', '" + EmailTxtB_AP.Text + "', '"+ UsernameTxtB_AP.Text+"', " +
-                    "'" + Encryptor.HashPassword(PasswordTxtB_AP.Text) + "', '" + PositionComB_AP.SelectedItem.ToString() + "','"+EmployeeIDTxtB_AP.Text+"','"+imageData+"')";
+                    "values('" + employeeFullName + "', '" + selectedDate + "', '" + AgeTxtB_AP.Text + "', '" + EmailTxtB_AP.Text + "', '" + UsernameTxtB_AP.Text + "', " +
+                    "'" + Encryptor.HashPassword(PasswordTxtB_AP.Text) + "', '" + PositionComB_AP.SelectedItem.ToString() + "','" + EmployeeIDTxtB_AP.Text + "','" + imageData + "')";
                 MySqlCommand cmdDataBase = new MySqlCommand(insertQuery, conn);
 
                 try
                 {
                     conn.Open();
                     cmdDataBase.ExecuteNonQuery();
-                    panelManagerAMC.RefreshTbl();
+                    createAndEditAcc.RefreshTbl();
                     MessageBox.Show("Account Created!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
 
@@ -271,6 +276,180 @@ namespace CafeDeLunaSystem
                     conn.Close();
                 }
             }
+        }
+
+        private void MenuAddImgBtn_Click(object sender, EventArgs e)
+        {
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.gif;*.bmp";
+                openFileDialog.Title = "Select an Image File";
+
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    string selectedFileName = Path.GetFileName(openFileDialog.FileName); // Get just the file name
+                    string selectedDirectory = Path.GetDirectoryName(openFileDialog.FileName); // Get the directory
+                    menuFullFilePath = Path.Combine(selectedDirectory, selectedFileName); // Create the full file path
+
+                    MenuFilePathTxtB.Text = selectedFileName;
+
+                    try
+                    {
+                        Image selectedImage = Image.FromFile(menuFullFilePath);
+
+                        // Define maximum width and height for resizing
+                        int maxWidth = 120;
+                        int maxHeight = 120;
+
+                        Bitmap resizedImage = createAndEditAcc.ResizeImage(selectedImage, maxWidth, maxHeight);
+
+                        MenuPicB.Image = resizedImage;
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error loading the image: " + ex.Message);
+                    }
+                }
+            }
+        }
+        private void AddMenuBtn_Click(object sender, EventArgs e)
+        {
+            string connectionString = "server=localhost;user=root;database=dashboarddb;password=";
+            string mealName = MenuNTxtB.Text;
+            string mealImgPath = MenuFilePathTxtB.Text;
+
+            try
+            {
+                byte[] imageData = null;
+                if (!string.IsNullOrEmpty(mealImgPath) && File.Exists(menuFullFilePath))
+                {
+                    using (FileStream fs = new FileStream(menuFullFilePath, FileMode.Open, FileAccess.Read))
+                    {
+                        imageData = new byte[fs.Length];
+                        fs.Read(imageData, 0, (int)fs.Length);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Invalid image file path.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                using (MySqlConnection connection = new MySqlConnection(connectionString))
+                {
+                    connection.Open();
+
+                    string insertQuery = "INSERT INTO meal (MealName, MealImage) VALUES (@mealName, @mealImage)";
+                    using (MySqlCommand command = new MySqlCommand(insertQuery, connection))
+                    {
+                        command.Parameters.AddWithValue("@mealName", mealName);
+                        command.Parameters.AddWithValue("@mealImage", menuFullFilePath);
+                        command.ExecuteNonQuery();
+                    }
+                    MessageBox.Show("New meal added successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    createAndEditAcc.PopulateMealComboBox();
+                }
+                MenuNTxtB.Text = "";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void VarietyAddImgBtn_Click(object sender, EventArgs e)
+        {
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.gif;*.bmp";
+                openFileDialog.Title = "Select an Image File";
+
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    string selectedFileName = Path.GetFileName(openFileDialog.FileName); // Get just the file name
+                    string selectedDirectory = Path.GetDirectoryName(openFileDialog.FileName); // Get the directory
+                    varietyFullFilePath = Path.Combine(selectedDirectory, selectedFileName); // Create the full file path
+
+                    VarietyFilePathTxtB.Text = selectedFileName;
+
+                    try
+                    {
+                        Image selectedImage = Image.FromFile(varietyFullFilePath);
+
+                        int maxWidth = 120;
+                        int maxHeight = 120;
+
+                        Bitmap resizedImage = createAndEditAcc.ResizeImage(selectedImage, maxWidth, maxHeight);
+
+                        VariationPicB.Image = resizedImage;
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error loading the image: " + ex.Message);
+                    }
+                }
+            }
+        }
+
+        private void AddVarietyBtn_Click(object sender, EventArgs e)
+        {
+            string variationName = VariationNmTxtB.Text;
+            string variationDescription = VariationDescTxtB.Text;
+            decimal variationCost = decimal.Parse(VariationCostTxtB.Text);
+            string selectedMenuCategory = MenuSelectComB.SelectedItem.ToString();
+            string varietyImagePath = VarietyFilePathTxtB.Text;
+            byte[] imageData = null;
+
+            if (!string.IsNullOrEmpty(varietyImagePath) && File.Exists(varietyFullFilePath))
+            {
+                using (FileStream fs = new FileStream(varietyFullFilePath, FileMode.Open, FileAccess.Read))
+                {
+                    imageData = new byte[fs.Length];
+                    fs.Read(imageData, 0, (int)fs.Length);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Invalid image file path.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            int mealID = createAndEditAcc.GetMealIDFromDatabase(selectedMenuCategory);
+
+            if (mealID != -1)
+            {
+                string connectionString = "server=localhost;user=root;database=dashboarddb;password=";
+
+                try
+                {
+                    using (MySqlConnection connection = new MySqlConnection(connectionString))
+                    {
+                        connection.Open();
+                        string insertQuery = "INSERT INTO mealvariation (MealImage, MealID, VariationName, VariationDescription, VariationCost) VALUES (@imagePath, @mealID, @variationName, @variationDescription, @variationCost)";
+                        using (MySqlCommand command = new MySqlCommand(insertQuery, connection))
+                        {
+                            command.Parameters.AddWithValue("@mealID", mealID);
+                            command.Parameters.AddWithValue("@variationName", variationName);
+                            command.Parameters.AddWithValue("@variationDescription", variationDescription);
+                            command.Parameters.AddWithValue("@variationCost", variationCost);
+                            command.Parameters.AddWithValue("@imagePath", varietyFullFilePath);
+                            command.ExecuteNonQuery();
+                        }
+
+                        MessageBox.Show("New variation added successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    MenuSelectComB.SelectedIndex = -1;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Invalid menu category. Unable to add variation.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            createAndEditAcc.LoadMenuItems();
         }
     }
 }

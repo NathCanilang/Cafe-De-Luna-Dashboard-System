@@ -8,6 +8,8 @@ namespace CafeDeLunaSystem
 {
     internal class PanelManager
     {
+        private readonly CreateAndEditAcc createAndEditAcc = new CreateAndEditAcc();
+
         // Main Panel
         private readonly Panel LoginPanel;
         private readonly Panel AdminPanel;
@@ -34,13 +36,19 @@ namespace CafeDeLunaSystem
     }
     internal class PanelManagerAP
     {
+        private readonly CreateAndEditAcc createAndEditAcc = new CreateAndEditAcc();
+
         //Admin Panel
+        private readonly MySqlConnection conn;
         private readonly Panel HomePanelAP;
         private readonly Panel AccManagePanelAP;
         private readonly Panel AddMenuPanelAP;
 
         public PanelManagerAP(Panel homePanelAP, Panel accManagePanelAP, Panel addMenuPanelAP)
         {
+            string mysqlcon = "server=localhost;user=root;database=dashboarddb;password=";
+            conn = new MySqlConnection(mysqlcon);
+
             HomePanelAP = homePanelAP;
             AccManagePanelAP = accManagePanelAP;
             AddMenuPanelAP = addMenuPanelAP;
@@ -54,11 +62,18 @@ namespace CafeDeLunaSystem
             AddMenuPanelAP.Hide();
 
             panelToShow.Show();
+
+            if (panelToShow == AddMenuPanelAP) 
+            {
+                createAndEditAcc.LoadMenuItems();
+            }
         }
+       
     }
     internal class PanelManagerAMC
     {
         private readonly MySqlConnection conn;
+        private readonly CreateAndEditAcc createAndEditAcc = new CreateAndEditAcc();
         private readonly Panel AccCreatePanel;
         private readonly Panel EditAccPanel;
 
@@ -79,28 +94,11 @@ namespace CafeDeLunaSystem
 
             if (panelToShow == AccCreatePanel)
             {
-                GenerateAndSetRandomNumber();
-                RefreshTbl();
-
-
+                createAndEditAcc.GenerateAndSetRandomNumber();
+                createAndEditAcc.RefreshTbl();
             }
         }
-        private void GenerateAndSetRandomNumber()
-        {
-            Random random = new Random();
-            int random6Digit = random.Next(100000, 1000000);
-            CafeDeLunaDashboard.cafeDeLunaInstance.EmployeeIDTxtB_AP.Text = random6Digit.ToString();
-        }
-
-        public void RefreshTbl()
-        {
-            string query = "SELECT * FROM employee_acc";
-            MySqlCommand cmd = new MySqlCommand(query, conn);
-            MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
-            DataTable dataTable = new DataTable();
-            adapter.Fill(dataTable);
-
-            CafeDeLunaDashboard.cafeDeLunaInstance.AccDataTbl.DataSource = dataTable;
-        }
+        
+       
     }
 }
