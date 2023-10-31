@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -104,6 +105,48 @@ namespace CafeDeLunaSystem
             Random random = new Random();
             int random6Digit = random.Next(100000, 1000000);
             CafeDeLunaDashboard.cafeDeLunaInstance.EmployeeIDTxtB_AP.Text = random6Digit.ToString();
+        }
+
+        public  Image ResizeImages(Image image, int width, int height)
+        {
+            var destImage = new Bitmap(width, height);
+
+            using (var graphics = Graphics.FromImage(destImage))
+            {
+                graphics.CompositingQuality = CompositingQuality.HighQuality;
+                graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                graphics.SmoothingMode = SmoothingMode.HighQuality;
+                graphics.DrawImage(image, 0, 0, width, height);
+            }
+
+            return destImage;
+        }
+
+        public Image ResizeImage(Image image, int maxWidth, int maxHeight)
+        {
+            int newWidth, newHeight;
+            double aspectRatio = (double)image.Width / image.Height;
+
+            if (image.Width > maxWidth || image.Height > maxHeight)
+            {
+                if (aspectRatio > 1)
+                {
+                    newWidth = maxWidth;
+                    newHeight = (int)(newWidth / aspectRatio);
+                }
+                else
+                {
+                    newHeight = maxHeight;
+                    newWidth = (int)(newHeight * aspectRatio);
+                }
+            }
+            else
+            {
+                newWidth = image.Width;
+                newHeight = image.Height;
+            }
+
+            return new Bitmap(image, new Size(newWidth, newHeight));
         }
 
         public void RefreshTbl()
