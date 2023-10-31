@@ -96,9 +96,15 @@
             this.ManagerPanel = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.StaffPanel = new System.Windows.Forms.Panel();
-            this.label4 = new System.Windows.Forms.Label();
+            this.breakBtn = new System.Windows.Forms.PictureBox();
+            this.coffBtn = new System.Windows.Forms.PictureBox();
+            this.SearchTxtbx = new System.Windows.Forms.TextBox();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.snackBtn = new System.Windows.Forms.PictureBox();
+            this.allBtn = new System.Windows.Forms.PictureBox();
             this.AdminPanelContainer = new Syncfusion.Windows.Forms.Tools.CardLayout(this.components);
             this.AccManageContainer = new Syncfusion.Windows.Forms.Tools.CardLayout(this.components);
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.MainLoginContainer)).BeginInit();
             this.LoginPanel.SuspendLayout();
             this.PanelLP.SuspendLayout();
@@ -116,15 +122,20 @@
             this.NavigationPanelAP.SuspendLayout();
             this.ManagerPanel.SuspendLayout();
             this.StaffPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.breakBtn)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.coffBtn)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.snackBtn)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.allBtn)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.AdminPanelContainer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.AccManageContainer)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // MainLoginContainer
             // 
             this.MainLoginContainer.ContainerControl = this;
             this.MainLoginContainer.LayoutMode = Syncfusion.Windows.Forms.Tools.CardLayoutMode.Fill;
-            this.MainLoginContainer.SelectedCard = "Card2";
+            this.MainLoginContainer.SelectedCard = "Card4";
             // 
             // LoginPanel
             // 
@@ -132,11 +143,10 @@
             this.MainLoginContainer.SetCardName(this.LoginPanel, "Card1");
             this.LoginPanel.Controls.Add(this.PanelLP);
             this.LoginPanel.Location = new System.Drawing.Point(0, 0);
-            this.LoginPanel.Margin = new System.Windows.Forms.Padding(4);
             this.MainLoginContainer.SetMinimumSize(this.LoginPanel, new System.Drawing.Size(200, 100));
             this.LoginPanel.Name = "LoginPanel";
             this.MainLoginContainer.SetPreferredSize(this.LoginPanel, new System.Drawing.Size(200, 100));
-            this.LoginPanel.Size = new System.Drawing.Size(1457, 697);
+            this.LoginPanel.Size = new System.Drawing.Size(1028, 566);
             this.LoginPanel.TabIndex = 0;
             // 
             // PanelLP
@@ -145,18 +155,16 @@
             this.PanelLP.Controls.Add(this.LogBtnLP);
             this.PanelLP.Controls.Add(this.UsernameTxtBLP);
             this.PanelLP.Controls.Add(this.PasswordTxtBLP);
-            this.PanelLP.Location = new System.Drawing.Point(355, 123);
-            this.PanelLP.Margin = new System.Windows.Forms.Padding(4);
+            this.PanelLP.Location = new System.Drawing.Point(266, 100);
             this.PanelLP.Name = "PanelLP";
-            this.PanelLP.Size = new System.Drawing.Size(763, 498);
+            this.PanelLP.Size = new System.Drawing.Size(572, 405);
             this.PanelLP.TabIndex = 0;
             // 
             // LogBtnLP
             // 
-            this.LogBtnLP.Location = new System.Drawing.Point(285, 402);
-            this.LogBtnLP.Margin = new System.Windows.Forms.Padding(4);
+            this.LogBtnLP.Location = new System.Drawing.Point(214, 327);
             this.LogBtnLP.Name = "LogBtnLP";
-            this.LogBtnLP.Size = new System.Drawing.Size(175, 39);
+            this.LogBtnLP.Size = new System.Drawing.Size(131, 32);
             this.LogBtnLP.TabIndex = 2;
             this.LogBtnLP.Text = "Log-In";
             this.LogBtnLP.UseVisualStyleBackColor = true;
@@ -164,21 +172,19 @@
             // 
             // UsernameTxtBLP
             // 
-            this.UsernameTxtBLP.Location = new System.Drawing.Point(235, 154);
-            this.UsernameTxtBLP.Margin = new System.Windows.Forms.Padding(4);
+            this.UsernameTxtBLP.Location = new System.Drawing.Point(176, 125);
             this.UsernameTxtBLP.Multiline = true;
             this.UsernameTxtBLP.Name = "UsernameTxtBLP";
-            this.UsernameTxtBLP.Size = new System.Drawing.Size(281, 38);
+            this.UsernameTxtBLP.Size = new System.Drawing.Size(212, 32);
             this.UsernameTxtBLP.TabIndex = 1;
             this.UsernameTxtBLP.Text = "Enter your Username";
             // 
             // PasswordTxtBLP
             // 
-            this.PasswordTxtBLP.Location = new System.Drawing.Point(235, 257);
-            this.PasswordTxtBLP.Margin = new System.Windows.Forms.Padding(4);
+            this.PasswordTxtBLP.Location = new System.Drawing.Point(176, 209);
             this.PasswordTxtBLP.Multiline = true;
             this.PasswordTxtBLP.Name = "PasswordTxtBLP";
-            this.PasswordTxtBLP.Size = new System.Drawing.Size(281, 38);
+            this.PasswordTxtBLP.Size = new System.Drawing.Size(212, 32);
             this.PasswordTxtBLP.TabIndex = 0;
             this.PasswordTxtBLP.Text = "Enter your Password";
             // 
@@ -189,11 +195,10 @@
             this.AdminPanel.Controls.Add(this.InterfaceAP);
             this.AdminPanel.Controls.Add(this.NavigationPanelAP);
             this.AdminPanel.Location = new System.Drawing.Point(0, 0);
-            this.AdminPanel.Margin = new System.Windows.Forms.Padding(4);
             this.MainLoginContainer.SetMinimumSize(this.AdminPanel, new System.Drawing.Size(200, 100));
             this.AdminPanel.Name = "AdminPanel";
             this.MainLoginContainer.SetPreferredSize(this.AdminPanel, new System.Drawing.Size(200, 100));
-            this.AdminPanel.Size = new System.Drawing.Size(1457, 697);
+            this.AdminPanel.Size = new System.Drawing.Size(1028, 566);
             this.AdminPanel.TabIndex = 1;
             // 
             // InterfaceAP
@@ -202,10 +207,9 @@
             this.InterfaceAP.Controls.Add(this.AddMenuPanelAP);
             this.InterfaceAP.Controls.Add(this.SalesRepPanel);
             this.InterfaceAP.Controls.Add(this.AccManagePanel);
-            this.InterfaceAP.Location = new System.Drawing.Point(236, 0);
-            this.InterfaceAP.Margin = new System.Windows.Forms.Padding(4);
+            this.InterfaceAP.Location = new System.Drawing.Point(177, 0);
             this.InterfaceAP.Name = "InterfaceAP";
-            this.InterfaceAP.Size = new System.Drawing.Size(1221, 697);
+            this.InterfaceAP.Size = new System.Drawing.Size(916, 566);
             this.InterfaceAP.TabIndex = 2;
             // 
             // HomePanelAP
@@ -213,19 +217,19 @@
             this.AdminPanelContainer.SetCardName(this.HomePanelAP, "Card4");
             this.HomePanelAP.Controls.Add(this.label2);
             this.HomePanelAP.Location = new System.Drawing.Point(0, 0);
-            this.HomePanelAP.Margin = new System.Windows.Forms.Padding(4);
             this.AdminPanelContainer.SetMinimumSize(this.HomePanelAP, new System.Drawing.Size(200, 100));
             this.HomePanelAP.Name = "HomePanelAP";
             this.AdminPanelContainer.SetPreferredSize(this.HomePanelAP, new System.Drawing.Size(200, 100));
-            this.HomePanelAP.Size = new System.Drawing.Size(1221, 697);
+            this.HomePanelAP.Size = new System.Drawing.Size(916, 566);
             this.HomePanelAP.TabIndex = 3;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(584, 356);
+            this.label2.Location = new System.Drawing.Point(438, 289);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(44, 16);
+            this.label2.Size = new System.Drawing.Size(35, 13);
             this.label2.TabIndex = 0;
             this.label2.Text = "Home";
             // 
@@ -252,77 +256,84 @@
             this.AddMenuPanelAP.Controls.Add(this.MenuPicB);
             this.AddMenuPanelAP.Controls.Add(this.FoodTbl);
             this.AddMenuPanelAP.Location = new System.Drawing.Point(0, 0);
-            this.AddMenuPanelAP.Margin = new System.Windows.Forms.Padding(4);
             this.AdminPanelContainer.SetMinimumSize(this.AddMenuPanelAP, new System.Drawing.Size(200, 100));
             this.AddMenuPanelAP.Name = "AddMenuPanelAP";
             this.AdminPanelContainer.SetPreferredSize(this.AddMenuPanelAP, new System.Drawing.Size(200, 100));
-            this.AddMenuPanelAP.Size = new System.Drawing.Size(1221, 697);
+            this.AddMenuPanelAP.Size = new System.Drawing.Size(916, 566);
             this.AddMenuPanelAP.TabIndex = 1;
             // 
             // MenuFilePathTxtB
             // 
-            this.MenuFilePathTxtB.Location = new System.Drawing.Point(797, 331);
+            this.MenuFilePathTxtB.Location = new System.Drawing.Point(598, 269);
+            this.MenuFilePathTxtB.Margin = new System.Windows.Forms.Padding(2);
             this.MenuFilePathTxtB.Name = "MenuFilePathTxtB";
-            this.MenuFilePathTxtB.Size = new System.Drawing.Size(120, 22);
+            this.MenuFilePathTxtB.Size = new System.Drawing.Size(91, 20);
             this.MenuFilePathTxtB.TabIndex = 17;
             this.MenuFilePathTxtB.Visible = false;
             // 
             // VarietyFilePathTxtB
             // 
-            this.VarietyFilePathTxtB.Location = new System.Drawing.Point(723, 525);
+            this.VarietyFilePathTxtB.Location = new System.Drawing.Point(542, 427);
+            this.VarietyFilePathTxtB.Margin = new System.Windows.Forms.Padding(2);
             this.VarietyFilePathTxtB.Name = "VarietyFilePathTxtB";
-            this.VarietyFilePathTxtB.Size = new System.Drawing.Size(120, 22);
+            this.VarietyFilePathTxtB.Size = new System.Drawing.Size(91, 20);
             this.VarietyFilePathTxtB.TabIndex = 16;
             this.VarietyFilePathTxtB.Visible = false;
             // 
             // DeleteMenulBtn
             // 
-            this.DeleteMenulBtn.Location = new System.Drawing.Point(971, 632);
+            this.DeleteMenulBtn.Location = new System.Drawing.Point(728, 514);
+            this.DeleteMenulBtn.Margin = new System.Windows.Forms.Padding(2);
             this.DeleteMenulBtn.Name = "DeleteMenulBtn";
-            this.DeleteMenulBtn.Size = new System.Drawing.Size(171, 35);
+            this.DeleteMenulBtn.Size = new System.Drawing.Size(128, 28);
             this.DeleteMenulBtn.TabIndex = 15;
             this.DeleteMenulBtn.Text = "Delete Menu";
             this.DeleteMenulBtn.UseVisualStyleBackColor = true;
             // 
             // EditMealBtn
             // 
-            this.EditMealBtn.Location = new System.Drawing.Point(794, 632);
+            this.EditMealBtn.Location = new System.Drawing.Point(596, 514);
+            this.EditMealBtn.Margin = new System.Windows.Forms.Padding(2);
             this.EditMealBtn.Name = "EditMealBtn";
-            this.EditMealBtn.Size = new System.Drawing.Size(171, 35);
+            this.EditMealBtn.Size = new System.Drawing.Size(128, 28);
             this.EditMealBtn.TabIndex = 14;
             this.EditMealBtn.Text = "Edit Meal";
             this.EditMealBtn.UseVisualStyleBackColor = true;
             // 
             // VariationIDTxtBox
             // 
-            this.VariationIDTxtBox.Location = new System.Drawing.Point(971, 591);
+            this.VariationIDTxtBox.Location = new System.Drawing.Point(728, 480);
+            this.VariationIDTxtBox.Margin = new System.Windows.Forms.Padding(2);
             this.VariationIDTxtBox.Multiline = true;
             this.VariationIDTxtBox.Name = "VariationIDTxtBox";
-            this.VariationIDTxtBox.Size = new System.Drawing.Size(171, 35);
+            this.VariationIDTxtBox.Size = new System.Drawing.Size(129, 29);
             this.VariationIDTxtBox.TabIndex = 13;
             // 
             // MealIDTxtB
             // 
-            this.MealIDTxtB.Location = new System.Drawing.Point(794, 591);
+            this.MealIDTxtB.Location = new System.Drawing.Point(596, 480);
+            this.MealIDTxtB.Margin = new System.Windows.Forms.Padding(2);
             this.MealIDTxtB.Multiline = true;
             this.MealIDTxtB.Name = "MealIDTxtB";
-            this.MealIDTxtB.Size = new System.Drawing.Size(171, 35);
+            this.MealIDTxtB.Size = new System.Drawing.Size(129, 29);
             this.MealIDTxtB.TabIndex = 12;
             // 
             // MenuSelectComB
             // 
             this.MenuSelectComB.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MenuSelectComB.FormattingEnabled = true;
-            this.MenuSelectComB.Location = new System.Drawing.Point(1026, 399);
+            this.MenuSelectComB.Location = new System.Drawing.Point(770, 324);
+            this.MenuSelectComB.Margin = new System.Windows.Forms.Padding(2);
             this.MenuSelectComB.Name = "MenuSelectComB";
-            this.MenuSelectComB.Size = new System.Drawing.Size(171, 33);
+            this.MenuSelectComB.Size = new System.Drawing.Size(129, 28);
             this.MenuSelectComB.TabIndex = 11;
             // 
             // VarietyAddImgBtn
             // 
-            this.VarietyAddImgBtn.Location = new System.Drawing.Point(1026, 443);
+            this.VarietyAddImgBtn.Location = new System.Drawing.Point(770, 360);
+            this.VarietyAddImgBtn.Margin = new System.Windows.Forms.Padding(2);
             this.VarietyAddImgBtn.Name = "VarietyAddImgBtn";
-            this.VarietyAddImgBtn.Size = new System.Drawing.Size(171, 35);
+            this.VarietyAddImgBtn.Size = new System.Drawing.Size(128, 28);
             this.VarietyAddImgBtn.TabIndex = 10;
             this.VarietyAddImgBtn.Text = "Add Variety Image";
             this.VarietyAddImgBtn.UseVisualStyleBackColor = true;
@@ -330,9 +341,10 @@
             // 
             // AddVarietyBtn
             // 
-            this.AddVarietyBtn.Location = new System.Drawing.Point(1026, 484);
+            this.AddVarietyBtn.Location = new System.Drawing.Point(770, 393);
+            this.AddVarietyBtn.Margin = new System.Windows.Forms.Padding(2);
             this.AddVarietyBtn.Name = "AddVarietyBtn";
-            this.AddVarietyBtn.Size = new System.Drawing.Size(171, 35);
+            this.AddVarietyBtn.Size = new System.Drawing.Size(128, 28);
             this.AddVarietyBtn.TabIndex = 9;
             this.AddVarietyBtn.Text = "Add Variation";
             this.AddVarietyBtn.UseVisualStyleBackColor = true;
@@ -340,46 +352,51 @@
             // 
             // VariationDescTxtB
             // 
-            this.VariationDescTxtB.Location = new System.Drawing.Point(849, 443);
+            this.VariationDescTxtB.Location = new System.Drawing.Point(637, 360);
+            this.VariationDescTxtB.Margin = new System.Windows.Forms.Padding(2);
             this.VariationDescTxtB.Multiline = true;
             this.VariationDescTxtB.Name = "VariationDescTxtB";
-            this.VariationDescTxtB.Size = new System.Drawing.Size(171, 35);
+            this.VariationDescTxtB.Size = new System.Drawing.Size(129, 29);
             this.VariationDescTxtB.TabIndex = 8;
             this.VariationDescTxtB.Text = "Description";
             // 
             // VariationCostTxtB
             // 
-            this.VariationCostTxtB.Location = new System.Drawing.Point(849, 484);
+            this.VariationCostTxtB.Location = new System.Drawing.Point(637, 393);
+            this.VariationCostTxtB.Margin = new System.Windows.Forms.Padding(2);
             this.VariationCostTxtB.Multiline = true;
             this.VariationCostTxtB.Name = "VariationCostTxtB";
-            this.VariationCostTxtB.Size = new System.Drawing.Size(171, 35);
+            this.VariationCostTxtB.Size = new System.Drawing.Size(129, 29);
             this.VariationCostTxtB.TabIndex = 7;
             this.VariationCostTxtB.Text = "Price";
             // 
             // VariationNmTxtB
             // 
-            this.VariationNmTxtB.Location = new System.Drawing.Point(849, 399);
+            this.VariationNmTxtB.Location = new System.Drawing.Point(637, 324);
+            this.VariationNmTxtB.Margin = new System.Windows.Forms.Padding(2);
             this.VariationNmTxtB.Multiline = true;
             this.VariationNmTxtB.Name = "VariationNmTxtB";
-            this.VariationNmTxtB.Size = new System.Drawing.Size(171, 35);
+            this.VariationNmTxtB.Size = new System.Drawing.Size(129, 29);
             this.VariationNmTxtB.TabIndex = 6;
             this.VariationNmTxtB.Text = "Food Name";
             // 
             // VariationPicB
             // 
             this.VariationPicB.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.VariationPicB.Location = new System.Drawing.Point(723, 399);
+            this.VariationPicB.Location = new System.Drawing.Point(542, 324);
+            this.VariationPicB.Margin = new System.Windows.Forms.Padding(2);
             this.VariationPicB.Name = "VariationPicB";
-            this.VariationPicB.Size = new System.Drawing.Size(120, 120);
+            this.VariationPicB.Size = new System.Drawing.Size(90, 98);
             this.VariationPicB.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.VariationPicB.TabIndex = 5;
             this.VariationPicB.TabStop = false;
             // 
             // AddMenuBtn
             // 
-            this.AddMenuBtn.Location = new System.Drawing.Point(923, 290);
+            this.AddMenuBtn.Location = new System.Drawing.Point(692, 236);
+            this.AddMenuBtn.Margin = new System.Windows.Forms.Padding(2);
             this.AddMenuBtn.Name = "AddMenuBtn";
-            this.AddMenuBtn.Size = new System.Drawing.Size(205, 35);
+            this.AddMenuBtn.Size = new System.Drawing.Size(154, 28);
             this.AddMenuBtn.TabIndex = 4;
             this.AddMenuBtn.Text = "Add Menu";
             this.AddMenuBtn.UseVisualStyleBackColor = true;
@@ -387,9 +404,10 @@
             // 
             // MenuAddImgBtn
             // 
-            this.MenuAddImgBtn.Location = new System.Drawing.Point(923, 249);
+            this.MenuAddImgBtn.Location = new System.Drawing.Point(692, 202);
+            this.MenuAddImgBtn.Margin = new System.Windows.Forms.Padding(2);
             this.MenuAddImgBtn.Name = "MenuAddImgBtn";
-            this.MenuAddImgBtn.Size = new System.Drawing.Size(205, 35);
+            this.MenuAddImgBtn.Size = new System.Drawing.Size(154, 28);
             this.MenuAddImgBtn.TabIndex = 3;
             this.MenuAddImgBtn.Text = "Add Menu Image ";
             this.MenuAddImgBtn.UseVisualStyleBackColor = true;
@@ -397,19 +415,21 @@
             // 
             // MenuNTxtB
             // 
-            this.MenuNTxtB.Location = new System.Drawing.Point(923, 205);
+            this.MenuNTxtB.Location = new System.Drawing.Point(692, 167);
+            this.MenuNTxtB.Margin = new System.Windows.Forms.Padding(2);
             this.MenuNTxtB.Multiline = true;
             this.MenuNTxtB.Name = "MenuNTxtB";
-            this.MenuNTxtB.Size = new System.Drawing.Size(205, 35);
+            this.MenuNTxtB.Size = new System.Drawing.Size(155, 29);
             this.MenuNTxtB.TabIndex = 2;
             this.MenuNTxtB.Text = "Menu Name";
             // 
             // MenuPicB
             // 
             this.MenuPicB.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.MenuPicB.Location = new System.Drawing.Point(797, 205);
+            this.MenuPicB.Location = new System.Drawing.Point(598, 167);
+            this.MenuPicB.Margin = new System.Windows.Forms.Padding(2);
             this.MenuPicB.Name = "MenuPicB";
-            this.MenuPicB.Size = new System.Drawing.Size(120, 120);
+            this.MenuPicB.Size = new System.Drawing.Size(90, 98);
             this.MenuPicB.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.MenuPicB.TabIndex = 1;
             this.MenuPicB.TabStop = false;
@@ -418,11 +438,12 @@
             // 
             this.FoodTbl.AllowUserToAddRows = false;
             this.FoodTbl.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.FoodTbl.Location = new System.Drawing.Point(36, 133);
+            this.FoodTbl.Location = new System.Drawing.Point(27, 108);
+            this.FoodTbl.Margin = new System.Windows.Forms.Padding(2);
             this.FoodTbl.Name = "FoodTbl";
             this.FoodTbl.RowHeadersWidth = 51;
             this.FoodTbl.RowTemplate.Height = 24;
-            this.FoodTbl.Size = new System.Drawing.Size(661, 534);
+            this.FoodTbl.Size = new System.Drawing.Size(496, 434);
             this.FoodTbl.TabIndex = 0;
             // 
             // SalesRepPanel
@@ -430,10 +451,11 @@
             this.SalesRepPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
             this.AdminPanelContainer.SetCardName(this.SalesRepPanel, "Card5");
             this.SalesRepPanel.Location = new System.Drawing.Point(0, 0);
+            this.SalesRepPanel.Margin = new System.Windows.Forms.Padding(2);
             this.AdminPanelContainer.SetMinimumSize(this.SalesRepPanel, new System.Drawing.Size(200, 100));
             this.SalesRepPanel.Name = "SalesRepPanel";
             this.AdminPanelContainer.SetPreferredSize(this.SalesRepPanel, new System.Drawing.Size(200, 100));
-            this.SalesRepPanel.Size = new System.Drawing.Size(1221, 697);
+            this.SalesRepPanel.Size = new System.Drawing.Size(916, 566);
             this.SalesRepPanel.TabIndex = 4;
             // 
             // AccManagePanel
@@ -442,11 +464,10 @@
             this.AdminPanelContainer.SetCardName(this.AccManagePanel, "Card1");
             this.AccManagePanel.Controls.Add(this.AccCreatePanel);
             this.AccManagePanel.Location = new System.Drawing.Point(0, 0);
-            this.AccManagePanel.Margin = new System.Windows.Forms.Padding(4);
             this.AdminPanelContainer.SetMinimumSize(this.AccManagePanel, new System.Drawing.Size(200, 100));
             this.AccManagePanel.Name = "AccManagePanel";
             this.AdminPanelContainer.SetPreferredSize(this.AccManagePanel, new System.Drawing.Size(200, 100));
-            this.AccManagePanel.Size = new System.Drawing.Size(1221, 697);
+            this.AccManagePanel.Size = new System.Drawing.Size(916, 566);
             this.AccManagePanel.TabIndex = 0;
             // 
             // AccCreatePanel
@@ -481,22 +502,22 @@
             this.AccCreatePanel.Controls.Add(this.FirstNTxtB_AP);
             this.AccCreatePanel.Controls.Add(this.LastNTxtB_AP);
             this.AccCreatePanel.Location = new System.Drawing.Point(0, 0);
-            this.AccCreatePanel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.AccCreatePanel.Margin = new System.Windows.Forms.Padding(2);
             this.AccManageContainer.SetMinimumSize(this.AccCreatePanel, new System.Drawing.Size(200, 100));
             this.AccCreatePanel.Name = "AccCreatePanel";
             this.AccManageContainer.SetPreferredSize(this.AccCreatePanel, new System.Drawing.Size(200, 100));
-            this.AccCreatePanel.Size = new System.Drawing.Size(1221, 697);
+            this.AccCreatePanel.Size = new System.Drawing.Size(916, 566);
             this.AccCreatePanel.TabIndex = 0;
             // 
             // ImgTxtB
             // 
             this.ImgTxtB.Enabled = false;
             this.ImgTxtB.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ImgTxtB.Location = new System.Drawing.Point(24, 626);
-            this.ImgTxtB.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.ImgTxtB.Location = new System.Drawing.Point(18, 509);
+            this.ImgTxtB.Margin = new System.Windows.Forms.Padding(2);
             this.ImgTxtB.Multiline = true;
             this.ImgTxtB.Name = "ImgTxtB";
-            this.ImgTxtB.Size = new System.Drawing.Size(160, 30);
+            this.ImgTxtB.Size = new System.Drawing.Size(121, 25);
             this.ImgTxtB.TabIndex = 26;
             this.ImgTxtB.Text = "Choose picture";
             this.ImgTxtB.Visible = false;
@@ -505,10 +526,9 @@
             // 
             this.ActiveAccLbl.AutoSize = true;
             this.ActiveAccLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ActiveAccLbl.Location = new System.Drawing.Point(620, 48);
-            this.ActiveAccLbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.ActiveAccLbl.Location = new System.Drawing.Point(465, 39);
             this.ActiveAccLbl.Name = "ActiveAccLbl";
-            this.ActiveAccLbl.Size = new System.Drawing.Size(344, 52);
+            this.ActiveAccLbl.Size = new System.Drawing.Size(276, 39);
             this.ActiveAccLbl.TabIndex = 25;
             this.ActiveAccLbl.Text = "Active Accounts:";
             // 
@@ -516,10 +536,9 @@
             // 
             this.AccCreateLbl.AutoSize = true;
             this.AccCreateLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AccCreateLbl.Location = new System.Drawing.Point(15, 48);
-            this.AccCreateLbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.AccCreateLbl.Location = new System.Drawing.Point(11, 39);
             this.AccCreateLbl.Name = "AccCreateLbl";
-            this.AccCreateLbl.Size = new System.Drawing.Size(356, 52);
+            this.AccCreateLbl.Size = new System.Drawing.Size(283, 39);
             this.AccCreateLbl.TabIndex = 24;
             this.AccCreateLbl.Text = "Account Creation";
             // 
@@ -527,10 +546,9 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(19, 400);
-            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label6.Location = new System.Drawing.Point(14, 325);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(80, 29);
+            this.label6.Size = new System.Drawing.Size(62, 24);
             this.label6.TabIndex = 23;
             this.label6.Text = "Image";
             // 
@@ -538,10 +556,9 @@
             // 
             this.EmployeeIDLbl.AutoSize = true;
             this.EmployeeIDLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.EmployeeIDLbl.Location = new System.Drawing.Point(375, 398);
-            this.EmployeeIDLbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.EmployeeIDLbl.Location = new System.Drawing.Point(281, 323);
             this.EmployeeIDLbl.Name = "EmployeeIDLbl";
-            this.EmployeeIDLbl.Size = new System.Drawing.Size(157, 29);
+            this.EmployeeIDLbl.Size = new System.Drawing.Size(123, 24);
             this.EmployeeIDLbl.TabIndex = 22;
             this.EmployeeIDLbl.Text = "Employee ID:";
             // 
@@ -549,10 +566,9 @@
             // 
             this.PositionLbl.AutoSize = true;
             this.PositionLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PositionLbl.Location = new System.Drawing.Point(197, 400);
-            this.PositionLbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.PositionLbl.Location = new System.Drawing.Point(148, 325);
             this.PositionLbl.Name = "PositionLbl";
-            this.PositionLbl.Size = new System.Drawing.Size(100, 29);
+            this.PositionLbl.Size = new System.Drawing.Size(76, 24);
             this.PositionLbl.TabIndex = 21;
             this.PositionLbl.Text = "Position";
             // 
@@ -560,10 +576,9 @@
             // 
             this.PasswordLbl.AutoSize = true;
             this.PasswordLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PasswordLbl.Location = new System.Drawing.Point(196, 303);
-            this.PasswordLbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.PasswordLbl.Location = new System.Drawing.Point(147, 246);
             this.PasswordLbl.Name = "PasswordLbl";
-            this.PasswordLbl.Size = new System.Drawing.Size(126, 29);
+            this.PasswordLbl.Size = new System.Drawing.Size(97, 24);
             this.PasswordLbl.TabIndex = 20;
             this.PasswordLbl.Text = "Password:";
             // 
@@ -571,10 +586,9 @@
             // 
             this.UsernameLbl.AutoSize = true;
             this.UsernameLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.UsernameLbl.Location = new System.Drawing.Point(19, 303);
-            this.UsernameLbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.UsernameLbl.Location = new System.Drawing.Point(14, 246);
             this.UsernameLbl.Name = "UsernameLbl";
-            this.UsernameLbl.Size = new System.Drawing.Size(130, 29);
+            this.UsernameLbl.Size = new System.Drawing.Size(102, 24);
             this.UsernameLbl.TabIndex = 19;
             this.UsernameLbl.Text = "Username:";
             // 
@@ -582,10 +596,9 @@
             // 
             this.EmailLbl.AutoSize = true;
             this.EmailLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.EmailLbl.Location = new System.Drawing.Point(375, 300);
-            this.EmailLbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.EmailLbl.Location = new System.Drawing.Point(281, 244);
             this.EmailLbl.Name = "EmailLbl";
-            this.EmailLbl.Size = new System.Drawing.Size(88, 29);
+            this.EmailLbl.Size = new System.Drawing.Size(68, 24);
             this.EmailLbl.TabIndex = 18;
             this.EmailLbl.Text = "E-mail:";
             // 
@@ -593,10 +606,9 @@
             // 
             this.Agelbl.AutoSize = true;
             this.Agelbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Agelbl.Location = new System.Drawing.Point(375, 213);
-            this.Agelbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.Agelbl.Location = new System.Drawing.Point(281, 173);
             this.Agelbl.Name = "Agelbl";
-            this.Agelbl.Size = new System.Drawing.Size(62, 29);
+            this.Agelbl.Size = new System.Drawing.Size(50, 24);
             this.Agelbl.TabIndex = 17;
             this.Agelbl.Text = "Age:";
             // 
@@ -604,29 +616,29 @@
             // 
             this.BirthdateLbl.AutoSize = true;
             this.BirthdateLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BirthdateLbl.Location = new System.Drawing.Point(19, 210);
-            this.BirthdateLbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.BirthdateLbl.Location = new System.Drawing.Point(14, 171);
             this.BirthdateLbl.Name = "BirthdateLbl";
-            this.BirthdateLbl.Size = new System.Drawing.Size(121, 29);
+            this.BirthdateLbl.Size = new System.Drawing.Size(93, 24);
             this.BirthdateLbl.TabIndex = 16;
             this.BirthdateLbl.Text = "Birthdate: ";
             // 
             // NameLbl
             // 
             this.NameLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.NameLbl.Location = new System.Drawing.Point(19, 117);
+            this.NameLbl.Location = new System.Drawing.Point(14, 95);
+            this.NameLbl.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.NameLbl.Name = "NameLbl";
-            this.NameLbl.Size = new System.Drawing.Size(92, 23);
+            this.NameLbl.Size = new System.Drawing.Size(69, 19);
             this.NameLbl.TabIndex = 15;
             this.NameLbl.Text = "Name:";
             // 
             // EditBtn
             // 
             this.EditBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.EditBtn.Location = new System.Drawing.Point(385, 533);
-            this.EditBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.EditBtn.Location = new System.Drawing.Point(289, 433);
+            this.EditBtn.Margin = new System.Windows.Forms.Padding(2);
             this.EditBtn.Name = "EditBtn";
-            this.EditBtn.Size = new System.Drawing.Size(156, 34);
+            this.EditBtn.Size = new System.Drawing.Size(117, 28);
             this.EditBtn.TabIndex = 14;
             this.EditBtn.Text = "Edit Account";
             this.EditBtn.UseVisualStyleBackColor = true;
@@ -635,10 +647,10 @@
             // CreateBtn
             // 
             this.CreateBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CreateBtn.Location = new System.Drawing.Point(208, 533);
-            this.CreateBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.CreateBtn.Location = new System.Drawing.Point(156, 433);
+            this.CreateBtn.Margin = new System.Windows.Forms.Padding(2);
             this.CreateBtn.Name = "CreateBtn";
-            this.CreateBtn.Size = new System.Drawing.Size(156, 34);
+            this.CreateBtn.Size = new System.Drawing.Size(117, 28);
             this.CreateBtn.TabIndex = 13;
             this.CreateBtn.Text = "Create Account";
             this.CreateBtn.UseVisualStyleBackColor = true;
@@ -647,10 +659,10 @@
             // SelectImgBtn
             // 
             this.SelectImgBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SelectImgBtn.Location = new System.Drawing.Point(23, 429);
-            this.SelectImgBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.SelectImgBtn.Location = new System.Drawing.Point(17, 349);
+            this.SelectImgBtn.Margin = new System.Windows.Forms.Padding(2);
             this.SelectImgBtn.Name = "SelectImgBtn";
-            this.SelectImgBtn.Size = new System.Drawing.Size(161, 31);
+            this.SelectImgBtn.Size = new System.Drawing.Size(121, 25);
             this.SelectImgBtn.TabIndex = 12;
             this.SelectImgBtn.Text = "Select Image";
             this.SelectImgBtn.UseVisualStyleBackColor = true;
@@ -659,10 +671,10 @@
             // UserPicB
             // 
             this.UserPicB.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.UserPicB.Location = new System.Drawing.Point(24, 462);
-            this.UserPicB.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.UserPicB.Location = new System.Drawing.Point(18, 375);
+            this.UserPicB.Margin = new System.Windows.Forms.Padding(2);
             this.UserPicB.Name = "UserPicB";
-            this.UserPicB.Size = new System.Drawing.Size(160, 160);
+            this.UserPicB.Size = new System.Drawing.Size(120, 130);
             this.UserPicB.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.UserPicB.TabIndex = 11;
             this.UserPicB.TabStop = false;
@@ -671,116 +683,116 @@
             // 
             this.AccDataTbl.AllowUserToAddRows = false;
             this.AccDataTbl.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.AccDataTbl.Location = new System.Drawing.Point(629, 102);
-            this.AccDataTbl.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.AccDataTbl.Location = new System.Drawing.Point(472, 83);
+            this.AccDataTbl.Margin = new System.Windows.Forms.Padding(2);
             this.AccDataTbl.Name = "AccDataTbl";
             this.AccDataTbl.RowHeadersWidth = 51;
             this.AccDataTbl.RowTemplate.Height = 24;
-            this.AccDataTbl.Size = new System.Drawing.Size(563, 575);
+            this.AccDataTbl.Size = new System.Drawing.Size(422, 467);
             this.AccDataTbl.TabIndex = 10;
             // 
             // PositionComB_AP
             // 
             this.PositionComB_AP.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.PositionComB_AP.FormattingEnabled = true;
-            this.PositionComB_AP.Location = new System.Drawing.Point(203, 430);
-            this.PositionComB_AP.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.PositionComB_AP.Location = new System.Drawing.Point(152, 349);
+            this.PositionComB_AP.Margin = new System.Windows.Forms.Padding(2);
             this.PositionComB_AP.Name = "PositionComB_AP";
-            this.PositionComB_AP.Size = new System.Drawing.Size(160, 28);
+            this.PositionComB_AP.Size = new System.Drawing.Size(121, 25);
             this.PositionComB_AP.TabIndex = 9;
             this.PositionComB_AP.TabStop = false;
             // 
             // UserBirthdate
             // 
             this.UserBirthdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.UserBirthdate.Location = new System.Drawing.Point(24, 242);
-            this.UserBirthdate.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.UserBirthdate.Location = new System.Drawing.Point(18, 197);
+            this.UserBirthdate.Margin = new System.Windows.Forms.Padding(2);
             this.UserBirthdate.Name = "UserBirthdate";
-            this.UserBirthdate.Size = new System.Drawing.Size(335, 27);
+            this.UserBirthdate.Size = new System.Drawing.Size(252, 23);
             this.UserBirthdate.TabIndex = 8;
             // 
             // EmployeeIDTxtB_AP
             // 
             this.EmployeeIDTxtB_AP.Enabled = false;
             this.EmployeeIDTxtB_AP.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.EmployeeIDTxtB_AP.Location = new System.Drawing.Point(380, 430);
-            this.EmployeeIDTxtB_AP.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.EmployeeIDTxtB_AP.Location = new System.Drawing.Point(285, 349);
+            this.EmployeeIDTxtB_AP.Margin = new System.Windows.Forms.Padding(2);
             this.EmployeeIDTxtB_AP.Multiline = true;
             this.EmployeeIDTxtB_AP.Name = "EmployeeIDTxtB_AP";
-            this.EmployeeIDTxtB_AP.Size = new System.Drawing.Size(160, 30);
+            this.EmployeeIDTxtB_AP.Size = new System.Drawing.Size(121, 25);
             this.EmployeeIDTxtB_AP.TabIndex = 7;
             // 
             // PasswordTxtB_AP
             // 
             this.PasswordTxtB_AP.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PasswordTxtB_AP.Location = new System.Drawing.Point(201, 332);
-            this.PasswordTxtB_AP.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.PasswordTxtB_AP.Location = new System.Drawing.Point(151, 270);
+            this.PasswordTxtB_AP.Margin = new System.Windows.Forms.Padding(2);
             this.PasswordTxtB_AP.Multiline = true;
             this.PasswordTxtB_AP.Name = "PasswordTxtB_AP";
-            this.PasswordTxtB_AP.Size = new System.Drawing.Size(160, 30);
+            this.PasswordTxtB_AP.Size = new System.Drawing.Size(121, 25);
             this.PasswordTxtB_AP.TabIndex = 6;
             // 
             // UsernameTxtB_AP
             // 
             this.UsernameTxtB_AP.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.UsernameTxtB_AP.Location = new System.Drawing.Point(24, 332);
-            this.UsernameTxtB_AP.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.UsernameTxtB_AP.Location = new System.Drawing.Point(18, 270);
+            this.UsernameTxtB_AP.Margin = new System.Windows.Forms.Padding(2);
             this.UsernameTxtB_AP.Multiline = true;
             this.UsernameTxtB_AP.Name = "UsernameTxtB_AP";
-            this.UsernameTxtB_AP.Size = new System.Drawing.Size(160, 30);
+            this.UsernameTxtB_AP.Size = new System.Drawing.Size(121, 25);
             this.UsernameTxtB_AP.TabIndex = 5;
             // 
             // EmailTxtB_AP
             // 
             this.EmailTxtB_AP.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.EmailTxtB_AP.Location = new System.Drawing.Point(380, 332);
-            this.EmailTxtB_AP.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.EmailTxtB_AP.Location = new System.Drawing.Point(285, 270);
+            this.EmailTxtB_AP.Margin = new System.Windows.Forms.Padding(2);
             this.EmailTxtB_AP.Multiline = true;
             this.EmailTxtB_AP.Name = "EmailTxtB_AP";
-            this.EmailTxtB_AP.Size = new System.Drawing.Size(160, 30);
+            this.EmailTxtB_AP.Size = new System.Drawing.Size(121, 25);
             this.EmailTxtB_AP.TabIndex = 4;
             // 
             // AgeTxtB_AP
             // 
             this.AgeTxtB_AP.Enabled = false;
             this.AgeTxtB_AP.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AgeTxtB_AP.Location = new System.Drawing.Point(380, 245);
-            this.AgeTxtB_AP.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.AgeTxtB_AP.Location = new System.Drawing.Point(285, 199);
+            this.AgeTxtB_AP.Margin = new System.Windows.Forms.Padding(2);
             this.AgeTxtB_AP.Multiline = true;
             this.AgeTxtB_AP.Name = "AgeTxtB_AP";
-            this.AgeTxtB_AP.Size = new System.Drawing.Size(160, 30);
+            this.AgeTxtB_AP.Size = new System.Drawing.Size(121, 25);
             this.AgeTxtB_AP.TabIndex = 3;
             // 
             // MiddleNTxtB_AP
             // 
             this.MiddleNTxtB_AP.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.MiddleNTxtB_AP.Location = new System.Drawing.Point(380, 143);
-            this.MiddleNTxtB_AP.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.MiddleNTxtB_AP.Location = new System.Drawing.Point(285, 116);
+            this.MiddleNTxtB_AP.Margin = new System.Windows.Forms.Padding(2);
             this.MiddleNTxtB_AP.Multiline = true;
             this.MiddleNTxtB_AP.Name = "MiddleNTxtB_AP";
-            this.MiddleNTxtB_AP.Size = new System.Drawing.Size(160, 30);
+            this.MiddleNTxtB_AP.Size = new System.Drawing.Size(121, 25);
             this.MiddleNTxtB_AP.TabIndex = 2;
             this.MiddleNTxtB_AP.Text = "Middle name";
             // 
             // FirstNTxtB_AP
             // 
             this.FirstNTxtB_AP.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FirstNTxtB_AP.Location = new System.Drawing.Point(201, 143);
-            this.FirstNTxtB_AP.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.FirstNTxtB_AP.Location = new System.Drawing.Point(151, 116);
+            this.FirstNTxtB_AP.Margin = new System.Windows.Forms.Padding(2);
             this.FirstNTxtB_AP.Multiline = true;
             this.FirstNTxtB_AP.Name = "FirstNTxtB_AP";
-            this.FirstNTxtB_AP.Size = new System.Drawing.Size(160, 30);
+            this.FirstNTxtB_AP.Size = new System.Drawing.Size(121, 25);
             this.FirstNTxtB_AP.TabIndex = 1;
             this.FirstNTxtB_AP.Text = "First name";
             // 
             // LastNTxtB_AP
             // 
             this.LastNTxtB_AP.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LastNTxtB_AP.Location = new System.Drawing.Point(24, 143);
-            this.LastNTxtB_AP.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.LastNTxtB_AP.Location = new System.Drawing.Point(18, 116);
+            this.LastNTxtB_AP.Margin = new System.Windows.Forms.Padding(2);
             this.LastNTxtB_AP.Multiline = true;
             this.LastNTxtB_AP.Name = "LastNTxtB_AP";
-            this.LastNTxtB_AP.Size = new System.Drawing.Size(160, 30);
+            this.LastNTxtB_AP.Size = new System.Drawing.Size(121, 25);
             this.LastNTxtB_AP.TabIndex = 0;
             this.LastNTxtB_AP.Text = "Last name";
             // 
@@ -792,18 +804,16 @@
             this.NavigationPanelAP.Controls.Add(this.AddMenuLbl);
             this.NavigationPanelAP.Controls.Add(this.AccManageLbl);
             this.NavigationPanelAP.Location = new System.Drawing.Point(0, 0);
-            this.NavigationPanelAP.Margin = new System.Windows.Forms.Padding(4);
             this.NavigationPanelAP.Name = "NavigationPanelAP";
-            this.NavigationPanelAP.Size = new System.Drawing.Size(236, 697);
+            this.NavigationPanelAP.Size = new System.Drawing.Size(177, 566);
             this.NavigationPanelAP.TabIndex = 1;
             // 
             // SalesRepLbl
             // 
             this.SalesRepLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SalesRepLbl.Location = new System.Drawing.Point(4, 339);
-            this.SalesRepLbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.SalesRepLbl.Location = new System.Drawing.Point(3, 275);
             this.SalesRepLbl.Name = "SalesRepLbl";
-            this.SalesRepLbl.Size = new System.Drawing.Size(228, 73);
+            this.SalesRepLbl.Size = new System.Drawing.Size(171, 59);
             this.SalesRepLbl.TabIndex = 3;
             this.SalesRepLbl.Text = "Sales Report";
             this.SalesRepLbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -811,10 +821,9 @@
             // LogoutLbl
             // 
             this.LogoutLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LogoutLbl.Location = new System.Drawing.Point(4, 624);
-            this.LogoutLbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.LogoutLbl.Location = new System.Drawing.Point(3, 507);
             this.LogoutLbl.Name = "LogoutLbl";
-            this.LogoutLbl.Size = new System.Drawing.Size(228, 73);
+            this.LogoutLbl.Size = new System.Drawing.Size(171, 59);
             this.LogoutLbl.TabIndex = 2;
             this.LogoutLbl.Text = "Log-Out";
             this.LogoutLbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -823,10 +832,9 @@
             // AddMenuLbl
             // 
             this.AddMenuLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AddMenuLbl.Location = new System.Drawing.Point(4, 266);
-            this.AddMenuLbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.AddMenuLbl.Location = new System.Drawing.Point(3, 216);
             this.AddMenuLbl.Name = "AddMenuLbl";
-            this.AddMenuLbl.Size = new System.Drawing.Size(228, 73);
+            this.AddMenuLbl.Size = new System.Drawing.Size(171, 59);
             this.AddMenuLbl.TabIndex = 1;
             this.AddMenuLbl.Text = "Add Menu/Variety";
             this.AddMenuLbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -835,10 +843,9 @@
             // AccManageLbl
             // 
             this.AccManageLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AccManageLbl.Location = new System.Drawing.Point(4, 193);
-            this.AccManageLbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.AccManageLbl.Location = new System.Drawing.Point(3, 157);
             this.AccManageLbl.Name = "AccManageLbl";
-            this.AccManageLbl.Size = new System.Drawing.Size(228, 73);
+            this.AccManageLbl.Size = new System.Drawing.Size(171, 59);
             this.AccManageLbl.TabIndex = 0;
             this.AccManageLbl.Text = "Account Management";
             this.AccManageLbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -850,45 +857,100 @@
             this.MainLoginContainer.SetCardName(this.ManagerPanel, "Card3");
             this.ManagerPanel.Controls.Add(this.label1);
             this.ManagerPanel.Location = new System.Drawing.Point(0, 0);
-            this.ManagerPanel.Margin = new System.Windows.Forms.Padding(4);
             this.MainLoginContainer.SetMinimumSize(this.ManagerPanel, new System.Drawing.Size(200, 100));
             this.ManagerPanel.Name = "ManagerPanel";
             this.MainLoginContainer.SetPreferredSize(this.ManagerPanel, new System.Drawing.Size(200, 100));
-            this.ManagerPanel.Size = new System.Drawing.Size(1457, 697);
+            this.ManagerPanel.Size = new System.Drawing.Size(1028, 566);
             this.ManagerPanel.TabIndex = 2;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(880, 214);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(660, 174);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(61, 16);
+            this.label1.Size = new System.Drawing.Size(49, 13);
             this.label1.TabIndex = 0;
             this.label1.Text = "Manager";
             // 
             // StaffPanel
             // 
-            this.StaffPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.StaffPanel.BackColor = System.Drawing.Color.Transparent;
             this.MainLoginContainer.SetCardName(this.StaffPanel, "Card4");
-            this.StaffPanel.Controls.Add(this.label4);
+            this.StaffPanel.Controls.Add(this.dataGridView1);
+            this.StaffPanel.Controls.Add(this.breakBtn);
+            this.StaffPanel.Controls.Add(this.coffBtn);
+            this.StaffPanel.Controls.Add(this.SearchTxtbx);
+            this.StaffPanel.Controls.Add(this.flowLayoutPanel1);
+            this.StaffPanel.Controls.Add(this.snackBtn);
+            this.StaffPanel.Controls.Add(this.allBtn);
             this.StaffPanel.Location = new System.Drawing.Point(0, 0);
-            this.StaffPanel.Margin = new System.Windows.Forms.Padding(4);
             this.MainLoginContainer.SetMinimumSize(this.StaffPanel, new System.Drawing.Size(200, 100));
             this.StaffPanel.Name = "StaffPanel";
             this.MainLoginContainer.SetPreferredSize(this.StaffPanel, new System.Drawing.Size(200, 100));
-            this.StaffPanel.Size = new System.Drawing.Size(1457, 697);
+            this.StaffPanel.Size = new System.Drawing.Size(1028, 566);
             this.StaffPanel.TabIndex = 3;
             // 
-            // label4
+            // breakBtn
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(832, 247);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(31, 16);
-            this.label4.TabIndex = 0;
-            this.label4.Text = "staff";
+            this.breakBtn.Image = global::CafeDeLunaSystem.Properties.Resources.breakfast;
+            this.breakBtn.Location = new System.Drawing.Point(12, 275);
+            this.breakBtn.Name = "breakBtn";
+            this.breakBtn.Size = new System.Drawing.Size(150, 96);
+            this.breakBtn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.breakBtn.TabIndex = 3;
+            this.breakBtn.TabStop = false;
+            this.breakBtn.Click += new System.EventHandler(this.breakBtn_Click);
+            // 
+            // coffBtn
+            // 
+            this.coffBtn.Image = global::CafeDeLunaSystem.Properties.Resources.coffee;
+            this.coffBtn.Location = new System.Drawing.Point(12, 142);
+            this.coffBtn.Name = "coffBtn";
+            this.coffBtn.Size = new System.Drawing.Size(150, 115);
+            this.coffBtn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.coffBtn.TabIndex = 4;
+            this.coffBtn.TabStop = false;
+            this.coffBtn.Click += new System.EventHandler(this.coffBtn_Click);
+            // 
+            // SearchTxtbx
+            // 
+            this.SearchTxtbx.ForeColor = System.Drawing.Color.Black;
+            this.SearchTxtbx.Location = new System.Drawing.Point(168, 12);
+            this.SearchTxtbx.Multiline = true;
+            this.SearchTxtbx.Name = "SearchTxtbx";
+            this.SearchTxtbx.Size = new System.Drawing.Size(372, 20);
+            this.SearchTxtbx.TabIndex = 6;
+            this.SearchTxtbx.TextChanged += new System.EventHandler(this.SearchTxtbx_TextChanged);
+            // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.AutoScroll = true;
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(168, 38);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(533, 446);
+            this.flowLayoutPanel1.TabIndex = 5;
+            // 
+            // snackBtn
+            // 
+            this.snackBtn.Image = global::CafeDeLunaSystem.Properties.Resources.snacks;
+            this.snackBtn.Location = new System.Drawing.Point(12, 377);
+            this.snackBtn.Name = "snackBtn";
+            this.snackBtn.Size = new System.Drawing.Size(150, 107);
+            this.snackBtn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.snackBtn.TabIndex = 2;
+            this.snackBtn.TabStop = false;
+            this.snackBtn.Click += new System.EventHandler(this.snackBtn_Click);
+            // 
+            // allBtn
+            // 
+            this.allBtn.Image = global::CafeDeLunaSystem.Properties.Resources.all;
+            this.allBtn.Location = new System.Drawing.Point(12, 12);
+            this.allBtn.Name = "allBtn";
+            this.allBtn.Size = new System.Drawing.Size(150, 124);
+            this.allBtn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.allBtn.TabIndex = 1;
+            this.allBtn.TabStop = false;
+            this.allBtn.Click += new System.EventHandler(this.allBtn_Click);
             // 
             // AdminPanelContainer
             // 
@@ -902,16 +964,23 @@
             this.AccManageContainer.LayoutMode = Syncfusion.Windows.Forms.Tools.CardLayoutMode.Fill;
             this.AccManageContainer.SelectedCard = "Card1";
             // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(724, 38);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(240, 150);
+            this.dataGridView1.TabIndex = 7;
+            // 
             // CafeDeLunaDashboard
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1457, 697);
+            this.ClientSize = new System.Drawing.Size(1028, 566);
             this.Controls.Add(this.StaffPanel);
             this.Controls.Add(this.ManagerPanel);
             this.Controls.Add(this.AdminPanel);
             this.Controls.Add(this.LoginPanel);
-            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "CafeDeLunaDashboard";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Cafe De Luna";
@@ -938,8 +1007,13 @@
             this.ManagerPanel.PerformLayout();
             this.StaffPanel.ResumeLayout(false);
             this.StaffPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.breakBtn)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.coffBtn)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.snackBtn)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.allBtn)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.AdminPanelContainer)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.AccManageContainer)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -950,7 +1024,6 @@
         private System.Windows.Forms.Panel LoginPanel;
         private System.Windows.Forms.Panel AdminPanel;
         private System.Windows.Forms.Panel StaffPanel;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Panel ManagerPanel;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel PanelLP;
@@ -1016,6 +1089,13 @@
         private System.Windows.Forms.TextBox ImgTxtB;
         private System.Windows.Forms.TextBox VarietyFilePathTxtB;
         private System.Windows.Forms.TextBox MenuFilePathTxtB;
+        private System.Windows.Forms.TextBox SearchTxtbx;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.PictureBox coffBtn;
+        private System.Windows.Forms.PictureBox breakBtn;
+        private System.Windows.Forms.PictureBox snackBtn;
+        private System.Windows.Forms.PictureBox allBtn;
+        private System.Windows.Forms.DataGridView dataGridView1;
     }
 }
 

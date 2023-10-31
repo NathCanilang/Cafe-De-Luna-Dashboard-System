@@ -18,6 +18,12 @@ namespace CafeDeLunaSystem
 {
     public partial class CafeDeLunaDashboard : Form
     {
+        MySqlConnection cn;
+        MySqlCommand cm;
+        MySqlDataReader dr;
+        private PictureBox pic;
+        private Label price;
+        private Label mealname;
         public static CafeDeLunaDashboard cafeDeLunaInstance;
         private readonly MySqlConnection conn;
         private readonly PanelManager panelManager;
@@ -70,6 +76,320 @@ namespace CafeDeLunaSystem
             UserBirthdate.ValueChanged += CalculateAge;
         }
 
+
+        //Staff panel
+
+        private void GetData()
+        {
+            flowLayoutPanel1.Controls.Clear();
+            conn.Open();
+            cm = new MySqlCommand("SELECT VariationName, VariationCost, MealImage, VariationID FROM mealvariation", conn);
+            dr = cm.ExecuteReader();
+
+            while (dr.Read())
+            {
+                byte[] imageBytes = (byte[])dr["MealImage"];
+
+                using (MemoryStream ms = new MemoryStream(imageBytes))
+                {
+                    Image mealImage = Image.FromStream(ms);
+                    pic = new PictureBox
+                    {
+                        Width = 150,
+                        Height = 150,
+                        BackgroundImage = mealImage,
+                        BackgroundImageLayout = ImageLayout.Stretch,
+                        Tag = dr["VariationID"].ToString(),
+
+                    };
+
+                    price = new Label
+                    {
+                        Text = dr["VariationCost"].ToString(),
+                        Width = 25,
+                        Height = 15,
+                        TextAlign = ContentAlignment.TopLeft,
+                        Dock = DockStyle.Top,
+                        BackColor = Color.White,
+                    };
+
+                    mealname = new Label
+                    {
+                        Text = dr["VariationName"].ToString(),
+                        Width = 25,
+                        Height = 15,
+                        TextAlign = ContentAlignment.BottomCenter,
+                        Dock = DockStyle.Bottom,
+                        BackColor = Color.White,
+                    };
+
+                    pic.Controls.Add(mealname);
+                    pic.Controls.Add(price);
+                    flowLayoutPanel1.Controls.Add(pic);
+                    pic.Click += OnClick;
+                }
+            }
+            dr.Close();
+            conn.Close();
+        }
+
+        private void allBtn_Click(object sender, EventArgs e)
+        {
+            GetData();
+        }
+
+        private void coffBtn_Click(object sender, EventArgs e)
+        {
+            flowLayoutPanel1.Controls.Clear();
+            conn.Open();
+            cm = new MySqlCommand("SELECT VariationName, VariationCost, MealImage, VariationID FROM mealvariation WHERE MealID = '24'", conn);
+            dr = cm.ExecuteReader();
+
+            while (dr.Read())
+            {
+                string mealName = dr["VariationName"].ToString();
+
+                if (!dr.IsDBNull(dr.GetOrdinal("MealImage")))
+                {
+                    byte[] imageBytes = (byte[])dr["MealImage"];
+
+                    using (MemoryStream ms = new MemoryStream(imageBytes))
+                    {
+                        Image mealImage = Image.FromStream(ms);
+                        pic = new PictureBox
+                        {
+                            Width = 150,
+                            Height = 150,
+                            BackgroundImage = mealImage,
+                            BackgroundImageLayout = ImageLayout.Stretch,
+                            Tag = dr["VariationID"].ToString(),
+                        };
+
+                        price = new Label
+                        {
+                            Text = dr["VariationCost"].ToString(),
+                            Width = 25,
+                            Height = 15,
+                            TextAlign = ContentAlignment.TopLeft,
+                            Dock = DockStyle.Top,
+                            BackColor = Color.White,
+
+                        };
+
+                        mealname = new Label
+                        {
+                            Text = dr["VariationName"].ToString(),
+                            Width = 25,
+                            Height = 15,
+                            TextAlign = ContentAlignment.BottomCenter,
+                            Dock = DockStyle.Bottom,
+                            BackColor = Color.White,
+                        };
+
+                        pic.Controls.Add(mealname);
+                        pic.Controls.Add(price);
+                        flowLayoutPanel1.Controls.Add(pic);
+                        pic.Click += OnClick;
+                    }
+                }
+            }
+            dr.Close();
+            conn.Close();
+        }
+
+        private void breakBtn_Click(object sender, EventArgs e)
+        {
+            flowLayoutPanel1.Controls.Clear();
+            conn.Open();
+            cm = new MySqlCommand("SELECT VariationName, VariationCost, MealImage, VariationID FROM mealvariation WHERE MealID = '25'", conn);
+            dr = cm.ExecuteReader();
+
+            while (dr.Read())
+            {
+                string mealName = dr["VariationName"].ToString();
+
+                if (!dr.IsDBNull(dr.GetOrdinal("MealImage")))
+                {
+                    byte[] imageBytes = (byte[])dr["MealImage"];
+
+                    using (MemoryStream ms = new MemoryStream(imageBytes))
+                    {
+                        Image mealImage = Image.FromStream(ms);
+                        pic = new PictureBox
+                        {
+                            Width = 150,
+                            Height = 150,
+                            BackgroundImage = mealImage,
+                            BackgroundImageLayout = ImageLayout.Stretch,
+                            Tag = dr["VariationID"].ToString(),
+                        };
+
+                        price = new Label
+                        {
+                            Text = dr["VariationCost"].ToString(),
+                            Width = 25,
+                            Height = 15,
+                            TextAlign = ContentAlignment.TopLeft,
+                            Dock = DockStyle.Top,
+                            BackColor = Color.White,
+
+                        };
+
+                        mealname = new Label
+                        {
+                            Text = dr["VariationName"].ToString(),
+                            Width = 25,
+                            Height = 15,
+                            TextAlign = ContentAlignment.BottomCenter,
+                            Dock = DockStyle.Bottom,
+                            BackColor = Color.White,
+                        };
+
+                        pic.Controls.Add(mealname);
+                        pic.Controls.Add(price);
+                        flowLayoutPanel1.Controls.Add(pic);
+                        pic.Click += OnClick;
+                    }
+                }
+            }
+            dr.Close();
+            conn.Close();
+        }
+
+        private void snackBtn_Click(object sender, EventArgs e)
+        {
+            flowLayoutPanel1.Controls.Clear();
+            conn.Open();
+            cm = new MySqlCommand("SELECT VariationName, VariationCost, MealImage, VariationID FROM mealvariation WHERE MealID = '26'", conn);
+            dr = cm.ExecuteReader();
+
+            while (dr.Read())
+            {
+                string mealName = dr["VariationName"].ToString();
+
+                if (!dr.IsDBNull(dr.GetOrdinal("MealImage")))
+                {
+                    byte[] imageBytes = (byte[])dr["MealImage"];
+
+                    using (MemoryStream ms = new MemoryStream(imageBytes))
+                    {
+                        Image mealImage = Image.FromStream(ms);
+                        pic = new PictureBox
+                        {
+                            Width = 150,
+                            Height = 150,
+                            BackgroundImage = mealImage,
+                            BackgroundImageLayout = ImageLayout.Stretch,
+                            Tag = dr["VariationID"].ToString(),
+                        };
+
+                        price = new Label
+                        {
+                            Text = dr["VariationCost"].ToString(),
+                            Width = 25,
+                            Height = 15,
+                            TextAlign = ContentAlignment.TopLeft,
+                            Dock = DockStyle.Top,
+                            BackColor = Color.White,
+
+                        };
+
+                        mealname = new Label
+                        {
+                            Text = dr["VariationName"].ToString(),
+                            Width = 25,
+                            Height = 15,
+                            TextAlign = ContentAlignment.BottomCenter,
+                            Dock = DockStyle.Bottom,
+                            BackColor = Color.White,
+                        };
+
+                        pic.Controls.Add(mealname);
+                        pic.Controls.Add(price);
+                        flowLayoutPanel1.Controls.Add(pic);
+                        pic.Click += OnClick;
+                    }
+                }
+            }
+            dr.Close();
+            conn.Close();
+        }
+
+        private void OnClick(object sender, EventArgs e)
+        {
+            MessageBox.Show(((PictureBox)sender).Tag.ToString());          
+        }
+
+        private void SearchTxtbx_TextChanged(object sender, EventArgs e)
+        {
+            string searchQuery = SearchTxtbx.Text;
+
+            flowLayoutPanel1.Controls.Clear();
+
+            if (!string.IsNullOrWhiteSpace(searchQuery))
+            {
+                conn.Open();
+                cm = new MySqlCommand("SELECT VariationName, VariationCost, MealImage, VariationID FROM mealvariation WHERE VariationName LIKE @searchQuery", conn);
+                cm.Parameters.AddWithValue("@searchQuery", "%" + searchQuery + "%");
+
+                dr = cm.ExecuteReader();
+
+                while (dr.Read())
+                {
+                    if (!dr.IsDBNull(dr.GetOrdinal("MealImage")))
+                    {
+                        byte[] imageBytes = (byte[])dr["MealImage"];
+
+                        using (MemoryStream ms = new MemoryStream(imageBytes))
+                        {
+                            Image mealImage = Image.FromStream(ms);
+                            pic = new PictureBox
+                            {
+                                Width = 150,
+                                Height = 150,
+                                BackgroundImage = mealImage,
+                                BackgroundImageLayout = ImageLayout.Stretch,
+                                Tag = dr["VariationID"].ToString(),
+                            };
+
+                            price = new Label
+                            {
+                                Text = dr["VariationCost"].ToString(),
+                                Width = 25,
+                                Height = 15,
+                                TextAlign = ContentAlignment.TopLeft,
+                                Dock = DockStyle.Top,
+                                BackColor = Color.White,
+                            };
+
+                            mealname = new Label
+                            {
+                                Text = dr["VariationName"].ToString(),
+                                Width = 25,
+                                Height = 15,
+                                TextAlign = ContentAlignment.BottomCenter,
+                                Dock = DockStyle.Bottom,
+                                BackColor = Color.White,
+                            };
+
+                            pic.Controls.Add(mealname);
+                            pic.Controls.Add(price);
+                            flowLayoutPanel1.Controls.Add(pic);
+                            pic.Click += OnClick;
+                        }
+                    }
+                }
+
+                dr.Close();
+                conn.Close();
+            }
+            else
+            {
+                GetData();
+            }
+        }
+
+
         //Login Section
         private void LogBtnLP_Click(object sender, System.EventArgs e)
         {
@@ -81,6 +401,12 @@ namespace CafeDeLunaSystem
             {
                 MessageBox.Show("Admin login successful");
                 panelManager.ShowPanel(AdminPanel);
+            }
+            else if (usernameInput == "staff" && passwordInput == "staff")
+            {
+               
+                panelManager.ShowPanel(StaffPanel);
+                GetData();
             }
             else
             {
@@ -552,5 +878,7 @@ namespace CafeDeLunaSystem
                 createAndEditAcc.LoadMenuItems();
             }
         }
+
+        
     }
 }
