@@ -33,6 +33,7 @@ namespace CafeDeLunaSystem
         private string menuFullFilePath;
         private string varietyFullFilePath;
         private byte[] imageData;
+        private decimal totalPrice = 0.00m;
 
         //Admin Panel
         private readonly CreateAndEditAcc createAndEditAcc = new CreateAndEditAcc();
@@ -594,7 +595,7 @@ namespace CafeDeLunaSystem
 
                     price = new Label
                     {
-                        Text = dr["VariationCost"].ToString(),
+                        Text = "Php. " + dr["VariationCost"].ToString(),
                         Width = 25,
                         Height = 15,
                         TextAlign = ContentAlignment.TopLeft,
@@ -656,7 +657,7 @@ namespace CafeDeLunaSystem
 
                         price = new Label
                         {
-                            Text = dr["VariationCost"].ToString(),
+                            Text = "Php. " + dr["VariationCost"].ToString(),
                             Width = 25,
                             Height = 15,
                             TextAlign = ContentAlignment.TopLeft,
@@ -715,7 +716,7 @@ namespace CafeDeLunaSystem
 
                         price = new Label
                         {
-                            Text = dr["VariationCost"].ToString(),
+                            Text = "Php. " + dr["VariationCost"].ToString(),
                             Width = 25,
                             Height = 15,
                             TextAlign = ContentAlignment.TopLeft,
@@ -774,7 +775,7 @@ namespace CafeDeLunaSystem
 
                         price = new Label
                         {
-                            Text = dr["VariationCost"].ToString(),
+                            Text = "Php. " +  dr["VariationCost"].ToString(),
                             Width = 25,
                             Height = 15,
                             TextAlign = ContentAlignment.TopLeft,
@@ -808,7 +809,6 @@ namespace CafeDeLunaSystem
         {
             PictureBox clickedPic = (PictureBox)sender;
             String tag = clickedPic.Tag.ToString();
-            // Check if the PictureBox is not already clicked
             if (!clickedPictureBoxes.Contains(clickedPic))
             {
                 conn.Open();
@@ -817,19 +817,43 @@ namespace CafeDeLunaSystem
                 dr.Read();
                 if (dr.HasRows)
                 {
-                    dataGridView1.Rows.Add(dr["VariationName"].ToString(), "-", dr["qty"].ToString(), "+", dr["VariationCost"].ToString(), "X");
+                    string variationName = dr["VariationName"].ToString();
+                    string variationCost = dr["VariationCost"].ToString();
+                    string quantity = dr["qty"].ToString();
+
+                    // Check if a variation with the same VariationName already exists in the DataGridView
+                    bool exists = false;
+                    foreach (DataGridViewRow row in dataGridView1.Rows)
+                    {
+                        if (row.Cells[0].Value != null && row.Cells[0].Value.ToString() == variationName)
+                        {
+                            exists = true;
+                            break;
+                        }
+                    }
+
+                    if (!exists)
+                    {
+                        dataGridView1.Rows.Add(variationName, "-", quantity, "+", variationCost, "X");
+                        // Add the clicked PictureBox to the list
+                        clickedPictureBoxes.Add(clickedPic);
+                        UpdateTotalPrice();
+                    }
+                    else
+                    {
+                        MessageBox.Show("This variation is already in the cart.", "Try another one", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
                 }
                 dr.Close();
                 conn.Close();
-
-                // Add the clicked PictureBox to the list
-                clickedPictureBoxes.Add(clickedPic);
             }
             else
             {
-                MessageBox.Show("This variation has already been added.");
+                MessageBox.Show("This variation is already in the cart.", "Try another one", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+           
         }
+
 
         private void SearchTxtbx_TextChanged(object sender, EventArgs e)
         {
@@ -865,7 +889,7 @@ namespace CafeDeLunaSystem
 
                             price = new Label
                             {
-                                Text = dr["VariationCost"].ToString(),
+                                Text = "Php. "+ dr["VariationCost"].ToString(),
                                 Width = 25,
                                 Height = 15,
                                 TextAlign = ContentAlignment.TopLeft,
@@ -900,10 +924,81 @@ namespace CafeDeLunaSystem
             }
         }
 
+        private void UpdateTotalPrice()
+        {
+            totalPrice = 0.00m;
+
+            foreach (DataGridViewRow row in dataGridView1.Rows)
+            {
+                if (row.Cells[4].Value != null)
+                {
+                    decimal rowTotal = decimal.Parse(row.Cells[4].Value.ToString());
+                    totalPrice += rowTotal;
+                }
+            }
+
+            sbLbl.Text = "Php. "+ totalPrice.ToString("0.00");
+        }
+
+        private void AddTotalPrice(int rowIndex)
+        {
+            int currentQty = int.Parse(dataGridView1.Rows[rowIndex].Cells[2].Value.ToString());
+            string foodName = dataGridView1.Rows[rowIndex].Cells[0].Value.ToString(); // Get the food name from DataGridView
+            decimal unitPrice = GetUnitPriceForFood(foodName); // Retrieve unit price based on VariationName
+            decimal totalPrice = currentQty * unitPrice;
+            dataGridView1.Rows[rowIndex].Cells[4].Value = totalPrice.ToString();
+            UpdateTotalPrice();
+        }
+
+        private void SubtractTotalPrice(int rowIndex)
+        {
+            int currentQty = int.Parse(dataGridView1.Rows[rowIndex].Cells[2].Value.ToString());
+            string foodName = dataGridView1.Rows[rowIndex].Cells[0].Value.ToString();
+            decimal unitPrice = GetUnitPriceForFood(foodName);
+
+            if (currentQty > 1)
+            {
+                currentQty--; 
+                dataGridView1.Rows[rowIndex].Cells[2].Value = currentQty; // Update the quantity in the DataGridView
+
+                decimal totalPrice = currentQty * unitPrice; 
+                dataGridView1.Rows[rowIndex].Cells[4].Value = totalPrice.ToString(); 
+                UpdateTotalPrice();
+            }
+        }
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (e.ColumnIndex == 1 && e.RowIndex >= 0)
+            {
+                SubtractTotalPrice(e.RowIndex);
+            }
 
+            if (e.ColumnIndex == 3 && e.RowIndex >= 0)
+            {
+                int currentQty = int.Parse(dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString());
+                currentQty++;
+                dataGridView1.Rows[e.RowIndex].Cells[2].Value = currentQty;
+                AddTotalPrice(e.RowIndex);
+            }
         }
+
+        private decimal GetUnitPriceForFood(string foodName)
+        {
+            decimal unitPrice = 0; 
+            conn.Open();
+            cm = new MySqlCommand("SELECT VariationCost FROM mealvariation WHERE VariationName = @foodName", conn);
+            cm.Parameters.AddWithValue("@foodName", foodName);
+            dr = cm.ExecuteReader();
+
+            if (dr.Read())
+            {
+                unitPrice = decimal.Parse(dr["VariationCost"].ToString());
+            }
+            dr.Close();
+            conn.Close();
+            return unitPrice;
+        }
+
 
         private void dataGridView1_KeyUp(object sender, KeyEventArgs e)
         {
@@ -914,6 +1009,11 @@ namespace CafeDeLunaSystem
                     dataGridView1.SelectedRows[0].Selected = false;
                 }
             }
+        }
+
+        private void discChckBx_CheckedChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
