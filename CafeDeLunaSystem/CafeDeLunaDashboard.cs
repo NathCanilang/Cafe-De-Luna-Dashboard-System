@@ -936,8 +936,19 @@ namespace CafeDeLunaSystem
                     totalPrice += rowTotal;
                 }
             }
+            sbLbl.Text = "Php. " + totalPrice.ToString("0.00");
+            ttlLbl.Text = sbLbl.Text;
+            if (discChckBx.Checked)
+            {
+                // Apply discount when the checkbox is checked
+                decimal totalPrice = decimal.Parse(sbLbl.Text.Replace("Php. ", ""));
+                decimal discount = totalPrice * 0.20m; // 20% discount
+                decimal discountedTotal = totalPrice - discount;
 
-            sbLbl.Text = "Php. "+ totalPrice.ToString("0.00");
+
+                dscLbl.Text = "Php. " + discount.ToString("0.00");
+                ttlLbl.Text = "Php. " + discountedTotal.ToString("0.00");
+            }
         }
 
         private void AddTotalPrice(int rowIndex)
@@ -947,6 +958,7 @@ namespace CafeDeLunaSystem
             decimal unitPrice = GetUnitPriceForFood(foodName); // Retrieve unit price based on VariationName
             decimal totalPrice = currentQty * unitPrice;
             dataGridView1.Rows[rowIndex].Cells[4].Value = totalPrice.ToString();
+
             UpdateTotalPrice();
         }
 
@@ -1013,7 +1025,22 @@ namespace CafeDeLunaSystem
 
         private void discChckBx_CheckedChanged(object sender, EventArgs e)
         {
+            if (discChckBx.Checked)
+            {
+                // Apply discount when the checkbox is checked
+                decimal totalPrice = decimal.Parse(sbLbl.Text.Replace("Php. ", ""));
+                decimal discount = totalPrice * 0.20m; // 20% discount
+                decimal discountedTotal = totalPrice - discount;
 
+                dscLbl.Text = "Php. " + discount.ToString("0.00");
+                ttlLbl.Text = "Php. "+ discountedTotal.ToString("0.00");
+            }
+            else
+            {
+                dscLbl.Text = "Php. 0.00";
+                UpdateTotalPrice();
+            }
         }
+
     }
 }
