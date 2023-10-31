@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.MainLoginContainer = new Syncfusion.Windows.Forms.Tools.CardLayout(this.components);
             this.LoginPanel = new System.Windows.Forms.Panel();
             this.PanelLP = new System.Windows.Forms.Panel();
@@ -152,7 +152,7 @@
             // 
             this.MainLoginContainer.ContainerControl = this;
             this.MainLoginContainer.LayoutMode = Syncfusion.Windows.Forms.Tools.CardLayoutMode.Fill;
-            this.MainLoginContainer.SelectedCard = "Card1";
+            this.MainLoginContainer.SelectedCard = "Card3";
             // 
             // LoginPanel
             // 
@@ -163,7 +163,7 @@
             this.MainLoginContainer.SetMinimumSize(this.LoginPanel, new System.Drawing.Size(200, 100));
             this.LoginPanel.Name = "LoginPanel";
             this.MainLoginContainer.SetPreferredSize(this.LoginPanel, new System.Drawing.Size(200, 100));
-            this.LoginPanel.Size = new System.Drawing.Size(1084, 566);
+            this.LoginPanel.Size = new System.Drawing.Size(1284, 566);
             this.LoginPanel.TabIndex = 0;
             // 
             // PanelLP
@@ -215,7 +215,7 @@
             this.MainLoginContainer.SetMinimumSize(this.AdminPanel, new System.Drawing.Size(200, 100));
             this.AdminPanel.Name = "AdminPanel";
             this.MainLoginContainer.SetPreferredSize(this.AdminPanel, new System.Drawing.Size(200, 100));
-            this.AdminPanel.Size = new System.Drawing.Size(1084, 566);
+            this.AdminPanel.Size = new System.Drawing.Size(1284, 566);
             this.AdminPanel.TabIndex = 1;
             // 
             // InterfaceAP
@@ -877,7 +877,7 @@
             this.MainLoginContainer.SetMinimumSize(this.ManagerPanel, new System.Drawing.Size(200, 100));
             this.ManagerPanel.Name = "ManagerPanel";
             this.MainLoginContainer.SetPreferredSize(this.ManagerPanel, new System.Drawing.Size(200, 100));
-            this.ManagerPanel.Size = new System.Drawing.Size(1084, 566);
+            this.ManagerPanel.Size = new System.Drawing.Size(1284, 566);
             this.ManagerPanel.TabIndex = 2;
             // 
             // label1
@@ -913,14 +913,14 @@
             this.MainLoginContainer.SetMinimumSize(this.StaffPanel, new System.Drawing.Size(200, 100));
             this.StaffPanel.Name = "StaffPanel";
             this.MainLoginContainer.SetPreferredSize(this.StaffPanel, new System.Drawing.Size(200, 100));
-            this.StaffPanel.Size = new System.Drawing.Size(1084, 566);
+            this.StaffPanel.Size = new System.Drawing.Size(1284, 566);
             this.StaffPanel.TabIndex = 3;
             // 
             // ttlLbl
             // 
             this.ttlLbl.AutoSize = true;
             this.ttlLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ttlLbl.Location = new System.Drawing.Point(857, 428);
+            this.ttlLbl.Location = new System.Drawing.Point(1057, 428);
             this.ttlLbl.Name = "ttlLbl";
             this.ttlLbl.Size = new System.Drawing.Size(104, 25);
             this.ttlLbl.TabIndex = 16;
@@ -930,7 +930,7 @@
             // 
             this.totalLbl.AutoSize = true;
             this.totalLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.totalLbl.Location = new System.Drawing.Point(736, 430);
+            this.totalLbl.Location = new System.Drawing.Point(936, 430);
             this.totalLbl.Name = "totalLbl";
             this.totalLbl.Size = new System.Drawing.Size(60, 25);
             this.totalLbl.TabIndex = 15;
@@ -940,7 +940,7 @@
             // 
             this.dscLbl.AutoSize = true;
             this.dscLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dscLbl.Location = new System.Drawing.Point(857, 397);
+            this.dscLbl.Location = new System.Drawing.Point(1057, 397);
             this.dscLbl.Name = "dscLbl";
             this.dscLbl.Size = new System.Drawing.Size(104, 25);
             this.dscLbl.TabIndex = 14;
@@ -950,7 +950,7 @@
             // 
             this.discLbl.AutoSize = true;
             this.discLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.discLbl.Location = new System.Drawing.Point(736, 397);
+            this.discLbl.Location = new System.Drawing.Point(936, 397);
             this.discLbl.Name = "discLbl";
             this.discLbl.Size = new System.Drawing.Size(96, 25);
             this.discLbl.TabIndex = 13;
@@ -960,7 +960,7 @@
             // 
             this.sbLbl.AutoSize = true;
             this.sbLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.sbLbl.Location = new System.Drawing.Point(857, 365);
+            this.sbLbl.Location = new System.Drawing.Point(1057, 365);
             this.sbLbl.Name = "sbLbl";
             this.sbLbl.Size = new System.Drawing.Size(104, 25);
             this.sbLbl.TabIndex = 12;
@@ -970,7 +970,7 @@
             // 
             this.subLbl.AutoSize = true;
             this.subLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.subLbl.Location = new System.Drawing.Point(736, 365);
+            this.subLbl.Location = new System.Drawing.Point(936, 365);
             this.subLbl.Name = "subLbl";
             this.subLbl.Size = new System.Drawing.Size(91, 25);
             this.subLbl.TabIndex = 11;
@@ -978,18 +978,21 @@
             // 
             // placeBtn
             // 
+            this.placeBtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.placeBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.placeBtn.Location = new System.Drawing.Point(884, 470);
+            this.placeBtn.Location = new System.Drawing.Point(1084, 470);
             this.placeBtn.Name = "placeBtn";
             this.placeBtn.Size = new System.Drawing.Size(157, 54);
             this.placeBtn.TabIndex = 10;
             this.placeBtn.Text = "Place Order";
             this.placeBtn.UseVisualStyleBackColor = true;
+            this.placeBtn.Click += new System.EventHandler(this.placeBtn_Click);
             // 
             // voidBtn
             // 
+            this.voidBtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.voidBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.voidBtn.Location = new System.Drawing.Point(721, 470);
+            this.voidBtn.Location = new System.Drawing.Point(921, 470);
             this.voidBtn.Name = "voidBtn";
             this.voidBtn.Size = new System.Drawing.Size(146, 54);
             this.voidBtn.TabIndex = 9;
@@ -1000,7 +1003,7 @@
             // 
             this.discChckBx.AutoSize = true;
             this.discChckBx.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.discChckBx.Location = new System.Drawing.Point(718, 293);
+            this.discChckBx.Location = new System.Drawing.Point(918, 293);
             this.discChckBx.Name = "discChckBx";
             this.discChckBx.Size = new System.Drawing.Size(241, 29);
             this.discChckBx.TabIndex = 8;
@@ -1013,12 +1016,12 @@
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToResizeColumns = false;
             this.dataGridView1.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
-            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
+            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
@@ -1027,15 +1030,15 @@
             this.Column4,
             this.Column5,
             this.Column6});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dataGridView1.Location = new System.Drawing.Point(707, 38);
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle4;
+            this.dataGridView1.Location = new System.Drawing.Point(907, 38);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.Size = new System.Drawing.Size(365, 234);
@@ -1090,6 +1093,7 @@
             // 
             // breakBtn
             // 
+            this.breakBtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.breakBtn.Image = global::CafeDeLunaSystem.Properties.Resources.breakfast;
             this.breakBtn.Location = new System.Drawing.Point(12, 275);
             this.breakBtn.Name = "breakBtn";
@@ -1101,6 +1105,7 @@
             // 
             // coffBtn
             // 
+            this.coffBtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.coffBtn.Image = global::CafeDeLunaSystem.Properties.Resources.coffee;
             this.coffBtn.Location = new System.Drawing.Point(12, 142);
             this.coffBtn.Name = "coffBtn";
@@ -1123,13 +1128,17 @@
             // flowLayoutPanel1
             // 
             this.flowLayoutPanel1.AutoScroll = true;
+            this.flowLayoutPanel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.flowLayoutPanel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.flowLayoutPanel1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(168, 38);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(533, 446);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(702, 446);
             this.flowLayoutPanel1.TabIndex = 5;
             // 
             // snackBtn
             // 
+            this.snackBtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.snackBtn.Image = global::CafeDeLunaSystem.Properties.Resources.snacks;
             this.snackBtn.Location = new System.Drawing.Point(12, 377);
             this.snackBtn.Name = "snackBtn";
@@ -1141,6 +1150,7 @@
             // 
             // allBtn
             // 
+            this.allBtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.allBtn.Image = global::CafeDeLunaSystem.Properties.Resources.all;
             this.allBtn.Location = new System.Drawing.Point(12, 12);
             this.allBtn.Name = "allBtn";
@@ -1154,7 +1164,7 @@
             // 
             this.AdminPanelContainer.ContainerControl = this.InterfaceAP;
             this.AdminPanelContainer.LayoutMode = Syncfusion.Windows.Forms.Tools.CardLayoutMode.Fill;
-            this.AdminPanelContainer.SelectedCard = "Card2";
+            this.AdminPanelContainer.SelectedCard = "Card1";
             // 
             // AccManageContainer
             // 
@@ -1166,7 +1176,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1084, 566);
+            this.ClientSize = new System.Drawing.Size(1284, 566);
             this.Controls.Add(this.StaffPanel);
             this.Controls.Add(this.ManagerPanel);
             this.Controls.Add(this.AdminPanel);

@@ -114,6 +114,7 @@
     <Compile Include="CafeDeLunaDashboard.Designer.cs">
       <DependentUpon>CafeDeLunaDashboard.cs</DependentUpon>
     </Compile>
+    <Compile Include="ClassPMethods.cs" />
     <Compile Include="General Methods\ComBTxtPlaceholder.cs" />
     <Compile Include="General Methods\Encryptor.cs" />
     <Compile Include="General Methods\PanelManager.cs" />

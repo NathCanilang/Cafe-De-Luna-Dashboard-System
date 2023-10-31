@@ -1011,7 +1011,6 @@ namespace CafeDeLunaSystem
             return unitPrice;
         }
 
-
         private void dataGridView1_KeyUp(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Escape)
@@ -1027,9 +1026,8 @@ namespace CafeDeLunaSystem
         {
             if (discChckBx.Checked)
             {
-                // Apply discount when the checkbox is checked
                 decimal totalPrice = decimal.Parse(sbLbl.Text.Replace("Php. ", ""));
-                decimal discount = totalPrice * 0.20m; // 20% discount
+                decimal discount = totalPrice * 0.20m; 
                 decimal discountedTotal = totalPrice - discount;
 
                 dscLbl.Text = "Php. " + discount.ToString("0.00");
@@ -1042,5 +1040,9 @@ namespace CafeDeLunaSystem
             }
         }
 
+        private void placeBtn_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
