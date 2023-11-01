@@ -95,8 +95,6 @@ namespace CafeDeLunaSystem
             {
                 MessageBox.Show("Staff login successful", "Welcome, Staff", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 panelManager.ShowPanel(StaffPanel);
-                GetData();
-                GetData2();
             }
             else
             {
@@ -118,12 +116,13 @@ namespace CafeDeLunaSystem
                             if (userRole == "Manager")
                             {
                                 MessageBox.Show("Login Successful",  "Welcome, Manager", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                panelManager.ShowPanel(ManagerPanel);
+                                panelManager.ShowPanel(StaffPanel);
                             }
                             else if (userRole == "Cashier")
                             {
                                 MessageBox.Show("Login Successful", "Welcome, Staff", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                 panelManager.ShowPanel(StaffPanel);
+                                SalesBtn.Hide();
                             }
                         }
                         else
@@ -571,10 +570,10 @@ namespace CafeDeLunaSystem
             }
         }
 
-
         //Staff panel
-        private void GetData()
+        public void GetData()
         {
+            conn.Close();
             flowLayoutPanel1.Controls.Clear();
             conn.Open();
             cm = new MySqlCommand("SELECT VariationName, VariationCost, MealImage, VariationID FROM mealvariation", conn);
@@ -629,11 +628,12 @@ namespace CafeDeLunaSystem
             conn.Close();
         }
 
-        private void GetData2()
+       public void GetData2()
         {
+            conn.Close();
             flowLayoutPanel2.Controls.Clear();
             conn.Open();
-            cm = new MySqlCommand("SELECT MealImage, MealID FROM meal WHERE MealID>=27", conn);
+            cm = new MySqlCommand("SELECT MealImage, MealID FROM meal WHERE MealID>=24", conn);
             dr = cm.ExecuteReader();
 
             TableLayoutPanel table = new TableLayoutPanel
