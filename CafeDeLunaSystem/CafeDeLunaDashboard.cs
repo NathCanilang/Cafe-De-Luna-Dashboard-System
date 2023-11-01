@@ -22,6 +22,7 @@ namespace CafeDeLunaSystem
         MySqlCommand cm;
         MySqlDataReader dr;
         private PictureBox pic;
+        private PictureBox menupic;
         private Label price;
         private Label mealname;
         public static CafeDeLunaDashboard cafeDeLunaInstance;
@@ -95,6 +96,7 @@ namespace CafeDeLunaSystem
                
                 panelManager.ShowPanel(StaffPanel);
                 GetData();
+                GetData2();
             }
             else
             {
@@ -616,7 +618,154 @@ namespace CafeDeLunaSystem
                     pic.Controls.Add(mealname);
                     pic.Controls.Add(price);
                     flowLayoutPanel1.Controls.Add(pic);
-                    pic.Click += OnClick;
+                    pic.Click += OnFLP1Click;
+
+
+                }
+            }
+            //dr.Close();
+
+            //cm = new MySqlCommand("SELECT MealImage, MealID FROM meal WHERE MealID>=27", conn);
+            //dr = cm.ExecuteReader();
+
+            //TableLayoutPanel table = new TableLayoutPanel
+            //{
+            //    Dock = DockStyle.Fill,
+            //    AutoSize = true,
+            //    AutoSizeMode = AutoSizeMode.GrowAndShrink,
+            //    ColumnCount = 1,  // One column for one picture per row
+            //};
+
+            //while (dr.Read())
+            //{
+            //    int mealID = (int)dr["MealID"];
+            //    byte[] imageBytes = (byte[])dr["MealImage"];
+
+            //    using (MemoryStream ms = new MemoryStream(imageBytes))
+            //    {
+            //        Image mealImage = Image.FromStream(ms);
+            //        menupic = new PictureBox
+            //        {
+            //            Width = 140,
+            //            Height = 125,
+            //            BackgroundImage = mealImage,
+            //            BackgroundImageLayout = ImageLayout.Stretch,
+            //            Tag = mealID.ToString(),
+            //        };
+            //        table.RowStyles.Add(new RowStyle(SizeType.AutoSize));
+            //        table.Controls.Add(menupic);
+            //        flowLayoutPanel2.Controls.Add(table);
+            //        menupic.Click += OnFLP2Click;
+            //    }
+            //}
+            dr.Close();
+            conn.Close();
+        }
+
+        private void GetData2()
+        {
+            flowLayoutPanel2.Controls.Clear();
+            conn.Open();
+            cm = new MySqlCommand("SELECT MealImage, MealID FROM meal WHERE MealID>=27", conn);
+            dr = cm.ExecuteReader();
+
+            TableLayoutPanel table = new TableLayoutPanel
+            {
+                Dock = DockStyle.Fill,
+                AutoSize = true,
+                AutoSizeMode = AutoSizeMode.GrowAndShrink,
+                ColumnCount = 1,  // One column for one picture per row
+            };
+
+            while (dr.Read())
+            {
+                int mealID = (int)dr["MealID"];
+                byte[] imageBytes = (byte[])dr["MealImage"];
+
+                using (MemoryStream ms = new MemoryStream(imageBytes))
+                {
+                    Image mealImage = Image.FromStream(ms);
+                    menupic = new PictureBox
+                    {
+                        Width = 140,
+                        Height = 125,
+                        BackgroundImage = mealImage,
+                        BackgroundImageLayout = ImageLayout.Stretch,
+                        Tag = mealID.ToString(),
+                    };
+                    table.RowStyles.Add(new RowStyle(SizeType.AutoSize));
+                    table.Controls.Add(menupic);
+                    flowLayoutPanel2.Controls.Add(table);
+                    menupic.Click += OnFLP2Click;
+                }
+            }
+            dr.Close();
+            conn.Close();
+        }
+
+        private void OnFLP2Click(object sender, EventArgs e)
+        {
+            if (sender is PictureBox clickedPic)
+            {
+                string mealID = clickedPic.Tag.ToString();
+
+                // Filter and display VariationName in flowLayoutPanel1 based on the selected MealID
+                DisplayVariationNamesByMealID(mealID);
+            }
+        }
+        private void DisplayVariationNamesByMealID(string mealID)
+        {
+            flowLayoutPanel1.Controls.Clear();
+            conn.Open();
+            cm = new MySqlCommand("SELECT VariationName, VariationCost, MealImage, VariationID FROM mealvariation WHERE MealID = @mealID", conn);
+            cm.Parameters.AddWithValue("@mealID", mealID);
+            dr = cm.ExecuteReader();
+
+            while (dr.Read())
+            {
+                string mealName = dr["VariationName"].ToString();
+
+                if (!dr.IsDBNull(dr.GetOrdinal("MealImage")))
+                {
+                    byte[] imageBytes = (byte[])dr["MealImage"];
+
+                    using (MemoryStream ms = new MemoryStream(imageBytes))
+                    {
+                        Image mealImage = Image.FromStream(ms);
+                        pic = new PictureBox
+                        {
+                            Width = 150,
+                            Height = 150,
+                            BackgroundImage = mealImage,
+                            BackgroundImageLayout = ImageLayout.Stretch,
+                            Tag = dr["VariationID"].ToString(),
+                        };
+
+                        price = new Label
+                        {
+                            Text = "Php. " + dr["VariationCost"].ToString(),
+                            Width = 25,
+                            Height = 15,
+                            TextAlign = ContentAlignment.TopLeft,
+                            Dock = DockStyle.Top,
+                            BackColor = Color.White,
+                        };
+
+                        mealname = new Label
+                        {
+                            Text = dr["VariationName"].ToString(),
+                            Width = 25,
+                            Height = 15,
+                            TextAlign = ContentAlignment.BottomCenter,
+                            Dock = DockStyle.Bottom,
+                            BackColor = Color.White,
+                        };
+
+                        pic.Controls.Add(mealname);
+                        pic.Controls.Add(price);
+                        flowLayoutPanel1.Controls.Add(pic);
+                        pic.Click += OnFLP1Click;
+                    }
                 }
             }
             dr.Close();
@@ -632,7 +781,8 @@ namespace CafeDeLunaSystem
         {
             flowLayoutPanel1.Controls.Clear();
             conn.Open();
-            cm = new MySqlCommand("SELECT VariationName, VariationCost, MealImage, VariationID FROM mealvariation WHERE MealID = '24'", conn);
+            int Mealid = 23+1;
+            cm = new MySqlCommand("SELECT VariationName, VariationCost, MealImage, VariationID FROM mealvariation WHERE MealID ='" + Mealid + "'", conn);
             dr = cm.ExecuteReader();
 
             while (dr.Read())
@@ -679,7 +829,7 @@ namespace CafeDeLunaSystem
                         pic.Controls.Add(mealname);
                         pic.Controls.Add(price);
                         flowLayoutPanel1.Controls.Add(pic);
-                        pic.Click += OnClick;
+                        pic.Click += OnFLP1Click;
                     }
                 }
             }
@@ -738,7 +888,7 @@ namespace CafeDeLunaSystem
                         pic.Controls.Add(mealname);
                         pic.Controls.Add(price);
                         flowLayoutPanel1.Controls.Add(pic);
-                        pic.Click += OnClick;
+                        pic.Click += OnFLP1Click;
                     }
                 }
             }
@@ -797,7 +947,7 @@ namespace CafeDeLunaSystem
                         pic.Controls.Add(mealname);
                         pic.Controls.Add(price);
                         flowLayoutPanel1.Controls.Add(pic);
-                        pic.Click += OnClick;
+                        pic.Click += OnFLP1Click;
                     }
                 }
             }
@@ -805,7 +955,7 @@ namespace CafeDeLunaSystem
             conn.Close();
         }
 
-        private void OnClick(object sender, EventArgs e)
+        private void OnFLP1Click(object sender, EventArgs e)
         {
             PictureBox clickedPic = (PictureBox)sender;
             String tag = clickedPic.Tag.ToString();
@@ -854,12 +1004,12 @@ namespace CafeDeLunaSystem
            
         }
 
-
         private void SearchTxtbx_TextChanged(object sender, EventArgs e)
         {
             string searchQuery = SearchTxtbx.Text;
 
             flowLayoutPanel1.Controls.Clear();
+
 
             if (!string.IsNullOrWhiteSpace(searchQuery))
             {
@@ -910,7 +1060,7 @@ namespace CafeDeLunaSystem
                             pic.Controls.Add(mealname);
                             pic.Controls.Add(price);
                             flowLayoutPanel1.Controls.Add(pic);
-                            pic.Click += OnClick;
+                            pic.Click += OnFLP1Click;
                         }
                     }
                 }
@@ -1011,16 +1161,6 @@ namespace CafeDeLunaSystem
             return unitPrice;
         }
 
-        private void dataGridView1_KeyUp(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Escape)
-            {
-                if (dataGridView1.SelectedRows.Count > 0)
-                {
-                    dataGridView1.SelectedRows[0].Selected = false;
-                }
-            }
-        }
 
         private void discChckBx_CheckedChanged(object sender, EventArgs e)
         {
@@ -1044,5 +1184,25 @@ namespace CafeDeLunaSystem
         {
 
         }
+        private void dataGridView1_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                if (dataGridView1.SelectedRows.Count > 0)
+                {
+                    dataGridView1.SelectedRows[0].Selected = false;
+                }
+            }
+        }
+
+        private void logLbl_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Are you sure you want to log-out?", "information", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                panelManager.ShowPanel(LoginPanel);
+            }
+        }
+
     }
 }

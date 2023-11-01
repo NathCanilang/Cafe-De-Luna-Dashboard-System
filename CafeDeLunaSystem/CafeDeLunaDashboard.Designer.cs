@@ -29,8 +29,10 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle37 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle38 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle39 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle40 = new System.Windows.Forms.DataGridViewCellStyle();
             this.MainLoginContainer = new Syncfusion.Windows.Forms.Tools.CardLayout(this.components);
             this.LoginPanel = new System.Windows.Forms.Panel();
             this.PanelLP = new System.Windows.Forms.Panel();
@@ -98,6 +100,8 @@
             this.ManagerPanel = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.StaffPanel = new System.Windows.Forms.Panel();
+            this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
+            this.logLbl = new System.Windows.Forms.Label();
             this.ttlLbl = new System.Windows.Forms.Label();
             this.totalLbl = new System.Windows.Forms.Label();
             this.dscLbl = new System.Windows.Forms.Label();
@@ -122,6 +126,7 @@
             this.allBtn = new System.Windows.Forms.PictureBox();
             this.AdminPanelContainer = new Syncfusion.Windows.Forms.Tools.CardLayout(this.components);
             this.AccManageContainer = new Syncfusion.Windows.Forms.Tools.CardLayout(this.components);
+            this.flowLayout1 = new Syncfusion.Windows.Forms.Tools.FlowLayout(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.MainLoginContainer)).BeginInit();
             this.LoginPanel.SuspendLayout();
             this.PanelLP.SuspendLayout();
@@ -146,13 +151,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.allBtn)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.AdminPanelContainer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.AccManageContainer)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.flowLayout1)).BeginInit();
             this.SuspendLayout();
             // 
             // MainLoginContainer
             // 
             this.MainLoginContainer.ContainerControl = this;
             this.MainLoginContainer.LayoutMode = Syncfusion.Windows.Forms.Tools.CardLayoutMode.Fill;
-            this.MainLoginContainer.SelectedCard = "Card3";
+            this.MainLoginContainer.SelectedCard = "Card1";
             // 
             // LoginPanel
             // 
@@ -163,7 +169,7 @@
             this.MainLoginContainer.SetMinimumSize(this.LoginPanel, new System.Drawing.Size(200, 100));
             this.LoginPanel.Name = "LoginPanel";
             this.MainLoginContainer.SetPreferredSize(this.LoginPanel, new System.Drawing.Size(200, 100));
-            this.LoginPanel.Size = new System.Drawing.Size(1284, 566);
+            this.LoginPanel.Size = new System.Drawing.Size(1284, 705);
             this.LoginPanel.TabIndex = 0;
             // 
             // PanelLP
@@ -215,7 +221,7 @@
             this.MainLoginContainer.SetMinimumSize(this.AdminPanel, new System.Drawing.Size(200, 100));
             this.AdminPanel.Name = "AdminPanel";
             this.MainLoginContainer.SetPreferredSize(this.AdminPanel, new System.Drawing.Size(200, 100));
-            this.AdminPanel.Size = new System.Drawing.Size(1284, 566);
+            this.AdminPanel.Size = new System.Drawing.Size(1284, 705);
             this.AdminPanel.TabIndex = 1;
             // 
             // InterfaceAP
@@ -822,7 +828,7 @@
             this.NavigationPanelAP.Controls.Add(this.AccManageLbl);
             this.NavigationPanelAP.Location = new System.Drawing.Point(0, 0);
             this.NavigationPanelAP.Name = "NavigationPanelAP";
-            this.NavigationPanelAP.Size = new System.Drawing.Size(177, 566);
+            this.NavigationPanelAP.Size = new System.Drawing.Size(177, 705);
             this.NavigationPanelAP.TabIndex = 1;
             // 
             // SalesRepLbl
@@ -838,7 +844,7 @@
             // LogoutLbl
             // 
             this.LogoutLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LogoutLbl.Location = new System.Drawing.Point(3, 507);
+            this.LogoutLbl.Location = new System.Drawing.Point(3, 637);
             this.LogoutLbl.Name = "LogoutLbl";
             this.LogoutLbl.Size = new System.Drawing.Size(171, 59);
             this.LogoutLbl.TabIndex = 2;
@@ -877,7 +883,7 @@
             this.MainLoginContainer.SetMinimumSize(this.ManagerPanel, new System.Drawing.Size(200, 100));
             this.ManagerPanel.Name = "ManagerPanel";
             this.MainLoginContainer.SetPreferredSize(this.ManagerPanel, new System.Drawing.Size(200, 100));
-            this.ManagerPanel.Size = new System.Drawing.Size(1284, 566);
+            this.ManagerPanel.Size = new System.Drawing.Size(1284, 705);
             this.ManagerPanel.TabIndex = 2;
             // 
             // label1
@@ -893,6 +899,8 @@
             // 
             this.StaffPanel.BackColor = System.Drawing.Color.Transparent;
             this.MainLoginContainer.SetCardName(this.StaffPanel, "Card1");
+            this.StaffPanel.Controls.Add(this.flowLayoutPanel2);
+            this.StaffPanel.Controls.Add(this.logLbl);
             this.StaffPanel.Controls.Add(this.ttlLbl);
             this.StaffPanel.Controls.Add(this.totalLbl);
             this.StaffPanel.Controls.Add(this.dscLbl);
@@ -913,8 +921,30 @@
             this.MainLoginContainer.SetMinimumSize(this.StaffPanel, new System.Drawing.Size(200, 100));
             this.StaffPanel.Name = "StaffPanel";
             this.MainLoginContainer.SetPreferredSize(this.StaffPanel, new System.Drawing.Size(200, 100));
-            this.StaffPanel.Size = new System.Drawing.Size(1284, 566);
+            this.StaffPanel.Size = new System.Drawing.Size(1284, 705);
             this.StaffPanel.TabIndex = 3;
+            // 
+            // flowLayoutPanel2
+            // 
+            this.flowLayoutPanel2.AutoScroll = true;
+            this.flowLayoutPanel2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.flowLayoutPanel2.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(3, 565);
+            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(180, 135);
+            this.flowLayoutPanel2.TabIndex = 18;
+            this.flowLayoutPanel2.WrapContents = false;
+            // 
+            // logLbl
+            // 
+            this.logLbl.AutoSize = true;
+            this.logLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.logLbl.Location = new System.Drawing.Point(556, 12);
+            this.logLbl.Name = "logLbl";
+            this.logLbl.Size = new System.Drawing.Size(78, 25);
+            this.logLbl.TabIndex = 17;
+            this.logLbl.Text = "Logout";
+            this.logLbl.Click += new System.EventHandler(this.logLbl_Click);
             // 
             // ttlLbl
             // 
@@ -1016,12 +1046,20 @@
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToResizeColumns = false;
             this.dataGridView1.AllowUserToResizeRows = false;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
-            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle37.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle37.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle37.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle37.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle37.SelectionForeColor = System.Drawing.Color.Black;
+            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle37;
+            dataGridViewCellStyle38.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle38.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle38.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle38.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle38.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle38.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle38.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle38;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
@@ -1030,18 +1068,26 @@
             this.Column4,
             this.Column5,
             this.Column6});
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle4;
-            this.dataGridView1.Location = new System.Drawing.Point(907, 38);
+            dataGridViewCellStyle39.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle39.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle39.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle39.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle39.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle39.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle39.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle39;
+            this.dataGridView1.Location = new System.Drawing.Point(876, 38);
             this.dataGridView1.Name = "dataGridView1";
+            dataGridViewCellStyle40.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle40.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle40.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle40.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle40.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle40.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle40.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle40;
             this.dataGridView1.RowHeadersVisible = false;
-            this.dataGridView1.Size = new System.Drawing.Size(365, 234);
+            this.dataGridView1.Size = new System.Drawing.Size(396, 234);
             this.dataGridView1.TabIndex = 7;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             this.dataGridView1.KeyUp += new System.Windows.Forms.KeyEventHandler(this.dataGridView1_KeyUp);
@@ -1051,7 +1097,7 @@
             this.Column1.HeaderText = "Food";
             this.Column1.Name = "Column1";
             this.Column1.ReadOnly = true;
-            this.Column1.Width = 125;
+            this.Column1.Width = 150;
             // 
             // Column2
             // 
@@ -1093,11 +1139,12 @@
             // 
             // breakBtn
             // 
+            this.breakBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.breakBtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.breakBtn.Image = global::CafeDeLunaSystem.Properties.Resources.breakfast;
-            this.breakBtn.Location = new System.Drawing.Point(12, 275);
+            this.breakBtn.Location = new System.Drawing.Point(12, 285);
             this.breakBtn.Name = "breakBtn";
-            this.breakBtn.Size = new System.Drawing.Size(150, 96);
+            this.breakBtn.Size = new System.Drawing.Size(150, 135);
             this.breakBtn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.breakBtn.TabIndex = 3;
             this.breakBtn.TabStop = false;
@@ -1107,9 +1154,9 @@
             // 
             this.coffBtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.coffBtn.Image = global::CafeDeLunaSystem.Properties.Resources.coffee;
-            this.coffBtn.Location = new System.Drawing.Point(12, 142);
+            this.coffBtn.Location = new System.Drawing.Point(12, 144);
             this.coffBtn.Name = "coffBtn";
-            this.coffBtn.Size = new System.Drawing.Size(150, 115);
+            this.coffBtn.Size = new System.Drawing.Size(150, 135);
             this.coffBtn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.coffBtn.TabIndex = 4;
             this.coffBtn.TabStop = false;
@@ -1133,16 +1180,16 @@
             this.flowLayoutPanel1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(168, 38);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(702, 446);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(655, 512);
             this.flowLayoutPanel1.TabIndex = 5;
             // 
             // snackBtn
             // 
             this.snackBtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.snackBtn.Image = global::CafeDeLunaSystem.Properties.Resources.snacks;
-            this.snackBtn.Location = new System.Drawing.Point(12, 377);
+            this.snackBtn.Location = new System.Drawing.Point(12, 426);
             this.snackBtn.Name = "snackBtn";
-            this.snackBtn.Size = new System.Drawing.Size(150, 107);
+            this.snackBtn.Size = new System.Drawing.Size(150, 135);
             this.snackBtn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.snackBtn.TabIndex = 2;
             this.snackBtn.TabStop = false;
@@ -1152,9 +1199,9 @@
             // 
             this.allBtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.allBtn.Image = global::CafeDeLunaSystem.Properties.Resources.all;
-            this.allBtn.Location = new System.Drawing.Point(12, 12);
+            this.allBtn.Location = new System.Drawing.Point(12, 5);
             this.allBtn.Name = "allBtn";
-            this.allBtn.Size = new System.Drawing.Size(150, 124);
+            this.allBtn.Size = new System.Drawing.Size(150, 135);
             this.allBtn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.allBtn.TabIndex = 1;
             this.allBtn.TabStop = false;
@@ -1176,7 +1223,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1284, 566);
+            this.ClientSize = new System.Drawing.Size(1284, 705);
             this.Controls.Add(this.StaffPanel);
             this.Controls.Add(this.ManagerPanel);
             this.Controls.Add(this.AdminPanel);
@@ -1214,6 +1261,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.allBtn)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.AdminPanelContainer)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.AccManageContainer)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.flowLayout1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1305,12 +1353,15 @@
         private System.Windows.Forms.Label subLbl;
         private System.Windows.Forms.Button placeBtn;
         private System.Windows.Forms.Button voidBtn;
+        private System.Windows.Forms.Label logLbl;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewButtonColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewButtonColumn Column4;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
         private System.Windows.Forms.DataGridViewButtonColumn Column6;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
+        private Syncfusion.Windows.Forms.Tools.FlowLayout flowLayout1;
     }
 }
 
