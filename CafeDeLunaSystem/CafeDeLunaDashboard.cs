@@ -88,12 +88,12 @@ namespace CafeDeLunaSystem
 
             if (usernameInput == "Admin" && passwordInput == "admin123")
             {
-                MessageBox.Show("Admin login successful");
+                MessageBox.Show("Admin login successful","Welcome, Admin", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 panelManager.ShowPanel(AdminPanel);
             }
-            else if (usernameInput == "staff" && passwordInput == "staff")
+            else if (usernameInput == "Staff" && passwordInput == "staff123")
             {
-               
+                MessageBox.Show("Staff login successful", "Welcome, Staff", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 panelManager.ShowPanel(StaffPanel);
                 GetData();
                 GetData2();
@@ -117,23 +117,25 @@ namespace CafeDeLunaSystem
                             string userRole = position.ToString();
                             if (userRole == "Manager")
                             {
-                                MessageBox.Show("Login Successful");
+                                MessageBox.Show("Login Successful",  "Welcome, Manager", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                 panelManager.ShowPanel(ManagerPanel);
                             }
                             else if (userRole == "Cashier")
                             {
-                                MessageBox.Show("Login Successful");
+                                MessageBox.Show("Login Successful", "Welcome, Staff", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                 panelManager.ShowPanel(StaffPanel);
                             }
                         }
                         else
                         {
-                            MessageBox.Show("Invalid username or password.");
+                            MessageBox.Show("Invalid username or password.", "Try again", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         }
                     }
                 }
             }
+            
         }
+
         //Admin Panel
         private void CalculateAge(object sender, EventArgs e)
         {
@@ -199,7 +201,7 @@ namespace CafeDeLunaSystem
                     }
                     else
                     {
-                        MessageBox.Show("Invalid date format in the 'Birthday' column.");
+                        MessageBox.Show("Invalid date format in the 'Birthday' column.", "Try again", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
 
                     AgeTxtB_AP.Text = ageColumn;
@@ -211,7 +213,7 @@ namespace CafeDeLunaSystem
                 }
                 else
                 {
-                    MessageBox.Show("Please select a single row for editing.");
+                    MessageBox.Show("Please select a single row for editing.", "Try again", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
 
             }
@@ -259,7 +261,7 @@ namespace CafeDeLunaSystem
                         }
                         else
                         {
-                            MessageBox.Show("Please select an image with dimensions of 64x64 pixels.");
+                            MessageBox.Show("Please select an image with dimensions of 64x64 pixels.", "Try again", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         }
                     }
                     catch (Exception ex)
@@ -279,7 +281,7 @@ namespace CafeDeLunaSystem
 
             if (string.IsNullOrWhiteSpace(userImagePath) || !File.Exists(userImagePath))
             {
-                MessageBox.Show("Invalid image file path.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Invalid image file path.", "Try again", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -379,7 +381,7 @@ namespace CafeDeLunaSystem
                         }
                         else
                         {
-                            MessageBox.Show("Error resizing the image to 64x64 pixels.");
+                            MessageBox.Show("Error resizing the image to 64x64 pixels.", "Try again", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
                     catch (Exception ex)
@@ -475,7 +477,7 @@ namespace CafeDeLunaSystem
                         }
                         else
                         {
-                            MessageBox.Show("Error resizing the image to 64x64 pixels.");
+                            MessageBox.Show("Error resizing the image to 64x64 pixels.", "Try again", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
                     catch (Exception ex)
@@ -623,41 +625,6 @@ namespace CafeDeLunaSystem
 
                 }
             }
-            //dr.Close();
-
-            //cm = new MySqlCommand("SELECT MealImage, MealID FROM meal WHERE MealID>=27", conn);
-            //dr = cm.ExecuteReader();
-
-            //TableLayoutPanel table = new TableLayoutPanel
-            //{
-            //    Dock = DockStyle.Fill,
-            //    AutoSize = true,
-            //    AutoSizeMode = AutoSizeMode.GrowAndShrink,
-            //    ColumnCount = 1,  // One column for one picture per row
-            //};
-
-            //while (dr.Read())
-            //{
-            //    int mealID = (int)dr["MealID"];
-            //    byte[] imageBytes = (byte[])dr["MealImage"];
-
-            //    using (MemoryStream ms = new MemoryStream(imageBytes))
-            //    {
-            //        Image mealImage = Image.FromStream(ms);
-            //        menupic = new PictureBox
-            //        {
-            //            Width = 140,
-            //            Height = 125,
-            //            BackgroundImage = mealImage,
-            //            BackgroundImageLayout = ImageLayout.Stretch,
-            //            Tag = mealID.ToString(),
-            //        };
-            //        table.RowStyles.Add(new RowStyle(SizeType.AutoSize));
-            //        table.Controls.Add(menupic);
-            //        flowLayoutPanel2.Controls.Add(table);
-            //        menupic.Click += OnFLP2Click;
-            //    }
-            //}
             dr.Close();
             conn.Close();
         }
@@ -708,8 +675,6 @@ namespace CafeDeLunaSystem
             if (sender is PictureBox clickedPic)
             {
                 string mealID = clickedPic.Tag.ToString();
-
-                // Filter and display VariationName in flowLayoutPanel1 based on the selected MealID
                 DisplayVariationNamesByMealID(mealID);
             }
         }
