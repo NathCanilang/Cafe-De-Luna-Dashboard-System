@@ -1442,25 +1442,25 @@ namespace CafeDeLunaSystem
                     }
                 }
 
-                //foreach (OrderItem voidedItem in OrderManagement.instance.voidedItems)
-                //{
-                //    string itemName = voidedItem.ItemName;
-                //    int qty = Convert.ToInt32(voidedItem.Quantity);
-                //    Tuple<int, int> variationInfo = GetVariationInfo(itemName);
-                //    int variationID = variationInfo.Item1;
-                //    int mealID = variationInfo.Item2;
+                ////foreach (OrderItem voidedItem in OrderManagement.instance.voidedItems)
+                ////{
+                ////    string itemName = voidedItem.ItemName;
+                ////    int qty = Convert.ToInt32(voidedItem.Quantity);
+                ////    Tuple<int, int> variationInfo = GetVariationInfo(itemName);
+                ////    int variationID = variationInfo.Item1;
+                ////    int mealID = variationInfo.Item2;
 
-                //    string query = "INSERT INTO OrderItems (OrderID, MealID, VariationID, Quantity, IsVoided) VALUES (@OrderID, @MealID, @VariationID, @Qty, @voided)";
-                //    using (MySqlCommand cmd = new MySqlCommand(query, connection))
-                //    {
-                //        cmd.Parameters.AddWithValue("@OrderID", generatedOrderID);
-                //        cmd.Parameters.AddWithValue("@MealID", mealID);
-                //        cmd.Parameters.AddWithValue("@VariationID", variationID);
-                //        cmd.Parameters.AddWithValue("@Qty", qty);
-                //        cmd.Parameters.AddWithValue("@voided", "voided");
-                //        cmd.ExecuteNonQuery();
-                //    }
-                //}
+                ////    string query = "INSERT INTO OrderItems (OrderID, MealID, VariationID, Quantity, IsVoided) VALUES (@OrderID, @MealID, @VariationID, @Qty, @voided)";
+                ////    using (MySqlCommand cmd = new MySqlCommand(query, connection))
+                ////    {
+                ////        cmd.Parameters.AddWithValue("@OrderID", generatedOrderID);
+                ////        cmd.Parameters.AddWithValue("@MealID", mealID);
+                ////        cmd.Parameters.AddWithValue("@VariationID", variationID);
+                ////        cmd.Parameters.AddWithValue("@Qty", qty);
+                ////        cmd.Parameters.AddWithValue("@voided", "voided");
+                ////        cmd.ExecuteNonQuery();
+                ////    }
+                ////}
                 if (!itemNameFound)
                 {
                     MessageBox.Show("ItemName is null. IDK why.");
