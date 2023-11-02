@@ -1,13 +1,11 @@
 ﻿using MySql.Data.MySqlClient;
-using MySqlX.XDevAPI.Common;
-using Syncfusion.Windows.Forms.Tools;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
-using System.Linq;
 using System.Windows.Forms;
+
 using iText.Kernel.Pdf;
 using iText.Layout;
 using iText.Layout.Element;
@@ -19,6 +17,7 @@ using System.Xml.Linq;
 using System.Drawing.Drawing2D;
 using Image = System.Drawing.Image;
 using TextAlignment = iText.Layout.Properties.TextAlignment;
+
 
 namespace CafeDeLunaSystem
 {
@@ -102,8 +101,6 @@ namespace CafeDeLunaSystem
             {
                 MessageBox.Show("Staff login successful", "Welcome, Staff", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 panelManager.ShowPanel(StaffPanel);
-                GetData();
-                GetData2();
             }
             else
             {
@@ -125,12 +122,13 @@ namespace CafeDeLunaSystem
                             if (userRole == "Manager")
                             {
                                 MessageBox.Show("Login Successful",  "Welcome, Manager", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                panelManager.ShowPanel(ManagerPanel);
+                                panelManager.ShowPanel(StaffPanel);
                             }
                             else if (userRole == "Cashier")
                             {
                                 MessageBox.Show("Login Successful", "Welcome, Staff", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                 panelManager.ShowPanel(StaffPanel);
+                                SalesBtn.Hide();
                             }
                         }
                         else
@@ -578,10 +576,10 @@ namespace CafeDeLunaSystem
             }
         }
 
-
         //Staff panel
-        private void GetData()
+        public void GetData()
         {
+            conn.Close();
             flowLayoutPanel1.Controls.Clear();
             conn.Open();
             cm = new MySqlCommand("SELECT VariationName, VariationCost, MealImage, VariationID FROM mealvariation", conn);
@@ -633,8 +631,9 @@ namespace CafeDeLunaSystem
             conn.Close();
         }
 
-        private void GetData2()
+       public void GetData2()
         {
+            conn.Close();
             flowLayoutPanel2.Controls.Clear();
             conn.Open();
             cm = new MySqlCommand("SELECT MealImage, MealID FROM meal WHERE MealID>=24", conn);

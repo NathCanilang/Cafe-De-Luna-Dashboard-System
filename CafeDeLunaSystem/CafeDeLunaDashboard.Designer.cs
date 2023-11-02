@@ -29,11 +29,16 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+
             this.MainLoginContainer = new Syncfusion.Windows.Forms.Tools.CardLayout(this.components);
             this.LoginPanel = new System.Windows.Forms.Panel();
             this.PanelLP = new System.Windows.Forms.Panel();
@@ -101,9 +106,13 @@
             this.ManagerPanel = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.StaffPanel = new System.Windows.Forms.Panel();
+
             this.cashtxtBx = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.cahlbl = new System.Windows.Forms.Label();
+
+            this.SalesBtn = new System.Windows.Forms.Button();
+
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
             this.logLbl = new System.Windows.Forms.Label();
             this.ttlLbl = new System.Windows.Forms.Label();
@@ -122,6 +131,10 @@
             this.Column4 = new System.Windows.Forms.DataGridViewButtonColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column6 = new System.Windows.Forms.DataGridViewButtonColumn();
+
+            this.breakBtn = new System.Windows.Forms.PictureBox();
+            this.coffBtn = new System.Windows.Forms.PictureBox();
+
             this.SearchTxtbx = new System.Windows.Forms.TextBox();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.allBtn = new System.Windows.Forms.PictureBox();
@@ -156,7 +169,7 @@
             // 
             this.MainLoginContainer.ContainerControl = this;
             this.MainLoginContainer.LayoutMode = Syncfusion.Windows.Forms.Tools.CardLayoutMode.Fill;
-            this.MainLoginContainer.SelectedCard = "Card1";
+            this.MainLoginContainer.SelectedCard = "Card3";
             // 
             // LoginPanel
             // 
@@ -167,7 +180,7 @@
             this.MainLoginContainer.SetMinimumSize(this.LoginPanel, new System.Drawing.Size(200, 100));
             this.LoginPanel.Name = "LoginPanel";
             this.MainLoginContainer.SetPreferredSize(this.LoginPanel, new System.Drawing.Size(200, 100));
-            this.LoginPanel.Size = new System.Drawing.Size(1284, 705);
+            this.LoginPanel.Size = new System.Drawing.Size(1300, 710);
             this.LoginPanel.TabIndex = 0;
             // 
             // PanelLP
@@ -219,7 +232,7 @@
             this.MainLoginContainer.SetMinimumSize(this.AdminPanel, new System.Drawing.Size(200, 100));
             this.AdminPanel.Name = "AdminPanel";
             this.MainLoginContainer.SetPreferredSize(this.AdminPanel, new System.Drawing.Size(200, 100));
-            this.AdminPanel.Size = new System.Drawing.Size(1284, 705);
+            this.AdminPanel.Size = new System.Drawing.Size(1300, 710);
             this.AdminPanel.TabIndex = 1;
             // 
             // InterfaceAP
@@ -230,7 +243,7 @@
             this.InterfaceAP.Controls.Add(this.AccManagePanel);
             this.InterfaceAP.Location = new System.Drawing.Point(177, 0);
             this.InterfaceAP.Name = "InterfaceAP";
-            this.InterfaceAP.Size = new System.Drawing.Size(916, 566);
+            this.InterfaceAP.Size = new System.Drawing.Size(1123, 710);
             this.InterfaceAP.TabIndex = 2;
             // 
             // HomePanelAP
@@ -241,7 +254,7 @@
             this.AdminPanelContainer.SetMinimumSize(this.HomePanelAP, new System.Drawing.Size(200, 100));
             this.HomePanelAP.Name = "HomePanelAP";
             this.AdminPanelContainer.SetPreferredSize(this.HomePanelAP, new System.Drawing.Size(200, 100));
-            this.HomePanelAP.Size = new System.Drawing.Size(916, 566);
+            this.HomePanelAP.Size = new System.Drawing.Size(1123, 710);
             this.HomePanelAP.TabIndex = 3;
             // 
             // label2
@@ -280,13 +293,13 @@
             this.AdminPanelContainer.SetMinimumSize(this.AddMenuPanelAP, new System.Drawing.Size(200, 100));
             this.AddMenuPanelAP.Name = "AddMenuPanelAP";
             this.AdminPanelContainer.SetPreferredSize(this.AddMenuPanelAP, new System.Drawing.Size(200, 100));
-            this.AddMenuPanelAP.Size = new System.Drawing.Size(916, 566);
+            this.AddMenuPanelAP.Size = new System.Drawing.Size(1123, 710);
             this.AddMenuPanelAP.TabIndex = 1;
             // 
             // MenuFilePathTxtB
             // 
             this.MenuFilePathTxtB.Location = new System.Drawing.Point(598, 269);
-            this.MenuFilePathTxtB.Margin = new System.Windows.Forms.Padding(2);
+            this.MenuFilePathTxtB.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.MenuFilePathTxtB.Name = "MenuFilePathTxtB";
             this.MenuFilePathTxtB.Size = new System.Drawing.Size(91, 20);
             this.MenuFilePathTxtB.TabIndex = 17;
@@ -295,7 +308,7 @@
             // VarietyFilePathTxtB
             // 
             this.VarietyFilePathTxtB.Location = new System.Drawing.Point(542, 427);
-            this.VarietyFilePathTxtB.Margin = new System.Windows.Forms.Padding(2);
+            this.VarietyFilePathTxtB.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.VarietyFilePathTxtB.Name = "VarietyFilePathTxtB";
             this.VarietyFilePathTxtB.Size = new System.Drawing.Size(91, 20);
             this.VarietyFilePathTxtB.TabIndex = 16;
@@ -304,7 +317,7 @@
             // DeleteMenulBtn
             // 
             this.DeleteMenulBtn.Location = new System.Drawing.Point(728, 514);
-            this.DeleteMenulBtn.Margin = new System.Windows.Forms.Padding(2);
+            this.DeleteMenulBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.DeleteMenulBtn.Name = "DeleteMenulBtn";
             this.DeleteMenulBtn.Size = new System.Drawing.Size(128, 28);
             this.DeleteMenulBtn.TabIndex = 15;
@@ -314,7 +327,7 @@
             // EditMealBtn
             // 
             this.EditMealBtn.Location = new System.Drawing.Point(596, 514);
-            this.EditMealBtn.Margin = new System.Windows.Forms.Padding(2);
+            this.EditMealBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.EditMealBtn.Name = "EditMealBtn";
             this.EditMealBtn.Size = new System.Drawing.Size(128, 28);
             this.EditMealBtn.TabIndex = 14;
@@ -324,7 +337,7 @@
             // VariationIDTxtBox
             // 
             this.VariationIDTxtBox.Location = new System.Drawing.Point(728, 480);
-            this.VariationIDTxtBox.Margin = new System.Windows.Forms.Padding(2);
+            this.VariationIDTxtBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.VariationIDTxtBox.Multiline = true;
             this.VariationIDTxtBox.Name = "VariationIDTxtBox";
             this.VariationIDTxtBox.Size = new System.Drawing.Size(129, 29);
@@ -333,7 +346,7 @@
             // MealIDTxtB
             // 
             this.MealIDTxtB.Location = new System.Drawing.Point(596, 480);
-            this.MealIDTxtB.Margin = new System.Windows.Forms.Padding(2);
+            this.MealIDTxtB.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.MealIDTxtB.Multiline = true;
             this.MealIDTxtB.Name = "MealIDTxtB";
             this.MealIDTxtB.Size = new System.Drawing.Size(129, 29);
@@ -344,7 +357,7 @@
             this.MenuSelectComB.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MenuSelectComB.FormattingEnabled = true;
             this.MenuSelectComB.Location = new System.Drawing.Point(770, 324);
-            this.MenuSelectComB.Margin = new System.Windows.Forms.Padding(2);
+            this.MenuSelectComB.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.MenuSelectComB.Name = "MenuSelectComB";
             this.MenuSelectComB.Size = new System.Drawing.Size(129, 28);
             this.MenuSelectComB.TabIndex = 11;
@@ -352,7 +365,7 @@
             // VarietyAddImgBtn
             // 
             this.VarietyAddImgBtn.Location = new System.Drawing.Point(770, 360);
-            this.VarietyAddImgBtn.Margin = new System.Windows.Forms.Padding(2);
+            this.VarietyAddImgBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.VarietyAddImgBtn.Name = "VarietyAddImgBtn";
             this.VarietyAddImgBtn.Size = new System.Drawing.Size(128, 28);
             this.VarietyAddImgBtn.TabIndex = 10;
@@ -363,7 +376,7 @@
             // AddVarietyBtn
             // 
             this.AddVarietyBtn.Location = new System.Drawing.Point(770, 393);
-            this.AddVarietyBtn.Margin = new System.Windows.Forms.Padding(2);
+            this.AddVarietyBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.AddVarietyBtn.Name = "AddVarietyBtn";
             this.AddVarietyBtn.Size = new System.Drawing.Size(128, 28);
             this.AddVarietyBtn.TabIndex = 9;
@@ -374,7 +387,7 @@
             // VariationDescTxtB
             // 
             this.VariationDescTxtB.Location = new System.Drawing.Point(637, 360);
-            this.VariationDescTxtB.Margin = new System.Windows.Forms.Padding(2);
+            this.VariationDescTxtB.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.VariationDescTxtB.Multiline = true;
             this.VariationDescTxtB.Name = "VariationDescTxtB";
             this.VariationDescTxtB.Size = new System.Drawing.Size(129, 29);
@@ -384,7 +397,7 @@
             // VariationCostTxtB
             // 
             this.VariationCostTxtB.Location = new System.Drawing.Point(637, 393);
-            this.VariationCostTxtB.Margin = new System.Windows.Forms.Padding(2);
+            this.VariationCostTxtB.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.VariationCostTxtB.Multiline = true;
             this.VariationCostTxtB.Name = "VariationCostTxtB";
             this.VariationCostTxtB.Size = new System.Drawing.Size(129, 29);
@@ -394,7 +407,7 @@
             // VariationNmTxtB
             // 
             this.VariationNmTxtB.Location = new System.Drawing.Point(637, 324);
-            this.VariationNmTxtB.Margin = new System.Windows.Forms.Padding(2);
+            this.VariationNmTxtB.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.VariationNmTxtB.Multiline = true;
             this.VariationNmTxtB.Name = "VariationNmTxtB";
             this.VariationNmTxtB.Size = new System.Drawing.Size(129, 29);
@@ -405,7 +418,7 @@
             // 
             this.VariationPicB.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.VariationPicB.Location = new System.Drawing.Point(542, 324);
-            this.VariationPicB.Margin = new System.Windows.Forms.Padding(2);
+            this.VariationPicB.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.VariationPicB.Name = "VariationPicB";
             this.VariationPicB.Size = new System.Drawing.Size(90, 98);
             this.VariationPicB.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -415,7 +428,7 @@
             // AddMenuBtn
             // 
             this.AddMenuBtn.Location = new System.Drawing.Point(692, 236);
-            this.AddMenuBtn.Margin = new System.Windows.Forms.Padding(2);
+            this.AddMenuBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.AddMenuBtn.Name = "AddMenuBtn";
             this.AddMenuBtn.Size = new System.Drawing.Size(154, 28);
             this.AddMenuBtn.TabIndex = 4;
@@ -426,7 +439,7 @@
             // MenuAddImgBtn
             // 
             this.MenuAddImgBtn.Location = new System.Drawing.Point(692, 202);
-            this.MenuAddImgBtn.Margin = new System.Windows.Forms.Padding(2);
+            this.MenuAddImgBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.MenuAddImgBtn.Name = "MenuAddImgBtn";
             this.MenuAddImgBtn.Size = new System.Drawing.Size(154, 28);
             this.MenuAddImgBtn.TabIndex = 3;
@@ -437,7 +450,7 @@
             // MenuNTxtB
             // 
             this.MenuNTxtB.Location = new System.Drawing.Point(692, 167);
-            this.MenuNTxtB.Margin = new System.Windows.Forms.Padding(2);
+            this.MenuNTxtB.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.MenuNTxtB.Multiline = true;
             this.MenuNTxtB.Name = "MenuNTxtB";
             this.MenuNTxtB.Size = new System.Drawing.Size(155, 29);
@@ -448,7 +461,7 @@
             // 
             this.MenuPicB.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.MenuPicB.Location = new System.Drawing.Point(598, 167);
-            this.MenuPicB.Margin = new System.Windows.Forms.Padding(2);
+            this.MenuPicB.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.MenuPicB.Name = "MenuPicB";
             this.MenuPicB.Size = new System.Drawing.Size(90, 98);
             this.MenuPicB.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -460,7 +473,7 @@
             this.FoodTbl.AllowUserToAddRows = false;
             this.FoodTbl.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.FoodTbl.Location = new System.Drawing.Point(27, 108);
-            this.FoodTbl.Margin = new System.Windows.Forms.Padding(2);
+            this.FoodTbl.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.FoodTbl.Name = "FoodTbl";
             this.FoodTbl.RowHeadersWidth = 51;
             this.FoodTbl.RowTemplate.Height = 24;
@@ -472,11 +485,11 @@
             this.SalesRepPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
             this.AdminPanelContainer.SetCardName(this.SalesRepPanel, "Card5");
             this.SalesRepPanel.Location = new System.Drawing.Point(0, 0);
-            this.SalesRepPanel.Margin = new System.Windows.Forms.Padding(2);
+            this.SalesRepPanel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.AdminPanelContainer.SetMinimumSize(this.SalesRepPanel, new System.Drawing.Size(200, 100));
             this.SalesRepPanel.Name = "SalesRepPanel";
             this.AdminPanelContainer.SetPreferredSize(this.SalesRepPanel, new System.Drawing.Size(200, 100));
-            this.SalesRepPanel.Size = new System.Drawing.Size(916, 566);
+            this.SalesRepPanel.Size = new System.Drawing.Size(1123, 710);
             this.SalesRepPanel.TabIndex = 4;
             // 
             // AccManagePanel
@@ -488,7 +501,7 @@
             this.AdminPanelContainer.SetMinimumSize(this.AccManagePanel, new System.Drawing.Size(200, 100));
             this.AccManagePanel.Name = "AccManagePanel";
             this.AdminPanelContainer.SetPreferredSize(this.AccManagePanel, new System.Drawing.Size(200, 100));
-            this.AccManagePanel.Size = new System.Drawing.Size(916, 566);
+            this.AccManagePanel.Size = new System.Drawing.Size(1123, 710);
             this.AccManagePanel.TabIndex = 0;
             // 
             // AccCreatePanel
@@ -523,11 +536,11 @@
             this.AccCreatePanel.Controls.Add(this.FirstNTxtB_AP);
             this.AccCreatePanel.Controls.Add(this.LastNTxtB_AP);
             this.AccCreatePanel.Location = new System.Drawing.Point(0, 0);
-            this.AccCreatePanel.Margin = new System.Windows.Forms.Padding(2);
+            this.AccCreatePanel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.AccManageContainer.SetMinimumSize(this.AccCreatePanel, new System.Drawing.Size(200, 100));
             this.AccCreatePanel.Name = "AccCreatePanel";
             this.AccManageContainer.SetPreferredSize(this.AccCreatePanel, new System.Drawing.Size(200, 100));
-            this.AccCreatePanel.Size = new System.Drawing.Size(916, 566);
+            this.AccCreatePanel.Size = new System.Drawing.Size(1123, 710);
             this.AccCreatePanel.TabIndex = 0;
             // 
             // ImgTxtB
@@ -535,7 +548,7 @@
             this.ImgTxtB.Enabled = false;
             this.ImgTxtB.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ImgTxtB.Location = new System.Drawing.Point(18, 509);
-            this.ImgTxtB.Margin = new System.Windows.Forms.Padding(2);
+            this.ImgTxtB.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.ImgTxtB.Multiline = true;
             this.ImgTxtB.Name = "ImgTxtB";
             this.ImgTxtB.Size = new System.Drawing.Size(121, 25);
@@ -657,7 +670,7 @@
             // 
             this.EditBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.EditBtn.Location = new System.Drawing.Point(289, 433);
-            this.EditBtn.Margin = new System.Windows.Forms.Padding(2);
+            this.EditBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.EditBtn.Name = "EditBtn";
             this.EditBtn.Size = new System.Drawing.Size(117, 28);
             this.EditBtn.TabIndex = 14;
@@ -669,7 +682,7 @@
             // 
             this.CreateBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CreateBtn.Location = new System.Drawing.Point(156, 433);
-            this.CreateBtn.Margin = new System.Windows.Forms.Padding(2);
+            this.CreateBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.CreateBtn.Name = "CreateBtn";
             this.CreateBtn.Size = new System.Drawing.Size(117, 28);
             this.CreateBtn.TabIndex = 13;
@@ -681,7 +694,7 @@
             // 
             this.SelectImgBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SelectImgBtn.Location = new System.Drawing.Point(17, 349);
-            this.SelectImgBtn.Margin = new System.Windows.Forms.Padding(2);
+            this.SelectImgBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.SelectImgBtn.Name = "SelectImgBtn";
             this.SelectImgBtn.Size = new System.Drawing.Size(121, 25);
             this.SelectImgBtn.TabIndex = 12;
@@ -693,7 +706,7 @@
             // 
             this.UserPicB.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.UserPicB.Location = new System.Drawing.Point(18, 375);
-            this.UserPicB.Margin = new System.Windows.Forms.Padding(2);
+            this.UserPicB.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.UserPicB.Name = "UserPicB";
             this.UserPicB.Size = new System.Drawing.Size(120, 130);
             this.UserPicB.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -705,7 +718,7 @@
             this.AccDataTbl.AllowUserToAddRows = false;
             this.AccDataTbl.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.AccDataTbl.Location = new System.Drawing.Point(472, 83);
-            this.AccDataTbl.Margin = new System.Windows.Forms.Padding(2);
+            this.AccDataTbl.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.AccDataTbl.Name = "AccDataTbl";
             this.AccDataTbl.RowHeadersWidth = 51;
             this.AccDataTbl.RowTemplate.Height = 24;
@@ -717,7 +730,7 @@
             this.PositionComB_AP.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.PositionComB_AP.FormattingEnabled = true;
             this.PositionComB_AP.Location = new System.Drawing.Point(152, 349);
-            this.PositionComB_AP.Margin = new System.Windows.Forms.Padding(2);
+            this.PositionComB_AP.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.PositionComB_AP.Name = "PositionComB_AP";
             this.PositionComB_AP.Size = new System.Drawing.Size(121, 25);
             this.PositionComB_AP.TabIndex = 9;
@@ -727,7 +740,7 @@
             // 
             this.UserBirthdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.UserBirthdate.Location = new System.Drawing.Point(18, 197);
-            this.UserBirthdate.Margin = new System.Windows.Forms.Padding(2);
+            this.UserBirthdate.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.UserBirthdate.Name = "UserBirthdate";
             this.UserBirthdate.Size = new System.Drawing.Size(252, 23);
             this.UserBirthdate.TabIndex = 8;
@@ -737,7 +750,7 @@
             this.EmployeeIDTxtB_AP.Enabled = false;
             this.EmployeeIDTxtB_AP.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.EmployeeIDTxtB_AP.Location = new System.Drawing.Point(285, 349);
-            this.EmployeeIDTxtB_AP.Margin = new System.Windows.Forms.Padding(2);
+            this.EmployeeIDTxtB_AP.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.EmployeeIDTxtB_AP.Multiline = true;
             this.EmployeeIDTxtB_AP.Name = "EmployeeIDTxtB_AP";
             this.EmployeeIDTxtB_AP.Size = new System.Drawing.Size(121, 25);
@@ -747,7 +760,7 @@
             // 
             this.PasswordTxtB_AP.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.PasswordTxtB_AP.Location = new System.Drawing.Point(151, 270);
-            this.PasswordTxtB_AP.Margin = new System.Windows.Forms.Padding(2);
+            this.PasswordTxtB_AP.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.PasswordTxtB_AP.Multiline = true;
             this.PasswordTxtB_AP.Name = "PasswordTxtB_AP";
             this.PasswordTxtB_AP.Size = new System.Drawing.Size(121, 25);
@@ -757,7 +770,7 @@
             // 
             this.UsernameTxtB_AP.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.UsernameTxtB_AP.Location = new System.Drawing.Point(18, 270);
-            this.UsernameTxtB_AP.Margin = new System.Windows.Forms.Padding(2);
+            this.UsernameTxtB_AP.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.UsernameTxtB_AP.Multiline = true;
             this.UsernameTxtB_AP.Name = "UsernameTxtB_AP";
             this.UsernameTxtB_AP.Size = new System.Drawing.Size(121, 25);
@@ -767,7 +780,7 @@
             // 
             this.EmailTxtB_AP.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.EmailTxtB_AP.Location = new System.Drawing.Point(285, 270);
-            this.EmailTxtB_AP.Margin = new System.Windows.Forms.Padding(2);
+            this.EmailTxtB_AP.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.EmailTxtB_AP.Multiline = true;
             this.EmailTxtB_AP.Name = "EmailTxtB_AP";
             this.EmailTxtB_AP.Size = new System.Drawing.Size(121, 25);
@@ -778,7 +791,7 @@
             this.AgeTxtB_AP.Enabled = false;
             this.AgeTxtB_AP.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.AgeTxtB_AP.Location = new System.Drawing.Point(285, 199);
-            this.AgeTxtB_AP.Margin = new System.Windows.Forms.Padding(2);
+            this.AgeTxtB_AP.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.AgeTxtB_AP.Multiline = true;
             this.AgeTxtB_AP.Name = "AgeTxtB_AP";
             this.AgeTxtB_AP.Size = new System.Drawing.Size(121, 25);
@@ -788,7 +801,7 @@
             // 
             this.MiddleNTxtB_AP.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MiddleNTxtB_AP.Location = new System.Drawing.Point(285, 116);
-            this.MiddleNTxtB_AP.Margin = new System.Windows.Forms.Padding(2);
+            this.MiddleNTxtB_AP.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.MiddleNTxtB_AP.Multiline = true;
             this.MiddleNTxtB_AP.Name = "MiddleNTxtB_AP";
             this.MiddleNTxtB_AP.Size = new System.Drawing.Size(121, 25);
@@ -799,7 +812,7 @@
             // 
             this.FirstNTxtB_AP.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FirstNTxtB_AP.Location = new System.Drawing.Point(151, 116);
-            this.FirstNTxtB_AP.Margin = new System.Windows.Forms.Padding(2);
+            this.FirstNTxtB_AP.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.FirstNTxtB_AP.Multiline = true;
             this.FirstNTxtB_AP.Name = "FirstNTxtB_AP";
             this.FirstNTxtB_AP.Size = new System.Drawing.Size(121, 25);
@@ -810,7 +823,7 @@
             // 
             this.LastNTxtB_AP.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LastNTxtB_AP.Location = new System.Drawing.Point(18, 116);
-            this.LastNTxtB_AP.Margin = new System.Windows.Forms.Padding(2);
+            this.LastNTxtB_AP.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.LastNTxtB_AP.Multiline = true;
             this.LastNTxtB_AP.Name = "LastNTxtB_AP";
             this.LastNTxtB_AP.Size = new System.Drawing.Size(121, 25);
@@ -826,7 +839,7 @@
             this.NavigationPanelAP.Controls.Add(this.AccManageLbl);
             this.NavigationPanelAP.Location = new System.Drawing.Point(0, 0);
             this.NavigationPanelAP.Name = "NavigationPanelAP";
-            this.NavigationPanelAP.Size = new System.Drawing.Size(177, 705);
+            this.NavigationPanelAP.Size = new System.Drawing.Size(177, 710);
             this.NavigationPanelAP.TabIndex = 1;
             // 
             // SalesRepLbl
@@ -881,7 +894,7 @@
             this.MainLoginContainer.SetMinimumSize(this.ManagerPanel, new System.Drawing.Size(200, 100));
             this.ManagerPanel.Name = "ManagerPanel";
             this.MainLoginContainer.SetPreferredSize(this.ManagerPanel, new System.Drawing.Size(200, 100));
-            this.ManagerPanel.Size = new System.Drawing.Size(1284, 705);
+            this.ManagerPanel.Size = new System.Drawing.Size(1300, 710);
             this.ManagerPanel.TabIndex = 2;
             // 
             // label1
@@ -897,9 +910,13 @@
             // 
             this.StaffPanel.BackColor = System.Drawing.Color.Transparent;
             this.MainLoginContainer.SetCardName(this.StaffPanel, "Card1");
+
             this.StaffPanel.Controls.Add(this.cashtxtBx);
             this.StaffPanel.Controls.Add(this.label3);
             this.StaffPanel.Controls.Add(this.cahlbl);
+
+            this.StaffPanel.Controls.Add(this.SalesBtn);
+
             this.StaffPanel.Controls.Add(this.flowLayoutPanel2);
             this.StaffPanel.Controls.Add(this.logLbl);
             this.StaffPanel.Controls.Add(this.ttlLbl);
@@ -919,9 +936,10 @@
             this.MainLoginContainer.SetMinimumSize(this.StaffPanel, new System.Drawing.Size(200, 100));
             this.StaffPanel.Name = "StaffPanel";
             this.MainLoginContainer.SetPreferredSize(this.StaffPanel, new System.Drawing.Size(200, 100));
-            this.StaffPanel.Size = new System.Drawing.Size(1284, 705);
+            this.StaffPanel.Size = new System.Drawing.Size(1300, 710);
             this.StaffPanel.TabIndex = 3;
             // 
+
             // cashtxtBx
             // 
             this.cashtxtBx.BackColor = System.Drawing.Color.White;
@@ -954,15 +972,32 @@
             this.cahlbl.Size = new System.Drawing.Size(56, 34);
             this.cahlbl.TabIndex = 19;
             this.cahlbl.Text = "Cash";
+
+            // SalesBtn
+            // 
+            this.SalesBtn.Location = new System.Drawing.Point(921, 543);
+            this.SalesBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.SalesBtn.Name = "SalesBtn";
+            this.SalesBtn.Size = new System.Drawing.Size(146, 48);
+            this.SalesBtn.TabIndex = 19;
+            this.SalesBtn.Text = "Sales Button";
+            this.SalesBtn.UseVisualStyleBackColor = true;
+
             // 
             // flowLayoutPanel2
             // 
             this.flowLayoutPanel2.AutoScroll = true;
             this.flowLayoutPanel2.Cursor = System.Windows.Forms.Cursors.Hand;
             this.flowLayoutPanel2.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+
             this.flowLayoutPanel2.Location = new System.Drawing.Point(3, 161);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
             this.flowLayoutPanel2.Size = new System.Drawing.Size(180, 539);
+
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(3, 146);
+            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(159, 554);
+
             this.flowLayoutPanel2.TabIndex = 18;
             this.flowLayoutPanel2.WrapContents = false;
             // 
@@ -1077,6 +1112,7 @@
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToResizeColumns = false;
             this.dataGridView1.AllowUserToResizeRows = false;
+
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Handmade", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1094,6 +1130,22 @@
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.Black;
+            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
+
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
@@ -1102,6 +1154,7 @@
             this.Column4,
             this.Column5,
             this.Column6});
+
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1125,6 +1178,29 @@
             dataGridViewCellStyle5.Font = new System.Drawing.Font("Handmade", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle5;
             this.dataGridView1.Size = new System.Drawing.Size(363, 234);
+
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle7;
+            this.dataGridView1.Location = new System.Drawing.Point(876, 38);
+            this.dataGridView1.Name = "dataGridView1";
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle8;
+            this.dataGridView1.RowHeadersVisible = false;
+            this.dataGridView1.RowHeadersWidth = 51;
+            this.dataGridView1.Size = new System.Drawing.Size(396, 234);
+
             this.dataGridView1.TabIndex = 7;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             this.dataGridView1.KeyUp += new System.Windows.Forms.KeyEventHandler(this.dataGridView1_KeyUp);
@@ -1132,6 +1208,9 @@
             // Column1
             // 
             this.Column1.HeaderText = "Food";
+
+            this.Column1.MinimumWidth = 6;
+
             this.Column1.Name = "Column1";
             this.Column1.ReadOnly = true;
             this.Column1.Width = 150;
@@ -1139,6 +1218,9 @@
             // Column2
             // 
             this.Column2.HeaderText = "-";
+
+            this.Column2.MinimumWidth = 6;
+
             this.Column2.Name = "Column2";
             this.Column2.ReadOnly = true;
             this.Column2.Text = "";
@@ -1147,13 +1229,23 @@
             // Column3
             // 
             this.Column3.HeaderText = "Quantity";
+
             this.Column3.Name = "Column3";
             this.Column3.ReadOnly = true;
             this.Column3.Width = 60;
+
+            this.Column3.MinimumWidth = 6;
+            this.Column3.Name = "Column3";
+            this.Column3.ReadOnly = true;
+            this.Column3.Width = 50;
+
             // 
             // Column4
             // 
             this.Column4.HeaderText = "+";
+
+            this.Column4.MinimumWidth = 6;
+
             this.Column4.Name = "Column4";
             this.Column4.ReadOnly = true;
             this.Column4.Text = "";
@@ -1162,6 +1254,9 @@
             // Column5
             // 
             this.Column5.HeaderText = "Price";
+
+            this.Column5.MinimumWidth = 6;
+
             this.Column5.Name = "Column5";
             this.Column5.ReadOnly = true;
             this.Column5.Width = 75;
@@ -1169,10 +1264,40 @@
             // Column6
             // 
             this.Column6.HeaderText = "Bin";
+
+            this.Column6.MinimumWidth = 6;
+
             this.Column6.Name = "Column6";
             this.Column6.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.Column6.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.Column6.Width = 25;
+
+            // 
+            // breakBtn
+            // 
+            this.breakBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.breakBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.breakBtn.Image = global::CafeDeLunaSystem.Properties.Resources.breakfast;
+            this.breakBtn.Location = new System.Drawing.Point(375, 565);
+            this.breakBtn.Name = "breakBtn";
+            this.breakBtn.Size = new System.Drawing.Size(150, 135);
+            this.breakBtn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.breakBtn.TabIndex = 3;
+            this.breakBtn.TabStop = false;
+            this.breakBtn.Click += new System.EventHandler(this.breakBtn_Click);
+            // 
+            // coffBtn
+            // 
+            this.coffBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.coffBtn.Image = global::CafeDeLunaSystem.Properties.Resources.coffee;
+            this.coffBtn.Location = new System.Drawing.Point(531, 567);
+            this.coffBtn.Name = "coffBtn";
+            this.coffBtn.Size = new System.Drawing.Size(150, 135);
+            this.coffBtn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.coffBtn.TabIndex = 4;
+            this.coffBtn.TabStop = false;
+            this.coffBtn.Click += new System.EventHandler(this.coffBtn_Click);
+
             // 
             // SearchTxtbx
             // 
@@ -1197,6 +1322,20 @@
             this.flowLayoutPanel1.Size = new System.Drawing.Size(655, 657);
             this.flowLayoutPanel1.TabIndex = 5;
             // 
+
+            // snackBtn
+            // 
+            this.snackBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.snackBtn.Image = global::CafeDeLunaSystem.Properties.Resources.snacks;
+            this.snackBtn.Location = new System.Drawing.Point(219, 567);
+            this.snackBtn.Name = "snackBtn";
+            this.snackBtn.Size = new System.Drawing.Size(150, 135);
+            this.snackBtn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.snackBtn.TabIndex = 2;
+            this.snackBtn.TabStop = false;
+            this.snackBtn.Click += new System.EventHandler(this.snackBtn_Click);
+            // 
+
             // allBtn
             // 
             this.allBtn.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -1213,7 +1352,7 @@
             // 
             this.AdminPanelContainer.ContainerControl = this.InterfaceAP;
             this.AdminPanelContainer.LayoutMode = Syncfusion.Windows.Forms.Tools.CardLayoutMode.Fill;
-            this.AdminPanelContainer.SelectedCard = "Card1";
+            this.AdminPanelContainer.SelectedCard = "Card2";
             // 
             // AccManageContainer
             // 
@@ -1225,11 +1364,12 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1284, 705);
+            this.ClientSize = new System.Drawing.Size(1300, 710);
             this.Controls.Add(this.StaffPanel);
             this.Controls.Add(this.ManagerPanel);
             this.Controls.Add(this.AdminPanel);
             this.Controls.Add(this.LoginPanel);
+            this.MaximumSize = new System.Drawing.Size(1316, 749);
             this.Name = "CafeDeLunaDashboard";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Cafe De Luna";
@@ -1362,6 +1502,7 @@
         private System.Windows.Forms.DataGridViewButtonColumn Column4;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
         private System.Windows.Forms.DataGridViewButtonColumn Column6;
+        private System.Windows.Forms.Button SalesBtn;
     }
 }
 

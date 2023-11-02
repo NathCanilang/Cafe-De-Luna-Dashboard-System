@@ -32,6 +32,12 @@ namespace CafeDeLunaSystem
             StaffPanel.Hide();
 
             panelToShow.Show();
+
+            if(panelToShow == StaffPanel)
+            {
+                CafeDeLunaDashboard.cafeDeLunaInstance.GetData();
+                CafeDeLunaDashboard.cafeDeLunaInstance.GetData2();
+            }
         }
     }
     internal class PanelManagerAP
