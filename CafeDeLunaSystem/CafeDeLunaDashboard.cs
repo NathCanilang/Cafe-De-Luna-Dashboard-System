@@ -657,7 +657,7 @@ namespace CafeDeLunaSystem
             conn.Close();
             flowLayoutPanel2.Controls.Clear();
             conn.Open();
-            cm = new MySqlCommand("SELECT MealImage, MealID FROM meal WHERE MealID>=24", conn);
+            cm = new MySqlCommand("SELECT MealImage, MealID, MealName FROM meal WHERE MealID>=24", conn);
             dr = cm.ExecuteReader();
 
             TableLayoutPanel table = new TableLayoutPanel
@@ -684,8 +684,19 @@ namespace CafeDeLunaSystem
                         BackgroundImageLayout = ImageLayout.Stretch,
                         Tag = mealID.ToString(),
                     };
+
+                    mealname = new Label
+                    {
+                        Text = dr["MealName"].ToString(),
+                        Width = 25,
+                        Height = 15,
+                        TextAlign = ContentAlignment.BottomCenter,
+                        Dock = DockStyle.Bottom,
+                        BackColor = Color.White,
+                    };
                     table.RowStyles.Add(new RowStyle(SizeType.AutoSize));
                     table.Controls.Add(menupic);
+                    table.Controls.Add(mealname);
                     flowLayoutPanel2.Controls.Add(table);
                     menupic.Click += OnFLP2Click;
                 }
