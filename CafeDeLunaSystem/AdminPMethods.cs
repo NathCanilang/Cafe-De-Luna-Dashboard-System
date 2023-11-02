@@ -3,6 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Drawing2D;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,35 +22,6 @@ namespace CafeDeLunaSystem
             conn = new MySqlConnection(mysqlcon);
         }
 
-        public Bitmap ResizeImage(Image sourceImage, int maxWidth, int maxHeight)
-        {
-            double aspectRatio = (double)sourceImage.Width / sourceImage.Height;
-            int newWidth, newHeight;
-
-            if (sourceImage.Width > sourceImage.Height)
-            {
-                newWidth = maxWidth;
-                newHeight = (int)(maxWidth / aspectRatio);
-            }
-            else
-            {
-                newHeight = maxHeight;
-                newWidth = (int)(maxHeight * aspectRatio);
-            }
-
-            using (Bitmap resizedImage = new Bitmap(newWidth, newHeight))
-            using (Graphics graphics = Graphics.FromImage(resizedImage))
-            {
-                graphics.CompositingQuality = System.Drawing.Drawing2D.CompositingQuality.HighQuality;
-                graphics.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
-                graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
-
-                graphics.DrawImage(sourceImage, 0, 0, newWidth, newHeight);
-
-                return new Bitmap(resizedImage);
-            }
-        }
-
         public int AgeCalculation(DateTime employeeBirth)
         {
             int years = DateTime.Now.Year - employeeBirth.Year;
@@ -56,6 +29,7 @@ namespace CafeDeLunaSystem
             if (employeeBirth.AddYears(years) > DateTime.Now) years--;
             return years;
         }
+
         public void PopulateMealComboBox()
         {
             CafeDeLunaDashboard.cafeDeLunaInstance.MenuSelectComB.Items.Clear();
@@ -74,7 +48,7 @@ namespace CafeDeLunaSystem
                     {
                         using (MySqlDataReader reader = command.ExecuteReader())
                         {
- 
+
                             if (reader.HasRows)
                             {
                                 while (reader.Read())
@@ -93,6 +67,7 @@ namespace CafeDeLunaSystem
             }
 
         }
+
         public int GetMealIDFromDatabase(string mealName)
         {
             string connectionString = "server=localhost;user=root;database=dashboarddb;password=";
@@ -132,16 +107,60 @@ namespace CafeDeLunaSystem
             CafeDeLunaDashboard.cafeDeLunaInstance.EmployeeIDTxtB_AP.Text = random6Digit.ToString();
         }
 
+        public  Image ResizeImages(Image image, int width, int height)
+        {
+            var destImage = new Bitmap(width, height);
+
+            using (var graphics = Graphics.FromImage(destImage))
+            {
+                graphics.CompositingQuality = CompositingQuality.HighQuality;
+                graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                graphics.SmoothingMode = SmoothingMode.HighQuality;
+                graphics.DrawImage(image, 0, 0, width, height);
+            }
+
+            return destImage;
+        }
+
+        public Image ResizeImage(Image image, int maxWidth, int maxHeight)
+        {
+            int newWidth, newHeight;
+            double aspectRatio = (double)image.Width / image.Height;
+
+            if (image.Width > maxWidth || image.Height > maxHeight)
+            {
+                if (aspectRatio > 1)
+                {
+                    newWidth = maxWidth;
+                    newHeight = (int)(newWidth / aspectRatio);
+                }
+                else
+                {
+                    newHeight = maxHeight;
+                    newWidth = (int)(newHeight * aspectRatio);
+                }
+            }
+            else
+            {
+                newWidth = image.Width;
+                newHeight = image.Height;
+            }
+
+            return new Bitmap(image, new Size(newWidth, newHeight));
+        }
+
         public void RefreshTbl()
         {
-        
-            string query = "SELECT * FROM employee_acc";
-            MySqlCommand cmd = new MySqlCommand(query, conn);
-            MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
-            DataTable dataTable = new DataTable();
-            adapter.Fill(dataTable);
+            string query = "SELECT Name, Birthday, Age, Email, Username, Password, Position, EmployeeID, EmployeeIMG FROM employee_acc";
+            DataTable dt = new DataTable();
 
-            CafeDeLunaDashboard.cafeDeLunaInstance.AccDataTbl.DataSource = dataTable;
+            using (MySqlDataAdapter adapter = new MySqlDataAdapter(query, conn))
+            {
+                adapter.Fill(dt);
+            }
+
+            CafeDeLunaDashboard.cafeDeLunaInstance.AccDataTbl.DataSource = dt;
+
         }
 
         public void LoadMenuItems()
@@ -190,6 +209,7 @@ namespace CafeDeLunaSystem
                 }
             }
         }
+
         public void FoodTable_DataError(object sender, DataGridViewDataErrorEventArgs e)
         {
             if (e.ColumnIndex == 0) // Assuming column index for "AccountPfp" is 1
@@ -199,9 +219,83 @@ namespace CafeDeLunaSystem
                 CafeDeLunaDashboard.cafeDeLunaInstance.FoodTbl[e.ColumnIndex, e.RowIndex].Value = null;
             }
         }
+
         public void FoodTable_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
         {
             CafeDeLunaDashboard.cafeDeLunaInstance.FoodTbl.AutoResizeRow(e.RowIndex, DataGridViewAutoSizeRowMode.AllCells);
+        }
+
+        public void LoadMenuItemImage(int variationID)
+        {
+            byte[] imageData = GetImageDataFromDatabase(variationID); // Call a new method to get image data
+
+            try
+            {
+                if (imageData != null && imageData.Length > 0)
+                {
+                    using (MemoryStream ms = new MemoryStream(imageData))
+                    {
+                        Image image = Image.FromStream(ms);
+
+                        // Set the PictureBox image only if the conversion succeeds
+                        CafeDeLunaDashboard.cafeDeLunaInstance.UserPicB.Image = image;
+                    }
+                }
+                else
+                {
+                    // Set PictureBox image to a default image or null if there's no image data
+                    CafeDeLunaDashboard.cafeDeLunaInstance.UserPicB.Image = null;
+                }
+            }
+            catch (ArgumentException ex)
+            {
+                // Handle the exception if the byte array does not represent a valid image format
+                MessageBox.Show("Error loading image: Invalid image data format.");
+                MessageBox.Show("Exception Details: " + ex.Message);
+
+                // Set PictureBox image to a default image or show an error image
+                CafeDeLunaDashboard.cafeDeLunaInstance.UserPicB.Image = null; // Set pictureBox image to default or show an error image
+            }
+            catch (Exception ex)
+            {
+                // Handle other exceptions
+                MessageBox.Show("Error loading image: " + ex.Message);
+
+                // Set PictureBox image to a default image or show an error image
+                CafeDeLunaDashboard.cafeDeLunaInstance.UserPicB.Image = null; // Set pictureBox image to default or show an error image
+            }
+        }
+
+        public byte[] GetImageDataFromDatabase(int employeeID)
+        {
+            string connectionString = "server=localhost;user=root;database=dashboarddb;password=";
+
+            try
+            {
+                using (MySqlConnection connection = new MySqlConnection(connectionString))
+                {
+                    connection.Open();
+                    string query = "SELECT EmployeeIMG FROM employee_acc WHERE EmployeeID = @employeeID";
+
+                    using (MySqlCommand command = new MySqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@employeeID", employeeID);
+
+                        object result = command.ExecuteScalar();
+
+                        if (result != null && result != DBNull.Value)
+                        {
+                            return (byte[])result;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            return null;
         }
     }
 }

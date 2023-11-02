@@ -32,6 +32,12 @@ namespace CafeDeLunaSystem
             StaffPanel.Hide();
 
             panelToShow.Show();
+
+            if(panelToShow == StaffPanel)
+            {
+                CafeDeLunaDashboard.cafeDeLunaInstance.GetData();
+                CafeDeLunaDashboard.cafeDeLunaInstance.GetData2();
+            }
         }
     }
     internal class PanelManagerAP
@@ -75,20 +81,18 @@ namespace CafeDeLunaSystem
         private readonly MySqlConnection conn;
         private readonly CreateAndEditAcc createAndEditAcc = new CreateAndEditAcc();
         private readonly Panel AccCreatePanel;
-        private readonly Panel EditAccPanel;
 
-        public PanelManagerAMC(Panel accCreatePanel, Panel editAccPanel)
+        public PanelManagerAMC(Panel accCreatePanel)
         {
             string mysqlcon = "server=localhost;user=root;database=dashboarddb;password=";
             conn = new MySqlConnection(mysqlcon);
 
             AccCreatePanel = accCreatePanel;
-            EditAccPanel = editAccPanel;
         }
         public void ShowPanel(Panel panelToShow)
         {
             AccCreatePanel.Hide();
-            EditAccPanel.Hide();
+            
 
             panelToShow.Show();
 
