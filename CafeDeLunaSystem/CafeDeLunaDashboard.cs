@@ -8,11 +8,17 @@ using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using iText.Kernel.Pdf;
+using iText.Layout;
+using iText.Layout.Element;
+using iText.Layout.Properties;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using System.Xml.Linq;
 using System.Drawing.Drawing2D;
+using Image = System.Drawing.Image;
+using TextAlignment = iText.Layout.Properties.TextAlignment;
 
 namespace CafeDeLunaSystem
 {
@@ -35,6 +41,7 @@ namespace CafeDeLunaSystem
         private string varietyFullFilePath;
         private byte[] imageData;
         private decimal totalPrice = 0.00m;
+        private bool isSearchTextPlaceholder = true;
 
         //Admin Panel
         private readonly CreateAndEditAcc createAndEditAcc = new CreateAndEditAcc();
@@ -594,7 +601,6 @@ namespace CafeDeLunaSystem
                         BackgroundImage = mealImage,
                         BackgroundImageLayout = ImageLayout.Stretch,
                         Tag = dr["VariationID"].ToString(),
-
                     };
 
                     price = new Label
@@ -621,8 +627,6 @@ namespace CafeDeLunaSystem
                     pic.Controls.Add(price);
                     flowLayoutPanel1.Controls.Add(pic);
                     pic.Click += OnFLP1Click;
-
-
                 }
             }
             dr.Close();
@@ -633,7 +637,7 @@ namespace CafeDeLunaSystem
         {
             flowLayoutPanel2.Controls.Clear();
             conn.Open();
-            cm = new MySqlCommand("SELECT MealImage, MealID FROM meal WHERE MealID>=27", conn);
+            cm = new MySqlCommand("SELECT MealImage, MealID FROM meal WHERE MealID>=24", conn);
             dr = cm.ExecuteReader();
 
             TableLayoutPanel table = new TableLayoutPanel
@@ -724,6 +728,7 @@ namespace CafeDeLunaSystem
                             TextAlign = ContentAlignment.BottomCenter,
                             Dock = DockStyle.Bottom,
                             BackColor = Color.White,
+                            
                         };
 
                         pic.Controls.Add(mealname);
@@ -972,9 +977,7 @@ namespace CafeDeLunaSystem
         private void SearchTxtbx_TextChanged(object sender, EventArgs e)
         {
             string searchQuery = SearchTxtbx.Text;
-
             flowLayoutPanel1.Controls.Clear();
-
 
             if (!string.IsNullOrWhiteSpace(searchQuery))
             {
@@ -1029,7 +1032,6 @@ namespace CafeDeLunaSystem
                         }
                     }
                 }
-
                 dr.Close();
                 conn.Close();
             }
@@ -1055,12 +1057,9 @@ namespace CafeDeLunaSystem
             ttlLbl.Text = sbLbl.Text;
             if (discChckBx.Checked)
             {
-                // Apply discount when the checkbox is checked
                 decimal totalPrice = decimal.Parse(sbLbl.Text.Replace("Php. ", ""));
                 decimal discount = totalPrice * 0.20m; // 20% discount
                 decimal discountedTotal = totalPrice - discount;
-
-
                 dscLbl.Text = "Php. " + discount.ToString("0.00");
                 ttlLbl.Text = "Php. " + discountedTotal.ToString("0.00");
             }
@@ -1126,7 +1125,6 @@ namespace CafeDeLunaSystem
             return unitPrice;
         }
 
-
         private void discChckBx_CheckedChanged(object sender, EventArgs e)
         {
             if (discChckBx.Checked)
@@ -1145,10 +1143,7 @@ namespace CafeDeLunaSystem
             }
         }
 
-        private void placeBtn_Click(object sender, EventArgs e)
-        {
-
-        }
+       
         private void dataGridView1_KeyUp(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Escape)
@@ -1169,5 +1164,136 @@ namespace CafeDeLunaSystem
             }
         }
 
+        private void SearchTxtbx_Enter(object sender, EventArgs e)
+        {
+            if(SearchTxtbx.Text == "Type here to search")
+            {
+                SearchTxtbx.Text = "";
+                SearchTxtbx.ForeColor = Color.Black;
+            }
+        }
+
+        private void SearchTxtbx_Leave(object sender, EventArgs e)
+        {
+            if(SearchTxtbx.Text == "")
+            {
+                SearchTxtbx.Text = "Type here to search";
+                SearchTxtbx.ForeColor = Color.LightGray;
+                GetData();
+            }
+        }
+
+        private void cashtxtBx_Enter(object sender, EventArgs e)
+        {
+            if (cashtxtBx.Text == "0.00")
+            {
+                cashtxtBx.Text = "";
+                cashtxtBx.ForeColor = Color.Black;
+            }
+        }
+
+        private void cashtxtBx_Leave(object sender, EventArgs e)
+        {
+            if (cashtxtBx.Text == "")
+            {
+                cashtxtBx.Text = "0.00";
+                cashtxtBx.ForeColor = Color.LightGray;
+                
+            }
+        }
+
+        private void CafeDeLunaDashboard_Load(object sender, EventArgs e)
+        {
+            SearchTxtbx.Text = "Type here to search";
+            SearchTxtbx.ForeColor = Color.LightGray;
+            cashtxtBx.Text = "0.00";
+            cashtxtBx.ForeColor = Color.LightGray;
+        }
+
+        private void cashtxtBx_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void placeBtn_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Are you sure you want to generate the receipt?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
+            {
+                GeneratePDFReceipt();
+            }
+        }
+
+
+        private void GeneratePDFReceipt()
+        {
+            if (dataGridView1.Rows.Count == 0)
+            {
+                MessageBox.Show("Add items to the cart before proceeding.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            decimal subtotal = decimal.Parse(sbLbl.Text.Replace("Php. ", ""));
+            decimal discount = decimal.Parse(dscLbl.Text.Replace("Php. ", ""));
+            decimal totalAmount = decimal.Parse(ttlLbl.Text.Replace("Php. ", ""));
+            decimal cashEntered;
+
+            int totalQuantity = 0;
+
+            if (!decimal.TryParse(cashtxtBx.Text, out cashEntered))
+            {
+                MessageBox.Show("Please enter a valid amount for payment.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (cashEntered < totalAmount)
+            {
+                MessageBox.Show("Please enter a valid amount for payment.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            string pdfFilePath = "Receipt.pdf";
+
+            using (PdfWriter writer = new PdfWriter(new FileStream(pdfFilePath, FileMode.Create)))
+            using (PdfDocument pdf = new PdfDocument(writer))
+            using (Document doc = new Document(pdf))
+            {
+                doc.SetProperty(Property.TEXT_ALIGNMENT, TextAlignment.JUSTIFIED_ALL);
+
+                doc.Add(new Paragraph("Café De Luna").SetTextAlignment(TextAlignment.CENTER));
+                doc.Add(new Paragraph("Order Confirmation Receipt").SetTextAlignment(TextAlignment.CENTER));
+                doc.Add(new Paragraph("Date: " + DateTime.Now.ToString("MM/dd/yyyy   hh:mm tt")).SetTextAlignment(TextAlignment.LEFT));
+                doc.Add(new Paragraph("--------------------------------------------------------------------------------------------------"));
+                doc.Add(new Paragraph($"QUANTITY                        MEAL                    PRICE"));
+
+                foreach (DataGridViewRow row in dataGridView1.Rows)
+                {
+                    string food = row.Cells[0].Value.ToString();
+                    string quantity = row.Cells[2].Value.ToString();
+                    string price = row.Cells[4].Value.ToString();
+                    if (int.TryParse(quantity, out int quantityValue))
+                    {
+                        totalQuantity += quantityValue; 
+                    }
+                    doc.Add(new Paragraph($"{quantity}                                   {food}                    {price}"));
+                }
+
+                doc.Add(new Paragraph($"---------------------------------------{totalQuantity} Item(s)-----------------------------------------"));
+                doc.Add(new Paragraph($"SUBTOTAL:                         Php. {subtotal.ToString("0.00")}"));
+                doc.Add(new Paragraph($"DISCOUNT:                         Php. {discount.ToString("0.00")}"));
+                doc.Add(new Paragraph($"TOTAL:                         Php. {totalAmount.ToString("0.00")}"));
+                doc.Add(new Paragraph($"CASH:                         Php. {cashEntered.ToString("0.00")}"));
+                decimal change = cashEntered - totalAmount;
+                doc.Add(new Paragraph($"CHANGE:                         Php. {change.ToString("0.00")}"));
+
+                doc.Add(new Paragraph("--------------------------------------------------------------------------------------------------"));
+                doc.Add(new Paragraph("This Receipt Serves as Your Proof of Purchase").SetTextAlignment(TextAlignment.CENTER));
+            }
+
+            MessageBox.Show("Receipt generated successfully.", "Enjoy your meal!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            System.Diagnostics.Process.Start(pdfFilePath);
+        }
+        
     }
 }
