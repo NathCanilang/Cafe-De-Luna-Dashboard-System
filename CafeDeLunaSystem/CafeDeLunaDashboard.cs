@@ -1,18 +1,10 @@
 ﻿using MySql.Data.MySqlClient;
-using MySqlX.XDevAPI.Common;
-using Syncfusion.Windows.Forms.Tools;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
-using System.Linq;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
-using System.Xml.Linq;
-using System.Drawing.Drawing2D;
 
 namespace CafeDeLunaSystem
 {

@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this.MainLoginContainer = new Syncfusion.Windows.Forms.Tools.CardLayout(this.components);
             this.LoginPanel = new System.Windows.Forms.Panel();
             this.PanelLP = new System.Windows.Forms.Panel();
@@ -159,7 +159,7 @@
             // 
             this.MainLoginContainer.ContainerControl = this;
             this.MainLoginContainer.LayoutMode = Syncfusion.Windows.Forms.Tools.CardLayoutMode.Fill;
-            this.MainLoginContainer.SelectedCard = "Card1";
+            this.MainLoginContainer.SelectedCard = "Card3";
             // 
             // LoginPanel
             // 
@@ -233,7 +233,7 @@
             this.InterfaceAP.Controls.Add(this.AccManagePanel);
             this.InterfaceAP.Location = new System.Drawing.Point(177, 0);
             this.InterfaceAP.Name = "InterfaceAP";
-            this.InterfaceAP.Size = new System.Drawing.Size(916, 566);
+            this.InterfaceAP.Size = new System.Drawing.Size(1123, 710);
             this.InterfaceAP.TabIndex = 2;
             // 
             // HomePanelAP
@@ -244,7 +244,7 @@
             this.AdminPanelContainer.SetMinimumSize(this.HomePanelAP, new System.Drawing.Size(200, 100));
             this.HomePanelAP.Name = "HomePanelAP";
             this.AdminPanelContainer.SetPreferredSize(this.HomePanelAP, new System.Drawing.Size(200, 100));
-            this.HomePanelAP.Size = new System.Drawing.Size(916, 566);
+            this.HomePanelAP.Size = new System.Drawing.Size(1123, 710);
             this.HomePanelAP.TabIndex = 3;
             // 
             // label2
@@ -283,7 +283,7 @@
             this.AdminPanelContainer.SetMinimumSize(this.AddMenuPanelAP, new System.Drawing.Size(200, 100));
             this.AddMenuPanelAP.Name = "AddMenuPanelAP";
             this.AdminPanelContainer.SetPreferredSize(this.AddMenuPanelAP, new System.Drawing.Size(200, 100));
-            this.AddMenuPanelAP.Size = new System.Drawing.Size(916, 566);
+            this.AddMenuPanelAP.Size = new System.Drawing.Size(1123, 710);
             this.AddMenuPanelAP.TabIndex = 1;
             // 
             // MenuFilePathTxtB
@@ -479,7 +479,7 @@
             this.AdminPanelContainer.SetMinimumSize(this.SalesRepPanel, new System.Drawing.Size(200, 100));
             this.SalesRepPanel.Name = "SalesRepPanel";
             this.AdminPanelContainer.SetPreferredSize(this.SalesRepPanel, new System.Drawing.Size(200, 100));
-            this.SalesRepPanel.Size = new System.Drawing.Size(916, 566);
+            this.SalesRepPanel.Size = new System.Drawing.Size(1123, 710);
             this.SalesRepPanel.TabIndex = 4;
             // 
             // AccManagePanel
@@ -491,7 +491,7 @@
             this.AdminPanelContainer.SetMinimumSize(this.AccManagePanel, new System.Drawing.Size(200, 100));
             this.AccManagePanel.Name = "AccManagePanel";
             this.AdminPanelContainer.SetPreferredSize(this.AccManagePanel, new System.Drawing.Size(200, 100));
-            this.AccManagePanel.Size = new System.Drawing.Size(916, 566);
+            this.AccManagePanel.Size = new System.Drawing.Size(1123, 710);
             this.AccManagePanel.TabIndex = 0;
             // 
             // AccCreatePanel
@@ -530,7 +530,7 @@
             this.AccManageContainer.SetMinimumSize(this.AccCreatePanel, new System.Drawing.Size(200, 100));
             this.AccCreatePanel.Name = "AccCreatePanel";
             this.AccManageContainer.SetPreferredSize(this.AccCreatePanel, new System.Drawing.Size(200, 100));
-            this.AccCreatePanel.Size = new System.Drawing.Size(916, 566);
+            this.AccCreatePanel.Size = new System.Drawing.Size(1123, 710);
             this.AccCreatePanel.TabIndex = 0;
             // 
             // ImgTxtB
@@ -829,7 +829,7 @@
             this.NavigationPanelAP.Controls.Add(this.AccManageLbl);
             this.NavigationPanelAP.Location = new System.Drawing.Point(0, 0);
             this.NavigationPanelAP.Name = "NavigationPanelAP";
-            this.NavigationPanelAP.Size = new System.Drawing.Size(177, 705);
+            this.NavigationPanelAP.Size = new System.Drawing.Size(177, 710);
             this.NavigationPanelAP.TabIndex = 1;
             // 
             // SalesRepLbl
@@ -1058,20 +1058,20 @@
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToResizeColumns = false;
             this.dataGridView1.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
-            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.Black;
+            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
@@ -1080,24 +1080,24 @@
             this.Column4,
             this.Column5,
             this.Column6});
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle7;
             this.dataGridView1.Location = new System.Drawing.Point(876, 38);
             this.dataGridView1.Name = "dataGridView1";
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle8;
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.Size = new System.Drawing.Size(396, 234);
@@ -1230,7 +1230,7 @@
             // 
             this.AdminPanelContainer.ContainerControl = this.InterfaceAP;
             this.AdminPanelContainer.LayoutMode = Syncfusion.Windows.Forms.Tools.CardLayoutMode.Fill;
-            this.AdminPanelContainer.SelectedCard = "Card5";
+            this.AdminPanelContainer.SelectedCard = "Card2";
             // 
             // AccManageContainer
             // 
@@ -1247,7 +1247,7 @@
             this.Controls.Add(this.ManagerPanel);
             this.Controls.Add(this.AdminPanel);
             this.Controls.Add(this.LoginPanel);
-            this.MaximumSize = new System.Drawing.Size(1316, 751);
+            this.MaximumSize = new System.Drawing.Size(1316, 749);
             this.Name = "CafeDeLunaDashboard";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Cafe De Luna";
