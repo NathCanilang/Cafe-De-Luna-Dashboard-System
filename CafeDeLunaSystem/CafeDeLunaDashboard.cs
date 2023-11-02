@@ -123,11 +123,13 @@ namespace CafeDeLunaSystem
                             {
                                 MessageBox.Show("Login Successful",  "Welcome, Manager", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                 panelManager.ShowPanel(StaffPanel);
+                                PositionTxtBox.Text = "Manager";
                             }
                             else if (userRole == "Cashier")
                             {
                                 MessageBox.Show("Login Successful", "Welcome, Staff", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                 panelManager.ShowPanel(StaffPanel);
+                                PositionTxtBox.Text = "Staff";
                                 SalesBtn.Hide();
                             }
                         }
@@ -1105,6 +1107,93 @@ namespace CafeDeLunaSystem
                 dataGridView1.Rows[e.RowIndex].Cells[2].Value = currentQty;
                 AddTotalPrice(e.RowIndex);
             }
+
+            if (e.ColumnIndex == 5 && e.RowIndex >= 0)
+            {
+                string userPosition = PositionTxtBox.Text; // Replace this with the logic to get the user's position
+
+                DialogResult result;
+
+                if (userPosition == "Staff")
+                {
+                    // If the user is a staff member, prompt for manager's password
+                    string enteredPassword = Encryptor.HashPassword(Microsoft.VisualBasic.Interaction.InputBox("Enter manager password:", "Password Required", ""));
+
+                    string connectionString = "server=localhost;user=root;database=dashboarddb;password=";
+
+                    using (MySqlConnection connection = new MySqlConnection(connectionString))
+                    {
+                        connection.Open();
+
+                        string query = "SELECT Position FROM employee_acc WHERE Password = @Password";
+
+                        using (MySqlCommand command = new MySqlCommand(query, connection))
+                        {
+                            command.Parameters.AddWithValue("@Password", enteredPassword);
+
+                            // Execute the query
+                            using (MySqlDataReader reader = command.ExecuteReader())
+                            {
+                                if (reader.Read())
+                                {
+                                    string position = reader["Position"].ToString();
+
+                                    if (position == "Manager")
+                                    {
+                                        result = MessageBox.Show("Do you want to remove this item?", "Remove Item", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                                        if (result == DialogResult.Yes)
+                                        {
+                                            if (e.RowIndex < dataGridView1.Rows.Count)
+                                            {
+                                                // Calculate the price of the removed item
+                                                decimal removedItemPrice = decimal.Parse(dataGridView1.Rows[e.RowIndex].Cells[4].Value.ToString());
+
+                                                // Remove the selected row from the DataGridView
+                                                dataGridView1.Rows.RemoveAt(e.RowIndex);
+
+                                                // Update the total price by subtracting the removed item's price
+                                                totalPrice -= removedItemPrice;
+                                                sbLbl.Text = "Php. " + totalPrice.ToString("0.00");
+                                                ttlLbl.Text = sbLbl.Text;
+                                            }
+                                        }
+                                    }
+                                    else
+                                    {
+                                        MessageBox.Show("Invalid password. You need manager permission to remove an item.", "Permission Required", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                    }
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Invalid password. You need manager permission to remove an item.", "Permission Required", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                }
+                            }
+                        }
+                    }
+                }
+                else // For Managers and Admins, no password is required
+                {
+                    result = MessageBox.Show("Do you want to remove this item?", "Remove Item", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                    if (result == DialogResult.Yes)
+                    {
+                        if (e.RowIndex < dataGridView1.Rows.Count)
+                        {
+                            // Calculate the price of the removed item
+                            decimal removedItemPrice = decimal.Parse(dataGridView1.Rows[e.RowIndex].Cells[4].Value.ToString());
+
+                            // Remove the selected row from the DataGridView
+                            dataGridView1.Rows.RemoveAt(e.RowIndex);
+
+                            // Update the total price by subtracting the removed item's price
+                            totalPrice -= removedItemPrice;
+                            sbLbl.Text = "Php. " + totalPrice.ToString("0.00");
+                            ttlLbl.Text = sbLbl.Text;
+                        }
+                    }
+                }
+            }
         }
 
         private decimal GetUnitPriceForFood(string foodName)
@@ -1293,6 +1382,74 @@ namespace CafeDeLunaSystem
             MessageBox.Show("Receipt generated successfully.", "Enjoy your meal!", MessageBoxButtons.OK, MessageBoxIcon.Information);
             System.Diagnostics.Process.Start(pdfFilePath);
         }
-        
+
+        private void voidBtn_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.Rows.Count == 0)
+            {
+                MessageBox.Show("There are no items in your cart.", "No Items", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            string userPosition = PositionTxtBox.Text; // Replace this with the logic to get the user's position
+
+            DialogResult result;
+
+            if (userPosition == "Staff")
+            {
+                // If the user is a staff member, prompt for manager's password
+                string enteredPassword = Encryptor.HashPassword(Microsoft.VisualBasic.Interaction.InputBox("Enter manager password:", "Password Required", ""));
+
+                string connectionString = "server=localhost;user=root;database=dashboarddb;password=";
+
+                using (MySqlConnection connection = new MySqlConnection(connectionString))
+                {
+                    connection.Open();
+
+                    string query = "SELECT Position FROM employee_acc WHERE Password = @Password";
+
+                    using (MySqlCommand command = new MySqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@Password", enteredPassword);
+
+                        // Execute the query
+                        using (MySqlDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                string position = reader["Position"].ToString();
+
+                                if (position == "Manager")
+                                {
+                                    result = MessageBox.Show("Do you want to remove this item?", "Remove Item", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Invalid password. You need manager permission to remove an item.", "Permission Required", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                    return;
+                                }
+                            }
+                            else
+                            {
+                                MessageBox.Show("Invalid password. You need manager permission to remove an item.", "Permission Required", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                return;
+                            }
+                        }
+                    }
+                }
+            }
+            else // For Managers and Admins, no password is required
+            {
+                result = MessageBox.Show("Do you want to remove this item?", "Remove Item", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            }
+
+            if (result == DialogResult.Yes)
+            {
+                // Clear all rows from the DataGridView
+                dataGridView1.Rows.Clear();
+                sbLbl.Text = "Php. 0.00";
+                ttlLbl.Text = "Php. 0.00";
+            }
+        }
     }
 }
