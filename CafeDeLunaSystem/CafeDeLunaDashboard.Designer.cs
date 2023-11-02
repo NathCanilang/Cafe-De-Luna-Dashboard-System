@@ -29,10 +29,16 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+
             this.MainLoginContainer = new Syncfusion.Windows.Forms.Tools.CardLayout(this.components);
             this.LoginPanel = new System.Windows.Forms.Panel();
             this.PanelLP = new System.Windows.Forms.Panel();
@@ -100,7 +106,13 @@
             this.ManagerPanel = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.StaffPanel = new System.Windows.Forms.Panel();
+
+            this.cashtxtBx = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.cahlbl = new System.Windows.Forms.Label();
+
             this.SalesBtn = new System.Windows.Forms.Button();
+
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
             this.logLbl = new System.Windows.Forms.Label();
             this.ttlLbl = new System.Windows.Forms.Label();
@@ -119,11 +131,12 @@
             this.Column4 = new System.Windows.Forms.DataGridViewButtonColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column6 = new System.Windows.Forms.DataGridViewButtonColumn();
+
             this.breakBtn = new System.Windows.Forms.PictureBox();
             this.coffBtn = new System.Windows.Forms.PictureBox();
+
             this.SearchTxtbx = new System.Windows.Forms.TextBox();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.snackBtn = new System.Windows.Forms.PictureBox();
             this.allBtn = new System.Windows.Forms.PictureBox();
             this.AdminPanelContainer = new Syncfusion.Windows.Forms.Tools.CardLayout(this.components);
             this.AccManageContainer = new Syncfusion.Windows.Forms.Tools.CardLayout(this.components);
@@ -146,9 +159,6 @@
             this.ManagerPanel.SuspendLayout();
             this.StaffPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.breakBtn)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.coffBtn)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.snackBtn)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.allBtn)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.AdminPanelContainer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.AccManageContainer)).BeginInit();
@@ -900,7 +910,13 @@
             // 
             this.StaffPanel.BackColor = System.Drawing.Color.Transparent;
             this.MainLoginContainer.SetCardName(this.StaffPanel, "Card1");
+
+            this.StaffPanel.Controls.Add(this.cashtxtBx);
+            this.StaffPanel.Controls.Add(this.label3);
+            this.StaffPanel.Controls.Add(this.cahlbl);
+
             this.StaffPanel.Controls.Add(this.SalesBtn);
+
             this.StaffPanel.Controls.Add(this.flowLayoutPanel2);
             this.StaffPanel.Controls.Add(this.logLbl);
             this.StaffPanel.Controls.Add(this.ttlLbl);
@@ -913,11 +929,8 @@
             this.StaffPanel.Controls.Add(this.voidBtn);
             this.StaffPanel.Controls.Add(this.discChckBx);
             this.StaffPanel.Controls.Add(this.dataGridView1);
-            this.StaffPanel.Controls.Add(this.breakBtn);
-            this.StaffPanel.Controls.Add(this.coffBtn);
             this.StaffPanel.Controls.Add(this.SearchTxtbx);
             this.StaffPanel.Controls.Add(this.flowLayoutPanel1);
-            this.StaffPanel.Controls.Add(this.snackBtn);
             this.StaffPanel.Controls.Add(this.allBtn);
             this.StaffPanel.Location = new System.Drawing.Point(0, 0);
             this.MainLoginContainer.SetMinimumSize(this.StaffPanel, new System.Drawing.Size(200, 100));
@@ -926,6 +939,40 @@
             this.StaffPanel.Size = new System.Drawing.Size(1300, 710);
             this.StaffPanel.TabIndex = 3;
             // 
+
+            // cashtxtBx
+            // 
+            this.cashtxtBx.BackColor = System.Drawing.Color.White;
+            this.cashtxtBx.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.cashtxtBx.Font = new System.Drawing.Font("Handmade", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cashtxtBx.Location = new System.Drawing.Point(1104, 464);
+            this.cashtxtBx.Multiline = true;
+            this.cashtxtBx.Name = "cashtxtBx";
+            this.cashtxtBx.Size = new System.Drawing.Size(50, 34);
+            this.cashtxtBx.TabIndex = 21;
+            this.cashtxtBx.Enter += new System.EventHandler(this.cashtxtBx_Enter);
+            this.cashtxtBx.Leave += new System.EventHandler(this.cashtxtBx_Leave);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Handmade", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(1057, 464);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(52, 34);
+            this.label3.TabIndex = 20;
+            this.label3.Text = "Php.";
+            // 
+            // cahlbl
+            // 
+            this.cahlbl.AutoSize = true;
+            this.cahlbl.Font = new System.Drawing.Font("Handmade", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cahlbl.Location = new System.Drawing.Point(936, 464);
+            this.cahlbl.Name = "cahlbl";
+            this.cahlbl.Size = new System.Drawing.Size(56, 34);
+            this.cahlbl.TabIndex = 19;
+            this.cahlbl.Text = "Cash";
+
             // SalesBtn
             // 
             this.SalesBtn.Location = new System.Drawing.Point(921, 543);
@@ -935,25 +982,32 @@
             this.SalesBtn.TabIndex = 19;
             this.SalesBtn.Text = "Sales Button";
             this.SalesBtn.UseVisualStyleBackColor = true;
+
             // 
             // flowLayoutPanel2
             // 
             this.flowLayoutPanel2.AutoScroll = true;
             this.flowLayoutPanel2.Cursor = System.Windows.Forms.Cursors.Hand;
             this.flowLayoutPanel2.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(3, 161);
+            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(180, 539);
+
             this.flowLayoutPanel2.Location = new System.Drawing.Point(3, 146);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
             this.flowLayoutPanel2.Size = new System.Drawing.Size(159, 554);
+
             this.flowLayoutPanel2.TabIndex = 18;
             this.flowLayoutPanel2.WrapContents = false;
             // 
             // logLbl
             // 
             this.logLbl.AutoSize = true;
-            this.logLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.logLbl.Location = new System.Drawing.Point(556, 12);
+            this.logLbl.Font = new System.Drawing.Font("Handmade", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.logLbl.Location = new System.Drawing.Point(187, 12);
             this.logLbl.Name = "logLbl";
-            this.logLbl.Size = new System.Drawing.Size(78, 25);
+            this.logLbl.Size = new System.Drawing.Size(52, 25);
             this.logLbl.TabIndex = 17;
             this.logLbl.Text = "Logout";
             this.logLbl.Click += new System.EventHandler(this.logLbl_Click);
@@ -961,68 +1015,68 @@
             // ttlLbl
             // 
             this.ttlLbl.AutoSize = true;
-            this.ttlLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ttlLbl.Font = new System.Drawing.Font("Handmade", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ttlLbl.Location = new System.Drawing.Point(1057, 428);
             this.ttlLbl.Name = "ttlLbl";
-            this.ttlLbl.Size = new System.Drawing.Size(104, 25);
+            this.ttlLbl.Size = new System.Drawing.Size(97, 34);
             this.ttlLbl.TabIndex = 16;
             this.ttlLbl.Text = "Php. 0.00";
             // 
             // totalLbl
             // 
             this.totalLbl.AutoSize = true;
-            this.totalLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.totalLbl.Font = new System.Drawing.Font("Handmade", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.totalLbl.Location = new System.Drawing.Point(936, 430);
             this.totalLbl.Name = "totalLbl";
-            this.totalLbl.Size = new System.Drawing.Size(60, 25);
+            this.totalLbl.Size = new System.Drawing.Size(55, 34);
             this.totalLbl.TabIndex = 15;
             this.totalLbl.Text = "Total";
             // 
             // dscLbl
             // 
             this.dscLbl.AutoSize = true;
-            this.dscLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dscLbl.Font = new System.Drawing.Font("Handmade", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dscLbl.Location = new System.Drawing.Point(1057, 397);
             this.dscLbl.Name = "dscLbl";
-            this.dscLbl.Size = new System.Drawing.Size(104, 25);
+            this.dscLbl.Size = new System.Drawing.Size(97, 34);
             this.dscLbl.TabIndex = 14;
             this.dscLbl.Text = "Php. 0.00";
             // 
             // discLbl
             // 
             this.discLbl.AutoSize = true;
-            this.discLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.discLbl.Font = new System.Drawing.Font("Handmade", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.discLbl.Location = new System.Drawing.Point(936, 397);
             this.discLbl.Name = "discLbl";
-            this.discLbl.Size = new System.Drawing.Size(96, 25);
+            this.discLbl.Size = new System.Drawing.Size(86, 34);
             this.discLbl.TabIndex = 13;
             this.discLbl.Text = "Discount";
             // 
             // sbLbl
             // 
             this.sbLbl.AutoSize = true;
-            this.sbLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.sbLbl.Font = new System.Drawing.Font("Handmade", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.sbLbl.Location = new System.Drawing.Point(1057, 365);
             this.sbLbl.Name = "sbLbl";
-            this.sbLbl.Size = new System.Drawing.Size(104, 25);
+            this.sbLbl.Size = new System.Drawing.Size(97, 34);
             this.sbLbl.TabIndex = 12;
             this.sbLbl.Text = "Php. 0.00";
             // 
             // subLbl
             // 
             this.subLbl.AutoSize = true;
-            this.subLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.subLbl.Font = new System.Drawing.Font("Handmade", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.subLbl.Location = new System.Drawing.Point(936, 365);
             this.subLbl.Name = "subLbl";
-            this.subLbl.Size = new System.Drawing.Size(91, 25);
+            this.subLbl.Size = new System.Drawing.Size(81, 34);
             this.subLbl.TabIndex = 11;
             this.subLbl.Text = "Subtotal";
             // 
             // placeBtn
             // 
             this.placeBtn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.placeBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.placeBtn.Location = new System.Drawing.Point(1084, 470);
+            this.placeBtn.Font = new System.Drawing.Font("Handmade", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.placeBtn.Location = new System.Drawing.Point(1063, 513);
             this.placeBtn.Name = "placeBtn";
             this.placeBtn.Size = new System.Drawing.Size(157, 54);
             this.placeBtn.TabIndex = 10;
@@ -1033,8 +1087,8 @@
             // voidBtn
             // 
             this.voidBtn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.voidBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.voidBtn.Location = new System.Drawing.Point(921, 470);
+            this.voidBtn.Font = new System.Drawing.Font("Handmade", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.voidBtn.Location = new System.Drawing.Point(895, 513);
             this.voidBtn.Name = "voidBtn";
             this.voidBtn.Size = new System.Drawing.Size(146, 54);
             this.voidBtn.TabIndex = 9;
@@ -1044,10 +1098,10 @@
             // discChckBx
             // 
             this.discChckBx.AutoSize = true;
-            this.discChckBx.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.discChckBx.Font = new System.Drawing.Font("Handmade", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.discChckBx.Location = new System.Drawing.Point(918, 293);
             this.discChckBx.Name = "discChckBx";
-            this.discChckBx.Size = new System.Drawing.Size(241, 29);
+            this.discChckBx.Size = new System.Drawing.Size(219, 38);
             this.discChckBx.TabIndex = 8;
             this.discChckBx.Text = "PWD/Senior (20% off)";
             this.discChckBx.UseVisualStyleBackColor = true;
@@ -1058,6 +1112,25 @@
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToResizeColumns = false;
             this.dataGridView1.AllowUserToResizeRows = false;
+
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Handmade", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
+            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
+            this.dataGridView1.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Handmade", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle5.BackColor = System.Drawing.Color.White;
             dataGridViewCellStyle5.ForeColor = System.Drawing.Color.Black;
@@ -1072,6 +1145,7 @@
             dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
+
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
@@ -1080,6 +1154,31 @@
             this.Column4,
             this.Column5,
             this.Column6});
+
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle3;
+            this.dataGridView1.Location = new System.Drawing.Point(857, 43);
+            this.dataGridView1.Name = "dataGridView1";
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Handmade", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            this.dataGridView1.RowHeadersVisible = false;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Handmade", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle5;
+            this.dataGridView1.Size = new System.Drawing.Size(363, 234);
+
             dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle7.BackColor = System.Drawing.Color.White;
             dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1101,6 +1200,7 @@
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.Size = new System.Drawing.Size(396, 234);
+
             this.dataGridView1.TabIndex = 7;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             this.dataGridView1.KeyUp += new System.Windows.Forms.KeyEventHandler(this.dataGridView1_KeyUp);
@@ -1108,7 +1208,9 @@
             // Column1
             // 
             this.Column1.HeaderText = "Food";
+
             this.Column1.MinimumWidth = 6;
+
             this.Column1.Name = "Column1";
             this.Column1.ReadOnly = true;
             this.Column1.Width = 150;
@@ -1116,7 +1218,9 @@
             // Column2
             // 
             this.Column2.HeaderText = "-";
+
             this.Column2.MinimumWidth = 6;
+
             this.Column2.Name = "Column2";
             this.Column2.ReadOnly = true;
             this.Column2.Text = "";
@@ -1125,15 +1229,23 @@
             // Column3
             // 
             this.Column3.HeaderText = "Quantity";
+
+            this.Column3.Name = "Column3";
+            this.Column3.ReadOnly = true;
+            this.Column3.Width = 60;
+
             this.Column3.MinimumWidth = 6;
             this.Column3.Name = "Column3";
             this.Column3.ReadOnly = true;
             this.Column3.Width = 50;
+
             // 
             // Column4
             // 
             this.Column4.HeaderText = "+";
+
             this.Column4.MinimumWidth = 6;
+
             this.Column4.Name = "Column4";
             this.Column4.ReadOnly = true;
             this.Column4.Text = "";
@@ -1142,7 +1254,9 @@
             // Column5
             // 
             this.Column5.HeaderText = "Price";
+
             this.Column5.MinimumWidth = 6;
+
             this.Column5.Name = "Column5";
             this.Column5.ReadOnly = true;
             this.Column5.Width = 75;
@@ -1150,11 +1264,14 @@
             // Column6
             // 
             this.Column6.HeaderText = "Bin";
+
             this.Column6.MinimumWidth = 6;
+
             this.Column6.Name = "Column6";
             this.Column6.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.Column6.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.Column6.Width = 25;
+
             // 
             // breakBtn
             // 
@@ -1180,16 +1297,19 @@
             this.coffBtn.TabIndex = 4;
             this.coffBtn.TabStop = false;
             this.coffBtn.Click += new System.EventHandler(this.coffBtn_Click);
+
             // 
             // SearchTxtbx
             // 
+            this.SearchTxtbx.Font = new System.Drawing.Font("Handmade", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SearchTxtbx.ForeColor = System.Drawing.Color.Black;
-            this.SearchTxtbx.Location = new System.Drawing.Point(168, 12);
-            this.SearchTxtbx.Multiline = true;
+            this.SearchTxtbx.Location = new System.Drawing.Point(435, 12);
             this.SearchTxtbx.Name = "SearchTxtbx";
-            this.SearchTxtbx.Size = new System.Drawing.Size(372, 20);
+            this.SearchTxtbx.Size = new System.Drawing.Size(372, 25);
             this.SearchTxtbx.TabIndex = 6;
             this.SearchTxtbx.TextChanged += new System.EventHandler(this.SearchTxtbx_TextChanged);
+            this.SearchTxtbx.Enter += new System.EventHandler(this.SearchTxtbx_Enter);
+            this.SearchTxtbx.Leave += new System.EventHandler(this.SearchTxtbx_Leave);
             // 
             // flowLayoutPanel1
             // 
@@ -1197,11 +1317,12 @@
             this.flowLayoutPanel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.flowLayoutPanel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.flowLayoutPanel1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(168, 38);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(187, 43);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(655, 512);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(655, 657);
             this.flowLayoutPanel1.TabIndex = 5;
             // 
+
             // snackBtn
             // 
             this.snackBtn.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -1214,13 +1335,14 @@
             this.snackBtn.TabStop = false;
             this.snackBtn.Click += new System.EventHandler(this.snackBtn_Click);
             // 
+
             // allBtn
             // 
             this.allBtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.allBtn.Image = global::CafeDeLunaSystem.Properties.Resources.all;
-            this.allBtn.Location = new System.Drawing.Point(12, 5);
+            this.allBtn.Location = new System.Drawing.Point(3, 3);
             this.allBtn.Name = "allBtn";
-            this.allBtn.Size = new System.Drawing.Size(150, 135);
+            this.allBtn.Size = new System.Drawing.Size(178, 152);
             this.allBtn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.allBtn.TabIndex = 1;
             this.allBtn.TabStop = false;
@@ -1251,6 +1373,7 @@
             this.Name = "CafeDeLunaDashboard";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Cafe De Luna";
+            this.Load += new System.EventHandler(this.CafeDeLunaDashboard_Load);
             ((System.ComponentModel.ISupportInitialize)(this.MainLoginContainer)).EndInit();
             this.LoginPanel.ResumeLayout(false);
             this.PanelLP.ResumeLayout(false);
@@ -1275,9 +1398,6 @@
             this.StaffPanel.ResumeLayout(false);
             this.StaffPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.breakBtn)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.coffBtn)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.snackBtn)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.allBtn)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.AdminPanelContainer)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.AccManageContainer)).EndInit();
@@ -1359,9 +1479,6 @@
         private System.Windows.Forms.TextBox MenuFilePathTxtB;
         private System.Windows.Forms.TextBox SearchTxtbx;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
-        private System.Windows.Forms.PictureBox coffBtn;
-        private System.Windows.Forms.PictureBox breakBtn;
-        private System.Windows.Forms.PictureBox snackBtn;
         private System.Windows.Forms.PictureBox allBtn;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.CheckBox discChckBx;
@@ -1376,6 +1493,9 @@
         private System.Windows.Forms.Label logLbl;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
         private Syncfusion.Windows.Forms.Tools.FlowLayout flowLayout1;
+        private System.Windows.Forms.TextBox cashtxtBx;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label cahlbl;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewButtonColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;

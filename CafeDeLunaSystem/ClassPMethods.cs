@@ -8,5 +8,6 @@ namespace CafeDeLunaSystem
 {
     internal class ClassPMethods
     {
+
     }
 }
