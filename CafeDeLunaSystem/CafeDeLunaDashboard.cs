@@ -5,7 +5,6 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Windows.Forms;
-
 using iText.Kernel.Pdf;
 using iText.Layout;
 using iText.Layout.Element;
@@ -41,6 +40,13 @@ namespace CafeDeLunaSystem
         private byte[] imageData;
         private decimal totalPrice = 0.00m;
         private bool isSearchTextPlaceholder = true;
+        bool isNewImageSelected = false;
+
+        //
+        private bool IsEditMode = false;
+        public int EmployeeIDBeingEdited = -1;
+        private bool IsPasswordChanged = false;
+
 
         //Admin Panel
         private readonly CreateAndEditAcc createAndEditAcc = new CreateAndEditAcc();
@@ -84,7 +90,7 @@ namespace CafeDeLunaSystem
 
             UserBirthdate.ValueChanged += CalculateAge;
         }
-        
+
         //Login Section
         private void LogBtnLP_Click(object sender, System.EventArgs e)
         {
@@ -94,7 +100,7 @@ namespace CafeDeLunaSystem
 
             if (usernameInput == "Admin" && passwordInput == "admin123")
             {
-                MessageBox.Show("Admin login successful","Welcome, Admin", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Admin login successful", "Welcome, Admin", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 panelManager.ShowPanel(AdminPanel);
             }
             else if (usernameInput == "Staff" && passwordInput == "staff123")
@@ -121,7 +127,7 @@ namespace CafeDeLunaSystem
                             string userRole = position.ToString();
                             if (userRole == "Manager")
                             {
-                                MessageBox.Show("Login Successful",  "Welcome, Manager", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                MessageBox.Show("Login Successful", "Welcome, Manager", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                 panelManager.ShowPanel(StaffPanel);
                                 PositionTxtBox.Text = "Manager";
                             }
@@ -140,7 +146,7 @@ namespace CafeDeLunaSystem
                     }
                 }
             }
-            
+
         }
 
         //Admin Panel
@@ -165,9 +171,14 @@ namespace CafeDeLunaSystem
             DialogResult result = MessageBox.Show("Are you sure you want to edit accounts?", "Information", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result == DialogResult.Yes)
             {
-                //panelManagerAMC.ShowPanel(EditAccPanel);
                 if (AccDataTbl.SelectedRows.Count == 1)
                 {
+                    IsEditMode = true;
+                    UpdateBtn.Show();
+                    CancelBtn.Show();
+                    CreateBtn.Hide();
+                    EditBtn.Hide();
+
                     DataGridViewRow selectedRow = AccDataTbl.SelectedRows[0];
                     string nameColumn = selectedRow.Cells["Name"].Value.ToString();
                     string birthdayColumn = selectedRow.Cells["Birthday"].Value.ToString().Trim();
@@ -178,7 +189,8 @@ namespace CafeDeLunaSystem
                     int employeeIDColumn = Convert.ToInt32(AccDataTbl.SelectedRows[0].Cells["EmployeeID"].Value);
                     string[] nameParts = nameColumn.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
 
-                    //string[] nameParts = nameColumn.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+                    EmployeeIDBeingEdited = Convert.ToInt32(AccDataTbl.SelectedRows[0].Cells["EmployeeID"].Value);
+
 
                     if (nameParts.Length > 0)
                     {
@@ -226,15 +238,6 @@ namespace CafeDeLunaSystem
             }
         }
 
-        private void CancelBtn_Click(object sender, System.EventArgs e)
-        {
-            DialogResult result = MessageBox.Show("Are you sure you want to cancel the operation?", "Information", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (result == DialogResult.Yes)
-            {
-                panelManagerAMC.ShowPanel(AccCreatePanel);
-            }
-        }
-
         private void LogoutLbl_Click(object sender, System.EventArgs e)
         {
             DialogResult result = MessageBox.Show("Are you sure you want to log-out?", "information", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -247,6 +250,37 @@ namespace CafeDeLunaSystem
         private void SelectImgBtn_Click(object sender, System.EventArgs e)
         {
             using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.gif;*.bmp";
+                openFileDialog.Title = "Select an Image File";
+
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    try
+                    {
+                        // Load the selected image
+                        Image selectedImage = Image.FromFile(openFileDialog.FileName);
+
+                        // Check if the image dimensions are 64x64 pixels
+                        if (selectedImage.Width == 64 && selectedImage.Height == 64)
+                        {
+                            UserPicB.Image = selectedImage;
+                            isNewImageSelected = true; // Set the flag to true
+                        }
+                        else
+                        {
+                            MessageBox.Show("Please select an image with dimensions of 64x64 pixels.", "Try again", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error loading the image: " + ex.Message);
+                    }
+                }
+            }
+
+
+            /*using (OpenFileDialog openFileDialog = new OpenFileDialog())
             {
                 openFileDialog.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.gif;*.bmp";
                 openFileDialog.Title = "Select an Image File";
@@ -276,21 +310,25 @@ namespace CafeDeLunaSystem
                         MessageBox.Show("Error loading the image: " + ex.Message);
                     }
                 }
-            }
+            }*/
         }
-
         private void CreateBtn_Click(object sender, EventArgs e)
         {
             string adminUsername = "Admin";
             DateTime selectedDate = UserBirthdate.Value;
             string employeeFullName = $"{LastNTxtB_AP.Text}, {FirstNTxtB_AP.Text} {MiddleNTxtB_AP.Text}";
-            string userImagePath = ImgTxtB.Text;
+            //string userImagePath = ImgTxtB.Text;
 
-            if (string.IsNullOrWhiteSpace(userImagePath) || !File.Exists(userImagePath))
+            if (UserPicB.Image == null)
             {
-                MessageBox.Show("Invalid image file path.", "Try again", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Please select an image.", "Try again", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+            /* if (string.IsNullOrWhiteSpace(userImagePath) || !File.Exists(userImagePath))
+             {
+                 MessageBox.Show("Invalid image file path.", "Try again", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                 return;
+             }*/
 
             if ((string.IsNullOrWhiteSpace(LastNTxtB_AP.Text) || LastNTxtB_AP.Text == "Enter last name") ||
                 (string.IsNullOrWhiteSpace(FirstNTxtB_AP.Text) || FirstNTxtB_AP.Text == "Enter first name") ||
@@ -363,6 +401,181 @@ namespace CafeDeLunaSystem
                 }
             }
         }
+       
+        private void UpdateBtn_Click(object sender, EventArgs e)
+        {
+            string adminUsername = "Admin";
+            DateTime selectedDate = UserBirthdate.Value;
+            string employeeFullName = $"{LastNTxtB_AP.Text}, {FirstNTxtB_AP.Text} {MiddleNTxtB_AP.Text}";
+            //string userImagePath = ImgTxtB.Text;
+
+            if (UserPicB.Image == null)
+            {
+                MessageBox.Show("Please select an image.", "Try again", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            /*if (string.IsNullOrWhiteSpace(userImagePath) || !File.Exists(userImagePath))
+            {
+                MessageBox.Show("Invalid image file path.", "Try again", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }*/
+
+            if ((string.IsNullOrWhiteSpace(LastNTxtB_AP.Text) || LastNTxtB_AP.Text == "Enter last name") ||
+                (string.IsNullOrWhiteSpace(FirstNTxtB_AP.Text) || FirstNTxtB_AP.Text == "Enter first name") ||
+                (string.IsNullOrWhiteSpace(MiddleNTxtB_AP.Text) || MiddleNTxtB_AP.Text == "Enter middle name") ||
+                (string.IsNullOrWhiteSpace(AgeTxtB_AP.Text) ||
+                (string.IsNullOrWhiteSpace(UsernameTxtB_AP.Text) ||
+                PositionComB_AP.SelectedItem == null ||
+                string.IsNullOrEmpty(EmployeeIDTxtB_AP.Text) ||
+                string.IsNullOrEmpty(EmailTxtB_AP.Text))))
+            {
+                MessageBox.Show("Please fill out all the required data", "Missing Informations", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
+            if (UsernameTxtB_AP.Text == adminUsername)
+            {
+                MessageBox.Show("The entered username is not allowed", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+            if (UsernameTxtB_AP.Text == adminUsername)
+            {
+                MessageBox.Show("The entered username is not allowed", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
+            DialogResult choices = MessageBox.Show("Are you sure the information you have entered is correct?", "Notice", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (choices == DialogResult.Yes)
+            {
+                try
+                {
+                    conn.Open();
+                    string updateQuery;
+                    if (string.IsNullOrEmpty(PasswordTxtB_AP.Text))
+                    {
+                        // If password field is empty, don't update the password
+                        updateQuery = "UPDATE employee_acc " +
+                            "SET Name = @Name, Birthday = @Birthday, Age = @Age, Email = @Email, " +
+                            "Username = @Username, Position = @Position";
+
+                        if (isNewImageSelected)
+                        {
+                            updateQuery += ", EmployeeIMG = @EmployeeIMG";
+                        }
+
+                        updateQuery += " WHERE EmployeeID = @EmployeeID";
+                    }
+                    else
+                    {
+                        // If password field is not empty, update the password
+                        updateQuery = "UPDATE employee_acc " +
+                            "SET Name = @Name, Birthday = @Birthday, Age = @Age, Email = @Email, " +
+                            "Username = @Username, Password = @Password, Position = @Position";
+
+                        if (isNewImageSelected)
+                        {
+                            updateQuery += ", EmployeeIMG = @EmployeeIMG";
+                        }
+
+                        updateQuery += " WHERE EmployeeID = @EmployeeID";
+                    }
+
+                    MySqlCommand cmdDataBase = new MySqlCommand(updateQuery, conn);
+                    cmdDataBase.Parameters.AddWithValue("@Name", employeeFullName);
+                    cmdDataBase.Parameters.AddWithValue("@Birthday", selectedDate);
+                    cmdDataBase.Parameters.AddWithValue("@Age", AgeTxtB_AP.Text);
+                    cmdDataBase.Parameters.AddWithValue("@Email", EmailTxtB_AP.Text);
+                    cmdDataBase.Parameters.AddWithValue("@Username", UsernameTxtB_AP.Text);
+
+                    if (!string.IsNullOrEmpty(PasswordTxtB_AP.Text))
+                    {
+                        cmdDataBase.Parameters.AddWithValue("@Password", Encryptor.HashPassword(PasswordTxtB_AP.Text));
+                    }
+
+                    cmdDataBase.Parameters.AddWithValue("@Position", PositionComB_AP.SelectedItem.ToString());
+                    cmdDataBase.Parameters.AddWithValue("@EmployeeID", EmployeeIDTxtB_AP.Text);
+
+                    if (isNewImageSelected)
+                    {
+                        using (MemoryStream ms = new MemoryStream())
+                        {
+                            UserPicB.Image.Save(ms, ImageFormat.Jpeg); // You can choose the format you want
+                            byte[] imageData = ms.ToArray();
+                            cmdDataBase.Parameters.AddWithValue("@EmployeeIMG", imageData);
+                        }
+                    }
+
+                    cmdDataBase.ExecuteNonQuery();
+
+                    createAndEditAcc.RefreshTbl();
+                    MessageBox.Show("Account Updated!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (MySqlException a)
+                {
+                    if (a.Number == 1062)
+                    {
+                        MessageBox.Show("Username already exists.", "Registration", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        UsernameTxtB_AP.Clear();
+                    }
+                    else
+                    {
+                        MessageBox.Show(a.Message, "Registration", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                catch (Exception b)
+                {
+                    MessageBox.Show(b.Message);
+                }
+                finally
+                {
+                    conn.Close();
+                }
+            }
+
+            TxtPlaceholder.SetPlaceholder(LastNTxtB_AP, "Last name");
+            TxtPlaceholder.SetPlaceholder(FirstNTxtB_AP, "First name");
+            TxtPlaceholder.SetPlaceholder(MiddleNTxtB_AP, "Middle name");
+            UserBirthdate.Value = DateTime.Today;
+            AgeTxtB_AP.Text = "";
+            UsernameTxtB_AP.Text = "";
+            PasswordTxtB_AP.Text = "";
+            EmailTxtB_AP.Text = "";
+            PositionComB_AP.SelectedIndex = -1;
+            UserPicB.Image = null;
+            ImgTxtB.Text = "";
+
+            panelManagerAP.ShowPanel(AccManagePanel);
+            panelManagerAMC.ShowPanel(AccCreatePanel);
+        }
+
+        private void CancelBtn_Click_1(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Are you sure you want to cancel the operation?", "Information", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                UpdateBtn.Hide();
+                CancelBtn.Hide();
+                CreateBtn.Show();
+                EditBtn.Show();
+
+                TxtPlaceholder.SetPlaceholder(LastNTxtB_AP, "Last name");
+                TxtPlaceholder.SetPlaceholder(FirstNTxtB_AP, "First name");
+                TxtPlaceholder.SetPlaceholder(MiddleNTxtB_AP, "Middle name");
+                UserBirthdate.Value = DateTime.Today;
+                AgeTxtB_AP.Text = "";
+                UsernameTxtB_AP.Text = "";
+                PasswordTxtB_AP.Text = "";
+                EmailTxtB_AP.Text = "";
+                PositionComB_AP.SelectedIndex = -1;
+                UserPicB.Image = null;
+                ImgTxtB.Text = "";
+
+                panelManagerAP.ShowPanel(AccManagePanel);
+                panelManagerAMC.ShowPanel(AccCreatePanel);
+            }
+        }
 
         private void MenuAddImgBtn_Click(object sender, EventArgs e)
         {
@@ -398,7 +611,7 @@ namespace CafeDeLunaSystem
                 }
             }
         }
-        
+
         private void AddMenuBtn_Click(object sender, EventArgs e)
         {
             string mealName = MenuNTxtB.Text;
@@ -418,7 +631,7 @@ namespace CafeDeLunaSystem
 
             DialogResult choices = MessageBox.Show("Are you sure the information you have entered is correct?", "Notice", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-            if(choices == DialogResult.Yes)
+            if (choices == DialogResult.Yes)
             {
                 try
                 {
@@ -444,7 +657,7 @@ namespace CafeDeLunaSystem
                 }
                 catch (MySqlException a)
                 {
-                    if(a.Number == 1062)
+                    if (a.Number == 1062)
                     {
                         MessageBox.Show("Menu already exists", "Food Creattion", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
@@ -520,7 +733,7 @@ namespace CafeDeLunaSystem
 
             if ((string.IsNullOrWhiteSpace(variationName) || variationName == "Food Name") ||
                 string.IsNullOrEmpty(variationDescription) || variationDescription == "Description" ||
-               
+
                 string.IsNullOrEmpty(variationImgPath))
             {
                 MessageBox.Show("Please fill out all the required data", "Missing Informations", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -633,7 +846,7 @@ namespace CafeDeLunaSystem
             conn.Close();
         }
 
-       public void GetData2()
+        public void GetData2()
         {
             conn.Close();
             flowLayoutPanel2.Controls.Clear();
@@ -729,7 +942,7 @@ namespace CafeDeLunaSystem
                             TextAlign = ContentAlignment.BottomCenter,
                             Dock = DockStyle.Bottom,
                             BackColor = Color.White,
-                            
+
                         };
 
                         pic.Controls.Add(mealname);
@@ -752,7 +965,7 @@ namespace CafeDeLunaSystem
         {
             flowLayoutPanel1.Controls.Clear();
             conn.Open();
-            int Mealid = 23+1;
+            int Mealid = 23 + 1;
             cm = new MySqlCommand("SELECT VariationName, VariationCost, MealImage, VariationID FROM mealvariation WHERE MealID ='" + Mealid + "'", conn);
             dr = cm.ExecuteReader();
 
@@ -896,7 +1109,7 @@ namespace CafeDeLunaSystem
 
                         price = new Label
                         {
-                            Text = "Php. " +  dr["VariationCost"].ToString(),
+                            Text = "Php. " + dr["VariationCost"].ToString(),
                             Width = 25,
                             Height = 15,
                             TextAlign = ContentAlignment.TopLeft,
@@ -972,7 +1185,7 @@ namespace CafeDeLunaSystem
             {
                 MessageBox.Show("This variation is already in the cart.", "Try another one", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-           
+
         }
 
         private void SearchTxtbx_TextChanged(object sender, EventArgs e)
@@ -1008,7 +1221,7 @@ namespace CafeDeLunaSystem
 
                             price = new Label
                             {
-                                Text = "Php. "+ dr["VariationCost"].ToString(),
+                                Text = "Php. " + dr["VariationCost"].ToString(),
                                 Width = 25,
                                 Height = 15,
                                 TextAlign = ContentAlignment.TopLeft,
@@ -1085,11 +1298,11 @@ namespace CafeDeLunaSystem
 
             if (currentQty > 1)
             {
-                currentQty--; 
+                currentQty--;
                 dataGridView1.Rows[rowIndex].Cells[2].Value = currentQty; // Update the quantity in the DataGridView
 
-                decimal totalPrice = currentQty * unitPrice; 
-                dataGridView1.Rows[rowIndex].Cells[4].Value = totalPrice.ToString(); 
+                decimal totalPrice = currentQty * unitPrice;
+                dataGridView1.Rows[rowIndex].Cells[4].Value = totalPrice.ToString();
                 UpdateTotalPrice();
             }
         }
@@ -1198,7 +1411,7 @@ namespace CafeDeLunaSystem
 
         private decimal GetUnitPriceForFood(string foodName)
         {
-            decimal unitPrice = 0; 
+            decimal unitPrice = 0;
             conn.Open();
             cm = new MySqlCommand("SELECT VariationCost FROM mealvariation WHERE VariationName = @foodName", conn);
             cm.Parameters.AddWithValue("@foodName", foodName);
@@ -1218,11 +1431,11 @@ namespace CafeDeLunaSystem
             if (discChckBx.Checked)
             {
                 decimal totalPrice = decimal.Parse(sbLbl.Text.Replace("Php. ", ""));
-                decimal discount = totalPrice * 0.20m; 
+                decimal discount = totalPrice * 0.20m;
                 decimal discountedTotal = totalPrice - discount;
 
                 dscLbl.Text = "Php. " + discount.ToString("0.00");
-                ttlLbl.Text = "Php. "+ discountedTotal.ToString("0.00");
+                ttlLbl.Text = "Php. " + discountedTotal.ToString("0.00");
             }
             else
             {
@@ -1231,7 +1444,7 @@ namespace CafeDeLunaSystem
             }
         }
 
-       
+
         private void dataGridView1_KeyUp(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Escape)
@@ -1254,7 +1467,7 @@ namespace CafeDeLunaSystem
 
         private void SearchTxtbx_Enter(object sender, EventArgs e)
         {
-            if(SearchTxtbx.Text == "Type here to search")
+            if (SearchTxtbx.Text == "Type here to search")
             {
                 SearchTxtbx.Text = "";
                 SearchTxtbx.ForeColor = Color.Black;
@@ -1263,7 +1476,7 @@ namespace CafeDeLunaSystem
 
         private void SearchTxtbx_Leave(object sender, EventArgs e)
         {
-            if(SearchTxtbx.Text == "")
+            if (SearchTxtbx.Text == "")
             {
                 SearchTxtbx.Text = "Type here to search";
                 SearchTxtbx.ForeColor = Color.LightGray;
@@ -1286,7 +1499,7 @@ namespace CafeDeLunaSystem
             {
                 cashtxtBx.Text = "0.00";
                 cashtxtBx.ForeColor = Color.LightGray;
-                
+
             }
         }
 
@@ -1309,6 +1522,7 @@ namespace CafeDeLunaSystem
 
             if (result == DialogResult.Yes)
             {
+                //insert to table order id, userid, 
                 GeneratePDFReceipt();
             }
         }
@@ -1362,7 +1576,7 @@ namespace CafeDeLunaSystem
                     string price = row.Cells[4].Value.ToString();
                     if (int.TryParse(quantity, out int quantityValue))
                     {
-                        totalQuantity += quantityValue; 
+                        totalQuantity += quantityValue;
                     }
                     doc.Add(new Paragraph($"{quantity}                                   {food}                    {price}"));
                 }
