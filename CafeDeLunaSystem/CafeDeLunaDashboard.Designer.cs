@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.MainLoginContainer = new Syncfusion.Windows.Forms.Tools.CardLayout(this.components);
             this.LoginPanel = new System.Windows.Forms.Panel();
             this.PanelLP = new System.Windows.Forms.Panel();
@@ -65,6 +65,8 @@
             this.SalesRepPanel = new System.Windows.Forms.Panel();
             this.AccManagePanel = new System.Windows.Forms.Panel();
             this.AccCreatePanel = new System.Windows.Forms.Panel();
+            this.CancelBtn = new System.Windows.Forms.Button();
+            this.UpdateBtn = new System.Windows.Forms.Button();
             this.ImgTxtB = new System.Windows.Forms.TextBox();
             this.ActiveAccLbl = new System.Windows.Forms.Label();
             this.AccCreateLbl = new System.Windows.Forms.Label();
@@ -100,6 +102,7 @@
             this.ManagerPanel = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.StaffPanel = new System.Windows.Forms.Panel();
+            this.PositionTxtBox = new System.Windows.Forms.TextBox();
             this.cashtxtBx = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.cahlbl = new System.Windows.Forms.Label();
@@ -128,7 +131,6 @@
             this.AdminPanelContainer = new Syncfusion.Windows.Forms.Tools.CardLayout(this.components);
             this.AccManageContainer = new Syncfusion.Windows.Forms.Tools.CardLayout(this.components);
             this.flowLayout1 = new Syncfusion.Windows.Forms.Tools.FlowLayout(this.components);
-            this.PositionTxtBox = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.MainLoginContainer)).BeginInit();
             this.LoginPanel.SuspendLayout();
             this.PanelLP.SuspendLayout();
@@ -157,7 +159,7 @@
             // 
             this.MainLoginContainer.ContainerControl = this;
             this.MainLoginContainer.LayoutMode = Syncfusion.Windows.Forms.Tools.CardLayoutMode.Fill;
-            this.MainLoginContainer.SelectedCard = "Card1";
+            this.MainLoginContainer.SelectedCard = "Card3";
             // 
             // LoginPanel
             // 
@@ -165,7 +167,7 @@
             this.MainLoginContainer.SetCardName(this.LoginPanel, "Card4");
             this.LoginPanel.Controls.Add(this.PanelLP);
             this.LoginPanel.Location = new System.Drawing.Point(0, 0);
-            this.LoginPanel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.LoginPanel.Margin = new System.Windows.Forms.Padding(4);
             this.MainLoginContainer.SetMinimumSize(this.LoginPanel, new System.Drawing.Size(200, 100));
             this.LoginPanel.Name = "LoginPanel";
             this.MainLoginContainer.SetPreferredSize(this.LoginPanel, new System.Drawing.Size(200, 100));
@@ -179,7 +181,7 @@
             this.PanelLP.Controls.Add(this.UsernameTxtBLP);
             this.PanelLP.Controls.Add(this.PasswordTxtBLP);
             this.PanelLP.Location = new System.Drawing.Point(355, 123);
-            this.PanelLP.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.PanelLP.Margin = new System.Windows.Forms.Padding(4);
             this.PanelLP.Name = "PanelLP";
             this.PanelLP.Size = new System.Drawing.Size(763, 498);
             this.PanelLP.TabIndex = 0;
@@ -187,7 +189,7 @@
             // LogBtnLP
             // 
             this.LogBtnLP.Location = new System.Drawing.Point(285, 402);
-            this.LogBtnLP.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.LogBtnLP.Margin = new System.Windows.Forms.Padding(4);
             this.LogBtnLP.Name = "LogBtnLP";
             this.LogBtnLP.Size = new System.Drawing.Size(175, 39);
             this.LogBtnLP.TabIndex = 2;
@@ -198,7 +200,7 @@
             // UsernameTxtBLP
             // 
             this.UsernameTxtBLP.Location = new System.Drawing.Point(235, 154);
-            this.UsernameTxtBLP.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.UsernameTxtBLP.Margin = new System.Windows.Forms.Padding(4);
             this.UsernameTxtBLP.Multiline = true;
             this.UsernameTxtBLP.Name = "UsernameTxtBLP";
             this.UsernameTxtBLP.Size = new System.Drawing.Size(281, 38);
@@ -208,7 +210,7 @@
             // PasswordTxtBLP
             // 
             this.PasswordTxtBLP.Location = new System.Drawing.Point(235, 257);
-            this.PasswordTxtBLP.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.PasswordTxtBLP.Margin = new System.Windows.Forms.Padding(4);
             this.PasswordTxtBLP.Multiline = true;
             this.PasswordTxtBLP.Name = "PasswordTxtBLP";
             this.PasswordTxtBLP.Size = new System.Drawing.Size(281, 38);
@@ -222,7 +224,7 @@
             this.AdminPanel.Controls.Add(this.InterfaceAP);
             this.AdminPanel.Controls.Add(this.NavigationPanelAP);
             this.AdminPanel.Location = new System.Drawing.Point(0, 0);
-            this.AdminPanel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.AdminPanel.Margin = new System.Windows.Forms.Padding(4);
             this.MainLoginContainer.SetMinimumSize(this.AdminPanel, new System.Drawing.Size(200, 100));
             this.AdminPanel.Name = "AdminPanel";
             this.MainLoginContainer.SetPreferredSize(this.AdminPanel, new System.Drawing.Size(200, 100));
@@ -236,7 +238,7 @@
             this.InterfaceAP.Controls.Add(this.SalesRepPanel);
             this.InterfaceAP.Controls.Add(this.AccManagePanel);
             this.InterfaceAP.Location = new System.Drawing.Point(236, 0);
-            this.InterfaceAP.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.InterfaceAP.Margin = new System.Windows.Forms.Padding(4);
             this.InterfaceAP.Name = "InterfaceAP";
             this.InterfaceAP.Size = new System.Drawing.Size(1497, 874);
             this.InterfaceAP.TabIndex = 2;
@@ -246,7 +248,7 @@
             this.AdminPanelContainer.SetCardName(this.HomePanelAP, "Card4");
             this.HomePanelAP.Controls.Add(this.label2);
             this.HomePanelAP.Location = new System.Drawing.Point(0, 0);
-            this.HomePanelAP.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.HomePanelAP.Margin = new System.Windows.Forms.Padding(4);
             this.AdminPanelContainer.SetMinimumSize(this.HomePanelAP, new System.Drawing.Size(200, 100));
             this.HomePanelAP.Name = "HomePanelAP";
             this.AdminPanelContainer.SetPreferredSize(this.HomePanelAP, new System.Drawing.Size(200, 100));
@@ -285,7 +287,7 @@
             this.AddMenuPanelAP.Controls.Add(this.MenuPicB);
             this.AddMenuPanelAP.Controls.Add(this.FoodTbl);
             this.AddMenuPanelAP.Location = new System.Drawing.Point(0, 0);
-            this.AddMenuPanelAP.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.AddMenuPanelAP.Margin = new System.Windows.Forms.Padding(4);
             this.AdminPanelContainer.SetMinimumSize(this.AddMenuPanelAP, new System.Drawing.Size(200, 100));
             this.AddMenuPanelAP.Name = "AddMenuPanelAP";
             this.AdminPanelContainer.SetPreferredSize(this.AddMenuPanelAP, new System.Drawing.Size(200, 100));
@@ -494,7 +496,7 @@
             this.AdminPanelContainer.SetCardName(this.AccManagePanel, "Card1");
             this.AccManagePanel.Controls.Add(this.AccCreatePanel);
             this.AccManagePanel.Location = new System.Drawing.Point(0, 0);
-            this.AccManagePanel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.AccManagePanel.Margin = new System.Windows.Forms.Padding(4);
             this.AdminPanelContainer.SetMinimumSize(this.AccManagePanel, new System.Drawing.Size(200, 100));
             this.AccManagePanel.Name = "AccManagePanel";
             this.AdminPanelContainer.SetPreferredSize(this.AccManagePanel, new System.Drawing.Size(200, 100));
@@ -505,6 +507,8 @@
             // 
             this.AccCreatePanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.AccManageContainer.SetCardName(this.AccCreatePanel, "Card1");
+            this.AccCreatePanel.Controls.Add(this.CancelBtn);
+            this.AccCreatePanel.Controls.Add(this.UpdateBtn);
             this.AccCreatePanel.Controls.Add(this.ImgTxtB);
             this.AccCreatePanel.Controls.Add(this.ActiveAccLbl);
             this.AccCreatePanel.Controls.Add(this.AccCreateLbl);
@@ -540,6 +544,28 @@
             this.AccCreatePanel.Size = new System.Drawing.Size(1497, 874);
             this.AccCreatePanel.TabIndex = 0;
             // 
+            // CancelBtn
+            // 
+            this.CancelBtn.Location = new System.Drawing.Point(385, 572);
+            this.CancelBtn.Name = "CancelBtn";
+            this.CancelBtn.Size = new System.Drawing.Size(156, 34);
+            this.CancelBtn.TabIndex = 28;
+            this.CancelBtn.Text = "Cancel";
+            this.CancelBtn.UseVisualStyleBackColor = true;
+            this.CancelBtn.Visible = false;
+            this.CancelBtn.Click += new System.EventHandler(this.CancelBtn_Click_1);
+            // 
+            // UpdateBtn
+            // 
+            this.UpdateBtn.Location = new System.Drawing.Point(209, 573);
+            this.UpdateBtn.Name = "UpdateBtn";
+            this.UpdateBtn.Size = new System.Drawing.Size(155, 33);
+            this.UpdateBtn.TabIndex = 27;
+            this.UpdateBtn.Text = "Update Account";
+            this.UpdateBtn.UseVisualStyleBackColor = true;
+            this.UpdateBtn.Visible = false;
+            this.UpdateBtn.Click += new System.EventHandler(this.UpdateBtn_Click);
+            // 
             // ImgTxtB
             // 
             this.ImgTxtB.Enabled = false;
@@ -550,8 +576,6 @@
             this.ImgTxtB.Name = "ImgTxtB";
             this.ImgTxtB.Size = new System.Drawing.Size(160, 30);
             this.ImgTxtB.TabIndex = 26;
-            this.ImgTxtB.Text = "Choose picture";
-            this.ImgTxtB.Visible = false;
             // 
             // ActiveAccLbl
             // 
@@ -844,7 +868,7 @@
             this.NavigationPanelAP.Controls.Add(this.AddMenuLbl);
             this.NavigationPanelAP.Controls.Add(this.AccManageLbl);
             this.NavigationPanelAP.Location = new System.Drawing.Point(0, 0);
-            this.NavigationPanelAP.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.NavigationPanelAP.Margin = new System.Windows.Forms.Padding(4);
             this.NavigationPanelAP.Name = "NavigationPanelAP";
             this.NavigationPanelAP.Size = new System.Drawing.Size(236, 874);
             this.NavigationPanelAP.TabIndex = 1;
@@ -902,7 +926,7 @@
             this.MainLoginContainer.SetCardName(this.ManagerPanel, "Card2");
             this.ManagerPanel.Controls.Add(this.label1);
             this.ManagerPanel.Location = new System.Drawing.Point(0, 0);
-            this.ManagerPanel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ManagerPanel.Margin = new System.Windows.Forms.Padding(4);
             this.MainLoginContainer.SetMinimumSize(this.ManagerPanel, new System.Drawing.Size(200, 100));
             this.ManagerPanel.Name = "ManagerPanel";
             this.MainLoginContainer.SetPreferredSize(this.ManagerPanel, new System.Drawing.Size(200, 100));
@@ -944,23 +968,32 @@
             this.StaffPanel.Controls.Add(this.flowLayoutPanel1);
             this.StaffPanel.Controls.Add(this.allBtn);
             this.StaffPanel.Location = new System.Drawing.Point(0, 0);
-            this.StaffPanel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.StaffPanel.Margin = new System.Windows.Forms.Padding(4);
             this.MainLoginContainer.SetMinimumSize(this.StaffPanel, new System.Drawing.Size(200, 100));
             this.StaffPanel.Name = "StaffPanel";
             this.MainLoginContainer.SetPreferredSize(this.StaffPanel, new System.Drawing.Size(200, 100));
             this.StaffPanel.Size = new System.Drawing.Size(1731, 864);
             this.StaffPanel.TabIndex = 3;
             // 
+            // PositionTxtBox
+            // 
+            this.PositionTxtBox.Enabled = false;
+            this.PositionTxtBox.Location = new System.Drawing.Point(1389, 812);
+            this.PositionTxtBox.Name = "PositionTxtBox";
+            this.PositionTxtBox.Size = new System.Drawing.Size(100, 22);
+            this.PositionTxtBox.TabIndex = 22;
+            this.PositionTxtBox.Visible = false;
+            // 
             // cashtxtBx
             // 
             this.cashtxtBx.BackColor = System.Drawing.Color.White;
             this.cashtxtBx.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.cashtxtBx.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cashtxtBx.Location = new System.Drawing.Point(1472, 571);
-            this.cashtxtBx.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cashtxtBx.Location = new System.Drawing.Point(1498, 573);
+            this.cashtxtBx.Margin = new System.Windows.Forms.Padding(4);
             this.cashtxtBx.Multiline = true;
             this.cashtxtBx.Name = "cashtxtBx";
-            this.cashtxtBx.Size = new System.Drawing.Size(67, 42);
+            this.cashtxtBx.Size = new System.Drawing.Size(89, 42);
             this.cashtxtBx.TabIndex = 21;
             this.cashtxtBx.Enter += new System.EventHandler(this.cashtxtBx_Enter);
             this.cashtxtBx.Leave += new System.EventHandler(this.cashtxtBx_Leave);
@@ -1002,10 +1035,10 @@
             this.flowLayoutPanel2.AutoScroll = true;
             this.flowLayoutPanel2.Cursor = System.Windows.Forms.Cursors.Hand;
             this.flowLayoutPanel2.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(4, 180);
-            this.flowLayoutPanel2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(4, 199);
+            this.flowLayoutPanel2.Margin = new System.Windows.Forms.Padding(4);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(212, 682);
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(237, 661);
             this.flowLayoutPanel2.TabIndex = 18;
             this.flowLayoutPanel2.WrapContents = false;
             // 
@@ -1092,7 +1125,7 @@
             this.placeBtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.placeBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.placeBtn.Location = new System.Drawing.Point(1417, 631);
-            this.placeBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.placeBtn.Margin = new System.Windows.Forms.Padding(4);
             this.placeBtn.Name = "placeBtn";
             this.placeBtn.Size = new System.Drawing.Size(209, 66);
             this.placeBtn.TabIndex = 10;
@@ -1105,7 +1138,7 @@
             this.voidBtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.voidBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.voidBtn.Location = new System.Drawing.Point(1193, 631);
-            this.voidBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.voidBtn.Margin = new System.Windows.Forms.Padding(4);
             this.voidBtn.Name = "voidBtn";
             this.voidBtn.Size = new System.Drawing.Size(195, 66);
             this.voidBtn.TabIndex = 9;
@@ -1118,7 +1151,7 @@
             this.discChckBx.AutoSize = true;
             this.discChckBx.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.discChckBx.Location = new System.Drawing.Point(1224, 361);
-            this.discChckBx.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.discChckBx.Margin = new System.Windows.Forms.Padding(4);
             this.discChckBx.Name = "discChckBx";
             this.discChckBx.Size = new System.Drawing.Size(405, 46);
             this.discChckBx.TabIndex = 8;
@@ -1131,23 +1164,23 @@
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToResizeColumns = false;
             this.dataGridView1.AllowUserToResizeRows = false;
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle9.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.Black;
-            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
+            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
             this.dataGridView1.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
@@ -1156,28 +1189,28 @@
             this.Column4,
             this.Column5,
             this.Column6});
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle11.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView1.Location = new System.Drawing.Point(1168, 47);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView1.Name = "dataGridView1";
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle9;
+            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView1.Size = new System.Drawing.Size(528, 288);
             this.dataGridView1.TabIndex = 7;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
@@ -1239,7 +1272,7 @@
             this.SearchTxtbx.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SearchTxtbx.ForeColor = System.Drawing.Color.Black;
             this.SearchTxtbx.Location = new System.Drawing.Point(580, 15);
-            this.SearchTxtbx.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.SearchTxtbx.Margin = new System.Windows.Forms.Padding(4);
             this.SearchTxtbx.Name = "SearchTxtbx";
             this.SearchTxtbx.Size = new System.Drawing.Size(495, 29);
             this.SearchTxtbx.TabIndex = 6;
@@ -1254,7 +1287,7 @@
             this.flowLayoutPanel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.flowLayoutPanel1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(249, 53);
-            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(4);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(873, 808);
             this.flowLayoutPanel1.TabIndex = 5;
@@ -1264,7 +1297,7 @@
             this.allBtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.allBtn.Image = global::CafeDeLunaSystem.Properties.Resources.all;
             this.allBtn.Location = new System.Drawing.Point(4, 4);
-            this.allBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.allBtn.Margin = new System.Windows.Forms.Padding(4);
             this.allBtn.Name = "allBtn";
             this.allBtn.Size = new System.Drawing.Size(237, 187);
             this.allBtn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -1276,21 +1309,13 @@
             // 
             this.AdminPanelContainer.ContainerControl = this.InterfaceAP;
             this.AdminPanelContainer.LayoutMode = Syncfusion.Windows.Forms.Tools.CardLayoutMode.Fill;
-            this.AdminPanelContainer.SelectedCard = "Card2";
+            this.AdminPanelContainer.SelectedCard = "Card1";
             // 
             // AccManageContainer
             // 
             this.AccManageContainer.ContainerControl = this.AccManagePanel;
             this.AccManageContainer.LayoutMode = Syncfusion.Windows.Forms.Tools.CardLayoutMode.Fill;
             this.AccManageContainer.SelectedCard = "Card1";
-            // 
-            // PositionTxtBox
-            // 
-            this.PositionTxtBox.Enabled = false;
-            this.PositionTxtBox.Location = new System.Drawing.Point(1380, 809);
-            this.PositionTxtBox.Name = "PositionTxtBox";
-            this.PositionTxtBox.Size = new System.Drawing.Size(100, 22);
-            this.PositionTxtBox.TabIndex = 22;
             // 
             // CafeDeLunaDashboard
             // 
@@ -1301,7 +1326,7 @@
             this.Controls.Add(this.ManagerPanel);
             this.Controls.Add(this.AdminPanel);
             this.Controls.Add(this.LoginPanel);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximumSize = new System.Drawing.Size(1749, 911);
             this.Name = "CafeDeLunaDashboard";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -1437,6 +1462,8 @@
         private System.Windows.Forms.DataGridViewButtonColumn Column6;
         private System.Windows.Forms.Button SalesBtn;
         private System.Windows.Forms.TextBox PositionTxtBox;
+        private System.Windows.Forms.Button CancelBtn;
+        private System.Windows.Forms.Button UpdateBtn;
     }
 }
 
