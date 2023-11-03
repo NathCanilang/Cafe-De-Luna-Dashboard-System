@@ -162,6 +162,10 @@ namespace CafeDeLunaSystem
             panelManagerAP.ShowPanel(AccManagePanel);
             panelManagerAMC.ShowPanel(AccCreatePanel);
         }
+        private void SalesRepLbl_Click(object sender, EventArgs e)
+        {
+            panelManagerAP.ShowPanel(ManagerPanel);
+        }
 
         private void AddMenuLbl_Click(object sender, System.EventArgs e)
         {
@@ -750,6 +754,8 @@ namespace CafeDeLunaSystem
             string variationCostText = VariationCostTxtB.Text;
             string selectedMenuCategory = MenuSelectComB.SelectedItem.ToString();
             string variationImgPath = VarietyFilePathTxtB.Text;
+            int variationID = Convert.ToInt32(FoodTbl.SelectedRows[0].Cells["VariationID"].Value);
+            //string variationID = VariationIDTxtBox.Text;
             int mealID = createAndEditAcc.GetMealIDFromDatabase(selectedMenuCategory);
 
             if (string.IsNullOrWhiteSpace(variationCostText) || !decimal.TryParse(variationCostText, out variationCost))
@@ -759,9 +765,7 @@ namespace CafeDeLunaSystem
             }
 
             if ((string.IsNullOrWhiteSpace(variationName) || variationName == "Food Name") ||
-                string.IsNullOrEmpty(variationDescription) || variationDescription == "Description" ||
-
-                string.IsNullOrEmpty(variationImgPath))
+                string.IsNullOrEmpty(variationDescription) || variationDescription == "Description")
             {
                 MessageBox.Show("Please fill out all the required data", "Missing Informations", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
@@ -792,7 +796,8 @@ namespace CafeDeLunaSystem
                     cmdDataBase.Parameters.AddWithValue("@variationName", variationName);
                     cmdDataBase.Parameters.AddWithValue("@variationDescription", variationDescription);
                     cmdDataBase.Parameters.AddWithValue("@variationCost", variationCost);
-                    cmdDataBase.Parameters.AddWithValue("@mealID", selectedMenuCategory);
+                    cmdDataBase.Parameters.AddWithValue("@mealID", mealID);
+                    cmdDataBase.Parameters.AddWithValue("@variationID", variationID);
 
                     if (isNewFoodImageSelected)
                     {
@@ -836,6 +841,8 @@ namespace CafeDeLunaSystem
             TxtPlaceholder.SetPlaceholder(VariationCostTxtB, "Price");
             VariationPicB.Image = null;
             VarietyFilePathTxtB.Text = "";
+            MenuSelectComB.SelectedIndex = -1;
+            VariationIDTxtBox.Clear();
 
             panelManagerAP.ShowPanel(AddMenuPanelAP);
 
@@ -934,13 +941,42 @@ namespace CafeDeLunaSystem
                     string variationName = selectedRow.Cells["VariationName"].Value.ToString();
                     string variationDesc = selectedRow.Cells["VariationDescription"].Value.ToString().Trim();
                     string variationCost = selectedRow.Cells["VariationCost"].Value.ToString();
-                    //string positionColumn = selectedRow.Cells["Position"].Value.ToString();
+                    string mealID = selectedRow.Cells["MealID"].Value.ToString();
+                    string variationID = selectedRow.Cells["VariationID"].Value.ToString();
                     int variationIDColumn = Convert.ToInt32(FoodTbl.SelectedRows[0].Cells["VariationID"].Value);
 
                     VariationNmTxtB.Text = variationName;
                     VariationDescTxtB.Text = variationDesc;
                     VariationCostTxtB.Text = variationCost;
+                    VariationIDTxtBox.Text = variationID;
                     createAndEditAcc.LoadMenuItemImageFood(variationIDColumn);
+
+                    try
+                    {
+                        conn.Open();
+                        string sqlQuery = "SELECT MealName FROM meal WHERE mealID = @mealID";
+                        MySqlCommand cmdDataBase = new MySqlCommand(sqlQuery, conn);
+                        cmdDataBase.Parameters.AddWithValue("@mealID", mealID); // Replace 'yourMealID' with the actual mealID
+                        MySqlDataReader reader = cmdDataBase.ExecuteReader();
+
+                        // Loop through the results and add them to the ComboBox
+
+                        if (reader.Read())
+                        {
+                            string mealName = reader.GetString(0);
+                            MenuSelectComB.SelectedItem = mealName; // Set the selected item in the ComboBox
+                        }
+                        reader.Close();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error: " + ex.Message);
+                    }
+                    finally
+                    {
+                        conn.Close();
+                    }
+
                 }
                 else
                 {
@@ -948,10 +984,64 @@ namespace CafeDeLunaSystem
                 }
 
             }
+            UpdateMealBtn.Show();
+            CancelMealBtn.Show();
+            DeleteFoodlBtn.Hide();
+            EditMealBtn.Hide();
         }
         private void DeleteFoodlBtn_Click(object sender, EventArgs e)
         {
+            if (FoodTbl.SelectedRows.Count == 1)
+            {
+                DataGridViewRow selectedRow = FoodTbl.SelectedRows[0];
+                int variationIDColumn = Convert.ToInt32(FoodTbl.SelectedRows[0].Cells["VariationID"].Value);
 
+                DialogResult result = MessageBox.Show("Are you sure you want to delete this row?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (result == DialogResult.Yes)
+                {
+                    try
+                    {
+                        conn.Open();
+                        string deleteQuery = "DELETE FROM mealvariation WHERE VariationID = @VariationID";
+                        MySqlCommand cmdDataBase = new MySqlCommand(deleteQuery, conn);
+                        cmdDataBase.Parameters.AddWithValue("@VariationID", variationIDColumn);
+                        cmdDataBase.ExecuteNonQuery();
+
+                        createAndEditAcc.LoadMenuItems();
+                        MessageBox.Show("Row Deleted!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error: " + ex.Message);
+                    }
+                    finally
+                    {
+                        conn.Close();
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please select a single row for deletion.", "Try again", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void CancelMealBtn_Click(object sender, EventArgs e)
+        {
+            UpdateMealBtn.Hide();
+            CancelMealBtn.Hide();
+            DeleteFoodlBtn.Show();
+            EditMealBtn.Show();
+
+            TxtPlaceholder.SetPlaceholder(VariationNmTxtB, "Food Name");
+            TxtPlaceholder.SetPlaceholder(VariationDescTxtB, "Description");
+            TxtPlaceholder.SetPlaceholder(VariationCostTxtB, "Price");
+            VariationPicB.Image = null;
+            VarietyFilePathTxtB.Text = "";
+            MenuSelectComB.SelectedIndex = -1;
+            VariationIDTxtBox.Clear();
+
+            panelManagerAP.ShowPanel(AddMenuPanelAP);
         }
 
         //Staff panel
@@ -1690,7 +1780,6 @@ namespace CafeDeLunaSystem
             }
         }
 
-
         private void GeneratePDFReceipt()
         {
             if (dataGridView1.Rows.Count == 0)
@@ -1829,6 +1918,9 @@ namespace CafeDeLunaSystem
             }
         }
 
-
+        private void SalesBtn_Click(object sender, EventArgs e)
+        {
+            panelManagerAP.ShowPanel(ManagerPanel);
+        }
     }
 }
