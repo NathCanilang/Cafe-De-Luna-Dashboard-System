@@ -533,6 +533,10 @@ namespace CafeDeLunaSystem
                     conn.Close();
                 }
             }
+            UpdateBtn.Hide();
+            CancelBtn.Hide();
+            CreateBtn.Show();
+            EditBtn.Show();
 
             TxtPlaceholder.SetPlaceholder(LastNTxtB_AP, "Last name");
             TxtPlaceholder.SetPlaceholder(FirstNTxtB_AP, "First name");
