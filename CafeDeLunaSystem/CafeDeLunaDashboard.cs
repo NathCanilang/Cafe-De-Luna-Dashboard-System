@@ -284,38 +284,6 @@ namespace CafeDeLunaSystem
                 }
             }
 
-
-            /*using (OpenFileDialog openFileDialog = new OpenFileDialog())
-            {
-                openFileDialog.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.gif;*.bmp";
-                openFileDialog.Title = "Select an Image File";
-
-                if (openFileDialog.ShowDialog() == DialogResult.OK)
-                {
-                    string selectedFilePath = openFileDialog.FileName;
-                    ImgTxtB.Text = selectedFilePath;
-
-                    try
-                    {
-                        // Load the selected image
-                        Image selectedImage = Image.FromFile(selectedFilePath);
-
-                        // Check if the image dimensions are 64x64 pixels
-                        if (selectedImage.Width == 64 && selectedImage.Height == 64)
-                        {
-                            UserPicB.Image = selectedImage;
-                        }
-                        else
-                        {
-                            MessageBox.Show("Please select an image with dimensions of 64x64 pixels.", "Try again", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("Error loading the image: " + ex.Message);
-                    }
-                }
-            }*/
         }
         private void CreateBtn_Click(object sender, EventArgs e)
         {
@@ -329,11 +297,6 @@ namespace CafeDeLunaSystem
                 MessageBox.Show("Please select an image.", "Try again", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            /* if (string.IsNullOrWhiteSpace(userImagePath) || !File.Exists(userImagePath))
-             {
-                 MessageBox.Show("Invalid image file path.", "Try again", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                 return;
-             }*/
 
             if ((string.IsNullOrWhiteSpace(LastNTxtB_AP.Text) || LastNTxtB_AP.Text == "Enter last name") ||
                 (string.IsNullOrWhiteSpace(FirstNTxtB_AP.Text) || FirstNTxtB_AP.Text == "Enter first name") ||
@@ -419,12 +382,6 @@ namespace CafeDeLunaSystem
                 MessageBox.Show("Please select an image.", "Try again", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-
-            /*if (string.IsNullOrWhiteSpace(userImagePath) || !File.Exists(userImagePath))
-            {
-                MessageBox.Show("Invalid image file path.", "Try again", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }*/
 
             if ((string.IsNullOrWhiteSpace(LastNTxtB_AP.Text) || LastNTxtB_AP.Text == "Enter last name") ||
                 (string.IsNullOrWhiteSpace(FirstNTxtB_AP.Text) || FirstNTxtB_AP.Text == "Enter first name") ||
@@ -713,37 +670,6 @@ namespace CafeDeLunaSystem
                     }
                 }
             }
-            /*using (OpenFileDialog openFileDialog = new OpenFileDialog())
-            {
-                openFileDialog.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.gif;*.bmp";
-                openFileDialog.Title = "Select an Image File";
-
-                if (openFileDialog.ShowDialog() == DialogResult.OK)
-                {
-                    string selectedFilePath = openFileDialog.FileName;
-                    VarietyFilePathTxtB.Text = selectedFilePath;
-
-                    try
-                    {
-                        Image originalImage = Image.FromFile(selectedFilePath);
-                        Image resizedImage = createAndEditAcc.ResizeImages(originalImage, 64, 64);
-
-                        // Check if the image dimensions are 64x64 pixels
-                        if (resizedImage.Width == 64 && resizedImage.Height == 64)
-                        {
-                            VariationPicB.Image = resizedImage;
-                        }
-                        else
-                        {
-                            MessageBox.Show("Error resizing the image to 64x64 pixels.", "Try again", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("Error loading the image: " + ex.Message);
-                    }
-                }
-            }*/
         }
 
         private void UpdateMealBtn_Click(object sender, EventArgs e)
