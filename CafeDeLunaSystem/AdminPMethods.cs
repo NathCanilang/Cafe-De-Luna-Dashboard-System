@@ -297,5 +297,34 @@ namespace CafeDeLunaSystem
 
             return null;
         }
+        public string RetrieveExistingPasswordHashFromDatabase(string employeeID)
+        {
+            string passwordHash = null;
+            try
+            {
+                conn.Open();
+                string query = "SELECT Password FROM employee_acc WHERE EmployeeID = @EmployeeID";
+                MySqlCommand cmd = new MySqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@EmployeeID", employeeID);
+
+                using (MySqlDataReader reader = cmd.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        passwordHash = reader.GetString("Password");
+                    }
+                }
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+            return passwordHash;
+        }
     }
 }

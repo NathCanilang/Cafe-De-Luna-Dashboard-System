@@ -65,6 +65,8 @@
             this.SalesRepPanel = new System.Windows.Forms.Panel();
             this.AccManagePanel = new System.Windows.Forms.Panel();
             this.AccCreatePanel = new System.Windows.Forms.Panel();
+            this.CancelBtn = new System.Windows.Forms.Button();
+            this.UpdateBtn = new System.Windows.Forms.Button();
             this.ImgTxtB = new System.Windows.Forms.TextBox();
             this.ActiveAccLbl = new System.Windows.Forms.Label();
             this.AccCreateLbl = new System.Windows.Forms.Label();
@@ -157,7 +159,7 @@
             // 
             this.MainLoginContainer.ContainerControl = this;
             this.MainLoginContainer.LayoutMode = Syncfusion.Windows.Forms.Tools.CardLayoutMode.Fill;
-            this.MainLoginContainer.SelectedCard = "Card1";
+            this.MainLoginContainer.SelectedCard = "Card3";
             // 
             // LoginPanel
             // 
@@ -165,6 +167,9 @@
             this.MainLoginContainer.SetCardName(this.LoginPanel, "Card4");
             this.LoginPanel.Controls.Add(this.PanelLP);
             this.LoginPanel.Location = new System.Drawing.Point(0, 0);
+
+            this.LoginPanel.Margin = new System.Windows.Forms.Padding(4);
+
             this.MainLoginContainer.SetMinimumSize(this.LoginPanel, new System.Drawing.Size(200, 100));
             this.LoginPanel.Name = "LoginPanel";
             this.MainLoginContainer.SetPreferredSize(this.LoginPanel, new System.Drawing.Size(200, 100));
@@ -177,14 +182,24 @@
             this.PanelLP.Controls.Add(this.LogBtnLP);
             this.PanelLP.Controls.Add(this.UsernameTxtBLP);
             this.PanelLP.Controls.Add(this.PasswordTxtBLP);
-            this.PanelLP.Location = new System.Drawing.Point(266, 100);
+
+            //this.PanelLP.Location = new System.Drawing.Point(266, 100);
+
+            this.PanelLP.Location = new System.Drawing.Point(355, 123);
+            this.PanelLP.Margin = new System.Windows.Forms.Padding(4);
+
             this.PanelLP.Name = "PanelLP";
             this.PanelLP.Size = new System.Drawing.Size(572, 405);
             this.PanelLP.TabIndex = 0;
             // 
             // LogBtnLP
             // 
-            this.LogBtnLP.Location = new System.Drawing.Point(214, 327);
+
+            //this.LogBtnLP.Location = new System.Drawing.Point(214, 327);
+
+            this.LogBtnLP.Location = new System.Drawing.Point(285, 402);
+            this.LogBtnLP.Margin = new System.Windows.Forms.Padding(4);
+
             this.LogBtnLP.Name = "LogBtnLP";
             this.LogBtnLP.Size = new System.Drawing.Size(131, 32);
             this.LogBtnLP.TabIndex = 2;
@@ -194,7 +209,12 @@
             // 
             // UsernameTxtBLP
             // 
-            this.UsernameTxtBLP.Location = new System.Drawing.Point(176, 125);
+
+            //this.UsernameTxtBLP.Location = new System.Drawing.Point(176, 125);
+
+            this.UsernameTxtBLP.Location = new System.Drawing.Point(235, 154);
+            this.UsernameTxtBLP.Margin = new System.Windows.Forms.Padding(4);
+
             this.UsernameTxtBLP.Multiline = true;
             this.UsernameTxtBLP.Name = "UsernameTxtBLP";
             this.UsernameTxtBLP.Size = new System.Drawing.Size(212, 32);
@@ -203,7 +223,12 @@
             // 
             // PasswordTxtBLP
             // 
-            this.PasswordTxtBLP.Location = new System.Drawing.Point(176, 209);
+
+            //this.PasswordTxtBLP.Location = new System.Drawing.Point(176, 209);
+
+            this.PasswordTxtBLP.Location = new System.Drawing.Point(235, 257);
+            this.PasswordTxtBLP.Margin = new System.Windows.Forms.Padding(4);
+
             this.PasswordTxtBLP.Multiline = true;
             this.PasswordTxtBLP.Name = "PasswordTxtBLP";
             this.PasswordTxtBLP.Size = new System.Drawing.Size(212, 32);
@@ -217,6 +242,9 @@
             this.AdminPanel.Controls.Add(this.InterfaceAP);
             this.AdminPanel.Controls.Add(this.NavigationPanelAP);
             this.AdminPanel.Location = new System.Drawing.Point(0, 0);
+
+            this.AdminPanel.Margin = new System.Windows.Forms.Padding(4);
+
             this.MainLoginContainer.SetMinimumSize(this.AdminPanel, new System.Drawing.Size(200, 100));
             this.AdminPanel.Name = "AdminPanel";
             this.MainLoginContainer.SetPreferredSize(this.AdminPanel, new System.Drawing.Size(200, 100));
@@ -229,7 +257,10 @@
             this.InterfaceAP.Controls.Add(this.AddMenuPanelAP);
             this.InterfaceAP.Controls.Add(this.SalesRepPanel);
             this.InterfaceAP.Controls.Add(this.AccManagePanel);
-            this.InterfaceAP.Location = new System.Drawing.Point(177, 0);
+           // this.InterfaceAP.Location = new System.Drawing.Point(177, 0);
+
+            this.InterfaceAP.Location = new System.Drawing.Point(236, 0);
+            this.InterfaceAP.Margin = new System.Windows.Forms.Padding(4);
             this.InterfaceAP.Name = "InterfaceAP";
             this.InterfaceAP.Size = new System.Drawing.Size(1123, 710);
             this.InterfaceAP.TabIndex = 2;
@@ -239,6 +270,8 @@
             this.AdminPanelContainer.SetCardName(this.HomePanelAP, "Card4");
             this.HomePanelAP.Controls.Add(this.label2);
             this.HomePanelAP.Location = new System.Drawing.Point(0, 0);
+
+            this.HomePanelAP.Margin = new System.Windows.Forms.Padding(4);
             this.AdminPanelContainer.SetMinimumSize(this.HomePanelAP, new System.Drawing.Size(200, 100));
             this.HomePanelAP.Name = "HomePanelAP";
             this.AdminPanelContainer.SetPreferredSize(this.HomePanelAP, new System.Drawing.Size(200, 100));
@@ -278,6 +311,8 @@
             this.AddMenuPanelAP.Controls.Add(this.MenuPicB);
             this.AddMenuPanelAP.Controls.Add(this.FoodTbl);
             this.AddMenuPanelAP.Location = new System.Drawing.Point(0, 0);
+
+            this.AddMenuPanelAP.Margin = new System.Windows.Forms.Padding(4);
             this.AdminPanelContainer.SetMinimumSize(this.AddMenuPanelAP, new System.Drawing.Size(200, 100));
             this.AddMenuPanelAP.Name = "AddMenuPanelAP";
             this.AdminPanelContainer.SetPreferredSize(this.AddMenuPanelAP, new System.Drawing.Size(200, 100));
@@ -486,6 +521,8 @@
             this.AdminPanelContainer.SetCardName(this.AccManagePanel, "Card1");
             this.AccManagePanel.Controls.Add(this.AccCreatePanel);
             this.AccManagePanel.Location = new System.Drawing.Point(0, 0);
+
+            this.AccManagePanel.Margin = new System.Windows.Forms.Padding(4);
             this.AdminPanelContainer.SetMinimumSize(this.AccManagePanel, new System.Drawing.Size(200, 100));
             this.AccManagePanel.Name = "AccManagePanel";
             this.AdminPanelContainer.SetPreferredSize(this.AccManagePanel, new System.Drawing.Size(200, 100));
@@ -496,6 +533,8 @@
             // 
             this.AccCreatePanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.AccManageContainer.SetCardName(this.AccCreatePanel, "Card1");
+            this.AccCreatePanel.Controls.Add(this.CancelBtn);
+            this.AccCreatePanel.Controls.Add(this.UpdateBtn);
             this.AccCreatePanel.Controls.Add(this.ImgTxtB);
             this.AccCreatePanel.Controls.Add(this.ActiveAccLbl);
             this.AccCreatePanel.Controls.Add(this.AccCreateLbl);
@@ -531,6 +570,28 @@
             this.AccCreatePanel.Size = new System.Drawing.Size(1123, 710);
             this.AccCreatePanel.TabIndex = 0;
             // 
+            // CancelBtn
+            // 
+            this.CancelBtn.Location = new System.Drawing.Point(385, 572);
+            this.CancelBtn.Name = "CancelBtn";
+            this.CancelBtn.Size = new System.Drawing.Size(156, 34);
+            this.CancelBtn.TabIndex = 28;
+            this.CancelBtn.Text = "Cancel";
+            this.CancelBtn.UseVisualStyleBackColor = true;
+            this.CancelBtn.Visible = false;
+            this.CancelBtn.Click += new System.EventHandler(this.CancelBtn_Click_1);
+            // 
+            // UpdateBtn
+            // 
+            this.UpdateBtn.Location = new System.Drawing.Point(209, 573);
+            this.UpdateBtn.Name = "UpdateBtn";
+            this.UpdateBtn.Size = new System.Drawing.Size(155, 33);
+            this.UpdateBtn.TabIndex = 27;
+            this.UpdateBtn.Text = "Update Account";
+            this.UpdateBtn.UseVisualStyleBackColor = true;
+            this.UpdateBtn.Visible = false;
+            this.UpdateBtn.Click += new System.EventHandler(this.UpdateBtn_Click);
+            // 
             // ImgTxtB
             // 
             this.ImgTxtB.Enabled = false;
@@ -541,8 +602,6 @@
             this.ImgTxtB.Name = "ImgTxtB";
             this.ImgTxtB.Size = new System.Drawing.Size(121, 25);
             this.ImgTxtB.TabIndex = 26;
-            this.ImgTxtB.Text = "Choose picture";
-            this.ImgTxtB.Visible = false;
             // 
             // ActiveAccLbl
             // 
@@ -826,6 +885,8 @@
             this.NavigationPanelAP.Controls.Add(this.AddMenuLbl);
             this.NavigationPanelAP.Controls.Add(this.AccManageLbl);
             this.NavigationPanelAP.Location = new System.Drawing.Point(0, 0);
+
+            this.NavigationPanelAP.Margin = new System.Windows.Forms.Padding(4);
             this.NavigationPanelAP.Name = "NavigationPanelAP";
             this.NavigationPanelAP.Size = new System.Drawing.Size(177, 710);
             this.NavigationPanelAP.TabIndex = 1;
@@ -879,6 +940,8 @@
             this.MainLoginContainer.SetCardName(this.ManagerPanel, "Card2");
             this.ManagerPanel.Controls.Add(this.label1);
             this.ManagerPanel.Location = new System.Drawing.Point(0, 0);
+
+            this.ManagerPanel.Margin = new System.Windows.Forms.Padding(4);
             this.MainLoginContainer.SetMinimumSize(this.ManagerPanel, new System.Drawing.Size(200, 100));
             this.ManagerPanel.Name = "ManagerPanel";
             this.MainLoginContainer.SetPreferredSize(this.ManagerPanel, new System.Drawing.Size(200, 100));
@@ -919,6 +982,8 @@
             this.StaffPanel.Controls.Add(this.flowLayoutPanel1);
             this.StaffPanel.Controls.Add(this.allBtn);
             this.StaffPanel.Location = new System.Drawing.Point(0, 0);
+
+            this.StaffPanel.Margin = new System.Windows.Forms.Padding(4);
             this.MainLoginContainer.SetMinimumSize(this.StaffPanel, new System.Drawing.Size(200, 100));
             this.StaffPanel.Name = "StaffPanel";
             this.MainLoginContainer.SetPreferredSize(this.StaffPanel, new System.Drawing.Size(200, 100));
@@ -928,21 +993,33 @@
             // PositionTxtBox
             // 
             this.PositionTxtBox.Enabled = false;
-            this.PositionTxtBox.Location = new System.Drawing.Point(1035, 657);
-            this.PositionTxtBox.Margin = new System.Windows.Forms.Padding(2);
+            //this.PositionTxtBox.Location = new System.Drawing.Point(1035, 657);
+           // this.PositionTxtBox.Margin = new System.Windows.Forms.Padding(2);
+            //this.PositionTxtBox.Name = "PositionTxtBox";
+            //this.PositionTxtBox.Size = new System.Drawing.Size(76, 20);
+           // this.PositionTxtBox.TabIndex = 22;
+
+            this.PositionTxtBox.Location = new System.Drawing.Point(1389, 812);
             this.PositionTxtBox.Name = "PositionTxtBox";
-            this.PositionTxtBox.Size = new System.Drawing.Size(76, 20);
+            this.PositionTxtBox.Size = new System.Drawing.Size(100, 22);
             this.PositionTxtBox.TabIndex = 22;
+            this.PositionTxtBox.Visible = false;
             // 
             // cashtxtBx
             // 
             this.cashtxtBx.BackColor = System.Drawing.Color.White;
             this.cashtxtBx.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.cashtxtBx.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cashtxtBx.Location = new System.Drawing.Point(1131, 463);
+            //this.cashtxtBx.Location = new System.Drawing.Point(1131, 463);
+            //this.cashtxtBx.Multiline = true;
+           // this.cashtxtBx.Name = "cashtxtBx";
+            //this.cashtxtBx.Size = new System.Drawing.Size(64, 34);
+
+            this.cashtxtBx.Location = new System.Drawing.Point(1498, 573);
+            this.cashtxtBx.Margin = new System.Windows.Forms.Padding(4);
             this.cashtxtBx.Multiline = true;
             this.cashtxtBx.Name = "cashtxtBx";
-            this.cashtxtBx.Size = new System.Drawing.Size(64, 34);
+            this.cashtxtBx.Size = new System.Drawing.Size(89, 42);
             this.cashtxtBx.TabIndex = 21;
             this.cashtxtBx.TextChanged += new System.EventHandler(this.cashtxtBx_TextChanged);
             this.cashtxtBx.Enter += new System.EventHandler(this.cashtxtBx_Enter);
@@ -983,9 +1060,14 @@
             this.flowLayoutPanel2.AutoScroll = true;
             this.flowLayoutPanel2.Cursor = System.Windows.Forms.Cursors.Hand;
             this.flowLayoutPanel2.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(3, 146);
+            //this.flowLayoutPanel2.Location = new System.Drawing.Point(3, 146);
+            //this.flowLayoutPanel2.Name = "flowLayoutPanel2";
+            //this.flowLayoutPanel2.Size = new System.Drawing.Size(178, 554);
+
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(4, 199);
+            this.flowLayoutPanel2.Margin = new System.Windows.Forms.Padding(4);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(178, 554);
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(237, 661);
             this.flowLayoutPanel2.TabIndex = 18;
             this.flowLayoutPanel2.WrapContents = false;
             // 
@@ -1064,7 +1146,10 @@
             // 
             this.placeBtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.placeBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.placeBtn.Location = new System.Drawing.Point(1063, 513);
+            //this.placeBtn.Location = new System.Drawing.Point(1063, 513);
+
+            this.placeBtn.Location = new System.Drawing.Point(1417, 631);
+            this.placeBtn.Margin = new System.Windows.Forms.Padding(4);
             this.placeBtn.Name = "placeBtn";
             this.placeBtn.Size = new System.Drawing.Size(157, 54);
             this.placeBtn.TabIndex = 10;
@@ -1076,7 +1161,10 @@
             // 
             this.voidBtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.voidBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.voidBtn.Location = new System.Drawing.Point(895, 513);
+            //this.voidBtn.Location = new System.Drawing.Point(895, 513);
+
+            this.voidBtn.Location = new System.Drawing.Point(1193, 631);
+            this.voidBtn.Margin = new System.Windows.Forms.Padding(4);
             this.voidBtn.Name = "voidBtn";
             this.voidBtn.Size = new System.Drawing.Size(146, 54);
             this.voidBtn.TabIndex = 9;
@@ -1088,7 +1176,10 @@
             // 
             this.discChckBx.AutoSize = true;
             this.discChckBx.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.discChckBx.Location = new System.Drawing.Point(918, 293);
+            //this.discChckBx.Location = new System.Drawing.Point(918, 293);
+
+            this.discChckBx.Location = new System.Drawing.Point(1224, 361);
+            this.discChckBx.Margin = new System.Windows.Forms.Padding(4);
             this.discChckBx.Name = "discChckBx";
             this.discChckBx.Size = new System.Drawing.Size(319, 37);
             this.discChckBx.TabIndex = 8;
@@ -1134,7 +1225,10 @@
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle3;
-            this.dataGridView1.Location = new System.Drawing.Point(867, 43);
+            //this.dataGridView1.Location = new System.Drawing.Point(867, 43);
+
+            this.dataGridView1.Location = new System.Drawing.Point(1168, 47);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView1.Name = "dataGridView1";
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
@@ -1147,7 +1241,9 @@
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.dataGridView1.Size = new System.Drawing.Size(381, 234);
+            //this.dataGridView1.Size = new System.Drawing.Size(381, 234);
+
+            this.dataGridView1.Size = new System.Drawing.Size(528, 288);
             this.dataGridView1.TabIndex = 7;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             this.dataGridView1.KeyUp += new System.Windows.Forms.KeyEventHandler(this.dataGridView1_KeyUp);
@@ -1207,7 +1303,9 @@
             // 
             this.SearchTxtbx.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SearchTxtbx.ForeColor = System.Drawing.Color.Black;
-            this.SearchTxtbx.Location = new System.Drawing.Point(435, 12);
+            //this.SearchTxtbx.Location = new System.Drawing.Point(435, 12);
+            this.SearchTxtbx.Location = new System.Drawing.Point(580, 15);
+            this.SearchTxtbx.Margin = new System.Windows.Forms.Padding(4);
             this.SearchTxtbx.Name = "SearchTxtbx";
             this.SearchTxtbx.Size = new System.Drawing.Size(372, 24);
             this.SearchTxtbx.TabIndex = 6;
@@ -1221,7 +1319,10 @@
             this.flowLayoutPanel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.flowLayoutPanel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.flowLayoutPanel1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(187, 43);
+            //this.flowLayoutPanel1.Location = new System.Drawing.Point(187, 43);
+
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(249, 53);
+            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(4);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(655, 657);
             this.flowLayoutPanel1.TabIndex = 5;
@@ -1230,7 +1331,9 @@
             // 
             this.allBtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.allBtn.Image = global::CafeDeLunaSystem.Properties.Resources.all;
-            this.allBtn.Location = new System.Drawing.Point(3, 3);
+            //this.allBtn.Location = new System.Drawing.Point(3, 3);
+            this.allBtn.Location = new System.Drawing.Point(4, 4);
+            this.allBtn.Margin = new System.Windows.Forms.Padding(4);
             this.allBtn.Name = "allBtn";
             this.allBtn.Size = new System.Drawing.Size(178, 152);
             this.allBtn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -1242,7 +1345,7 @@
             // 
             this.AdminPanelContainer.ContainerControl = this.InterfaceAP;
             this.AdminPanelContainer.LayoutMode = Syncfusion.Windows.Forms.Tools.CardLayoutMode.Fill;
-            this.AdminPanelContainer.SelectedCard = "Card2";
+            this.AdminPanelContainer.SelectedCard = "Card1";
             // 
             // AccManageContainer
             // 
@@ -1259,7 +1362,12 @@
             this.Controls.Add(this.ManagerPanel);
             this.Controls.Add(this.AdminPanel);
             this.Controls.Add(this.LoginPanel);
-            this.MaximumSize = new System.Drawing.Size(1316, 747);
+
+            //this.MaximumSize = new System.Drawing.Size(1316, 747);
+
+            this.Margin = new System.Windows.Forms.Padding(4);
+            this.MaximumSize = new System.Drawing.Size(1749, 911);
+
             this.Name = "CafeDeLunaDashboard";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Cafe De Luna";
@@ -1394,6 +1502,12 @@
         private System.Windows.Forms.DataGridViewButtonColumn Column4;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
         private System.Windows.Forms.DataGridViewButtonColumn Column6;
+
+        private System.Windows.Forms.Button SalesBtn;
+        private System.Windows.Forms.TextBox PositionTxtBox;
+        private System.Windows.Forms.Button CancelBtn;
+        private System.Windows.Forms.Button UpdateBtn;
+
     }
 }
 
