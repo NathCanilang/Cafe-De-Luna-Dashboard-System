@@ -16,6 +16,7 @@ using System.Xml.Linq;
 using System.Drawing.Drawing2D;
 using Image = System.Drawing.Image;
 using TextAlignment = iText.Layout.Properties.TextAlignment;
+using iText.Layout.Borders;
 
 
 namespace CafeDeLunaSystem
@@ -42,22 +43,23 @@ namespace CafeDeLunaSystem
         private bool isSearchTextPlaceholder = true;
         bool isNewImageSelected = false;
         bool isNewFoodImageSelected = false;
-
-        //
         private bool IsEditMode = false;
         public int EmployeeIDBeingEdited = -1;
         private bool IsPasswordChanged = false;
-
+        private int GenerateID = orderIDGenerator();
+        private int employeeID;
 
         //Admin Panel
         private readonly CreateAndEditAcc createAndEditAcc = new CreateAndEditAcc();
         private readonly string[] position = { "Manager", "Cashier" };
+        List<string> removedItems = new List<string>();
         List<PictureBox> clickedPictureBoxes = new List<PictureBox>();
         public CafeDeLunaDashboard()
         {
             InitializeComponent();
             cafeDeLunaInstance = this;
             string mysqlcon = "server=localhost;user=root;database=dashboarddb;password=";
+
             conn = new MySqlConnection(mysqlcon);
             panelManager = new PanelManager(LoginPanel, AdminPanel, ManagerPanel, StaffPanel);
             panelManagerAP = new PanelManagerAP(HomePanelAP, AccManagePanel, AddMenuPanelAP);
@@ -104,18 +106,13 @@ namespace CafeDeLunaSystem
                 MessageBox.Show("Admin login successful", "Welcome, Admin", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 panelManager.ShowPanel(AdminPanel);
             }
-            else if (usernameInput == "Staff" && passwordInput == "staff123")
-            {
-                MessageBox.Show("Staff login successful", "Welcome, Staff", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                panelManager.ShowPanel(StaffPanel);
-            }
             else
             {
                 using (conn)
                 {
                     conn.Open();
 
-                    string query = "SELECT Position FROM employee_acc WHERE Username = @username AND Password = @password";
+                    string query = "SELECT Position, EmployeeID FROM employee_acc WHERE Username = @username AND Password = @password";
                     using (MySqlCommand command = new MySqlCommand(query, conn))
                     {
                         command.Parameters.AddWithValue("@username", usernameInput);
@@ -123,7 +120,7 @@ namespace CafeDeLunaSystem
 
                         object position = command.ExecuteScalar();
 
-                        if (position != null)
+                        using (MySqlDataReader reader = command.ExecuteReader())
                         {
                             string userRole = position.ToString();
                             if (userRole == "Manager")
@@ -133,16 +130,32 @@ namespace CafeDeLunaSystem
                                 PositionTxtBox.Text = "Manager";
                             }
                             else if (userRole == "Cashier")
+
+                            if (reader.Read())
                             {
-                                MessageBox.Show("Login Successful", "Welcome, Staff", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                panelManager.ShowPanel(StaffPanel);
-                                PositionTxtBox.Text = "Staff";
-                                SalesBtn.Hide();
+                                if (position != null)
+                                {
+                                    string userRole = position.ToString();
+                                    employeeID = reader.GetInt32("EmployeeID");
+                                    if (userRole == "Manager")
+                                    {
+                                        MessageBox.Show("Login Successful", "Welcome, Manager", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                        panelManager.ShowPanel(StaffPanel);
+                                        PositionTxtBox.Text = "Manager";
+                                    }
+                                    else if (userRole == "Cashier")
+                                    {
+                                        MessageBox.Show("Login Successful", "Welcome, Staff", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                        panelManager.ShowPanel(StaffPanel);
+                                        PositionTxtBox.Text = "Staff";
+                                        SalesBtn.Hide();
+                                    }
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Invalid username or password.", "Try again", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                }
                             }
-                        }
-                        else
-                        {
-                            MessageBox.Show("Invalid username or password.", "Try again", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         }
                     }
                 }
@@ -283,39 +296,6 @@ namespace CafeDeLunaSystem
                     }
                 }
             }
-
-
-            /*using (OpenFileDialog openFileDialog = new OpenFileDialog())
-            {
-                openFileDialog.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.gif;*.bmp";
-                openFileDialog.Title = "Select an Image File";
-
-                if (openFileDialog.ShowDialog() == DialogResult.OK)
-                {
-                    string selectedFilePath = openFileDialog.FileName;
-                    ImgTxtB.Text = selectedFilePath;
-
-                    try
-                    {
-                        // Load the selected image
-                        Image selectedImage = Image.FromFile(selectedFilePath);
-
-                        // Check if the image dimensions are 64x64 pixels
-                        if (selectedImage.Width == 64 && selectedImage.Height == 64)
-                        {
-                            UserPicB.Image = selectedImage;
-                        }
-                        else
-                        {
-                            MessageBox.Show("Please select an image with dimensions of 64x64 pixels.", "Try again", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("Error loading the image: " + ex.Message);
-                    }
-                }
-            }*/
         }
         private void CreateBtn_Click(object sender, EventArgs e)
         {
@@ -329,12 +309,7 @@ namespace CafeDeLunaSystem
                 MessageBox.Show("Please select an image.", "Try again", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            /* if (string.IsNullOrWhiteSpace(userImagePath) || !File.Exists(userImagePath))
-             {
-                 MessageBox.Show("Invalid image file path.", "Try again", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                 return;
-             }*/
-
+            
             if ((string.IsNullOrWhiteSpace(LastNTxtB_AP.Text) || LastNTxtB_AP.Text == "Enter last name") ||
                 (string.IsNullOrWhiteSpace(FirstNTxtB_AP.Text) || FirstNTxtB_AP.Text == "Enter first name") ||
                 (string.IsNullOrWhiteSpace(MiddleNTxtB_AP.Text) || MiddleNTxtB_AP.Text == "Enter middle name") ||
@@ -420,12 +395,7 @@ namespace CafeDeLunaSystem
                 return;
             }
 
-            /*if (string.IsNullOrWhiteSpace(userImagePath) || !File.Exists(userImagePath))
-            {
-                MessageBox.Show("Invalid image file path.", "Try again", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }*/
-
+            
             if ((string.IsNullOrWhiteSpace(LastNTxtB_AP.Text) || LastNTxtB_AP.Text == "Enter last name") ||
                 (string.IsNullOrWhiteSpace(FirstNTxtB_AP.Text) || FirstNTxtB_AP.Text == "Enter first name") ||
                 (string.IsNullOrWhiteSpace(MiddleNTxtB_AP.Text) || MiddleNTxtB_AP.Text == "Enter middle name") ||
@@ -713,37 +683,7 @@ namespace CafeDeLunaSystem
                     }
                 }
             }
-            /*using (OpenFileDialog openFileDialog = new OpenFileDialog())
-            {
-                openFileDialog.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.gif;*.bmp";
-                openFileDialog.Title = "Select an Image File";
-
-                if (openFileDialog.ShowDialog() == DialogResult.OK)
-                {
-                    string selectedFilePath = openFileDialog.FileName;
-                    VarietyFilePathTxtB.Text = selectedFilePath;
-
-                    try
-                    {
-                        Image originalImage = Image.FromFile(selectedFilePath);
-                        Image resizedImage = createAndEditAcc.ResizeImages(originalImage, 64, 64);
-
-                        // Check if the image dimensions are 64x64 pixels
-                        if (resizedImage.Width == 64 && resizedImage.Height == 64)
-                        {
-                            VariationPicB.Image = resizedImage;
-                        }
-                        else
-                        {
-                            MessageBox.Show("Error resizing the image to 64x64 pixels.", "Try again", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("Error loading the image: " + ex.Message);
-                    }
-                }
-            }*/
+           
         }
 
         private void UpdateMealBtn_Click(object sender, EventArgs e)
@@ -1045,6 +985,14 @@ namespace CafeDeLunaSystem
         }
 
         //Staff panel
+
+        public static int orderIDGenerator()
+        {
+            Random random = new Random();
+            return random.Next(1000, 1000000);
+        }
+
+
         public void GetData()
         {
             conn.Close();
@@ -1104,7 +1052,7 @@ namespace CafeDeLunaSystem
             conn.Close();
             flowLayoutPanel2.Controls.Clear();
             conn.Open();
-            cm = new MySqlCommand("SELECT MealImage, MealID FROM meal WHERE MealID>=24", conn);
+            cm = new MySqlCommand("SELECT MealImage, MealID, MealName FROM meal WHERE MealID>=24", conn);
             dr = cm.ExecuteReader();
 
             TableLayoutPanel table = new TableLayoutPanel
@@ -1131,10 +1079,122 @@ namespace CafeDeLunaSystem
                         BackgroundImageLayout = ImageLayout.Stretch,
                         Tag = mealID.ToString(),
                     };
+
+                    mealname = new Label
+                    {
+                        Text = dr["MealName"].ToString(),
+                        Width = 25,
+                        Height = 15,
+                        TextAlign = ContentAlignment.BottomCenter,
+                        Dock = DockStyle.Bottom,
+                        BackColor = Color.White,
+                    };
                     table.RowStyles.Add(new RowStyle(SizeType.AutoSize));
                     table.Controls.Add(menupic);
+                    table.Controls.Add(mealname);
                     flowLayoutPanel2.Controls.Add(table);
                     menupic.Click += OnFLP2Click;
+                }
+            }
+            dr.Close();
+            conn.Close();
+        }
+        private void OnFLP1Click(object sender, EventArgs e)
+        {
+            PictureBox clickedPic = (PictureBox)sender;
+            string tag = clickedPic.Tag.ToString();
+            conn.Open();
+            cm = new MySqlCommand("Select * from mealvariation where VariationID like'" + tag + "'", conn);
+            dr = cm.ExecuteReader();
+            dr.Read();
+
+            if (dr.HasRows)
+            {
+                string variationName = dr["VariationName"].ToString();
+                string variationCost = dr["VariationCost"].ToString();
+                string quantity = dr["qty"].ToString();
+
+                // Check if a variation with the same VariationName already exists in the DataGridView
+                bool exists = false;
+                foreach (DataGridViewRow row in dataGridView1.Rows)
+                {
+                    if (row.Cells[0].Value != null && row.Cells[0].Value.ToString() == variationName)
+                    {
+
+                        Image mealImage = Image.FromStream(ms);
+                        pic = new PictureBox
+                        {
+                            Width = 150,
+                            Height = 150,
+                            BackgroundImage = mealImage,
+                            BackgroundImageLayout = ImageLayout.Stretch,
+                            Tag = dr["VariationID"].ToString(),
+                        };
+
+                        price = new Label
+                        {
+                            Text = "Php. " + dr["VariationCost"].ToString(),
+                            Width = 25,
+                            Height = 15,
+                            TextAlign = ContentAlignment.TopLeft,
+                            Dock = DockStyle.Top,
+                            BackColor = Color.White,
+                        };
+
+                        mealname = new Label
+                        {
+                            Text = dr["VariationName"].ToString(),
+                            Width = 25,
+                            Height = 15,
+                            TextAlign = ContentAlignment.BottomCenter,
+                            Dock = DockStyle.Bottom,
+                            BackColor = Color.White,
+
+                        };
+
+                        pic.Controls.Add(mealname);
+                        pic.Controls.Add(price);
+                        flowLayoutPanel1.Controls.Add(pic);
+                        pic.Click += OnFLP1Click;
+                    }
+                }
+            }
+            dr.Close();
+            conn.Close();
+        }
+
+        private void allBtn_Click(object sender, EventArgs e)
+        {
+            GetData();
+        }
+
+        private void coffBtn_Click(object sender, EventArgs e)
+        {
+            flowLayoutPanel1.Controls.Clear();
+            conn.Open();
+            int Mealid = 23 + 1;
+            cm = new MySqlCommand("SELECT VariationName, VariationCost, MealImage, VariationID FROM mealvariation WHERE MealID ='" + Mealid + "'", conn);
+            dr = cm.ExecuteReader();
+
+                        exists = true;
+                        break;
+                    }
+                }
+
+                if (!exists)
+                {
+                    DialogResult result = MessageBox.Show("Do you want to add this variation?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                    if (result == DialogResult.Yes)
+                    {
+                        dataGridView1.Rows.Add(variationName, "-", quantity, "+", variationCost, "X");
+                        // Update the total price
+                        UpdateTotalPrice();
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("This variation is already in the cart.", "Try another one", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             dr.Close();
@@ -1195,7 +1255,7 @@ namespace CafeDeLunaSystem
                             TextAlign = ContentAlignment.BottomCenter,
                             Dock = DockStyle.Bottom,
                             BackColor = Color.White,
-
+                            
                         };
 
                         pic.Controls.Add(mealname);
@@ -1213,234 +1273,7 @@ namespace CafeDeLunaSystem
         {
             GetData();
         }
-
-        private void coffBtn_Click(object sender, EventArgs e)
-        {
-            flowLayoutPanel1.Controls.Clear();
-            conn.Open();
-            int Mealid = 23 + 1;
-            cm = new MySqlCommand("SELECT VariationName, VariationCost, MealImage, VariationID FROM mealvariation WHERE MealID ='" + Mealid + "'", conn);
-            dr = cm.ExecuteReader();
-
-            while (dr.Read())
-            {
-                string mealName = dr["VariationName"].ToString();
-
-                if (!dr.IsDBNull(dr.GetOrdinal("MealImage")))
-                {
-                    byte[] imageBytes = (byte[])dr["MealImage"];
-
-                    using (MemoryStream ms = new MemoryStream(imageBytes))
-                    {
-                        Image mealImage = Image.FromStream(ms);
-                        pic = new PictureBox
-                        {
-                            Width = 150,
-                            Height = 150,
-                            BackgroundImage = mealImage,
-                            BackgroundImageLayout = ImageLayout.Stretch,
-                            Tag = dr["VariationID"].ToString(),
-                        };
-
-                        price = new Label
-                        {
-                            Text = "Php. " + dr["VariationCost"].ToString(),
-                            Width = 25,
-                            Height = 15,
-                            TextAlign = ContentAlignment.TopLeft,
-                            Dock = DockStyle.Top,
-                            BackColor = Color.White,
-
-                        };
-
-                        mealname = new Label
-                        {
-                            Text = dr["VariationName"].ToString(),
-                            Width = 25,
-                            Height = 15,
-                            TextAlign = ContentAlignment.BottomCenter,
-                            Dock = DockStyle.Bottom,
-                            BackColor = Color.White,
-                        };
-
-                        pic.Controls.Add(mealname);
-                        pic.Controls.Add(price);
-                        flowLayoutPanel1.Controls.Add(pic);
-                        pic.Click += OnFLP1Click;
-                    }
-                }
-            }
-            dr.Close();
-            conn.Close();
-        }
-
-        private void breakBtn_Click(object sender, EventArgs e)
-        {
-            flowLayoutPanel1.Controls.Clear();
-            conn.Open();
-            cm = new MySqlCommand("SELECT VariationName, VariationCost, MealImage, VariationID FROM mealvariation WHERE MealID = '25'", conn);
-            dr = cm.ExecuteReader();
-
-            while (dr.Read())
-            {
-                string mealName = dr["VariationName"].ToString();
-
-                if (!dr.IsDBNull(dr.GetOrdinal("MealImage")))
-                {
-                    byte[] imageBytes = (byte[])dr["MealImage"];
-
-                    using (MemoryStream ms = new MemoryStream(imageBytes))
-                    {
-                        Image mealImage = Image.FromStream(ms);
-                        pic = new PictureBox
-                        {
-                            Width = 150,
-                            Height = 150,
-                            BackgroundImage = mealImage,
-                            BackgroundImageLayout = ImageLayout.Stretch,
-                            Tag = dr["VariationID"].ToString(),
-                        };
-
-                        price = new Label
-                        {
-                            Text = "Php. " + dr["VariationCost"].ToString(),
-                            Width = 25,
-                            Height = 15,
-                            TextAlign = ContentAlignment.TopLeft,
-                            Dock = DockStyle.Top,
-                            BackColor = Color.White,
-
-                        };
-
-                        mealname = new Label
-                        {
-                            Text = dr["VariationName"].ToString(),
-                            Width = 25,
-                            Height = 15,
-                            TextAlign = ContentAlignment.BottomCenter,
-                            Dock = DockStyle.Bottom,
-                            BackColor = Color.White,
-                        };
-
-                        pic.Controls.Add(mealname);
-                        pic.Controls.Add(price);
-                        flowLayoutPanel1.Controls.Add(pic);
-                        pic.Click += OnFLP1Click;
-                    }
-                }
-            }
-            dr.Close();
-            conn.Close();
-        }
-
-        private void snackBtn_Click(object sender, EventArgs e)
-        {
-            flowLayoutPanel1.Controls.Clear();
-            conn.Open();
-            cm = new MySqlCommand("SELECT VariationName, VariationCost, MealImage, VariationID FROM mealvariation WHERE MealID = '26'", conn);
-            dr = cm.ExecuteReader();
-
-            while (dr.Read())
-            {
-                string mealName = dr["VariationName"].ToString();
-
-                if (!dr.IsDBNull(dr.GetOrdinal("MealImage")))
-                {
-                    byte[] imageBytes = (byte[])dr["MealImage"];
-
-                    using (MemoryStream ms = new MemoryStream(imageBytes))
-                    {
-                        Image mealImage = Image.FromStream(ms);
-                        pic = new PictureBox
-                        {
-                            Width = 150,
-                            Height = 150,
-                            BackgroundImage = mealImage,
-                            BackgroundImageLayout = ImageLayout.Stretch,
-                            Tag = dr["VariationID"].ToString(),
-                        };
-
-                        price = new Label
-                        {
-                            Text = "Php. " + dr["VariationCost"].ToString(),
-                            Width = 25,
-                            Height = 15,
-                            TextAlign = ContentAlignment.TopLeft,
-                            Dock = DockStyle.Top,
-                            BackColor = Color.White,
-
-                        };
-
-                        mealname = new Label
-                        {
-                            Text = dr["VariationName"].ToString(),
-                            Width = 25,
-                            Height = 15,
-                            TextAlign = ContentAlignment.BottomCenter,
-                            Dock = DockStyle.Bottom,
-                            BackColor = Color.White,
-                        };
-
-                        pic.Controls.Add(mealname);
-                        pic.Controls.Add(price);
-                        flowLayoutPanel1.Controls.Add(pic);
-                        pic.Click += OnFLP1Click;
-                    }
-                }
-            }
-            dr.Close();
-            conn.Close();
-        }
-
-        private void OnFLP1Click(object sender, EventArgs e)
-        {
-            PictureBox clickedPic = (PictureBox)sender;
-            String tag = clickedPic.Tag.ToString();
-            if (!clickedPictureBoxes.Contains(clickedPic))
-            {
-                conn.Open();
-                cm = new MySqlCommand("Select * from mealvariation where VariationID like'" + tag + "'", conn);
-                dr = cm.ExecuteReader();
-                dr.Read();
-                if (dr.HasRows)
-                {
-                    string variationName = dr["VariationName"].ToString();
-                    string variationCost = dr["VariationCost"].ToString();
-                    string quantity = dr["qty"].ToString();
-
-                    // Check if a variation with the same VariationName already exists in the DataGridView
-                    bool exists = false;
-                    foreach (DataGridViewRow row in dataGridView1.Rows)
-                    {
-                        if (row.Cells[0].Value != null && row.Cells[0].Value.ToString() == variationName)
-                        {
-                            exists = true;
-                            break;
-                        }
-                    }
-
-                    if (!exists)
-                    {
-                        dataGridView1.Rows.Add(variationName, "-", quantity, "+", variationCost, "X");
-                        // Add the clicked PictureBox to the list
-                        clickedPictureBoxes.Add(clickedPic);
-                        UpdateTotalPrice();
-                    }
-                    else
-                    {
-                        MessageBox.Show("This variation is already in the cart.", "Try another one", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-                }
-                dr.Close();
-                conn.Close();
-            }
-            else
-            {
-                MessageBox.Show("This variation is already in the cart.", "Try another one", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-
-        }
-
+            
         private void SearchTxtbx_TextChanged(object sender, EventArgs e)
         {
             string searchQuery = SearchTxtbx.Text;
@@ -1622,6 +1455,16 @@ namespace CafeDeLunaSystem
                                                 totalPrice -= removedItemPrice;
                                                 sbLbl.Text = "Php. " + totalPrice.ToString("0.00");
                                                 ttlLbl.Text = sbLbl.Text;
+
+                                                if (discChckBx.Checked)
+                                                {
+                                                    decimal totalPrice = decimal.Parse(sbLbl.Text.Replace("Php. ", ""));
+                                                    decimal discount = totalPrice * 0.20m;
+                                                    decimal discountedTotal = totalPrice - discount;
+
+                                                    dscLbl.Text = "Php. " + discount.ToString("0.00");
+                                                    ttlLbl.Text = "Php. " + discountedTotal.ToString("0.00");
+                                                }
                                             }
                                         }
                                     }
@@ -1696,8 +1539,6 @@ namespace CafeDeLunaSystem
                 UpdateTotalPrice();
             }
         }
-
-
         private void dataGridView1_KeyUp(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Escape)
@@ -1737,6 +1578,14 @@ namespace CafeDeLunaSystem
             }
         }
 
+        private void CafeDeLunaDashboard_Load(object sender, EventArgs e)
+        {
+            SearchTxtbx.Text = "Type here to search";
+            SearchTxtbx.ForeColor = Color.LightGray;
+            cashtxtBx.Text = "0.00";
+            cashtxtBx.ForeColor = Color.LightGray;
+        }
+
         private void cashtxtBx_Enter(object sender, EventArgs e)
         {
             if (cashtxtBx.Text == "0.00")
@@ -1755,18 +1604,17 @@ namespace CafeDeLunaSystem
 
             }
         }
-
-        private void CafeDeLunaDashboard_Load(object sender, EventArgs e)
-        {
-            SearchTxtbx.Text = "Type here to search";
-            SearchTxtbx.ForeColor = Color.LightGray;
-            cashtxtBx.Text = "0.00";
-            cashtxtBx.ForeColor = Color.LightGray;
-        }
-
+        
         private void cashtxtBx_TextChanged(object sender, EventArgs e)
         {
-
+            if (!string.IsNullOrEmpty(cashtxtBx.Text) && cashtxtBx.Text != "0.00")
+            {
+                placeBtn.Enabled = true;
+            }
+            else
+            {
+                placeBtn.Enabled = false;
+            }
         }
 
         private void placeBtn_Click(object sender, EventArgs e)
@@ -1775,19 +1623,12 @@ namespace CafeDeLunaSystem
 
             if (result == DialogResult.Yes)
             {
-                //insert to table order id, userid, 
-                GeneratePDFReceipt();
+                GeneratePDFReceipt();                
             }
         }
 
         private void GeneratePDFReceipt()
         {
-            if (dataGridView1.Rows.Count == 0)
-            {
-                MessageBox.Show("Add items to the cart before proceeding.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
             decimal subtotal = decimal.Parse(sbLbl.Text.Replace("Php. ", ""));
             decimal discount = decimal.Parse(dscLbl.Text.Replace("Php. ", ""));
             decimal totalAmount = decimal.Parse(ttlLbl.Text.Replace("Php. ", ""));
@@ -1807,46 +1648,71 @@ namespace CafeDeLunaSystem
                 return;
             }
 
-            string pdfFilePath = "Receipt.pdf";
-
-            using (PdfWriter writer = new PdfWriter(new FileStream(pdfFilePath, FileMode.Create)))
-            using (PdfDocument pdf = new PdfDocument(writer))
-            using (Document doc = new Document(pdf))
+            using (SaveFileDialog saveFileDialog1 = new SaveFileDialog())
             {
-                doc.SetProperty(Property.TEXT_ALIGNMENT, TextAlignment.JUSTIFIED_ALL);
+                saveFileDialog1.Filter = "PDF Files|*.pdf";
+                saveFileDialog1.Title = "Save PDF File";
 
-                doc.Add(new Paragraph("Café De Luna").SetTextAlignment(TextAlignment.CENTER));
-                doc.Add(new Paragraph("Order Confirmation Receipt").SetTextAlignment(TextAlignment.CENTER));
-                doc.Add(new Paragraph("Date: " + DateTime.Now.ToString("MM/dd/yyyy   hh:mm tt")).SetTextAlignment(TextAlignment.LEFT));
-                doc.Add(new Paragraph("--------------------------------------------------------------------------------------------------"));
-                doc.Add(new Paragraph($"QUANTITY                        MEAL                    PRICE"));
-
-                foreach (DataGridViewRow row in dataGridView1.Rows)
+                if (saveFileDialog1.ShowDialog() == DialogResult.OK)
                 {
-                    string food = row.Cells[0].Value.ToString();
-                    string quantity = row.Cells[2].Value.ToString();
-                    string price = row.Cells[4].Value.ToString();
-                    if (int.TryParse(quantity, out int quantityValue))
+                    string pdfFilePath = saveFileDialog1.FileName;
+
+                    using (PdfWriter writer = new PdfWriter(new FileStream(pdfFilePath, FileMode.Create)))
+                    using (PdfDocument pdf = new PdfDocument(writer))
+                    using (Document doc = new Document(pdf))
                     {
-                        totalQuantity += quantityValue;
+
+                       // totalQuantity += quantityValue;
+                    //}
+                   // doc.Add(new Paragraph($"{quantity}                                   {food}                    {price}"));
+               // }
+
+                        doc.SetProperty(Property.TEXT_ALIGNMENT, TextAlignment.JUSTIFIED_ALL);
+
+                        doc.Add(new Paragraph("Café De Luna").SetTextAlignment(TextAlignment.CENTER));
+                        doc.Add(new Paragraph("Order Confirmation Receipt").SetTextAlignment(TextAlignment.CENTER));
+                        doc.Add(new Paragraph("Date: " + DateTime.Now.ToString("MM/dd/yyyy   hh:mm tt")).SetTextAlignment(TextAlignment.LEFT));
+                        doc.Add(new Paragraph("--------------------------------------------------------------------------------------------------"));
+                        doc.Add(new Paragraph($"QUANTITY                         MEAL                    PRICE"));
+
+                        foreach (DataGridViewRow row in dataGridView1.Rows)
+                        {
+                            string food = row.Cells[0].Value.ToString();
+                            string quantity = row.Cells[2].Value.ToString();
+                            string price = row.Cells[4].Value.ToString();
+                            if (int.TryParse(quantity, out int quantityValue))
+                            {
+                                totalQuantity += quantityValue;
+                            }
+                            doc.Add(new Paragraph($"{quantity}                                   {food}                    {price}"));
+                        }
+
+                        doc.Add(new Paragraph($"---------------------------------------{totalQuantity} Item(s)-----------------------------------------"));
+                        doc.Add(new Paragraph($"SUBTOTAL:                         Php. {subtotal.ToString("0.00")}"));
+                        doc.Add(new Paragraph($"DISCOUNT:                         Php. {discount.ToString("0.00")}"));
+                        doc.Add(new Paragraph($"TOTAL:                         Php. {totalAmount.ToString("0.00")}"));
+                        doc.Add(new Paragraph($"CASH:                         Php. {cashEntered.ToString("0.00")}"));
+                        decimal change = cashEntered - totalAmount;
+                        doc.Add(new Paragraph($"CHANGE:                         Php. {change.ToString("0.00")}"));
+
+                        doc.Add(new Paragraph("--------------------------------------------------------------------------------------------------"));
+                        doc.Add(new Paragraph("This Receipt Serves as Your Proof of Purchase").SetTextAlignment(TextAlignment.CENTER));
                     }
-                    doc.Add(new Paragraph($"{quantity}                                   {food}                    {price}"));
+
+                    MessageBox.Show("Receipt generated successfully and saved to:\n" + pdfFilePath, "Enjoy your meal!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    InsertOrderData(GenerateID, false);
+                    InsertOrderItemsData(GenerateID, dataGridView1, false);
+                    InsertSalesData(GenerateID);
+                    GenerateID = orderIDGenerator();
+                    dataGridView1.Rows.Clear();
+                    sbLbl.Text = "Php. 0.00";
+                    ttlLbl.Text = "Php. 0.00";
+                    dscLbl.Text = "Php. 0.00";
+                    cashtxtBx.Text = "0.00";
+                    cashtxtBx.ForeColor = Color.LightGray;
+                    System.Diagnostics.Process.Start(pdfFilePath);
                 }
-
-                doc.Add(new Paragraph($"---------------------------------------{totalQuantity} Item(s)-----------------------------------------"));
-                doc.Add(new Paragraph($"SUBTOTAL:                         Php. {subtotal.ToString("0.00")}"));
-                doc.Add(new Paragraph($"DISCOUNT:                         Php. {discount.ToString("0.00")}"));
-                doc.Add(new Paragraph($"TOTAL:                         Php. {totalAmount.ToString("0.00")}"));
-                doc.Add(new Paragraph($"CASH:                         Php. {cashEntered.ToString("0.00")}"));
-                decimal change = cashEntered - totalAmount;
-                doc.Add(new Paragraph($"CHANGE:                         Php. {change.ToString("0.00")}"));
-
-                doc.Add(new Paragraph("--------------------------------------------------------------------------------------------------"));
-                doc.Add(new Paragraph("This Receipt Serves as Your Proof of Purchase").SetTextAlignment(TextAlignment.CENTER));
             }
-
-            MessageBox.Show("Receipt generated successfully.", "Enjoy your meal!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            System.Diagnostics.Process.Start(pdfFilePath);
         }
 
         private void voidBtn_Click(object sender, EventArgs e)
@@ -1887,34 +1753,182 @@ namespace CafeDeLunaSystem
 
                                 if (position == "Manager")
                                 {
-                                    result = MessageBox.Show("Do you want to remove this item?", "Remove Item", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                                    result = MessageBox.Show("Do you want to void these items?", "Void Items", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                                 }
                                 else
                                 {
-                                    MessageBox.Show("Invalid password. You need manager permission to remove an item.", "Permission Required", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                    MessageBox.Show("Invalid password. You need manager permission to void items.", "Permission Required", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                                     return;
                                 }
                             }
                             else
                             {
-                                MessageBox.Show("Invalid password. You need manager permission to remove an item.", "Permission Required", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                MessageBox.Show("Invalid password. You need manager permission to void items.", "Permission Required", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                                 return;
                             }
                         }
                     }
                 }
+
             }
             else // For Managers and Admins, no password is required
             {
-                result = MessageBox.Show("Do you want to remove this item?", "Remove Item", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                result = MessageBox.Show("Do you want to void these items?", "Void Items", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             }
 
             if (result == DialogResult.Yes)
             {
+                GenerateID = orderIDGenerator();
+                InsertOrderData(GenerateID, true); 
+                InsertOrderItemsData(GenerateID, dataGridView1, true);
+
                 // Clear all rows from the DataGridView
                 dataGridView1.Rows.Clear();
                 sbLbl.Text = "Php. 0.00";
                 ttlLbl.Text = "Php. 0.00";
+                dscLbl.Text = "Php. 0.00";
+                cashtxtBx.Text = "0.00";
+                cashtxtBx.ForeColor = Color.LightGray;
+            }
+            GenerateID = orderIDGenerator();
+        }
+
+        //Methods for sending place order to database
+
+        string connectionString = "server=localhost;user=root;database=dashboarddb;password=";
+        private void InsertOrderData(int generatedOrderID, bool isVoided)
+        {
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                connection.Open();
+                string orderQuery;
+
+                if (isVoided)
+                {
+                    orderQuery = "INSERT INTO orders (OrderID, UserID, IsVoided) VALUES (@OrderID, @UserID, @Voided)";
+                }
+                else
+                {
+                    orderQuery = "INSERT INTO orders (OrderID, UserID) VALUES (@OrderID, @UserID)";
+                }
+
+                using (MySqlCommand orderCmd = new MySqlCommand(orderQuery, connection))
+                {
+                    orderCmd.Parameters.AddWithValue("@OrderID", generatedOrderID);
+                    orderCmd.Parameters.AddWithValue("@UserID", employeeID);
+
+                    if (isVoided)
+                    {
+                        orderCmd.Parameters.AddWithValue("@Voided", "voided");
+                    }
+
+                    orderCmd.ExecuteNonQuery();
+                }
+            }
+
+            string voidedStatus = isVoided ? "Voided" : "Placed";
+            MessageBox.Show($"{voidedStatus} order successfully. OrderID={generatedOrderID}, UserID={employeeID}, Amount={ttlLbl.Text}", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+
+        private void InsertSalesData(int generatedOrderID)
+        {
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                connection.Open();
+                string salesQuery = "INSERT INTO sales (OrderID, Amount) VALUES (@OrderID, @Amount)";
+
+                using (MySqlCommand salesCmd = new MySqlCommand(salesQuery, connection))
+                {
+                    string totalText = ttlLbl.Text;
+                    string numericValue = totalText.Replace("Php.", "").Trim();
+                    decimal.TryParse(numericValue, out decimal amount);
+
+                    // Insert data into the sales table with the correct total value
+                    salesCmd.Parameters.AddWithValue("@OrderID", generatedOrderID);
+                    salesCmd.Parameters.AddWithValue("@Amount", amount);
+                    salesCmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+        private Tuple<int, int> GetVariationInfo(string itemName)
+        {
+            int variationID = -1;
+            int mealID = -1;
+
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                connection.Open();
+                string query = "SELECT VariationID, MealID FROM mealvariation WHERE VariationName = @ItemName";
+                using (MySqlCommand cmd = new MySqlCommand(query, connection))
+                {
+                    cmd.Parameters.AddWithValue("@ItemName", itemName);
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            variationID = reader.GetInt32("VariationID");
+                            mealID = reader.GetInt32("MealID");
+                        }
+                    }
+                }
+            }
+            return Tuple.Create(variationID, mealID);
+        }
+
+        private void InsertOrderItemsData(int generatedOrderID, DataGridView dataGridView, bool isVoided)
+        {
+            bool itemNameFound = false;
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                connection.Open();
+                foreach (DataGridViewRow row in dataGridView.Rows)
+                {
+                    string itemName;
+                    if (row.Cells["Column1"].Value != null)
+                    {
+                        itemName = row.Cells["Column1"].Value.ToString();
+                        itemNameFound = true;
+                    }
+                    else
+                    {
+                        continue;
+                    }
+
+                    int qty = Convert.ToInt32(row.Cells["Column3"].Value);
+                    Tuple<int, int> variationInfo = GetVariationInfo(itemName);
+                    int variationID = variationInfo.Item1;
+                    int mealID = variationInfo.Item2;
+
+                    string query;
+                    if (isVoided)
+                    {
+                        query = "INSERT INTO orderitems (OrderID, MealID, VariationID, Quantity, IsVoided) VALUES (@OrderID, @MealID, @VariationID, @Qty, @voided)";
+                    }
+                    else
+                    {
+                        query = "INSERT INTO orderitems (OrderID, MealID, VariationID, Quantity) VALUES (@OrderID, @MealID, @VariationID, @Qty)";
+                    }
+                    using (MySqlCommand cmd = new MySqlCommand(query, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@OrderID", generatedOrderID);
+                        cmd.Parameters.AddWithValue("@MealID", mealID);
+                        cmd.Parameters.AddWithValue("@VariationID", variationID);
+                        cmd.Parameters.AddWithValue("@Qty", qty);
+
+                        if (isVoided)
+                        {
+                            cmd.Parameters.AddWithValue("@voided", "voided");
+                        }
+
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+                if (!itemNameFound)
+                {
+                    MessageBox.Show("ItemName is null. IDK why.");
+                }
             }
         }
 
