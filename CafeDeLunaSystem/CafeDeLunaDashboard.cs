@@ -48,6 +48,7 @@ namespace CafeDeLunaSystem
         //Admin Panel
         private readonly CreateAndEditAcc createAndEditAcc = new CreateAndEditAcc();
         private readonly string[] position = { "Manager", "Cashier" };
+        List<string> removedItems = new List<string>();
         List<PictureBox> clickedPictureBoxes = new List<PictureBox>();
         public CafeDeLunaDashboard()
         {
@@ -100,11 +101,6 @@ namespace CafeDeLunaSystem
             {
                 MessageBox.Show("Admin login successful","Welcome, Admin", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 panelManager.ShowPanel(AdminPanel);
-            }
-            else if (usernameInput == "Staff" && passwordInput == "staff123")
-            {
-                MessageBox.Show("Staff login successful", "Welcome, Staff", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                panelManager.ShowPanel(StaffPanel);
             }
             else
             {
@@ -707,55 +703,47 @@ namespace CafeDeLunaSystem
         private void OnFLP1Click(object sender, EventArgs e)
         {
             PictureBox clickedPic = (PictureBox)sender;
-            String tag = clickedPic.Tag.ToString();
-            if (!clickedPictureBoxes.Contains(clickedPic))
+            string tag = clickedPic.Tag.ToString();
+            conn.Open();
+            cm = new MySqlCommand("Select * from mealvariation where VariationID like'" + tag + "'", conn);
+            dr = cm.ExecuteReader();
+            dr.Read();
+
+            if (dr.HasRows)
             {
-                conn.Open();
-                cm = new MySqlCommand("Select * from mealvariation where VariationID like'" + tag + "'", conn);
-                dr = cm.ExecuteReader();
-                dr.Read();
-                if (dr.HasRows)
+                string variationName = dr["VariationName"].ToString();
+                string variationCost = dr["VariationCost"].ToString();
+                string quantity = dr["qty"].ToString();
+
+                // Check if a variation with the same VariationName already exists in the DataGridView
+                bool exists = false;
+                foreach (DataGridViewRow row in dataGridView1.Rows)
                 {
-                    string variationName = dr["VariationName"].ToString();
-                    string variationCost = dr["VariationCost"].ToString();
-                    string quantity = dr["qty"].ToString();
-
-                    // Check if a variation with the same VariationName already exists in the DataGridView
-                    bool exists = false;
-                    foreach (DataGridViewRow row in dataGridView1.Rows)
+                    if (row.Cells[0].Value != null && row.Cells[0].Value.ToString() == variationName)
                     {
-                        if (row.Cells[0].Value != null && row.Cells[0].Value.ToString() == variationName)
-                        {
-                            exists = true;
-                            break;
-                        }
-                    }
-
-                    if (!exists)
-                    {
-                        DialogResult result = MessageBox.Show("Do you want to add this variation?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-                        if (result == DialogResult.Yes)
-                        {
-                            dataGridView1.Rows.Add(variationName, "-", quantity, "+", variationCost, "X");
-                            // Add the clicked PictureBox to the list
-                            clickedPictureBoxes.Add(clickedPic);
-                            UpdateTotalPrice();
-                        }
-                    }
-                    else
-                    {
-                        MessageBox.Show("This variation is already in the cart.", "Try another one", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        exists = true;
+                        break;
                     }
                 }
-                dr.Close();
-                conn.Close();
+
+                if (!exists)
+                {
+                    DialogResult result = MessageBox.Show("Do you want to add this variation?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                    if (result == DialogResult.Yes)
+                    {
+                        dataGridView1.Rows.Add(variationName, "-", quantity, "+", variationCost, "X");
+                        // Update the total price
+                        UpdateTotalPrice();
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("This variation is already in the cart.", "Try another one", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
-            else
-            {
-                MessageBox.Show("This variation is already in the cart.", "Try another one", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-           
+            dr.Close();
+            conn.Close();
         }
 
         private void OnFLP2Click(object sender, EventArgs e)
@@ -1012,6 +1000,16 @@ namespace CafeDeLunaSystem
                                                 totalPrice -= removedItemPrice;
                                                 sbLbl.Text = "Php. " + totalPrice.ToString("0.00");
                                                 ttlLbl.Text = sbLbl.Text;
+
+                                                if (discChckBx.Checked)
+                                                {
+                                                    decimal totalPrice = decimal.Parse(sbLbl.Text.Replace("Php. ", ""));
+                                                    decimal discount = totalPrice * 0.20m;
+                                                    decimal discountedTotal = totalPrice - discount;
+
+                                                    dscLbl.Text = "Php. " + discount.ToString("0.00");
+                                                    ttlLbl.Text = "Php. " + discountedTotal.ToString("0.00");
+                                                }
                                             }
                                         }
                                     }
@@ -1172,6 +1170,10 @@ namespace CafeDeLunaSystem
             if (result == DialogResult.Yes)
             {
                 GeneratePDFReceipt();
+                dataGridView1.Rows.Clear();
+                sbLbl.Text = "Php. 0.00";
+                ttlLbl.Text = "Php. 0.00";
+                dscLbl.Text = "Php. 0.00";
             }
         }
 
@@ -1245,6 +1247,7 @@ namespace CafeDeLunaSystem
                     InsertOrderData(GenerateID, false);
                     InsertOrderItemsData(GenerateID, dataGridView1, false);
                     InsertSalesData(GenerateID);
+                    GenerateID = orderIDGenerator();
                     System.Diagnostics.Process.Start(pdfFilePath);
                 }
             }
@@ -1288,40 +1291,47 @@ namespace CafeDeLunaSystem
 
                                 if (position == "Manager")
                                 {
-                                    result = MessageBox.Show("Do you want to remove this item?", "Remove Item", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                                    result = MessageBox.Show("Do you want to void these items?", "Void Items", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                                 }
                                 else
                                 {
-                                    MessageBox.Show("Invalid password. You need manager permission to remove an item.", "Permission Required", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                    MessageBox.Show("Invalid password. You need manager permission to void items.", "Permission Required", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                                     return;
                                 }
                             }
                             else
                             {
-                                MessageBox.Show("Invalid password. You need manager permission to remove an item.", "Permission Required", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                MessageBox.Show("Invalid password. You need manager permission to void items.", "Permission Required", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                                 return;
                             }
                         }
                     }
                 }
-                InsertOrderData(GenerateID, false);
-                InsertOrderItemsData(GenerateID, dataGridView1, false);
+
             }
             else // For Managers and Admins, no password is required
             {
-                result = MessageBox.Show("Do you want to remove this item?", "Remove Item", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                result = MessageBox.Show("Do you want to void these items?", "Void Items", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             }
 
             if (result == DialogResult.Yes)
             {
+                GenerateID = orderIDGenerator();
+                InsertOrderData(GenerateID, true); 
+                InsertOrderItemsData(GenerateID, dataGridView1, true);
+
                 // Clear all rows from the DataGridView
                 dataGridView1.Rows.Clear();
                 sbLbl.Text = "Php. 0.00";
                 ttlLbl.Text = "Php. 0.00";
+                dscLbl.Text = "Php. 0.00";
             }
+            GenerateID = orderIDGenerator();
         }
 
-        //ANDITO PRE
+
+        //Methods for sending place order to database
+
         string connectionString = "server=localhost;user=root;database=dashboarddb;password=";
         private void InsertOrderData(int generatedOrderID, bool isVoided)
         {
@@ -1452,26 +1462,6 @@ namespace CafeDeLunaSystem
                         cmd.ExecuteNonQuery();
                     }
                 }
-
-                ////foreach (OrderItem voidedItem in OrderManagement.instance.voidedItems)
-                ////{
-                ////    string itemName = voidedItem.ItemName;
-                ////    int qty = Convert.ToInt32(voidedItem.Quantity);
-                ////    Tuple<int, int> variationInfo = GetVariationInfo(itemName);
-                ////    int variationID = variationInfo.Item1;
-                ////    int mealID = variationInfo.Item2;
-
-                ////    string query = "INSERT INTO OrderItems (OrderID, MealID, VariationID, Quantity, IsVoided) VALUES (@OrderID, @MealID, @VariationID, @Qty, @voided)";
-                ////    using (MySqlCommand cmd = new MySqlCommand(query, connection))
-                ////    {
-                ////        cmd.Parameters.AddWithValue("@OrderID", generatedOrderID);
-                ////        cmd.Parameters.AddWithValue("@MealID", mealID);
-                ////        cmd.Parameters.AddWithValue("@VariationID", variationID);
-                ////        cmd.Parameters.AddWithValue("@Qty", qty);
-                ////        cmd.Parameters.AddWithValue("@voided", "voided");
-                ////        cmd.ExecuteNonQuery();
-                ////    }
-                ////}
                 if (!itemNameFound)
                 {
                     MessageBox.Show("ItemName is null. IDK why.");
