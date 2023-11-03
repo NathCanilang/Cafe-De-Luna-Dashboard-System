@@ -41,6 +41,7 @@ namespace CafeDeLunaSystem
         private decimal totalPrice = 0.00m;
         private bool isSearchTextPlaceholder = true;
         bool isNewImageSelected = false;
+        bool isNewFoodImageSelected = false;
 
         //
         private bool IsEditMode = false;
@@ -401,7 +402,7 @@ namespace CafeDeLunaSystem
                 }
             }
         }
-       
+
         private void UpdateBtn_Click(object sender, EventArgs e)
         {
             string adminUsername = "Admin";
@@ -686,6 +687,35 @@ namespace CafeDeLunaSystem
 
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
+                    try
+                    {
+                        // Load the selected image
+                        Image selectedImage = Image.FromFile(openFileDialog.FileName);
+
+                        // Check if the image dimensions are 64x64 pixels
+                        if (selectedImage.Width == 64 && selectedImage.Height == 64)
+                        {
+                            VariationPicB.Image = selectedImage;
+                            isNewFoodImageSelected = true; // Set the flag to true
+                        }
+                        else
+                        {
+                            MessageBox.Show("Please select an image with dimensions of 64x64 pixels.", "Try again", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error loading the image: " + ex.Message);
+                    }
+                }
+            }
+            /*using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.gif;*.bmp";
+                openFileDialog.Title = "Select an Image File";
+
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
                     string selectedFilePath = openFileDialog.FileName;
                     VarietyFilePathTxtB.Text = selectedFilePath;
 
@@ -709,12 +739,110 @@ namespace CafeDeLunaSystem
                         MessageBox.Show("Error loading the image: " + ex.Message);
                     }
                 }
+            }*/
+        }
+
+        private void UpdateMealBtn_Click(object sender, EventArgs e)
+        {
+            string variationName = VariationNmTxtB.Text;
+            string variationDescription = VariationDescTxtB.Text;
+            decimal variationCost = decimal.Parse(VariationCostTxtB.Text);
+            string variationCostText = VariationCostTxtB.Text;
+            string selectedMenuCategory = MenuSelectComB.SelectedItem.ToString();
+            string variationImgPath = VarietyFilePathTxtB.Text;
+            int mealID = createAndEditAcc.GetMealIDFromDatabase(selectedMenuCategory);
+
+            if (string.IsNullOrWhiteSpace(variationCostText) || !decimal.TryParse(variationCostText, out variationCost))
+            {
+                MessageBox.Show("Invalid variation cost.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
+
+            if ((string.IsNullOrWhiteSpace(variationName) || variationName == "Food Name") ||
+                string.IsNullOrEmpty(variationDescription) || variationDescription == "Description" ||
+
+                string.IsNullOrEmpty(variationImgPath))
+            {
+                MessageBox.Show("Please fill out all the required data", "Missing Informations", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
+            DialogResult choices = MessageBox.Show("Are you sure the information you have entered is correct?", "Notice", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (choices == DialogResult.Yes)
+            {
+                try
+                {
+                    conn.Open();
+                    string updateQuery = "UPDATE mealvariation " +
+                "SET VariationName = @variationName, VariationDescription = @variationDescription, VariationCost = @variationCost, MealID = @mealID";
+
+                    if (isNewFoodImageSelected)
+                    {
+                        using (MemoryStream ms = new MemoryStream())
+                        {
+                            VariationPicB.Image.Save(ms, ImageFormat.Jpeg); // You can choose the format you want
+                            byte[] imageData = ms.ToArray();
+                            updateQuery += ", MealImage = @mealImage";
+                        }
+                    }
+
+                    updateQuery += " WHERE VariationID = @variationID";
+                    MySqlCommand cmdDataBase = new MySqlCommand(updateQuery, conn);
+                    cmdDataBase.Parameters.AddWithValue("@variationName", variationName);
+                    cmdDataBase.Parameters.AddWithValue("@variationDescription", variationDescription);
+                    cmdDataBase.Parameters.AddWithValue("@variationCost", variationCost);
+                    cmdDataBase.Parameters.AddWithValue("@mealID", selectedMenuCategory);
+
+                    if (isNewFoodImageSelected)
+                    {
+                        cmdDataBase.Parameters.AddWithValue("@MealImage", imageData);
+                    }
+
+                    cmdDataBase.ExecuteNonQuery();
+
+                    createAndEditAcc.LoadMenuItems();
+                    MessageBox.Show("Account Updated!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+
+                catch (MySqlException a)
+                {
+                    if (a.Number == 1062)
+                    {
+                        MessageBox.Show("Variation name already exist.", "Add variation", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        UsernameTxtB_AP.Clear();
+                    }
+                    else
+                    {
+                        MessageBox.Show(a.Message, "Add variation", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                catch (Exception b)
+                {
+                    MessageBox.Show(b.Message);
+                }
+                finally
+                {
+                    conn.Close();
+                }
+            }
+            UpdateMealBtn.Hide();
+            CancelMealBtn.Hide();
+            DeleteFoodlBtn.Show();
+            EditMealBtn.Show();
+
+            TxtPlaceholder.SetPlaceholder(VariationNmTxtB, "Food Name");
+            TxtPlaceholder.SetPlaceholder(VariationDescTxtB, "Description");
+            TxtPlaceholder.SetPlaceholder(VariationCostTxtB, "Price");
+            VariationPicB.Image = null;
+            VarietyFilePathTxtB.Text = "";
+
+            panelManagerAP.ShowPanel(AddMenuPanelAP);
+
         }
 
         private void AddVarietyBtn_Click(object sender, EventArgs e)
         {
-
             string variationName = VariationNmTxtB.Text;
             string variationDescription = VariationDescTxtB.Text;
             decimal variationCost = decimal.Parse(VariationCostTxtB.Text);
@@ -793,6 +921,37 @@ namespace CafeDeLunaSystem
                 }
                 createAndEditAcc.LoadMenuItems();
             }
+        }
+        private void EditMealBtn_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Are you sure you want to edit accounts?", "Information", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                if (FoodTbl.SelectedRows.Count == 1)
+                {
+                    DataGridViewRow selectedRow = FoodTbl.SelectedRows[0];
+
+                    string variationName = selectedRow.Cells["VariationName"].Value.ToString();
+                    string variationDesc = selectedRow.Cells["VariationDescription"].Value.ToString().Trim();
+                    string variationCost = selectedRow.Cells["VariationCost"].Value.ToString();
+                    //string positionColumn = selectedRow.Cells["Position"].Value.ToString();
+                    int variationIDColumn = Convert.ToInt32(FoodTbl.SelectedRows[0].Cells["VariationID"].Value);
+
+                    VariationNmTxtB.Text = variationName;
+                    VariationDescTxtB.Text = variationDesc;
+                    VariationCostTxtB.Text = variationCost;
+                    createAndEditAcc.LoadMenuItemImageFood(variationIDColumn);
+                }
+                else
+                {
+                    MessageBox.Show("Please select a single row for editing.", "Try again", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+
+            }
+        }
+        private void DeleteFoodlBtn_Click(object sender, EventArgs e)
+        {
+
         }
 
         //Staff panel
@@ -1669,5 +1828,7 @@ namespace CafeDeLunaSystem
                 ttlLbl.Text = "Php. 0.00";
             }
         }
+
+
     }
 }

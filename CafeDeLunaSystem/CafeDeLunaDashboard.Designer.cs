@@ -46,7 +46,7 @@
             this.AddMenuPanelAP = new System.Windows.Forms.Panel();
             this.MenuFilePathTxtB = new System.Windows.Forms.TextBox();
             this.VarietyFilePathTxtB = new System.Windows.Forms.TextBox();
-            this.DeleteMenulBtn = new System.Windows.Forms.Button();
+            this.DeleteFoodlBtn = new System.Windows.Forms.Button();
             this.EditMealBtn = new System.Windows.Forms.Button();
             this.VariationIDTxtBox = new System.Windows.Forms.TextBox();
             this.MealIDTxtB = new System.Windows.Forms.TextBox();
@@ -131,6 +131,8 @@
             this.AdminPanelContainer = new Syncfusion.Windows.Forms.Tools.CardLayout(this.components);
             this.AccManageContainer = new Syncfusion.Windows.Forms.Tools.CardLayout(this.components);
             this.flowLayout1 = new Syncfusion.Windows.Forms.Tools.FlowLayout(this.components);
+            this.UpdateMealBtn = new System.Windows.Forms.Button();
+            this.CancelMealBtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.MainLoginContainer)).BeginInit();
             this.LoginPanel.SuspendLayout();
             this.PanelLP.SuspendLayout();
@@ -268,9 +270,11 @@
             // 
             this.AddMenuPanelAP.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
             this.AdminPanelContainer.SetCardName(this.AddMenuPanelAP, "Card2");
+            this.AddMenuPanelAP.Controls.Add(this.CancelMealBtn);
+            this.AddMenuPanelAP.Controls.Add(this.UpdateMealBtn);
             this.AddMenuPanelAP.Controls.Add(this.MenuFilePathTxtB);
             this.AddMenuPanelAP.Controls.Add(this.VarietyFilePathTxtB);
-            this.AddMenuPanelAP.Controls.Add(this.DeleteMenulBtn);
+            this.AddMenuPanelAP.Controls.Add(this.DeleteFoodlBtn);
             this.AddMenuPanelAP.Controls.Add(this.EditMealBtn);
             this.AddMenuPanelAP.Controls.Add(this.VariationIDTxtBox);
             this.AddMenuPanelAP.Controls.Add(this.MealIDTxtB);
@@ -312,15 +316,16 @@
             this.VarietyFilePathTxtB.TabIndex = 16;
             this.VarietyFilePathTxtB.Visible = false;
             // 
-            // DeleteMenulBtn
+            // DeleteFoodlBtn
             // 
-            this.DeleteMenulBtn.Location = new System.Drawing.Point(971, 633);
-            this.DeleteMenulBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.DeleteMenulBtn.Name = "DeleteMenulBtn";
-            this.DeleteMenulBtn.Size = new System.Drawing.Size(171, 34);
-            this.DeleteMenulBtn.TabIndex = 15;
-            this.DeleteMenulBtn.Text = "Delete Menu";
-            this.DeleteMenulBtn.UseVisualStyleBackColor = true;
+            this.DeleteFoodlBtn.Location = new System.Drawing.Point(971, 633);
+            this.DeleteFoodlBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.DeleteFoodlBtn.Name = "DeleteFoodlBtn";
+            this.DeleteFoodlBtn.Size = new System.Drawing.Size(171, 34);
+            this.DeleteFoodlBtn.TabIndex = 15;
+            this.DeleteFoodlBtn.Text = "Delete Food";
+            this.DeleteFoodlBtn.UseVisualStyleBackColor = true;
+            this.DeleteFoodlBtn.Click += new System.EventHandler(this.DeleteFoodlBtn_Click);
             // 
             // EditMealBtn
             // 
@@ -331,6 +336,7 @@
             this.EditMealBtn.TabIndex = 14;
             this.EditMealBtn.Text = "Edit Meal";
             this.EditMealBtn.UseVisualStyleBackColor = true;
+            this.EditMealBtn.Click += new System.EventHandler(this.EditMealBtn_Click);
             // 
             // VariationIDTxtBox
             // 
@@ -546,7 +552,7 @@
             // 
             // CancelBtn
             // 
-            this.CancelBtn.Location = new System.Drawing.Point(385, 572);
+            this.CancelBtn.Location = new System.Drawing.Point(384, 572);
             this.CancelBtn.Name = "CancelBtn";
             this.CancelBtn.Size = new System.Drawing.Size(156, 34);
             this.CancelBtn.TabIndex = 28;
@@ -557,7 +563,7 @@
             // 
             // UpdateBtn
             // 
-            this.UpdateBtn.Location = new System.Drawing.Point(209, 573);
+            this.UpdateBtn.Location = new System.Drawing.Point(209, 572);
             this.UpdateBtn.Name = "UpdateBtn";
             this.UpdateBtn.Size = new System.Drawing.Size(155, 33);
             this.UpdateBtn.TabIndex = 27;
@@ -1309,13 +1315,32 @@
             // 
             this.AdminPanelContainer.ContainerControl = this.InterfaceAP;
             this.AdminPanelContainer.LayoutMode = Syncfusion.Windows.Forms.Tools.CardLayoutMode.Fill;
-            this.AdminPanelContainer.SelectedCard = "Card1";
+            this.AdminPanelContainer.SelectedCard = "Card2";
             // 
             // AccManageContainer
             // 
             this.AccManageContainer.ContainerControl = this.AccManagePanel;
             this.AccManageContainer.LayoutMode = Syncfusion.Windows.Forms.Tools.CardLayoutMode.Fill;
             this.AccManageContainer.SelectedCard = "Card1";
+            // 
+            // UpdateMealBtn
+            // 
+            this.UpdateMealBtn.Location = new System.Drawing.Point(797, 681);
+            this.UpdateMealBtn.Name = "UpdateMealBtn";
+            this.UpdateMealBtn.Size = new System.Drawing.Size(169, 23);
+            this.UpdateMealBtn.TabIndex = 18;
+            this.UpdateMealBtn.Text = "Update Meal";
+            this.UpdateMealBtn.UseVisualStyleBackColor = true;
+            this.UpdateMealBtn.Click += new System.EventHandler(this.UpdateMealBtn_Click);
+            // 
+            // CancelMealBtn
+            // 
+            this.CancelMealBtn.Location = new System.Drawing.Point(972, 681);
+            this.CancelMealBtn.Name = "CancelMealBtn";
+            this.CancelMealBtn.Size = new System.Drawing.Size(170, 23);
+            this.CancelMealBtn.TabIndex = 19;
+            this.CancelMealBtn.Text = "Cancel";
+            this.CancelMealBtn.UseVisualStyleBackColor = true;
             // 
             // CafeDeLunaDashboard
             // 
@@ -1419,14 +1444,14 @@
         public System.Windows.Forms.DataGridView FoodTbl;
         private System.Windows.Forms.PictureBox MenuPicB;
         private System.Windows.Forms.TextBox MenuNTxtB;
-        private System.Windows.Forms.PictureBox VariationPicB;
+        public System.Windows.Forms.PictureBox VariationPicB;
         private System.Windows.Forms.Button AddMenuBtn;
         private System.Windows.Forms.Button MenuAddImgBtn;
         private System.Windows.Forms.Button AddVarietyBtn;
         private System.Windows.Forms.TextBox VariationDescTxtB;
         private System.Windows.Forms.TextBox VariationCostTxtB;
         private System.Windows.Forms.TextBox VariationNmTxtB;
-        private System.Windows.Forms.Button DeleteMenulBtn;
+        private System.Windows.Forms.Button DeleteFoodlBtn;
         private System.Windows.Forms.Button EditMealBtn;
         private System.Windows.Forms.TextBox VariationIDTxtBox;
         private System.Windows.Forms.TextBox MealIDTxtB;
@@ -1464,6 +1489,8 @@
         private System.Windows.Forms.TextBox PositionTxtBox;
         private System.Windows.Forms.Button CancelBtn;
         private System.Windows.Forms.Button UpdateBtn;
+        private System.Windows.Forms.Button CancelMealBtn;
+        private System.Windows.Forms.Button UpdateMealBtn;
     }
 }
 

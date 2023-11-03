@@ -266,6 +266,47 @@ namespace CafeDeLunaSystem
             }
         }
 
+        public void LoadMenuItemImageFood(int variationID)
+        {
+            byte[] imageData = GetFoodImageDataFromDatabase(variationID); // Call a new method to get image data
+
+            try
+            {
+                if (imageData != null && imageData.Length > 0)
+                {
+                    using (MemoryStream ms = new MemoryStream(imageData))
+                    {
+                        Image image = Image.FromStream(ms);
+
+                        // Set the PictureBox image only if the conversion succeeds
+                        CafeDeLunaDashboard.cafeDeLunaInstance.VariationPicB.Image = image;
+                    }
+                }
+                else
+                {
+                    // Set PictureBox image to a default image or null if there's no image data
+                    CafeDeLunaDashboard.cafeDeLunaInstance.VariationPicB.Image = null;
+                }
+            }
+            catch (ArgumentException ex)
+            {
+                // Handle the exception if the byte array does not represent a valid image format
+                MessageBox.Show("Error loading image: Invalid image data format.");
+                MessageBox.Show("Exception Details: " + ex.Message);
+
+                // Set PictureBox image to a default image or show an error image
+                CafeDeLunaDashboard.cafeDeLunaInstance.VariationPicB.Image = null; // Set pictureBox image to default or show an error image
+            }
+            catch (Exception ex)
+            {
+                // Handle other exceptions
+                MessageBox.Show("Error loading image: " + ex.Message);
+
+                // Set PictureBox image to a default image or show an error image
+                CafeDeLunaDashboard.cafeDeLunaInstance.VariationPicB.Image = null; // Set pictureBox image to default or show an error image
+            }
+        }
+
         public byte[] GetImageDataFromDatabase(int employeeID)
         {
             string connectionString = "server=localhost;user=root;database=dashboarddb;password=";
@@ -297,34 +338,37 @@ namespace CafeDeLunaSystem
 
             return null;
         }
-        public string RetrieveExistingPasswordHashFromDatabase(string employeeID)
+
+        public byte[] GetFoodImageDataFromDatabase(int variationID)
         {
-            string passwordHash = null;
+            string connectionString = "server=localhost;user=root;database=dashboarddb;password=";
+
             try
             {
-                conn.Open();
-                string query = "SELECT Password FROM employee_acc WHERE EmployeeID = @EmployeeID";
-                MySqlCommand cmd = new MySqlCommand(query, conn);
-                cmd.Parameters.AddWithValue("@EmployeeID", employeeID);
-
-                using (MySqlDataReader reader = cmd.ExecuteReader())
+                using (MySqlConnection connection = new MySqlConnection(connectionString))
                 {
-                    if (reader.Read())
+                    connection.Open();
+                    string query = "SELECT MealImage FROM mealvariation WHERE VariationID = @variationID";
+
+                    using (MySqlCommand command = new MySqlCommand(query, connection))
                     {
-                        passwordHash = reader.GetString("Password");
+                        command.Parameters.AddWithValue("@variationID", variationID);
+
+                        object result = command.ExecuteScalar();
+
+                        if (result != null && result != DBNull.Value)
+                        {
+                            return (byte[])result;
+                        }
                     }
                 }
             }
-            catch (MySqlException ex)
+            catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                conn.Close();
+                MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
-            return passwordHash;
+            return null;
         }
     }
 }
