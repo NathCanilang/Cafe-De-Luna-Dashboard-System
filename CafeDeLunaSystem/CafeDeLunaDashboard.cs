@@ -1169,11 +1169,7 @@ namespace CafeDeLunaSystem
 
             if (result == DialogResult.Yes)
             {
-                GeneratePDFReceipt();
-                dataGridView1.Rows.Clear();
-                sbLbl.Text = "Php. 0.00";
-                ttlLbl.Text = "Php. 0.00";
-                dscLbl.Text = "Php. 0.00";
+                GeneratePDFReceipt();                
             }
         }
 
@@ -1217,7 +1213,7 @@ namespace CafeDeLunaSystem
                         doc.Add(new Paragraph("Order Confirmation Receipt").SetTextAlignment(TextAlignment.CENTER));
                         doc.Add(new Paragraph("Date: " + DateTime.Now.ToString("MM/dd/yyyy   hh:mm tt")).SetTextAlignment(TextAlignment.LEFT));
                         doc.Add(new Paragraph("--------------------------------------------------------------------------------------------------"));
-                        doc.Add(new Paragraph($"QUANTITY                        MEAL                    PRICE"));
+                        doc.Add(new Paragraph($"QUANTITY                         MEAL                    PRICE"));
 
                         foreach (DataGridViewRow row in dataGridView1.Rows)
                         {
@@ -1248,6 +1244,12 @@ namespace CafeDeLunaSystem
                     InsertOrderItemsData(GenerateID, dataGridView1, false);
                     InsertSalesData(GenerateID);
                     GenerateID = orderIDGenerator();
+                    dataGridView1.Rows.Clear();
+                    sbLbl.Text = "Php. 0.00";
+                    ttlLbl.Text = "Php. 0.00";
+                    dscLbl.Text = "Php. 0.00";
+                    cashtxtBx.Text = "0.00";
+                    cashtxtBx.ForeColor = Color.LightGray;
                     System.Diagnostics.Process.Start(pdfFilePath);
                 }
             }
@@ -1325,10 +1327,11 @@ namespace CafeDeLunaSystem
                 sbLbl.Text = "Php. 0.00";
                 ttlLbl.Text = "Php. 0.00";
                 dscLbl.Text = "Php. 0.00";
+                cashtxtBx.Text = "0.00";
+                cashtxtBx.ForeColor = Color.LightGray;
             }
             GenerateID = orderIDGenerator();
         }
-
 
         //Methods for sending place order to database
 
@@ -1364,7 +1367,7 @@ namespace CafeDeLunaSystem
             }
 
             string voidedStatus = isVoided ? "Voided" : "Placed";
-            MessageBox.Show($"{voidedStatus} order successfully. OrderID={generatedOrderID}, UserID={employeeID}, Amount={ttlLbl.Text}");
+            MessageBox.Show($"{voidedStatus} order successfully. OrderID={generatedOrderID}, UserID={employeeID}, Amount={ttlLbl.Text}", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
 
