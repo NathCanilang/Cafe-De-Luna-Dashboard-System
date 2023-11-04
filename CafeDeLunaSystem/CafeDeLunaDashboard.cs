@@ -17,6 +17,7 @@ using System.Drawing.Drawing2D;
 using Image = System.Drawing.Image;
 using System.Data;
 using TextAlignment = iText.Layout.Properties.TextAlignment;
+using static System.Net.Mime.MediaTypeNames;
 
 
 namespace CafeDeLunaSystem
@@ -124,7 +125,7 @@ namespace CafeDeLunaSystem
                 {
                     conn.Open();
 
-                    string query = "SELECT Position FROM employee_acc WHERE Username = @username AND Password = @password";
+                    string query = "SELECT Position, EmployeeID FROM employee_acc WHERE Username = @username AND Password = @password";
                     using (MySqlCommand command = new MySqlCommand(query, conn))
                     {
                         command.Parameters.AddWithValue("@username", usernameInput);
@@ -132,26 +133,33 @@ namespace CafeDeLunaSystem
 
                         object position = command.ExecuteScalar();
 
-                        if (position != null)
+                        using (MySqlDataReader reader = command.ExecuteReader())
                         {
-                            string userRole = position.ToString();
-                            if (userRole == "Manager")
+                            if (reader.Read())
                             {
-                                MessageBox.Show("Login Successful", "Welcome, Manager", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                panelManager.ShowPanel(StaffPanel);
-                                PositionTxtBox.Text = "Manager";
+                                if (position != null)
+                                {
+                                    string userRole = position.ToString();
+                                    employeeID = reader.GetInt32("EmployeeID");
+                                    if (userRole == "Manager")
+                                    {
+                                        MessageBox.Show("Login Successful", "Welcome, Manager", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                        panelManager.ShowPanel(StaffPanel);
+                                        PositionTxtBox.Text = "Manager";
+                                    }
+                                    else if (userRole == "Cashier")
+                                    {
+                                        MessageBox.Show("Login Successful", "Welcome, Staff", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                        panelManager.ShowPanel(StaffPanel);
+                                        PositionTxtBox.Text = "Staff";
+                                        SalesBtn.Hide();
+                                    }
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Invalid username or password.", "Try again", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                }
                             }
-                            else if (userRole == "Cashier")
-                            {
-                                MessageBox.Show("Login Successful", "Welcome, Staff", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                panelManager.ShowPanel(StaffPanel);
-                                PositionTxtBox.Text = "Staff";
-                                SalesBtn.Hide();
-                            }
-                        }
-                        else
-                        {
-                            MessageBox.Show("Invalid username or password.", "Try again", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         }
                     }
                 }
@@ -1341,49 +1349,47 @@ namespace CafeDeLunaSystem
         private void OnFLP1Click(object sender, EventArgs e)
         {
             PictureBox clickedPic = (PictureBox)sender;
-            String tag = clickedPic.Tag.ToString();
-            if (!clickedPictureBoxes.Contains(clickedPic))
+            string tag = clickedPic.Tag.ToString();
+            conn.Open();
+            cm = new MySqlCommand("Select * from mealvariation where VariationID like'" + tag + "'", conn);
+            dr = cm.ExecuteReader();
+            dr.Read();
+
+            if (dr.HasRows)
             {
-                conn.Open();
-                cm = new MySqlCommand("Select * from mealvariation where VariationID like'" + tag + "'", conn);
-                dr = cm.ExecuteReader();
-                dr.Read();
-                if (dr.HasRows)
+                string variationName = dr["VariationName"].ToString();
+                string variationCost = dr["VariationCost"].ToString();
+                string quantity = dr["qty"].ToString();
+
+                // Check if a variation with the same VariationName already exists in the DataGridView
+                bool exists = false;
+                foreach (DataGridViewRow row in dataGridView1.Rows)
                 {
-                    string variationName = dr["VariationName"].ToString();
-                    string variationCost = dr["VariationCost"].ToString();
-                    string quantity = dr["qty"].ToString();
-
-                    // Check if a variation with the same VariationName already exists in the DataGridView
-                    bool exists = false;
-                    foreach (DataGridViewRow row in dataGridView1.Rows)
+                    if (row.Cells[0].Value != null && row.Cells[0].Value.ToString() == variationName)
                     {
-                        if (row.Cells[0].Value != null && row.Cells[0].Value.ToString() == variationName)
-                        {
-                            exists = true;
-                            break;
-                        }
-                    }
-
-                    if (!exists)
-                    {
-                        dataGridView1.Rows.Add(variationName, "-", quantity, "+", variationCost, "X");
-                        // Add the clicked PictureBox to the list
-                        clickedPictureBoxes.Add(clickedPic);
-                        UpdateTotalPrice();
-                    }
-                    else
-                    {
-                        MessageBox.Show("This variation is already in the cart.", "Try another one", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        exists = true;
+                        break;
                     }
                 }
-                dr.Close();
-                conn.Close();
+
+                if (!exists)
+                {
+                    DialogResult result = MessageBox.Show("Do you want to add this variation?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                    if (result == DialogResult.Yes)
+                    {
+                        dataGridView1.Rows.Add(variationName, "-", quantity, "+", variationCost, "X");
+                        // Update the total price
+                        UpdateTotalPrice();
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("This variation is already in the cart.", "Try another one", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
-            else
-            {
-                MessageBox.Show("This variation is already in the cart.", "Try another one", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
+            dr.Close();
+            conn.Close();
 
         }
 
@@ -1710,11 +1716,6 @@ namespace CafeDeLunaSystem
             cashtxtBx.ForeColor = Color.LightGray;
         }
 
-        private void cashtxtBx_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void placeBtn_Click(object sender, EventArgs e)
         {
             DialogResult result = MessageBox.Show("Are you sure you want to generate the receipt?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -1808,7 +1809,6 @@ namespace CafeDeLunaSystem
             }
         }
 
-
         private void voidBtn_Click(object sender, EventArgs e)
         {
             if (dataGridView1.Rows.Count == 0)
@@ -1886,6 +1886,7 @@ namespace CafeDeLunaSystem
             }
             GenerateID = orderIDGenerator();
         }
+
         //Methods for sending place order to database
 
         string connectionString = "server=localhost;user=root;database=dashboarddb;password=";
@@ -2143,6 +2144,18 @@ namespace CafeDeLunaSystem
                 command.Parameters.Add(new MySqlParameter("@Date", MySqlDbType.Date) { Value = date });
                 object result = command.ExecuteScalar();
                 return (result == DBNull.Value) ? 0 : Convert.ToDecimal(result);
+            }
+        }
+
+        private void cashtxtBx_TextChanged(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(cashtxtBx.Text) && cashtxtBx.Text != "0.00")
+            {
+                placeBtn.Enabled = true;
+            }
+            else
+            {
+                placeBtn.Enabled = false;
             }
         }
     }

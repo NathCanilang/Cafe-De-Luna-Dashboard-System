@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.MainLoginContainer = new Syncfusion.Windows.Forms.Tools.CardLayout(this.components);
             this.LoginPanel = new System.Windows.Forms.Panel();
             this.PanelLP = new System.Windows.Forms.Panel();
@@ -102,6 +102,11 @@
             this.AddMenuLbl = new System.Windows.Forms.Label();
             this.AccManageLbl = new System.Windows.Forms.Label();
             this.ManagerPanel = new System.Windows.Forms.Panel();
+            this.MonthlyRepBtn = new System.Windows.Forms.Button();
+            this.WeeklyRepBtn = new System.Windows.Forms.Button();
+            this.MonthlyRepLbl = new System.Windows.Forms.Label();
+            this.WeeklyRepLbl = new System.Windows.Forms.Label();
+            this.DailyRepLbl = new System.Windows.Forms.Label();
             this.DateReportSelector = new System.Windows.Forms.DateTimePicker();
             this.ComputedSalesMonthlyTbl = new System.Windows.Forms.DataGridView();
             this.MonthlyDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -146,11 +151,6 @@
             this.AdminPanelContainer = new Syncfusion.Windows.Forms.Tools.CardLayout(this.components);
             this.AccManageContainer = new Syncfusion.Windows.Forms.Tools.CardLayout(this.components);
             this.flowLayout1 = new Syncfusion.Windows.Forms.Tools.FlowLayout(this.components);
-            this.DailyRepLbl = new System.Windows.Forms.Label();
-            this.WeeklyRepLbl = new System.Windows.Forms.Label();
-            this.MonthlyRepLbl = new System.Windows.Forms.Label();
-            this.WeeklyRepBtn = new System.Windows.Forms.Button();
-            this.MonthlyRepBtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.MainLoginContainer)).BeginInit();
             this.LoginPanel.SuspendLayout();
             this.PanelLP.SuspendLayout();
@@ -185,7 +185,7 @@
             // 
             this.MainLoginContainer.ContainerControl = this;
             this.MainLoginContainer.LayoutMode = Syncfusion.Windows.Forms.Tools.CardLayoutMode.Fill;
-            this.MainLoginContainer.SelectedCard = "Card2";
+            this.MainLoginContainer.SelectedCard = "Card1";
             // 
             // LoginPanel
             // 
@@ -999,6 +999,50 @@
             this.ManagerPanel.Size = new System.Drawing.Size(1731, 864);
             this.ManagerPanel.TabIndex = 2;
             // 
+            // MonthlyRepBtn
+            // 
+            this.MonthlyRepBtn.Location = new System.Drawing.Point(1250, 471);
+            this.MonthlyRepBtn.Name = "MonthlyRepBtn";
+            this.MonthlyRepBtn.Size = new System.Drawing.Size(145, 44);
+            this.MonthlyRepBtn.TabIndex = 12;
+            this.MonthlyRepBtn.Text = "Generate Monthly Report";
+            this.MonthlyRepBtn.UseVisualStyleBackColor = true;
+            this.MonthlyRepBtn.Click += new System.EventHandler(this.MonthlyRepBtn_Click);
+            // 
+            // WeeklyRepBtn
+            // 
+            this.WeeklyRepBtn.Location = new System.Drawing.Point(775, 471);
+            this.WeeklyRepBtn.Name = "WeeklyRepBtn";
+            this.WeeklyRepBtn.Size = new System.Drawing.Size(145, 44);
+            this.WeeklyRepBtn.TabIndex = 11;
+            this.WeeklyRepBtn.Text = "Generate Weekly Report";
+            this.WeeklyRepBtn.UseVisualStyleBackColor = true;
+            this.WeeklyRepBtn.Click += new System.EventHandler(this.WeeklyRepBtn_Click);
+            // 
+            // MonthlyRepLbl
+            // 
+            this.MonthlyRepLbl.Location = new System.Drawing.Point(12, 266);
+            this.MonthlyRepLbl.Name = "MonthlyRepLbl";
+            this.MonthlyRepLbl.Size = new System.Drawing.Size(126, 54);
+            this.MonthlyRepLbl.TabIndex = 10;
+            this.MonthlyRepLbl.Text = "Monthly";
+            // 
+            // WeeklyRepLbl
+            // 
+            this.WeeklyRepLbl.Location = new System.Drawing.Point(12, 212);
+            this.WeeklyRepLbl.Name = "WeeklyRepLbl";
+            this.WeeklyRepLbl.Size = new System.Drawing.Size(126, 54);
+            this.WeeklyRepLbl.TabIndex = 9;
+            this.WeeklyRepLbl.Text = "Weekly";
+            // 
+            // DailyRepLbl
+            // 
+            this.DailyRepLbl.Location = new System.Drawing.Point(12, 158);
+            this.DailyRepLbl.Name = "DailyRepLbl";
+            this.DailyRepLbl.Size = new System.Drawing.Size(126, 54);
+            this.DailyRepLbl.TabIndex = 8;
+            this.DailyRepLbl.Text = "Daily";
+            // 
             // DateReportSelector
             // 
             this.DateReportSelector.Location = new System.Drawing.Point(70, 27);
@@ -1179,6 +1223,7 @@
             this.cashtxtBx.Name = "cashtxtBx";
             this.cashtxtBx.Size = new System.Drawing.Size(89, 42);
             this.cashtxtBx.TabIndex = 21;
+            this.cashtxtBx.TextChanged += new System.EventHandler(this.cashtxtBx_TextChanged);
             this.cashtxtBx.Enter += new System.EventHandler(this.cashtxtBx_Enter);
             this.cashtxtBx.Leave += new System.EventHandler(this.cashtxtBx_Leave);
             // 
@@ -1349,23 +1394,23 @@
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToResizeColumns = false;
             this.dataGridView1.AllowUserToResizeRows = false;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.Black;
-            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
+            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
             this.dataGridView1.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
@@ -1374,28 +1419,28 @@
             this.Column4,
             this.Column5,
             this.Column6});
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView1.Location = new System.Drawing.Point(1168, 47);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView1.Name = "dataGridView1";
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle5;
+            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView1.Size = new System.Drawing.Size(528, 288);
             this.dataGridView1.TabIndex = 7;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
@@ -1501,50 +1546,6 @@
             this.AccManageContainer.ContainerControl = this.AccManagePanel;
             this.AccManageContainer.LayoutMode = Syncfusion.Windows.Forms.Tools.CardLayoutMode.Fill;
             this.AccManageContainer.SelectedCard = "Card1";
-            // 
-            // DailyRepLbl
-            // 
-            this.DailyRepLbl.Location = new System.Drawing.Point(12, 158);
-            this.DailyRepLbl.Name = "DailyRepLbl";
-            this.DailyRepLbl.Size = new System.Drawing.Size(126, 54);
-            this.DailyRepLbl.TabIndex = 8;
-            this.DailyRepLbl.Text = "Daily";
-            // 
-            // WeeklyRepLbl
-            // 
-            this.WeeklyRepLbl.Location = new System.Drawing.Point(12, 212);
-            this.WeeklyRepLbl.Name = "WeeklyRepLbl";
-            this.WeeklyRepLbl.Size = new System.Drawing.Size(126, 54);
-            this.WeeklyRepLbl.TabIndex = 9;
-            this.WeeklyRepLbl.Text = "Weekly";
-            // 
-            // MonthlyRepLbl
-            // 
-            this.MonthlyRepLbl.Location = new System.Drawing.Point(12, 266);
-            this.MonthlyRepLbl.Name = "MonthlyRepLbl";
-            this.MonthlyRepLbl.Size = new System.Drawing.Size(126, 54);
-            this.MonthlyRepLbl.TabIndex = 10;
-            this.MonthlyRepLbl.Text = "Monthly";
-            // 
-            // WeeklyRepBtn
-            // 
-            this.WeeklyRepBtn.Location = new System.Drawing.Point(775, 471);
-            this.WeeklyRepBtn.Name = "WeeklyRepBtn";
-            this.WeeklyRepBtn.Size = new System.Drawing.Size(145, 44);
-            this.WeeklyRepBtn.TabIndex = 11;
-            this.WeeklyRepBtn.Text = "Generate Weekly Report";
-            this.WeeklyRepBtn.UseVisualStyleBackColor = true;
-            this.WeeklyRepBtn.Click += new System.EventHandler(this.WeeklyRepBtn_Click);
-            // 
-            // MonthlyRepBtn
-            // 
-            this.MonthlyRepBtn.Location = new System.Drawing.Point(1250, 471);
-            this.MonthlyRepBtn.Name = "MonthlyRepBtn";
-            this.MonthlyRepBtn.Size = new System.Drawing.Size(145, 44);
-            this.MonthlyRepBtn.TabIndex = 12;
-            this.MonthlyRepBtn.Text = "Generate Monthly Report";
-            this.MonthlyRepBtn.UseVisualStyleBackColor = true;
-            this.MonthlyRepBtn.Click += new System.EventHandler(this.MonthlyRepBtn_Click);
             // 
             // CafeDeLunaDashboard
             // 
