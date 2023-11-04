@@ -151,6 +151,9 @@
             this.AdminPanelContainer = new Syncfusion.Windows.Forms.Tools.CardLayout(this.components);
             this.AccManageContainer = new Syncfusion.Windows.Forms.Tools.CardLayout(this.components);
             this.flowLayout1 = new Syncfusion.Windows.Forms.Tools.FlowLayout(this.components);
+            this.MostSalesDailyTbl = new System.Windows.Forms.DataGridView();
+            this.MostSalesWeeklyTbl = new System.Windows.Forms.DataGridView();
+            this.MostSalesMonthlyTbl = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.MainLoginContainer)).BeginInit();
             this.LoginPanel.SuspendLayout();
             this.PanelLP.SuspendLayout();
@@ -179,13 +182,16 @@
             ((System.ComponentModel.ISupportInitialize)(this.AdminPanelContainer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.AccManageContainer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.flowLayout1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MostSalesDailyTbl)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MostSalesWeeklyTbl)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MostSalesMonthlyTbl)).BeginInit();
             this.SuspendLayout();
             // 
             // MainLoginContainer
             // 
             this.MainLoginContainer.ContainerControl = this;
             this.MainLoginContainer.LayoutMode = Syncfusion.Windows.Forms.Tools.CardLayoutMode.Fill;
-            this.MainLoginContainer.SelectedCard = "Card1";
+            this.MainLoginContainer.SelectedCard = "Card2";
             // 
             // LoginPanel
             // 
@@ -978,6 +984,9 @@
             // 
             this.ManagerPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.MainLoginContainer.SetCardName(this.ManagerPanel, "Card2");
+            this.ManagerPanel.Controls.Add(this.MostSalesMonthlyTbl);
+            this.ManagerPanel.Controls.Add(this.MostSalesWeeklyTbl);
+            this.ManagerPanel.Controls.Add(this.MostSalesDailyTbl);
             this.ManagerPanel.Controls.Add(this.MonthlyRepBtn);
             this.ManagerPanel.Controls.Add(this.WeeklyRepBtn);
             this.ManagerPanel.Controls.Add(this.MonthlyRepLbl);
@@ -1001,7 +1010,7 @@
             // 
             // MonthlyRepBtn
             // 
-            this.MonthlyRepBtn.Location = new System.Drawing.Point(1250, 471);
+            this.MonthlyRepBtn.Location = new System.Drawing.Point(1263, 699);
             this.MonthlyRepBtn.Name = "MonthlyRepBtn";
             this.MonthlyRepBtn.Size = new System.Drawing.Size(145, 44);
             this.MonthlyRepBtn.TabIndex = 12;
@@ -1011,7 +1020,7 @@
             // 
             // WeeklyRepBtn
             // 
-            this.WeeklyRepBtn.Location = new System.Drawing.Point(775, 471);
+            this.WeeklyRepBtn.Location = new System.Drawing.Point(781, 699);
             this.WeeklyRepBtn.Name = "WeeklyRepBtn";
             this.WeeklyRepBtn.Size = new System.Drawing.Size(145, 44);
             this.WeeklyRepBtn.TabIndex = 11;
@@ -1114,7 +1123,7 @@
             this.ComputedSalesDailyTbl.Name = "ComputedSalesDailyTbl";
             this.ComputedSalesDailyTbl.RowHeadersWidth = 51;
             this.ComputedSalesDailyTbl.RowTemplate.Height = 24;
-            this.ComputedSalesDailyTbl.Size = new System.Drawing.Size(446, 176);
+            this.ComputedSalesDailyTbl.Size = new System.Drawing.Size(446, 71);
             this.ComputedSalesDailyTbl.TabIndex = 4;
             // 
             // DailyDate
@@ -1133,7 +1142,7 @@
             // 
             // GenerateDailyBtn
             // 
-            this.GenerateDailyBtn.Location = new System.Drawing.Point(308, 573);
+            this.GenerateDailyBtn.Location = new System.Drawing.Point(296, 699);
             this.GenerateDailyBtn.Name = "GenerateDailyBtn";
             this.GenerateDailyBtn.Size = new System.Drawing.Size(145, 44);
             this.GenerateDailyBtn.TabIndex = 3;
@@ -1547,6 +1556,36 @@
             this.AccManageContainer.LayoutMode = Syncfusion.Windows.Forms.Tools.CardLayoutMode.Fill;
             this.AccManageContainer.SelectedCard = "Card1";
             // 
+            // MostSalesDailyTbl
+            // 
+            this.MostSalesDailyTbl.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.MostSalesDailyTbl.Location = new System.Drawing.Point(168, 446);
+            this.MostSalesDailyTbl.Name = "MostSalesDailyTbl";
+            this.MostSalesDailyTbl.RowHeadersWidth = 51;
+            this.MostSalesDailyTbl.RowTemplate.Height = 24;
+            this.MostSalesDailyTbl.Size = new System.Drawing.Size(446, 203);
+            this.MostSalesDailyTbl.TabIndex = 13;
+            // 
+            // MostSalesWeeklyTbl
+            // 
+            this.MostSalesWeeklyTbl.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.MostSalesWeeklyTbl.Location = new System.Drawing.Point(620, 446);
+            this.MostSalesWeeklyTbl.Name = "MostSalesWeeklyTbl";
+            this.MostSalesWeeklyTbl.RowHeadersWidth = 51;
+            this.MostSalesWeeklyTbl.RowTemplate.Height = 24;
+            this.MostSalesWeeklyTbl.Size = new System.Drawing.Size(446, 203);
+            this.MostSalesWeeklyTbl.TabIndex = 14;
+            // 
+            // MostSalesMonthlyTbl
+            // 
+            this.MostSalesMonthlyTbl.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.MostSalesMonthlyTbl.Location = new System.Drawing.Point(1072, 446);
+            this.MostSalesMonthlyTbl.Name = "MostSalesMonthlyTbl";
+            this.MostSalesMonthlyTbl.RowHeadersWidth = 51;
+            this.MostSalesMonthlyTbl.RowTemplate.Height = 24;
+            this.MostSalesMonthlyTbl.Size = new System.Drawing.Size(446, 203);
+            this.MostSalesMonthlyTbl.TabIndex = 15;
+            // 
             // CafeDeLunaDashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1596,6 +1635,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.AdminPanelContainer)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.AccManageContainer)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.flowLayout1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MostSalesDailyTbl)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MostSalesWeeklyTbl)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MostSalesMonthlyTbl)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1720,6 +1762,9 @@
         private System.Windows.Forms.Label DailyRepLbl;
         private System.Windows.Forms.Button MonthlyRepBtn;
         private System.Windows.Forms.Button WeeklyRepBtn;
+        private System.Windows.Forms.DataGridView MostSalesDailyTbl;
+        private System.Windows.Forms.DataGridView MostSalesMonthlyTbl;
+        private System.Windows.Forms.DataGridView MostSalesWeeklyTbl;
     }
 }
 

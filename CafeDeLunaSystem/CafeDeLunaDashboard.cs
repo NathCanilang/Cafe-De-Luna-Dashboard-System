@@ -2030,17 +2030,26 @@ namespace CafeDeLunaSystem
         {
             DateTime selectedDate = DateReportSelector.Value;
             CalculateAndDisplaySalesReportDaily(DailyDGV, ComputedSalesDailyTbl, selectedDate);
+
+            DataTable mostSoldItem = GetMostSoldItemForDay(selectedDate);
+            MostSalesDailyTbl.DataSource = mostSoldItem;
         }
         private void WeeklyRepBtn_Click(object sender, EventArgs e)
         {
             DateTime selectedDate = DateReportSelector.Value;
             CalculateAndDisplaySalesReportWeekly(WeeklyDGV, ComputedSalesWeeklyTbl, selectedDate);
+
+            DataTable mostSoldItem = GetMostSoldItemForWeek(selectedDate);
+            MostSalesWeeklyTbl.DataSource = mostSoldItem;
         }
 
         private void MonthlyRepBtn_Click(object sender, EventArgs e)
         {
             DateTime selectedDate = DateReportSelector.Value;
             CalculateAndDisplaySalesReportMonthly(MonthlyDGV, ComputedSalesMonthlyTbl, selectedDate);
+
+            DataTable mostSoldItem = GetMostSoldItemForMonth(selectedDate);
+            MostSalesMonthlyTbl.DataSource = mostSoldItem;
         }
         public void CalculateAndDisplaySalesReportDaily(DataGridView dailyDGV, DataGridView computedSalesDailyTbl, DateTime selectedDate)
         {
@@ -2156,6 +2165,73 @@ namespace CafeDeLunaSystem
             else
             {
                 placeBtn.Enabled = false;
+            }
+        }
+
+        public DataTable GetMostSoldItemForDay(DateTime date)
+        {
+
+            string query = @"
+        SELECT DATE(s.SaleDate) as SaleDate, mv.VariationName, SUM(oi.Quantity) as TotalQuantity, COUNT(*) as TotalSales
+        FROM sales s
+        INNER JOIN orderitems oi ON s.OrderID = oi.OrderID
+        INNER JOIN mealvariation mv ON oi.VariationID = mv.VariationID
+        WHERE DATE(s.SaleDate) = @Date
+        GROUP BY DATE(s.SaleDate), mv.VariationName
+        ORDER BY TotalQuantity DESC";
+            using (MySqlCommand command = new MySqlCommand(query, conn))
+            {
+                command.Parameters.Add(new MySqlParameter("@Date", MySqlDbType.Date) { Value = date.Date });
+                using (MySqlDataAdapter adapter = new MySqlDataAdapter(command))
+                {
+                    DataTable dailySummary = new DataTable();
+                    adapter.Fill(dailySummary);
+                    return dailySummary;
+                }
+            }
+        }
+
+        public DataTable GetMostSoldItemForWeek(DateTime date)
+        {
+            string query = @"
+        SELECT DATE(s.SaleDate) as SaleDate, mv.VariationName, SUM(oi.Quantity) as TotalQuantity, COUNT(*) as TotalSales
+        FROM sales s
+        INNER JOIN orderitems oi ON s.OrderID = oi.OrderID
+        INNER JOIN mealvariation mv ON oi.VariationID = mv.VariationID
+        WHERE DATE(s.SaleDate) >= DATE_SUB(@Date, INTERVAL 7 DAY)
+        GROUP BY DATE(s.SaleDate), mv.VariationName
+        ORDER BY TotalQuantity DESC";
+            using (MySqlCommand command = new MySqlCommand(query, conn))
+            {
+                command.Parameters.Add(new MySqlParameter("@Date", MySqlDbType.Date) { Value = date.Date });
+                using (MySqlDataAdapter adapter = new MySqlDataAdapter(command))
+                {
+                    DataTable weeklySummary = new DataTable();
+                    adapter.Fill(weeklySummary);
+                    return weeklySummary;
+                }
+            }
+        }
+
+        public DataTable GetMostSoldItemForMonth(DateTime date)
+        {
+            string query = @"
+        SELECT DATE(s.SaleDate) as SaleDate, mv.VariationName, SUM(oi.Quantity) as TotalQuantity, COUNT(*) as TotalSales
+        FROM sales s
+        INNER JOIN orderitems oi ON s.OrderID = oi.OrderID
+        INNER JOIN mealvariation mv ON oi.VariationID = mv.VariationID
+        WHERE DATE(s.SaleDate) >= DATE_SUB(@Date, INTERVAL 30 DAY)
+        GROUP BY DATE(s.SaleDate), mv.VariationName
+        ORDER BY TotalQuantity DESC";
+            using (MySqlCommand command = new MySqlCommand(query, conn))
+            {
+                command.Parameters.Add(new MySqlParameter("@Date", MySqlDbType.Date) { Value = date.Date });
+                using (MySqlDataAdapter adapter = new MySqlDataAdapter(command))
+                {
+                    DataTable monthlySummary = new DataTable();
+                    adapter.Fill(monthlySummary);
+                    return monthlySummary;
+                }
             }
         }
     }
