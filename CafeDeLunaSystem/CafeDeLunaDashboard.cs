@@ -15,6 +15,7 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using System.Xml.Linq;
 using System.Drawing.Drawing2D;
 using Image = System.Drawing.Image;
+using System.Data;
 using TextAlignment = iText.Layout.Properties.TextAlignment;
 
 
@@ -34,25 +35,33 @@ namespace CafeDeLunaSystem
         private readonly PanelManager panelManager;
         private readonly PanelManagerAP panelManagerAP;
         private readonly PanelManagerAMC panelManagerAMC;
-        private string employeeFullFilePath;
-        private string menuFullFilePath;
-        private string varietyFullFilePath;
+        
         private byte[] imageData;
         private decimal totalPrice = 0.00m;
         private bool isSearchTextPlaceholder = true;
         bool isNewImageSelected = false;
         bool isNewFoodImageSelected = false;
-
+        private readonly ManagerPMethods sales;
         //
         private bool IsEditMode = false;
         public int EmployeeIDBeingEdited = -1;
         private bool IsPasswordChanged = false;
-
+        private int GenerateID = orderIDGenerator();
+        private int employeeID;
 
         //Admin Panel
         private readonly CreateAndEditAcc createAndEditAcc = new CreateAndEditAcc();
         private readonly string[] position = { "Manager", "Cashier" };
         List<PictureBox> clickedPictureBoxes = new List<PictureBox>();
+
+        //Manger
+        
+
+        //To be deleted
+        private string employeeFullFilePath;
+        private string menuFullFilePath;
+        private string varietyFullFilePath;
+
         public CafeDeLunaDashboard()
         {
             InitializeComponent();
@@ -82,14 +91,14 @@ namespace CafeDeLunaSystem
             //Admin Panel section
             FoodTbl.DataError += new DataGridViewDataErrorEventHandler(createAndEditAcc.FoodTable_DataError);
             FoodTbl.RowPostPaint += new DataGridViewRowPostPaintEventHandler(createAndEditAcc.FoodTable_RowPostPaint);
-
             MenuSelectComB.DropDownStyle = ComboBoxStyle.DropDownList;
             createAndEditAcc.PopulateMealComboBox();
-
             PositionComB_AP.Items.AddRange(position);
             PositionComB_AP.DropDownStyle = ComboBoxStyle.DropDownList;
-
             UserBirthdate.ValueChanged += CalculateAge;
+
+            //Manager section
+
         }
 
         //Login Section
@@ -164,7 +173,7 @@ namespace CafeDeLunaSystem
         }
         private void SalesRepLbl_Click(object sender, EventArgs e)
         {
-            panelManagerAP.ShowPanel(ManagerPanel);
+            panelManager.ShowPanel(ManagerPanel);
         }
 
         private void AddMenuLbl_Click(object sender, System.EventArgs e)
@@ -971,6 +980,17 @@ namespace CafeDeLunaSystem
         }
 
         //Staff panel
+        public static int orderIDGenerator()
+        {
+            Random random = new Random();
+            return random.Next(1000, 1000000);
+        }
+
+        private void SalesBtn_Click(object sender, EventArgs e)
+        {
+            panelManager.ShowPanel(ManagerPanel);
+        }
+
         public void GetData()
         {
             conn.Close();
@@ -1708,12 +1728,6 @@ namespace CafeDeLunaSystem
 
         private void GeneratePDFReceipt()
         {
-            if (dataGridView1.Rows.Count == 0)
-            {
-                MessageBox.Show("Add items to the cart before proceeding.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
             decimal subtotal = decimal.Parse(sbLbl.Text.Replace("Php. ", ""));
             decimal discount = decimal.Parse(dscLbl.Text.Replace("Php. ", ""));
             decimal totalAmount = decimal.Parse(ttlLbl.Text.Replace("Php. ", ""));
@@ -1733,47 +1747,67 @@ namespace CafeDeLunaSystem
                 return;
             }
 
-            string pdfFilePath = "Receipt.pdf";
-
-            using (PdfWriter writer = new PdfWriter(new FileStream(pdfFilePath, FileMode.Create)))
-            using (PdfDocument pdf = new PdfDocument(writer))
-            using (Document doc = new Document(pdf))
+            using (SaveFileDialog saveFileDialog1 = new SaveFileDialog())
             {
-                doc.SetProperty(Property.TEXT_ALIGNMENT, TextAlignment.JUSTIFIED_ALL);
+                saveFileDialog1.Filter = "PDF Files|*.pdf";
+                saveFileDialog1.Title = "Save PDF File";
 
-                doc.Add(new Paragraph("Café De Luna").SetTextAlignment(TextAlignment.CENTER));
-                doc.Add(new Paragraph("Order Confirmation Receipt").SetTextAlignment(TextAlignment.CENTER));
-                doc.Add(new Paragraph("Date: " + DateTime.Now.ToString("MM/dd/yyyy   hh:mm tt")).SetTextAlignment(TextAlignment.LEFT));
-                doc.Add(new Paragraph("--------------------------------------------------------------------------------------------------"));
-                doc.Add(new Paragraph($"QUANTITY                        MEAL                    PRICE"));
-
-                foreach (DataGridViewRow row in dataGridView1.Rows)
+                if (saveFileDialog1.ShowDialog() == DialogResult.OK)
                 {
-                    string food = row.Cells[0].Value.ToString();
-                    string quantity = row.Cells[2].Value.ToString();
-                    string price = row.Cells[4].Value.ToString();
-                    if (int.TryParse(quantity, out int quantityValue))
+                    string pdfFilePath = saveFileDialog1.FileName;
+
+                    using (PdfWriter writer = new PdfWriter(new FileStream(pdfFilePath, FileMode.Create)))
+                    using (PdfDocument pdf = new PdfDocument(writer))
+                    using (Document doc = new Document(pdf))
                     {
-                        totalQuantity += quantityValue;
+                        doc.SetProperty(Property.TEXT_ALIGNMENT, TextAlignment.JUSTIFIED_ALL);
+
+                        doc.Add(new Paragraph("Café De Luna").SetTextAlignment(TextAlignment.CENTER));
+                        doc.Add(new Paragraph("Order Confirmation Receipt").SetTextAlignment(TextAlignment.CENTER));
+                        doc.Add(new Paragraph("Date: " + DateTime.Now.ToString("MM/dd/yyyy   hh:mm tt")).SetTextAlignment(TextAlignment.LEFT));
+                        doc.Add(new Paragraph("--------------------------------------------------------------------------------------------------"));
+                        doc.Add(new Paragraph($"QUANTITY                         MEAL                    PRICE"));
+
+                        foreach (DataGridViewRow row in dataGridView1.Rows)
+                        {
+                            string food = row.Cells[0].Value.ToString();
+                            string quantity = row.Cells[2].Value.ToString();
+                            string price = row.Cells[4].Value.ToString();
+                            if (int.TryParse(quantity, out int quantityValue))
+                            {
+                                totalQuantity += quantityValue;
+                            }
+                            doc.Add(new Paragraph($"{quantity}                                   {food}                    {price}"));
+                        }
+
+                        doc.Add(new Paragraph($"---------------------------------------{totalQuantity} Item(s)-----------------------------------------"));
+                        doc.Add(new Paragraph($"SUBTOTAL:                         Php. {subtotal.ToString("0.00")}"));
+                        doc.Add(new Paragraph($"DISCOUNT:                         Php. {discount.ToString("0.00")}"));
+                        doc.Add(new Paragraph($"TOTAL:                         Php. {totalAmount.ToString("0.00")}"));
+                        doc.Add(new Paragraph($"CASH:                         Php. {cashEntered.ToString("0.00")}"));
+                        decimal change = cashEntered - totalAmount;
+                        doc.Add(new Paragraph($"CHANGE:                         Php. {change.ToString("0.00")}"));
+
+                        doc.Add(new Paragraph("--------------------------------------------------------------------------------------------------"));
+                        doc.Add(new Paragraph("This Receipt Serves as Your Proof of Purchase").SetTextAlignment(TextAlignment.CENTER));
                     }
-                    doc.Add(new Paragraph($"{quantity}                                   {food}                    {price}"));
+
+                    MessageBox.Show("Receipt generated successfully and saved to:\n" + pdfFilePath, "Enjoy your meal!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    InsertOrderData(GenerateID, false);
+                    InsertOrderItemsData(GenerateID, dataGridView1, false);
+                    InsertSalesData(GenerateID);
+                    GenerateID = orderIDGenerator();
+                    dataGridView1.Rows.Clear();
+                    sbLbl.Text = "Php. 0.00";
+                    ttlLbl.Text = "Php. 0.00";
+                    dscLbl.Text = "Php. 0.00";
+                    cashtxtBx.Text = "0.00";
+                    cashtxtBx.ForeColor = Color.LightGray;
+                    System.Diagnostics.Process.Start(pdfFilePath);
                 }
-
-                doc.Add(new Paragraph($"---------------------------------------{totalQuantity} Item(s)-----------------------------------------"));
-                doc.Add(new Paragraph($"SUBTOTAL:                         Php. {subtotal.ToString("0.00")}"));
-                doc.Add(new Paragraph($"DISCOUNT:                         Php. {discount.ToString("0.00")}"));
-                doc.Add(new Paragraph($"TOTAL:                         Php. {totalAmount.ToString("0.00")}"));
-                doc.Add(new Paragraph($"CASH:                         Php. {cashEntered.ToString("0.00")}"));
-                decimal change = cashEntered - totalAmount;
-                doc.Add(new Paragraph($"CHANGE:                         Php. {change.ToString("0.00")}"));
-
-                doc.Add(new Paragraph("--------------------------------------------------------------------------------------------------"));
-                doc.Add(new Paragraph("This Receipt Serves as Your Proof of Purchase").SetTextAlignment(TextAlignment.CENTER));
             }
-
-            MessageBox.Show("Receipt generated successfully.", "Enjoy your meal!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            System.Diagnostics.Process.Start(pdfFilePath);
         }
+
 
         private void voidBtn_Click(object sender, EventArgs e)
         {
@@ -1813,40 +1847,303 @@ namespace CafeDeLunaSystem
 
                                 if (position == "Manager")
                                 {
-                                    result = MessageBox.Show("Do you want to remove this item?", "Remove Item", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                                    result = MessageBox.Show("Do you want to void these items?", "Void Items", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                                 }
                                 else
                                 {
-                                    MessageBox.Show("Invalid password. You need manager permission to remove an item.", "Permission Required", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                    MessageBox.Show("Invalid password. You need manager permission to void items.", "Permission Required", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                                     return;
                                 }
                             }
                             else
                             {
-                                MessageBox.Show("Invalid password. You need manager permission to remove an item.", "Permission Required", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                MessageBox.Show("Invalid password. You need manager permission to void items.", "Permission Required", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                                 return;
                             }
                         }
                     }
                 }
+
             }
             else // For Managers and Admins, no password is required
             {
-                result = MessageBox.Show("Do you want to remove this item?", "Remove Item", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                result = MessageBox.Show("Do you want to void these items?", "Void Items", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             }
 
             if (result == DialogResult.Yes)
             {
+                GenerateID = orderIDGenerator();
+                InsertOrderData(GenerateID, true);
+                InsertOrderItemsData(GenerateID, dataGridView1, true);
+
                 // Clear all rows from the DataGridView
                 dataGridView1.Rows.Clear();
                 sbLbl.Text = "Php. 0.00";
                 ttlLbl.Text = "Php. 0.00";
+                dscLbl.Text = "Php. 0.00";
+                cashtxtBx.Text = "0.00";
+                cashtxtBx.ForeColor = Color.LightGray;
+            }
+            GenerateID = orderIDGenerator();
+        }
+        //Methods for sending place order to database
+
+        string connectionString = "server=localhost;user=root;database=dashboarddb;password=";
+        private void InsertOrderData(int generatedOrderID, bool isVoided)
+        {
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                connection.Open();
+                string orderQuery;
+
+                if (isVoided)
+                {
+                    orderQuery = "INSERT INTO orders (OrderID, UserID, IsVoided) VALUES (@OrderID, @UserID, @Voided)";
+                }
+                else
+                {
+                    orderQuery = "INSERT INTO orders (OrderID, UserID) VALUES (@OrderID, @UserID)";
+                }
+
+                using (MySqlCommand orderCmd = new MySqlCommand(orderQuery, connection))
+                {
+                    orderCmd.Parameters.AddWithValue("@OrderID", generatedOrderID);
+                    orderCmd.Parameters.AddWithValue("@UserID", employeeID);
+
+                    if (isVoided)
+                    {
+                        orderCmd.Parameters.AddWithValue("@Voided", "voided");
+                    }
+
+                    orderCmd.ExecuteNonQuery();
+                }
+            }
+
+            string voidedStatus = isVoided ? "Voided" : "Placed";
+            MessageBox.Show($"{voidedStatus} order successfully. OrderID={generatedOrderID}, UserID={employeeID}, Amount={ttlLbl.Text}", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+
+        private void InsertSalesData(int generatedOrderID)
+        {
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                connection.Open();
+                string salesQuery = "INSERT INTO sales (OrderID, Amount) VALUES (@OrderID, @Amount)";
+
+                using (MySqlCommand salesCmd = new MySqlCommand(salesQuery, connection))
+                {
+                    string totalText = ttlLbl.Text;
+                    string numericValue = totalText.Replace("Php.", "").Trim();
+                    decimal.TryParse(numericValue, out decimal amount);
+
+                    // Insert data into the sales table with the correct total value
+                    salesCmd.Parameters.AddWithValue("@OrderID", generatedOrderID);
+                    salesCmd.Parameters.AddWithValue("@Amount", amount);
+                    salesCmd.ExecuteNonQuery();
+                }
             }
         }
 
-        private void SalesBtn_Click(object sender, EventArgs e)
+        private Tuple<int, int> GetVariationInfo(string itemName)
         {
-            panelManagerAP.ShowPanel(ManagerPanel);
+            int variationID = -1;
+            int mealID = -1;
+
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                connection.Open();
+                string query = "SELECT VariationID, MealID FROM mealvariation WHERE VariationName = @ItemName";
+                using (MySqlCommand cmd = new MySqlCommand(query, connection))
+                {
+                    cmd.Parameters.AddWithValue("@ItemName", itemName);
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            variationID = reader.GetInt32("VariationID");
+                            mealID = reader.GetInt32("MealID");
+                        }
+                    }
+                }
+            }
+            return Tuple.Create(variationID, mealID);
+        }
+
+        private void InsertOrderItemsData(int generatedOrderID, DataGridView dataGridView, bool isVoided)
+        {
+            bool itemNameFound = false;
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                connection.Open();
+                foreach (DataGridViewRow row in dataGridView.Rows)
+                {
+                    string itemName;
+                    if (row.Cells["Column1"].Value != null)
+                    {
+                        itemName = row.Cells["Column1"].Value.ToString();
+                        itemNameFound = true;
+                    }
+                    else
+                    {
+                        continue;
+                    }
+
+                    int qty = Convert.ToInt32(row.Cells["Column3"].Value);
+                    Tuple<int, int> variationInfo = GetVariationInfo(itemName);
+                    int variationID = variationInfo.Item1;
+                    int mealID = variationInfo.Item2;
+
+                    string query;
+                    if (isVoided)
+                    {
+                        query = "INSERT INTO orderitems (OrderID, MealID, VariationID, Quantity, IsVoided) VALUES (@OrderID, @MealID, @VariationID, @Qty, @voided)";
+                    }
+                    else
+                    {
+                        query = "INSERT INTO orderitems (OrderID, MealID, VariationID, Quantity) VALUES (@OrderID, @MealID, @VariationID, @Qty)";
+                    }
+                    using (MySqlCommand cmd = new MySqlCommand(query, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@OrderID", generatedOrderID);
+                        cmd.Parameters.AddWithValue("@MealID", mealID);
+                        cmd.Parameters.AddWithValue("@VariationID", variationID);
+                        cmd.Parameters.AddWithValue("@Qty", qty);
+
+                        if (isVoided)
+                        {
+                            cmd.Parameters.AddWithValue("@voided", "voided");
+                        }
+
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+                if (!itemNameFound)
+                {
+                    MessageBox.Show("ItemName is null. IDK why.");
+                }
+            }
+        }
+
+        private void GenerateBtn_Click(object sender, EventArgs e)
+        {
+            DateTime selectedDate = DateReportSelector.Value;
+            CalculateAndDisplaySalesReportDaily(DailyDGV, ComputedSalesDailyTbl, selectedDate);
+        }
+        private void WeeklyRepBtn_Click(object sender, EventArgs e)
+        {
+            DateTime selectedDate = DateReportSelector.Value;
+            CalculateAndDisplaySalesReportWeekly(WeeklyDGV, ComputedSalesWeeklyTbl, selectedDate);
+        }
+
+        private void MonthlyRepBtn_Click(object sender, EventArgs e)
+        {
+            DateTime selectedDate = DateReportSelector.Value;
+            CalculateAndDisplaySalesReportMonthly(MonthlyDGV, ComputedSalesMonthlyTbl, selectedDate);
+        }
+        public void CalculateAndDisplaySalesReportDaily(DataGridView dailyDGV, DataGridView computedSalesDailyTbl, DateTime selectedDate)
+        {
+            conn.Close();
+            conn.Open();
+
+            // Get sales data for the selected date
+            string query = "SELECT * FROM Sales WHERE DATE(SaleDate) = @Date";
+            using (MySqlCommand command = new MySqlCommand(query, conn))
+            {
+                command.Parameters.Add(new MySqlParameter("@Date", MySqlDbType.Date) { Value = selectedDate.Date });
+                using (MySqlDataAdapter adapter = new MySqlDataAdapter(command))
+                {
+                    DataTable salesData = new DataTable();
+                    adapter.Fill(salesData);
+                    dailyDGV.DataSource = salesData;
+                }
+            }
+
+            // Calculate and display daily sales
+            decimal dailySales = CalculateSalesForDay(selectedDate);
+            computedSalesDailyTbl.Rows.Add(selectedDate.ToString("d"), dailySales);
+        }
+
+        public void CalculateAndDisplaySalesReportWeekly(DataGridView weeklyDGV, DataGridView computedSalesWeeklyTbl, DateTime selectedDate)
+        {
+            conn.Close();
+            conn.Open();
+
+            // Get sales data for the selected week
+            string query = "SELECT * FROM Sales WHERE YEARWEEK(SaleDate) = YEARWEEK(@Date)";
+            using (MySqlCommand command = new MySqlCommand(query, conn))
+            {
+                command.Parameters.Add(new MySqlParameter("@Date", MySqlDbType.Date) { Value = selectedDate.Date });
+                using (MySqlDataAdapter adapter = new MySqlDataAdapter(command))
+                {
+                    DataTable salesData = new DataTable();
+                    adapter.Fill(salesData);
+                    weeklyDGV.DataSource = salesData;
+                }
+            }
+
+            // Calculate and display weekly sales
+            decimal weeklySales = CalculateSalesForWeek(selectedDate);
+            computedSalesWeeklyTbl.Rows.Add(selectedDate.AddDays(-7).ToString("d") + " - " + selectedDate.ToString("d"), weeklySales);
+        }
+
+        public void CalculateAndDisplaySalesReportMonthly(DataGridView monthlyDGV, DataGridView computedSalesMonthlyTbl, DateTime selectedDate)
+        {
+            conn.Close();
+            conn.Open();
+
+            // Get sales data for the selected month
+            string query = "SELECT * FROM Sales WHERE YEAR(SaleDate) = YEAR(@Date) AND MONTH(SaleDate) = MONTH(@Date)";
+            using (MySqlCommand command = new MySqlCommand(query, conn))
+            {
+                command.Parameters.Add(new MySqlParameter("@Date", MySqlDbType.Date) { Value = selectedDate.Date });
+                using (MySqlDataAdapter adapter = new MySqlDataAdapter(command))
+                {
+                    DataTable salesData = new DataTable();
+                    adapter.Fill(salesData);
+                    monthlyDGV.DataSource = salesData;
+                }
+            }
+
+            // Calculate and display monthly sales
+            decimal monthlySales = CalculateSalesForMonth(selectedDate);
+            computedSalesMonthlyTbl.Rows.Add(new DateTime(selectedDate.Year, selectedDate.Month, 1).ToString("d") + " - " + selectedDate.ToString("d"), monthlySales);
+        }
+
+        public decimal CalculateSalesForDay(DateTime date)
+        {
+            string query = "SELECT SUM(Amount) AS TotalSales FROM Sales WHERE DATE(SaleDate) = @Date";
+
+            using (MySqlCommand command = new MySqlCommand(query, conn))
+            {
+                command.Parameters.Add(new MySqlParameter("@Date", MySqlDbType.Date) { Value = date.Date });
+                object result = command.ExecuteScalar();
+                return (result == DBNull.Value) ? 0 : Convert.ToDecimal(result);
+            }
+        }
+
+        public decimal CalculateSalesForWeek(DateTime date)
+        {
+            string query = "SELECT SUM(Amount) AS TotalSales FROM Sales WHERE YEARWEEK(SaleDate) = YEARWEEK(@Date)";
+
+            using (MySqlCommand command = new MySqlCommand(query, conn))
+            {
+                command.Parameters.Add(new MySqlParameter("@Date", MySqlDbType.Date) { Value = date });
+                object result = command.ExecuteScalar();
+                return (result == DBNull.Value) ? 0 : Convert.ToDecimal(result);
+            }
+        }
+
+        public decimal CalculateSalesForMonth(DateTime date)
+        {
+            string query = "SELECT SUM(Amount) AS TotalSales FROM Sales WHERE YEAR(SaleDate) = YEAR(@Date) AND MONTH(SaleDate) = MONTH(@Date)";
+
+            using (MySqlCommand command = new MySqlCommand(query, conn))
+            {
+                command.Parameters.Add(new MySqlParameter("@Date", MySqlDbType.Date) { Value = date });
+                object result = command.ExecuteScalar();
+                return (result == DBNull.Value) ? 0 : Convert.ToDecimal(result);
+            }
         }
     }
 }
