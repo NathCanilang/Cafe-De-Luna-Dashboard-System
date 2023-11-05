@@ -113,11 +113,7 @@ namespace CafeDeLunaSystem
             {
                 MessageBox.Show("Admin login successful", "Welcome, Admin", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 panelManager.ShowPanel(AdminPanel);
-            }
-            else if (usernameInput == "Staff" && passwordInput == "staff123")
-            {
-                MessageBox.Show("Staff login successful", "Welcome, Staff", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                panelManager.ShowPanel(StaffPanel);
+                ManagerLogoutBtn.Hide();
             }
             else
             {
@@ -145,6 +141,7 @@ namespace CafeDeLunaSystem
                                     {
                                         MessageBox.Show("Login Successful", "Welcome, Manager", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                         panelManager.ShowPanel(StaffPanel);
+                                        AdminLogoutBtn.Hide();
                                         PositionTxtBox.Text = "Manager";
                                     }
                                     else if (userRole == "Cashier")
@@ -266,6 +263,9 @@ namespace CafeDeLunaSystem
             if (result == DialogResult.Yes)
             {
                 panelManager.ShowPanel(LoginPanel);
+                TxtPlaceholder.SetPlaceholder(UsernameTxtBLP, "Enter your Username");
+                TxtPlaceholder.SetPlaceholder(PasswordTxtBLP, "Enter your Password");
+
             }
         }
 
@@ -1667,6 +1667,10 @@ namespace CafeDeLunaSystem
             if (result == DialogResult.Yes)
             {
                 panelManager.ShowPanel(LoginPanel);
+
+
+                TxtPlaceholder.SetPlaceholder(UsernameTxtBLP, "Enter your Username");
+                TxtPlaceholder.SetPlaceholder(PasswordTxtBLP, "Enter your Password");
             }
         }
 
@@ -2234,6 +2238,18 @@ namespace CafeDeLunaSystem
                     return monthlySummary;
                 }
             }
+        }
+
+        private void AdminLogoutBtn_Click(object sender, EventArgs e)
+        {
+            panelManager.ShowPanel(AdminPanel);
+            ManagerLogoutBtn.Show();
+        }
+
+        private void ManagerLogoutBtn_Click(object sender, EventArgs e)
+        {
+            panelManager.ShowPanel(StaffPanel);
+            AdminLogoutBtn.Show();
         }
     }
 }

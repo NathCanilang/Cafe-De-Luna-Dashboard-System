@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             this.MainLoginContainer = new Syncfusion.Windows.Forms.Tools.CardLayout(this.components);
             this.LoginPanel = new System.Windows.Forms.Panel();
             this.PanelLP = new System.Windows.Forms.Panel();
@@ -102,6 +102,9 @@
             this.AddMenuLbl = new System.Windows.Forms.Label();
             this.AccManageLbl = new System.Windows.Forms.Label();
             this.ManagerPanel = new System.Windows.Forms.Panel();
+            this.MostSalesMonthlyTbl = new System.Windows.Forms.DataGridView();
+            this.MostSalesWeeklyTbl = new System.Windows.Forms.DataGridView();
+            this.MostSalesDailyTbl = new System.Windows.Forms.DataGridView();
             this.MonthlyRepBtn = new System.Windows.Forms.Button();
             this.WeeklyRepBtn = new System.Windows.Forms.Button();
             this.MonthlyRepLbl = new System.Windows.Forms.Label();
@@ -151,9 +154,8 @@
             this.AdminPanelContainer = new Syncfusion.Windows.Forms.Tools.CardLayout(this.components);
             this.AccManageContainer = new Syncfusion.Windows.Forms.Tools.CardLayout(this.components);
             this.flowLayout1 = new Syncfusion.Windows.Forms.Tools.FlowLayout(this.components);
-            this.MostSalesDailyTbl = new System.Windows.Forms.DataGridView();
-            this.MostSalesWeeklyTbl = new System.Windows.Forms.DataGridView();
-            this.MostSalesMonthlyTbl = new System.Windows.Forms.DataGridView();
+            this.AdminLogoutBtn = new System.Windows.Forms.Button();
+            this.ManagerLogoutBtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.MainLoginContainer)).BeginInit();
             this.LoginPanel.SuspendLayout();
             this.PanelLP.SuspendLayout();
@@ -170,6 +172,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.AccDataTbl)).BeginInit();
             this.NavigationPanelAP.SuspendLayout();
             this.ManagerPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.MostSalesMonthlyTbl)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MostSalesWeeklyTbl)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MostSalesDailyTbl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ComputedSalesMonthlyTbl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ComputedSalesWeeklyTbl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ComputedSalesDailyTbl)).BeginInit();
@@ -182,9 +187,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.AdminPanelContainer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.AccManageContainer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.flowLayout1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.MostSalesDailyTbl)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.MostSalesWeeklyTbl)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.MostSalesMonthlyTbl)).BeginInit();
             this.SuspendLayout();
             // 
             // MainLoginContainer
@@ -984,6 +986,8 @@
             // 
             this.ManagerPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.MainLoginContainer.SetCardName(this.ManagerPanel, "Card2");
+            this.ManagerPanel.Controls.Add(this.ManagerLogoutBtn);
+            this.ManagerPanel.Controls.Add(this.AdminLogoutBtn);
             this.ManagerPanel.Controls.Add(this.MostSalesMonthlyTbl);
             this.ManagerPanel.Controls.Add(this.MostSalesWeeklyTbl);
             this.ManagerPanel.Controls.Add(this.MostSalesDailyTbl);
@@ -1007,6 +1011,36 @@
             this.MainLoginContainer.SetPreferredSize(this.ManagerPanel, new System.Drawing.Size(200, 100));
             this.ManagerPanel.Size = new System.Drawing.Size(1731, 864);
             this.ManagerPanel.TabIndex = 2;
+            // 
+            // MostSalesMonthlyTbl
+            // 
+            this.MostSalesMonthlyTbl.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.MostSalesMonthlyTbl.Location = new System.Drawing.Point(1072, 446);
+            this.MostSalesMonthlyTbl.Name = "MostSalesMonthlyTbl";
+            this.MostSalesMonthlyTbl.RowHeadersWidth = 51;
+            this.MostSalesMonthlyTbl.RowTemplate.Height = 24;
+            this.MostSalesMonthlyTbl.Size = new System.Drawing.Size(446, 203);
+            this.MostSalesMonthlyTbl.TabIndex = 15;
+            // 
+            // MostSalesWeeklyTbl
+            // 
+            this.MostSalesWeeklyTbl.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.MostSalesWeeklyTbl.Location = new System.Drawing.Point(620, 446);
+            this.MostSalesWeeklyTbl.Name = "MostSalesWeeklyTbl";
+            this.MostSalesWeeklyTbl.RowHeadersWidth = 51;
+            this.MostSalesWeeklyTbl.RowTemplate.Height = 24;
+            this.MostSalesWeeklyTbl.Size = new System.Drawing.Size(446, 203);
+            this.MostSalesWeeklyTbl.TabIndex = 14;
+            // 
+            // MostSalesDailyTbl
+            // 
+            this.MostSalesDailyTbl.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.MostSalesDailyTbl.Location = new System.Drawing.Point(168, 446);
+            this.MostSalesDailyTbl.Name = "MostSalesDailyTbl";
+            this.MostSalesDailyTbl.RowHeadersWidth = 51;
+            this.MostSalesDailyTbl.RowTemplate.Height = 24;
+            this.MostSalesDailyTbl.Size = new System.Drawing.Size(446, 203);
+            this.MostSalesDailyTbl.TabIndex = 13;
             // 
             // MonthlyRepBtn
             // 
@@ -1403,23 +1437,23 @@
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToResizeColumns = false;
             this.dataGridView1.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
-            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle9.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.Black;
+            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle9;
             this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
             this.dataGridView1.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
@@ -1428,28 +1462,28 @@
             this.Column4,
             this.Column5,
             this.Column6});
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle11.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle11;
             this.dataGridView1.Location = new System.Drawing.Point(1168, 47);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView1.Name = "dataGridView1";
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle12;
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle9;
             this.dataGridView1.Size = new System.Drawing.Size(528, 288);
             this.dataGridView1.TabIndex = 7;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
@@ -1556,35 +1590,25 @@
             this.AccManageContainer.LayoutMode = Syncfusion.Windows.Forms.Tools.CardLayoutMode.Fill;
             this.AccManageContainer.SelectedCard = "Card1";
             // 
-            // MostSalesDailyTbl
+            // AdminLogoutBtn
             // 
-            this.MostSalesDailyTbl.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.MostSalesDailyTbl.Location = new System.Drawing.Point(168, 446);
-            this.MostSalesDailyTbl.Name = "MostSalesDailyTbl";
-            this.MostSalesDailyTbl.RowHeadersWidth = 51;
-            this.MostSalesDailyTbl.RowTemplate.Height = 24;
-            this.MostSalesDailyTbl.Size = new System.Drawing.Size(446, 203);
-            this.MostSalesDailyTbl.TabIndex = 13;
+            this.AdminLogoutBtn.Location = new System.Drawing.Point(643, 794);
+            this.AdminLogoutBtn.Name = "AdminLogoutBtn";
+            this.AdminLogoutBtn.Size = new System.Drawing.Size(112, 30);
+            this.AdminLogoutBtn.TabIndex = 16;
+            this.AdminLogoutBtn.Text = "Logout";
+            this.AdminLogoutBtn.UseVisualStyleBackColor = true;
+            this.AdminLogoutBtn.Click += new System.EventHandler(this.AdminLogoutBtn_Click);
             // 
-            // MostSalesWeeklyTbl
+            // ManagerLogoutBtn
             // 
-            this.MostSalesWeeklyTbl.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.MostSalesWeeklyTbl.Location = new System.Drawing.Point(620, 446);
-            this.MostSalesWeeklyTbl.Name = "MostSalesWeeklyTbl";
-            this.MostSalesWeeklyTbl.RowHeadersWidth = 51;
-            this.MostSalesWeeklyTbl.RowTemplate.Height = 24;
-            this.MostSalesWeeklyTbl.Size = new System.Drawing.Size(446, 203);
-            this.MostSalesWeeklyTbl.TabIndex = 14;
-            // 
-            // MostSalesMonthlyTbl
-            // 
-            this.MostSalesMonthlyTbl.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.MostSalesMonthlyTbl.Location = new System.Drawing.Point(1072, 446);
-            this.MostSalesMonthlyTbl.Name = "MostSalesMonthlyTbl";
-            this.MostSalesMonthlyTbl.RowHeadersWidth = 51;
-            this.MostSalesMonthlyTbl.RowTemplate.Height = 24;
-            this.MostSalesMonthlyTbl.Size = new System.Drawing.Size(446, 203);
-            this.MostSalesMonthlyTbl.TabIndex = 15;
+            this.ManagerLogoutBtn.Location = new System.Drawing.Point(792, 794);
+            this.ManagerLogoutBtn.Name = "ManagerLogoutBtn";
+            this.ManagerLogoutBtn.Size = new System.Drawing.Size(112, 30);
+            this.ManagerLogoutBtn.TabIndex = 17;
+            this.ManagerLogoutBtn.Text = "Logout";
+            this.ManagerLogoutBtn.UseVisualStyleBackColor = true;
+            this.ManagerLogoutBtn.Click += new System.EventHandler(this.ManagerLogoutBtn_Click);
             // 
             // CafeDeLunaDashboard
             // 
@@ -1622,6 +1646,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.AccDataTbl)).EndInit();
             this.NavigationPanelAP.ResumeLayout(false);
             this.ManagerPanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.MostSalesMonthlyTbl)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MostSalesWeeklyTbl)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MostSalesDailyTbl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ComputedSalesMonthlyTbl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ComputedSalesWeeklyTbl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ComputedSalesDailyTbl)).EndInit();
@@ -1635,9 +1662,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.AdminPanelContainer)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.AccManageContainer)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.flowLayout1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.MostSalesDailyTbl)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.MostSalesWeeklyTbl)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.MostSalesMonthlyTbl)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1765,6 +1789,8 @@
         private System.Windows.Forms.DataGridView MostSalesDailyTbl;
         private System.Windows.Forms.DataGridView MostSalesMonthlyTbl;
         private System.Windows.Forms.DataGridView MostSalesWeeklyTbl;
+        private System.Windows.Forms.Button ManagerLogoutBtn;
+        private System.Windows.Forms.Button AdminLogoutBtn;
     }
 }
 
