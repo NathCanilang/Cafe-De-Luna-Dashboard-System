@@ -33,7 +33,7 @@ namespace CafeDeLunaSystem.Properties {
         internal Resources() {
         }
 
-        public static Bitmap Cade_Del_Luna { get; internal set; }
+        public static Bitmap cafe { get; internal set; }
 
         /// <summary>
         ///   Returns the cached ResourceManager instance used by this class.

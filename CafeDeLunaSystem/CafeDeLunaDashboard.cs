@@ -1233,7 +1233,7 @@ namespace CafeDeLunaSystem
                     using (Document doc = new Document(pdf))
                     {
                         doc.SetProperty(Property.TEXT_ALIGNMENT, TextAlignment.JUSTIFIED_ALL);
-                        ImageData logoImageData = ImageDataFactory.Create(GetBytesFromImage(Properties.Resources.Cade_Del_Luna));
+                        ImageData logoImageData = ImageDataFactory.Create(GetBytesFromImage(Properties.Resources.cafe));
                         iText.Layout.Element.Image logo = new iText.Layout.Element.Image(logoImageData);
                         logo.SetWidth(200);
                         logo.SetHeight(100);
