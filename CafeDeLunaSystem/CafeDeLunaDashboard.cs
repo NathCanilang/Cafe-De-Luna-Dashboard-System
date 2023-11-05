@@ -10,6 +10,7 @@ using iText.Kernel.Pdf;
 using iText.Layout;
 using iText.Layout.Element;
 using iText.Layout.Properties;
+using iText.IO.Image;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
@@ -18,6 +19,7 @@ using System.Drawing.Drawing2D;
 using Image = System.Drawing.Image;
 using TextAlignment = iText.Layout.Properties.TextAlignment;
 using iText.Layout.Borders;
+using Org.BouncyCastle.Asn1.Pkcs;
 
 
 namespace CafeDeLunaSystem
@@ -1185,6 +1187,15 @@ namespace CafeDeLunaSystem
                 GeneratePDFReceipt();                
             }
         }
+        
+        private byte[] GetBytesFromImage(Image image)
+            {
+                using (MemoryStream ms = new MemoryStream())
+                {
+                image.Save(ms, ImageFormat.Png); // You can specify the image format here
+                return ms.ToArray();
+                }
+        }
 
         private void GeneratePDFReceipt()
         {
@@ -1207,6 +1218,7 @@ namespace CafeDeLunaSystem
                 return;
             }
 
+
             using (SaveFileDialog saveFileDialog1 = new SaveFileDialog())
             {
                 saveFileDialog1.Filter = "PDF Files|*.pdf";
@@ -1221,6 +1233,12 @@ namespace CafeDeLunaSystem
                     using (Document doc = new Document(pdf))
                     {
                         doc.SetProperty(Property.TEXT_ALIGNMENT, TextAlignment.JUSTIFIED_ALL);
+                        ImageData logoImageData = ImageDataFactory.Create(GetBytesFromImage(Properties.Resources.Cade_Del_Luna));
+                        iText.Layout.Element.Image logo = new iText.Layout.Element.Image(logoImageData);
+                        logo.SetWidth(200);
+                        logo.SetHeight(100);
+                        // Add the logo to the PDF
+                        doc.Add(logo);
 
                         doc.Add(new Paragraph("Café De Luna").SetTextAlignment(TextAlignment.CENTER));
                         doc.Add(new Paragraph("Order Confirmation Receipt").SetTextAlignment(TextAlignment.CENTER));
