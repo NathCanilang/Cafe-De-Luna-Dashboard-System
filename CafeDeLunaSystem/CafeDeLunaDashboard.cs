@@ -52,7 +52,6 @@ namespace CafeDeLunaSystem
         private readonly string[] position = { "Manager", "Cashier" };
         List<string> removedItems = new List<string>();
         List<PictureBox> clickedPictureBoxes = new List<PictureBox>();
-
         public CafeDeLunaDashboard()
         {
             InitializeComponent();
@@ -130,16 +129,16 @@ namespace CafeDeLunaSystem
                                     employeeID = reader.GetInt32("EmployeeID");
                                     positionDB = reader["Position"].ToString();
                                     usernameDB = reader["Username"].ToString();
-                                    panelManager.ShowPanel(StaffPanel);
-
                                     if (userRole == "Manager")
                                     {
                                         MessageBox.Show("Login Successful", "Welcome, Manager", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                        panelManager.ShowPanel(StaffPanel);
                                         PositionTxtBox.Text = "Manager";
                                     }
                                     else if (userRole == "Cashier")
                                     {
                                         MessageBox.Show("Login Successful", "Welcome, Staff", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                        panelManager.ShowPanel(StaffPanel);
                                         PositionTxtBox.Text = "Staff";
                                         SalesBtn.Hide();
                                     }
@@ -1109,6 +1108,13 @@ namespace CafeDeLunaSystem
             if (result == DialogResult.Yes)
             {
                 panelManager.ShowPanel(LoginPanel);
+                dataGridView1.Rows.Clear();
+                sbLbl.Text = "Php. 0.00";
+                ttlLbl.Text = "Php. 0.00";
+                dscLbl.Text = "Php. 0.00";
+                cashtxtBx.Text = "0.00";
+                cashtxtBx.ForeColor = Color.LightGray;
+                discChckBx.Checked = false;
             }
         }
 
