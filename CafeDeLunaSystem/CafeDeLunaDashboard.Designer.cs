@@ -169,7 +169,7 @@
             this.MainLoginContainer.SetMinimumSize(this.LoginPanel, new System.Drawing.Size(200, 100));
             this.LoginPanel.Name = "LoginPanel";
             this.MainLoginContainer.SetPreferredSize(this.LoginPanel, new System.Drawing.Size(200, 100));
-            this.LoginPanel.Size = new System.Drawing.Size(1285, 708);
+            this.LoginPanel.Size = new System.Drawing.Size(1284, 708);
             this.LoginPanel.TabIndex = 0;
             // 
             // PanelLP
@@ -221,7 +221,7 @@
             this.MainLoginContainer.SetMinimumSize(this.AdminPanel, new System.Drawing.Size(200, 100));
             this.AdminPanel.Name = "AdminPanel";
             this.MainLoginContainer.SetPreferredSize(this.AdminPanel, new System.Drawing.Size(200, 100));
-            this.AdminPanel.Size = new System.Drawing.Size(1285, 708);
+            this.AdminPanel.Size = new System.Drawing.Size(1284, 708);
             this.AdminPanel.TabIndex = 1;
             // 
             // InterfaceAP
@@ -883,7 +883,7 @@
             this.MainLoginContainer.SetMinimumSize(this.ManagerPanel, new System.Drawing.Size(200, 100));
             this.ManagerPanel.Name = "ManagerPanel";
             this.MainLoginContainer.SetPreferredSize(this.ManagerPanel, new System.Drawing.Size(200, 100));
-            this.ManagerPanel.Size = new System.Drawing.Size(1285, 708);
+            this.ManagerPanel.Size = new System.Drawing.Size(1284, 708);
             this.ManagerPanel.TabIndex = 2;
             // 
             // label1
@@ -923,7 +923,7 @@
             this.MainLoginContainer.SetMinimumSize(this.StaffPanel, new System.Drawing.Size(200, 100));
             this.StaffPanel.Name = "StaffPanel";
             this.MainLoginContainer.SetPreferredSize(this.StaffPanel, new System.Drawing.Size(200, 100));
-            this.StaffPanel.Size = new System.Drawing.Size(1285, 708);
+            this.StaffPanel.Size = new System.Drawing.Size(1284, 708);
             this.StaffPanel.TabIndex = 3;
             // 
             // PositionTxtBox
@@ -1261,7 +1261,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1285, 708);
+            this.ClientSize = new System.Drawing.Size(1284, 708);
             this.Controls.Add(this.StaffPanel);
             this.Controls.Add(this.ManagerPanel);
             this.Controls.Add(this.AdminPanel);

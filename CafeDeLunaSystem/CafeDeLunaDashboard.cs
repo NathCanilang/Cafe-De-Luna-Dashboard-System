@@ -44,12 +44,15 @@ namespace CafeDeLunaSystem
         private bool isSearchTextPlaceholder = true;
         private int GenerateID = orderIDGenerator();
         private int employeeID;
+        private string positionDB;
+        private string usernameDB;
 
         //Admin Panel
         private readonly CreateAndEditAcc createAndEditAcc = new CreateAndEditAcc();
         private readonly string[] position = { "Manager", "Cashier" };
         List<string> removedItems = new List<string>();
         List<PictureBox> clickedPictureBoxes = new List<PictureBox>();
+
         public CafeDeLunaDashboard()
         {
             InitializeComponent();
@@ -89,8 +92,9 @@ namespace CafeDeLunaSystem
 
             UserBirthdate.ValueChanged += CalculateAge;
         }
-        
+
         //Login Section
+
         private void LogBtnLP_Click(object sender, System.EventArgs e)
         {
             string usernameInput = UsernameTxtBLP.Text;
@@ -108,7 +112,7 @@ namespace CafeDeLunaSystem
                 {
                     conn.Open();
 
-                    string query = "SELECT Position, EmployeeID FROM employee_acc WHERE Username = @username AND Password = @password";
+                    string query = "SELECT Position, Username, EmployeeID FROM employee_acc WHERE Username = @username AND Password = @password";
                     using (MySqlCommand command = new MySqlCommand(query, conn))
                     {
                         command.Parameters.AddWithValue("@username", usernameInput);
@@ -124,19 +128,22 @@ namespace CafeDeLunaSystem
                                 {
                                     string userRole = position.ToString();
                                     employeeID = reader.GetInt32("EmployeeID");
+                                    positionDB = reader["Position"].ToString();
+                                    usernameDB = reader["Username"].ToString();
+                                    panelManager.ShowPanel(StaffPanel);
+
                                     if (userRole == "Manager")
                                     {
                                         MessageBox.Show("Login Successful", "Welcome, Manager", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                        panelManager.ShowPanel(StaffPanel);
                                         PositionTxtBox.Text = "Manager";
                                     }
                                     else if (userRole == "Cashier")
                                     {
                                         MessageBox.Show("Login Successful", "Welcome, Staff", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                        panelManager.ShowPanel(StaffPanel);
                                         PositionTxtBox.Text = "Staff";
                                         SalesBtn.Hide();
                                     }
+
                                 }
                                 else
                                 {
@@ -1211,7 +1218,8 @@ namespace CafeDeLunaSystem
 
                         doc.Add(new Paragraph("Café De Luna").SetTextAlignment(TextAlignment.CENTER));
                         doc.Add(new Paragraph("Order Confirmation Receipt").SetTextAlignment(TextAlignment.CENTER));
-                        doc.Add(new Paragraph("Date: " + DateTime.Now.ToString("MM/dd/yyyy   hh:mm tt")).SetTextAlignment(TextAlignment.LEFT));
+                        doc.Add(new Paragraph($"Served by: {positionDB} {usernameDB}").SetTextAlignment(TextAlignment.LEFT));
+                        doc.Add(new Paragraph("Date: " + DateTime.Now.ToString("MM/dd/yyyy   hh:mm:ss tt")).SetTextAlignment(TextAlignment.LEFT));
                         doc.Add(new Paragraph("--------------------------------------------------------------------------------------------------"));
                         doc.Add(new Paragraph($"QUANTITY                         MEAL                    PRICE"));
 
