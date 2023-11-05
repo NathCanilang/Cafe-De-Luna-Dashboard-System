@@ -2201,6 +2201,7 @@ namespace CafeDeLunaSystem
         WHERE DATE(s.SaleDate) >= DATE_SUB(@Date, INTERVAL 7 DAY)
         GROUP BY DATE(s.SaleDate), mv.VariationName
         ORDER BY TotalQuantity DESC";
+
             using (MySqlCommand command = new MySqlCommand(query, conn))
             {
                 command.Parameters.Add(new MySqlParameter("@Date", MySqlDbType.Date) { Value = date.Date });
