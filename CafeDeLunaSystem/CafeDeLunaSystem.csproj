@@ -227,6 +227,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\cafe.png" />
+    <Content Include="Resources\luna!.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
