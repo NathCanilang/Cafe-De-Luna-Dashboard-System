@@ -57,11 +57,9 @@
             this.VariationDescTxtB = new System.Windows.Forms.TextBox();
             this.VariationCostTxtB = new System.Windows.Forms.TextBox();
             this.VariationNmTxtB = new System.Windows.Forms.TextBox();
-            this.VariationPicB = new System.Windows.Forms.PictureBox();
             this.AddMenuBtn = new System.Windows.Forms.Button();
             this.MenuAddImgBtn = new System.Windows.Forms.Button();
             this.MenuNTxtB = new System.Windows.Forms.TextBox();
-            this.MenuPicB = new System.Windows.Forms.PictureBox();
             this.FoodTbl = new System.Windows.Forms.DataGridView();
             this.SalesRepPanel = new System.Windows.Forms.Panel();
             this.AccManagePanel = new System.Windows.Forms.Panel();
@@ -81,7 +79,6 @@
             this.EditBtn = new System.Windows.Forms.Button();
             this.CreateBtn = new System.Windows.Forms.Button();
             this.SelectImgBtn = new System.Windows.Forms.Button();
-            this.UserPicB = new System.Windows.Forms.PictureBox();
             this.AccDataTbl = new System.Windows.Forms.DataGridView();
             this.PositionComB_AP = new System.Windows.Forms.ComboBox();
             this.UserBirthdate = new System.Windows.Forms.DateTimePicker();
@@ -126,10 +123,13 @@
             this.Column6 = new System.Windows.Forms.DataGridViewButtonColumn();
             this.SearchTxtbx = new System.Windows.Forms.TextBox();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.allBtn = new System.Windows.Forms.PictureBox();
             this.AdminPanelContainer = new Syncfusion.Windows.Forms.Tools.CardLayout(this.components);
             this.AccManageContainer = new Syncfusion.Windows.Forms.Tools.CardLayout(this.components);
             this.flowLayout1 = new Syncfusion.Windows.Forms.Tools.FlowLayout(this.components);
+            this.allBtn = new System.Windows.Forms.PictureBox();
+            this.VariationPicB = new System.Windows.Forms.PictureBox();
+            this.MenuPicB = new System.Windows.Forms.PictureBox();
+            this.UserPicB = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.MainLoginContainer)).BeginInit();
             this.LoginPanel.SuspendLayout();
             this.PanelLP.SuspendLayout();
@@ -137,21 +137,21 @@
             this.InterfaceAP.SuspendLayout();
             this.HomePanelAP.SuspendLayout();
             this.AddMenuPanelAP.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.VariationPicB)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.MenuPicB)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.FoodTbl)).BeginInit();
             this.AccManagePanel.SuspendLayout();
             this.AccCreatePanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.UserPicB)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.AccDataTbl)).BeginInit();
             this.NavigationPanelAP.SuspendLayout();
             this.ManagerPanel.SuspendLayout();
             this.StaffPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.allBtn)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.AdminPanelContainer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.AccManageContainer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.flowLayout1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.allBtn)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.VariationPicB)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MenuPicB)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.UserPicB)).BeginInit();
             this.SuspendLayout();
             // 
             // MainLoginContainer
@@ -272,12 +272,12 @@
             this.AddMenuPanelAP.Controls.Add(this.VariationDescTxtB);
             this.AddMenuPanelAP.Controls.Add(this.VariationCostTxtB);
             this.AddMenuPanelAP.Controls.Add(this.VariationNmTxtB);
-            this.AddMenuPanelAP.Controls.Add(this.VariationPicB);
             this.AddMenuPanelAP.Controls.Add(this.AddMenuBtn);
             this.AddMenuPanelAP.Controls.Add(this.MenuAddImgBtn);
             this.AddMenuPanelAP.Controls.Add(this.MenuNTxtB);
-            this.AddMenuPanelAP.Controls.Add(this.MenuPicB);
             this.AddMenuPanelAP.Controls.Add(this.FoodTbl);
+            this.AddMenuPanelAP.Controls.Add(this.VariationPicB);
+            this.AddMenuPanelAP.Controls.Add(this.MenuPicB);
             this.AddMenuPanelAP.Location = new System.Drawing.Point(0, 0);
             this.AdminPanelContainer.SetMinimumSize(this.AddMenuPanelAP, new System.Drawing.Size(200, 100));
             this.AddMenuPanelAP.Name = "AddMenuPanelAP";
@@ -403,17 +403,6 @@
             this.VariationNmTxtB.TabIndex = 6;
             this.VariationNmTxtB.Text = "Food Name";
             // 
-            // VariationPicB
-            // 
-            this.VariationPicB.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.VariationPicB.Location = new System.Drawing.Point(542, 324);
-            this.VariationPicB.Margin = new System.Windows.Forms.Padding(2);
-            this.VariationPicB.Name = "VariationPicB";
-            this.VariationPicB.Size = new System.Drawing.Size(90, 98);
-            this.VariationPicB.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.VariationPicB.TabIndex = 5;
-            this.VariationPicB.TabStop = false;
-            // 
             // AddMenuBtn
             // 
             this.AddMenuBtn.Location = new System.Drawing.Point(692, 236);
@@ -445,17 +434,6 @@
             this.MenuNTxtB.Size = new System.Drawing.Size(155, 29);
             this.MenuNTxtB.TabIndex = 2;
             this.MenuNTxtB.Text = "Menu Name";
-            // 
-            // MenuPicB
-            // 
-            this.MenuPicB.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.MenuPicB.Location = new System.Drawing.Point(598, 167);
-            this.MenuPicB.Margin = new System.Windows.Forms.Padding(2);
-            this.MenuPicB.Name = "MenuPicB";
-            this.MenuPicB.Size = new System.Drawing.Size(90, 98);
-            this.MenuPicB.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.MenuPicB.TabIndex = 1;
-            this.MenuPicB.TabStop = false;
             // 
             // FoodTbl
             // 
@@ -512,7 +490,6 @@
             this.AccCreatePanel.Controls.Add(this.EditBtn);
             this.AccCreatePanel.Controls.Add(this.CreateBtn);
             this.AccCreatePanel.Controls.Add(this.SelectImgBtn);
-            this.AccCreatePanel.Controls.Add(this.UserPicB);
             this.AccCreatePanel.Controls.Add(this.AccDataTbl);
             this.AccCreatePanel.Controls.Add(this.PositionComB_AP);
             this.AccCreatePanel.Controls.Add(this.UserBirthdate);
@@ -524,6 +501,7 @@
             this.AccCreatePanel.Controls.Add(this.MiddleNTxtB_AP);
             this.AccCreatePanel.Controls.Add(this.FirstNTxtB_AP);
             this.AccCreatePanel.Controls.Add(this.LastNTxtB_AP);
+            this.AccCreatePanel.Controls.Add(this.UserPicB);
             this.AccCreatePanel.Location = new System.Drawing.Point(0, 0);
             this.AccCreatePanel.Margin = new System.Windows.Forms.Padding(2);
             this.AccManageContainer.SetMinimumSize(this.AccCreatePanel, new System.Drawing.Size(200, 100));
@@ -690,17 +668,6 @@
             this.SelectImgBtn.Text = "Select Image";
             this.SelectImgBtn.UseVisualStyleBackColor = true;
             this.SelectImgBtn.Click += new System.EventHandler(this.SelectImgBtn_Click);
-            // 
-            // UserPicB
-            // 
-            this.UserPicB.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.UserPicB.Location = new System.Drawing.Point(18, 375);
-            this.UserPicB.Margin = new System.Windows.Forms.Padding(2);
-            this.UserPicB.Name = "UserPicB";
-            this.UserPicB.Size = new System.Drawing.Size(120, 130);
-            this.UserPicB.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.UserPicB.TabIndex = 11;
-            this.UserPicB.TabStop = false;
             // 
             // AccDataTbl
             // 
@@ -1233,6 +1200,18 @@
             this.flowLayoutPanel1.Size = new System.Drawing.Size(655, 657);
             this.flowLayoutPanel1.TabIndex = 5;
             // 
+            // AdminPanelContainer
+            // 
+            this.AdminPanelContainer.ContainerControl = this.InterfaceAP;
+            this.AdminPanelContainer.LayoutMode = Syncfusion.Windows.Forms.Tools.CardLayoutMode.Fill;
+            this.AdminPanelContainer.SelectedCard = "Card2";
+            // 
+            // AccManageContainer
+            // 
+            this.AccManageContainer.ContainerControl = this.AccManagePanel;
+            this.AccManageContainer.LayoutMode = Syncfusion.Windows.Forms.Tools.CardLayoutMode.Fill;
+            this.AccManageContainer.SelectedCard = "Card1";
+            // 
             // allBtn
             // 
             this.allBtn.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -1245,17 +1224,38 @@
             this.allBtn.TabStop = false;
             this.allBtn.Click += new System.EventHandler(this.allBtn_Click);
             // 
-            // AdminPanelContainer
+            // VariationPicB
             // 
-            this.AdminPanelContainer.ContainerControl = this.InterfaceAP;
-            this.AdminPanelContainer.LayoutMode = Syncfusion.Windows.Forms.Tools.CardLayoutMode.Fill;
-            this.AdminPanelContainer.SelectedCard = "Card2";
+            this.VariationPicB.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.VariationPicB.Location = new System.Drawing.Point(542, 324);
+            this.VariationPicB.Margin = new System.Windows.Forms.Padding(2);
+            this.VariationPicB.Name = "VariationPicB";
+            this.VariationPicB.Size = new System.Drawing.Size(90, 98);
+            this.VariationPicB.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.VariationPicB.TabIndex = 5;
+            this.VariationPicB.TabStop = false;
             // 
-            // AccManageContainer
+            // MenuPicB
             // 
-            this.AccManageContainer.ContainerControl = this.AccManagePanel;
-            this.AccManageContainer.LayoutMode = Syncfusion.Windows.Forms.Tools.CardLayoutMode.Fill;
-            this.AccManageContainer.SelectedCard = "Card1";
+            this.MenuPicB.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.MenuPicB.Location = new System.Drawing.Point(598, 167);
+            this.MenuPicB.Margin = new System.Windows.Forms.Padding(2);
+            this.MenuPicB.Name = "MenuPicB";
+            this.MenuPicB.Size = new System.Drawing.Size(90, 98);
+            this.MenuPicB.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.MenuPicB.TabIndex = 1;
+            this.MenuPicB.TabStop = false;
+            // 
+            // UserPicB
+            // 
+            this.UserPicB.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.UserPicB.Location = new System.Drawing.Point(18, 375);
+            this.UserPicB.Margin = new System.Windows.Forms.Padding(2);
+            this.UserPicB.Name = "UserPicB";
+            this.UserPicB.Size = new System.Drawing.Size(120, 130);
+            this.UserPicB.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.UserPicB.TabIndex = 11;
+            this.UserPicB.TabStop = false;
             // 
             // CafeDeLunaDashboard
             // 
@@ -1281,13 +1281,10 @@
             this.HomePanelAP.PerformLayout();
             this.AddMenuPanelAP.ResumeLayout(false);
             this.AddMenuPanelAP.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.VariationPicB)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.MenuPicB)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.FoodTbl)).EndInit();
             this.AccManagePanel.ResumeLayout(false);
             this.AccCreatePanel.ResumeLayout(false);
             this.AccCreatePanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.UserPicB)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.AccDataTbl)).EndInit();
             this.NavigationPanelAP.ResumeLayout(false);
             this.ManagerPanel.ResumeLayout(false);
@@ -1295,10 +1292,13 @@
             this.StaffPanel.ResumeLayout(false);
             this.StaffPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.allBtn)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.AdminPanelContainer)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.AccManageContainer)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.flowLayout1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.allBtn)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.VariationPicB)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MenuPicB)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.UserPicB)).EndInit();
             this.ResumeLayout(false);
 
         }

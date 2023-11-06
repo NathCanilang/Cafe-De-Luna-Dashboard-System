@@ -144,12 +144,11 @@ namespace CafeDeLunaSystem
                                         PositionTxtBox.Text = "Staff";
                                         SalesBtn.Hide();
                                     }
-
-                                }
-                                else
-                                {
-                                    MessageBox.Show("Invalid username or password.", "Try again", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                                }
+                                }                               
+                            }
+                            else
+                            {
+                                MessageBox.Show("The username/password you entered does not match. ", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             }
                         }
                     }
@@ -1233,19 +1232,17 @@ namespace CafeDeLunaSystem
                     using (Document doc = new Document(pdf))
                     {
                         doc.SetProperty(Property.TEXT_ALIGNMENT, TextAlignment.JUSTIFIED_ALL);
-                        ImageData logoImageData = ImageDataFactory.Create(GetBytesFromImage(Properties.Resources.luna!));
+                        ImageData logoImageData = ImageDataFactory.Create(GetBytesFromImage(Properties.Resources.luna));
                         iText.Layout.Element.Image logo = new iText.Layout.Element.Image(logoImageData);
-                        logo.SetWidth(200);
-                        logo.SetHeight(100);
+                        logo.SetHorizontalAlignment(iText.Layout.Properties.HorizontalAlignment.CENTER); 
+                        logo.SetWidth(150);
+                        logo.SetHeight(150);
                         // Add the logo to the PDF
                         doc.Add(logo);
-
-                        doc.Add(new Paragraph("Café De Luna").SetTextAlignment(TextAlignment.CENTER));
-                        doc.Add(new Paragraph("Order Confirmation Receipt").SetTextAlignment(TextAlignment.CENTER));
                         doc.Add(new Paragraph($"Served by: {positionDB} {usernameDB}").SetTextAlignment(TextAlignment.LEFT));
                         doc.Add(new Paragraph("Date: " + DateTime.Now.ToString("MM/dd/yyyy   hh:mm:ss tt")).SetTextAlignment(TextAlignment.LEFT));
                         doc.Add(new Paragraph("--------------------------------------------------------------------------------------------------"));
-                        doc.Add(new Paragraph($"QUANTITY                         MEAL                    PRICE"));
+                        doc.Add(new Paragraph($"QUANTITY                           MEAL                    PRICE"));
 
                         foreach (DataGridViewRow row in dataGridView1.Rows)
                         {
@@ -1281,6 +1278,7 @@ namespace CafeDeLunaSystem
                     ttlLbl.Text = "Php. 0.00";
                     dscLbl.Text = "Php. 0.00";
                     cashtxtBx.Text = "0.00";
+                    discChckBx.Checked = false;
                     cashtxtBx.ForeColor = Color.LightGray;
                     System.Diagnostics.Process.Start(pdfFilePath);
                 }
@@ -1353,15 +1351,14 @@ namespace CafeDeLunaSystem
                 GenerateID = orderIDGenerator();
                 InsertOrderData(GenerateID, true); 
                 InsertOrderItemsData(GenerateID, dataGridView1, true);
-
-                // Clear all rows from the DataGridView
-                dataGridView1.Rows.Clear();
-                sbLbl.Text = "Php. 0.00";
-                ttlLbl.Text = "Php. 0.00";
-                dscLbl.Text = "Php. 0.00";
-                cashtxtBx.Text = "0.00";
-                cashtxtBx.ForeColor = Color.LightGray;
             }
+            dataGridView1.Rows.Clear();
+            sbLbl.Text = "Php. 0.00";
+            ttlLbl.Text = "Php. 0.00";
+            dscLbl.Text = "Php. 0.00";
+            cashtxtBx.Text = "0.00";
+            cashtxtBx.ForeColor = Color.LightGray;
+            discChckBx.Checked = false;
             GenerateID = orderIDGenerator();
         }
 

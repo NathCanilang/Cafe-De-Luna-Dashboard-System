@@ -10,9 +10,8 @@
 
 namespace CafeDeLunaSystem.Properties {
     using System;
-    using System.Drawing;
-
-
+    
+    
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>
@@ -32,9 +31,7 @@ namespace CafeDeLunaSystem.Properties {
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
         internal Resources() {
         }
-
-        public static Bitmap cafe { get; internal set; }
-
+        
         /// <summary>
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
@@ -89,6 +86,26 @@ namespace CafeDeLunaSystem.Properties {
         internal static System.Drawing.Bitmap coffee {
             get {
                 object obj = ResourceManager.GetObject("coffee", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap luna {
+            get {
+                object obj = ResourceManager.GetObject("luna", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap luna1 {
+            get {
+                object obj = ResourceManager.GetObject("luna1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
