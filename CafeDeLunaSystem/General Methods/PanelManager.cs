@@ -105,4 +105,28 @@ namespace CafeDeLunaSystem
         
        
     }
+    internal class PanelManagerSP
+    {
+        private readonly Panel WeeklyReportPanel;
+        private readonly Panel MonthlyReportPanel;
+        private readonly Panel DailyPanel;
+
+        public PanelManagerSP(Panel weeklyReportPanel, Panel monthlyReportPanel, Panel dailyPanel)
+        {
+            WeeklyReportPanel = weeklyReportPanel;
+            MonthlyReportPanel = monthlyReportPanel;
+            DailyPanel = dailyPanel;
+        }
+
+        public void ShowPanel(Panel panelToShow)
+        {
+            //Admin Panel
+            WeeklyReportPanel.Hide();
+            MonthlyReportPanel.Hide();
+            DailyPanel.Hide();
+
+            panelToShow.Show();
+
+        }
+    }
 }

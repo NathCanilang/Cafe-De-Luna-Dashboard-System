@@ -18,6 +18,8 @@ using Image = System.Drawing.Image;
 using System.Data;
 using TextAlignment = iText.Layout.Properties.TextAlignment;
 using static System.Net.Mime.MediaTypeNames;
+using iText.IO.Image;
+using MySqlX.XDevAPI.Relational;
 
 
 namespace CafeDeLunaSystem
@@ -36,7 +38,9 @@ namespace CafeDeLunaSystem
         private readonly PanelManager panelManager;
         private readonly PanelManagerAP panelManagerAP;
         private readonly PanelManagerAMC panelManagerAMC;
-        
+        private readonly PanelManagerSP panelManagerSP;
+
+
         private byte[] imageData;
         private decimal totalPrice = 0.00m;
         private bool isSearchTextPlaceholder = true;
@@ -72,10 +76,9 @@ namespace CafeDeLunaSystem
             panelManager = new PanelManager(LoginPanel, AdminPanel, ManagerPanel, StaffPanel);
             panelManagerAP = new PanelManagerAP(HomePanelAP, AccManagePanel, AddMenuPanelAP);
             panelManagerAMC = new PanelManagerAMC(AccCreatePanel);
+            panelManagerSP = new PanelManagerSP(WeeklyReportPanel, MonthlyReportPanel, DailyPanel);
 
             //Placeholders
-            TxtPlaceholder.SetPlaceholder(UsernameTxtBLP, "Enter your Username");
-            TxtPlaceholder.SetPlaceholder(PasswordTxtBLP, "Enter your Password");
             TxtPlaceholder.SetPlaceholder(LastNTxtB_AP, "Last name");
             TxtPlaceholder.SetPlaceholder(FirstNTxtB_AP, "First name");
             TxtPlaceholder.SetPlaceholder(MiddleNTxtB_AP, "Middle name");
@@ -88,6 +91,7 @@ namespace CafeDeLunaSystem
             //Panel Startup
             panelManager.ShowPanel(LoginPanel);
             panelManagerAP.ShowPanel(HomePanelAP);
+            panelManagerSP.ShowPanel(DailyPanel);
 
             //Admin Panel section
             FoodTbl.DataError += new DataGridViewDataErrorEventHandler(createAndEditAcc.FoodTable_DataError);
@@ -99,6 +103,27 @@ namespace CafeDeLunaSystem
             UserBirthdate.ValueChanged += CalculateAge;
 
             //Manager section
+            // Set AutoSizeMode to Fill for both columns
+            DailyDate.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            DailyTotal.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            WeeklyDate.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            WeeklSale.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            MonthlyDate.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            MonthlyTotal.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+
+
+            // Set FillWeight to the same value for both columns
+            DailyDate.FillWeight = 1;
+            DailyTotal.FillWeight = 1;
+            WeeklSale.FillWeight = 1;
+            WeeklyDate.FillWeight = 1;
+            MonthlyDate.FillWeight = 1;
+            MonthlyTotal.FillWeight = 1;
+
+
+            //Image Section
+            pictureBox1.Parent = LoginPanel;
+            pictureBox6.Parent = pictureBox7;
 
         }
 
@@ -106,6 +131,76 @@ namespace CafeDeLunaSystem
         private void LogBtnLP_Click(object sender, System.EventArgs e)
         {
             string usernameInput = UsernameTxtBLP.Text;
+            string passwordInput = PasswordTxtBLP.Text;
+            string hsshPasswordInput = Encryptor.HashPassword(passwordInput);
+
+            if (string.IsNullOrEmpty(usernameInput) || string.IsNullOrEmpty(passwordInput))
+            {
+                MessageBox.Show("Please enter both username and password.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else if (usernameInput == "Admin" && passwordInput == "admin123")
+            {
+                MessageBox.Show("Admin login successful", "Welcome, Admin", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                panelManager.ShowPanel(AdminPanel);
+                AdminLogoutBtn.Show();
+                ManagerLogoutBtn.Hide();
+                UserTxtBox.Text = "Admin";
+            }
+            else
+            {
+                using (conn)
+                {
+                    conn.Open();
+
+                    string query = "SELECT Position, EmployeeID FROM employee_acc WHERE Username = @username AND Password = @password";
+                    using (MySqlCommand command = new MySqlCommand(query, conn))
+                    {
+                        command.Parameters.AddWithValue("@username", usernameInput);
+                        command.Parameters.AddWithValue("@password", hsshPasswordInput);
+
+                        object position = command.ExecuteScalar();
+
+                        using (MySqlDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                if (position != null)
+                                {
+                                    string userRole = position.ToString();
+                                    employeeID = reader.GetInt32("EmployeeID");
+                                    if (userRole == "Manager")
+                                    {
+                                        MessageBox.Show("Login Successful", "Welcome, Manager", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                        panelManager.ShowPanel(StaffPanel);
+                                        AdminLogoutBtn.Hide();
+                                        ManagerLogoutBtn.Show();
+                                        PositionTxtBox.Text = "Manager";
+                                        UserTxtBox.Text = "Manager";
+                                    }
+                                    else if (userRole == "Cashier")
+                                    {
+                                        MessageBox.Show("Login Successful", "Welcome, Staff", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                        panelManager.ShowPanel(StaffPanel);
+                                        PositionTxtBox.Text = "Staff";
+                                        SalesLbl.Hide();
+                                    }
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Invalid username or password.", "Try again", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                }
+                            }
+                            else
+                            {
+                                MessageBox.Show("Invalid username or password.", "Try again", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            }
+                        }
+                    }
+                }
+            }
+
+
+            /*string usernameInput = UsernameTxtBLP.Text;
             string passwordInput = PasswordTxtBLP.Text;
             string hsshPasswordInput = Encryptor.HashPassword(PasswordTxtBLP.Text);
 
@@ -149,7 +244,7 @@ namespace CafeDeLunaSystem
                                         MessageBox.Show("Login Successful", "Welcome, Staff", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                         panelManager.ShowPanel(StaffPanel);
                                         PositionTxtBox.Text = "Staff";
-                                        SalesBtn.Hide();
+                                        SalesLbl.Hide();
                                     }
                                 }
                                 else
@@ -160,7 +255,7 @@ namespace CafeDeLunaSystem
                         }
                     }
                 }
-            }
+            }*/
 
         }
 
@@ -179,6 +274,15 @@ namespace CafeDeLunaSystem
         private void SalesRepLbl_Click(object sender, EventArgs e)
         {
             panelManager.ShowPanel(ManagerPanel);
+
+            if(UserTxtBox.Text == "Admin")
+            {
+                ManagerLogoutBtn.Visible = false;
+            }
+            else if(UserTxtBox.Text == "Manager")
+            {
+                AdminLogoutBtn.Visible = false;
+            }
         }
 
         private void AddMenuLbl_Click(object sender, System.EventArgs e)
@@ -1771,7 +1875,13 @@ namespace CafeDeLunaSystem
                     using (Document doc = new Document(pdf))
                     {
                         doc.SetProperty(Property.TEXT_ALIGNMENT, TextAlignment.JUSTIFIED_ALL);
-
+                        /*ImageData logolmageData = ImageDataFactory.Create(GetBytesFromImage(Properties.Resources.logo);
+                        iText.Layout.Element.Image logo = new iText.Layout.Element.Image(logolmageData);
+                        logo.SetHorizontalAlignment(iText.Layout.Properties.HorizontalAlignment.CENTER);
+                        logo.SetWidth(159);
+                        logo.SetHeight(159);*/
+                        // Add the logo to the PDF
+                        //doc.Add(logo);
                         doc.Add(new Paragraph("Café De Luna").SetTextAlignment(TextAlignment.CENTER));
                         doc.Add(new Paragraph("Order Confirmation Receipt").SetTextAlignment(TextAlignment.CENTER));
                         doc.Add(new Paragraph("Date: " + DateTime.Now.ToString("MM/dd/yyyy   hh:mm tt")).SetTextAlignment(TextAlignment.LEFT));
@@ -2265,12 +2375,161 @@ namespace CafeDeLunaSystem
         {
             panelManager.ShowPanel(AdminPanel);
             ManagerLogoutBtn.Show();
+
+            ClearDataGridView(MostSalesDailyTbl);
+            ClearDataGridView(WeeklyDGV);
+            ClearDataGridView(MostSalesWeeklyTbl);
+            ClearDataGridView(MonthlyDGV);
+            ClearDataGridView(MostSalesMonthlyTbl);
         }
 
         private void ManagerLogoutBtn_Click_1(object sender, EventArgs e)
         {
             panelManager.ShowPanel(StaffPanel);
             AdminLogoutBtn.Show();
+
+            ClearDataGridView(MostSalesDailyTbl);
+            ClearDataGridView(WeeklyDGV);
+            ClearDataGridView(MostSalesWeeklyTbl);
+            ClearDataGridView(MonthlyDGV);
+            ClearDataGridView(MostSalesMonthlyTbl);
+            ClearDataGridView(ComputedSalesMonthlyTbl);
+            ClearDataGridView(ComputedSalesDailyTbl);
+            ClearDataGridView(ComputedSalesWeeklyTbl);
+        }
+
+        private void DailyLblN_Click(object sender, EventArgs e)
+        {
+            panelManagerSP.ShowPanel(DailyPanel);
+        }
+
+        private void WeeklyLblN_Click(object sender, EventArgs e)
+        {
+            panelManagerSP.ShowPanel(WeeklyReportPanel);
+        }
+
+        private void MonthlyLblN_Click(object sender, EventArgs e)
+        {
+            panelManagerSP.ShowPanel(MonthlyReportPanel);
+        }
+
+        private void LogOutPB_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Are you sure you want to log-out?", "information", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                panelManager.ShowPanel(LoginPanel);
+                TxtPlaceholder.SetPlaceholder(UsernameTxtBLP, "Enter your Username");
+                TxtPlaceholder.SetPlaceholder(PasswordTxtBLP, "Enter your Password");
+
+            }
+        }
+
+        private void SalesLbl_Click(object sender, EventArgs e)
+        {
+            panelManager.ShowPanel(ManagerPanel);
+
+            panelManager.ShowPanel(ManagerPanel);
+
+            if (UserTxtBox.Text == "Admin")
+            {
+                ManagerLogoutBtn.Visible = false;
+            }
+            else if (UserTxtBox.Text == "Manager")
+            {
+                AdminLogoutBtn.Visible = false;
+            }
+        }
+
+        private void ShowPassChckB2_CheckedChanged(object sender, EventArgs e)
+        {
+            PasswordTxtB_AP.PasswordChar = ShowPassChckB2.Checked ? '\0' : '*';
+
+        }
+
+        private void ShowPassChckB1_CheckedChanged(object sender, EventArgs e)
+        {
+            PasswordTxtBLP.PasswordChar = ShowPassChckB1.Checked ? '\0' : '*';
+        }
+
+        private void cashtxtBx_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //Allow digits, period, and backspace
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != '.' && e.KeyChar != '\b')
+            {
+                e.Handled = true; // Ignore the input
+            }
+        }
+
+        private void LastNTxtB_AP_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Allow letters, space, and backspace
+            if (!char.IsLetter(e.KeyChar) && e.KeyChar != ' ' && e.KeyChar != '\b')
+            {
+                e.Handled = true; // Ignore the input
+            }
+        }
+
+        private void FirstNTxtB_AP_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Allow letters, space, and backspace
+            if (!char.IsLetter(e.KeyChar) && e.KeyChar != ' ' && e.KeyChar != '\b')
+            {
+                e.Handled = true; // Ignore the input
+            }
+        }
+
+        private void MiddleNTxtB_AP_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Allow letters, space, and backspace
+            if (!char.IsLetter(e.KeyChar) && e.KeyChar != ' ' && e.KeyChar != '\b')
+            {
+                e.Handled = true; // Ignore the input
+            }
+        }
+
+        private void DailyDGV_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            ConfigureDataGridViewColumns(DailyDGV);
+        }
+
+        private void MostSalesDailyTbl_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            ConfigureDataGridViewColumns(MostSalesDailyTbl);
+        }
+
+        private void WeeklyDGV_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            ConfigureDataGridViewColumns(WeeklyDGV);
+        }
+
+        private void MostSalesWeeklyTbl_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            ConfigureDataGridViewColumns(MostSalesWeeklyTbl);
+        }
+
+        private void MonthlyDGV_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            ConfigureDataGridViewColumns(MonthlyDGV);
+        }
+
+        private void MostSalesMonthlyTbl_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            ConfigureDataGridViewColumns(MostSalesMonthlyTbl);
+        }
+        private void ConfigureDataGridViewColumns(DataGridView dataGridView)
+        {
+            foreach (DataGridViewColumn col in dataGridView.Columns)
+            {
+                col.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                col.FillWeight = 1;
+            }
+        }
+        private void ClearDataGridView(DataGridView dataGridView)
+        {
+            dataGridView.DataSource = null; // Remove the data source
+            dataGridView.Rows.Clear();     // Clear the rows
+            dataGridView.Columns.Clear();  // Clear the columns
         }
     }
 }

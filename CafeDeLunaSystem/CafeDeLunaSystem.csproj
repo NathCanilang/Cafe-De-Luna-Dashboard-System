@@ -225,5 +225,26 @@
   <ItemGroup>
     <None Include="Resources\snacks.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\coffee BG login.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\add menuvariant BG.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\go back.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\home admin BG.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\account BG.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
