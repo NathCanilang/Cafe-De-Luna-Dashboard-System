@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
             this.MainLoginContainer = new Syncfusion.Windows.Forms.Tools.CardLayout(this.components);
             this.LoginPanel = new System.Windows.Forms.Panel();
             this.PanelLP = new System.Windows.Forms.Panel();
@@ -102,28 +102,27 @@
             this.AddMenuLbl = new System.Windows.Forms.Label();
             this.AccManageLbl = new System.Windows.Forms.Label();
             this.ManagerPanel = new System.Windows.Forms.Panel();
-            this.MostSalesMonthlyTbl = new System.Windows.Forms.DataGridView();
-            this.MostSalesWeeklyTbl = new System.Windows.Forms.DataGridView();
-            this.MostSalesDailyTbl = new System.Windows.Forms.DataGridView();
-            this.MonthlyRepBtn = new System.Windows.Forms.Button();
+            this.SalesContainerPanel = new System.Windows.Forms.Panel();
+            this.WeeklyReportPanel = new System.Windows.Forms.Panel();
             this.WeeklyRepBtn = new System.Windows.Forms.Button();
-            this.MonthlyRepLbl = new System.Windows.Forms.Label();
-            this.WeeklyRepLbl = new System.Windows.Forms.Label();
-            this.DailyRepLbl = new System.Windows.Forms.Label();
-            this.DateReportSelector = new System.Windows.Forms.DateTimePicker();
-            this.ComputedSalesMonthlyTbl = new System.Windows.Forms.DataGridView();
-            this.MonthlyDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.MonthlyTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label1 = new System.Windows.Forms.Label();
             this.ComputedSalesWeeklyTbl = new System.Windows.Forms.DataGridView();
-            this.WeeklyDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.WeeklySale = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ComputedSalesDailyTbl = new System.Windows.Forms.DataGridView();
-            this.DailyDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DailyTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.GenerateDailyBtn = new System.Windows.Forms.Button();
-            this.MonthlyDGV = new System.Windows.Forms.DataGridView();
+            this.MostSalesWeeklyTbl = new System.Windows.Forms.DataGridView();
             this.WeeklyDGV = new System.Windows.Forms.DataGridView();
+            this.MonthlyReportPanel = new System.Windows.Forms.Panel();
+            this.MonthlyRepBtn = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
+            this.ComputedSalesMonthlyTbl = new System.Windows.Forms.DataGridView();
+            this.MostSalesMonthlyTbl = new System.Windows.Forms.DataGridView();
+            this.MonthlyDGV = new System.Windows.Forms.DataGridView();
+            this.DailyPanel = new System.Windows.Forms.Panel();
+            this.GenerateBtn = new System.Windows.Forms.Button();
+            this.ComputedSalesDailyTbl = new System.Windows.Forms.DataGridView();
+            this.MostSalesDailyTbl = new System.Windows.Forms.DataGridView();
             this.DailyDGV = new System.Windows.Forms.DataGridView();
+            this.DailyLbl = new System.Windows.Forms.Label();
+            this.SalesNavBarPanel = new System.Windows.Forms.Panel();
+            this.DateReportSelector = new System.Windows.Forms.DateTimePicker();
             this.StaffPanel = new System.Windows.Forms.Panel();
             this.PositionTxtBox = new System.Windows.Forms.TextBox();
             this.cashtxtBx = new System.Windows.Forms.TextBox();
@@ -154,6 +153,7 @@
             this.AdminPanelContainer = new Syncfusion.Windows.Forms.Tools.CardLayout(this.components);
             this.AccManageContainer = new Syncfusion.Windows.Forms.Tools.CardLayout(this.components);
             this.flowLayout1 = new Syncfusion.Windows.Forms.Tools.FlowLayout(this.components);
+            this.SalesContainer = new Syncfusion.Windows.Forms.Tools.CardLayout(this.components);
             this.AdminLogoutBtn = new System.Windows.Forms.Button();
             this.ManagerLogoutBtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.MainLoginContainer)).BeginInit();
@@ -172,33 +172,39 @@
             ((System.ComponentModel.ISupportInitialize)(this.AccDataTbl)).BeginInit();
             this.NavigationPanelAP.SuspendLayout();
             this.ManagerPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.MostSalesMonthlyTbl)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.MostSalesWeeklyTbl)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.MostSalesDailyTbl)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ComputedSalesMonthlyTbl)).BeginInit();
+            this.SalesContainerPanel.SuspendLayout();
+            this.WeeklyReportPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ComputedSalesWeeklyTbl)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ComputedSalesDailyTbl)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.MonthlyDGV)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MostSalesWeeklyTbl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.WeeklyDGV)).BeginInit();
+            this.MonthlyReportPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ComputedSalesMonthlyTbl)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MostSalesMonthlyTbl)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MonthlyDGV)).BeginInit();
+            this.DailyPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ComputedSalesDailyTbl)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MostSalesDailyTbl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DailyDGV)).BeginInit();
+            this.SalesNavBarPanel.SuspendLayout();
             this.StaffPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.allBtn)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.AdminPanelContainer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.AccManageContainer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.flowLayout1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SalesContainer)).BeginInit();
             this.SuspendLayout();
             // 
             // MainLoginContainer
             // 
             this.MainLoginContainer.ContainerControl = this;
             this.MainLoginContainer.LayoutMode = Syncfusion.Windows.Forms.Tools.CardLayoutMode.Fill;
-            this.MainLoginContainer.SelectedCard = "Card2";
+            this.MainLoginContainer.SelectedCard = "Card4";
             // 
             // LoginPanel
             // 
             this.LoginPanel.BackColor = System.Drawing.Color.White;
-            this.MainLoginContainer.SetCardName(this.LoginPanel, "Card4");
+            this.MainLoginContainer.SetCardName(this.LoginPanel, "Card3");
             this.LoginPanel.Controls.Add(this.PanelLP);
             this.LoginPanel.Location = new System.Drawing.Point(0, 0);
             this.LoginPanel.Margin = new System.Windows.Forms.Padding(4);
@@ -254,7 +260,7 @@
             // AdminPanel
             // 
             this.AdminPanel.BackColor = System.Drawing.Color.White;
-            this.MainLoginContainer.SetCardName(this.AdminPanel, "Card3");
+            this.MainLoginContainer.SetCardName(this.AdminPanel, "Card2");
             this.AdminPanel.Controls.Add(this.InterfaceAP);
             this.AdminPanel.Controls.Add(this.NavigationPanelAP);
             this.AdminPanel.Location = new System.Drawing.Point(0, 0);
@@ -985,25 +991,9 @@
             // ManagerPanel
             // 
             this.ManagerPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.MainLoginContainer.SetCardName(this.ManagerPanel, "Card2");
-            this.ManagerPanel.Controls.Add(this.ManagerLogoutBtn);
-            this.ManagerPanel.Controls.Add(this.AdminLogoutBtn);
-            this.ManagerPanel.Controls.Add(this.MostSalesMonthlyTbl);
-            this.ManagerPanel.Controls.Add(this.MostSalesWeeklyTbl);
-            this.ManagerPanel.Controls.Add(this.MostSalesDailyTbl);
-            this.ManagerPanel.Controls.Add(this.MonthlyRepBtn);
-            this.ManagerPanel.Controls.Add(this.WeeklyRepBtn);
-            this.ManagerPanel.Controls.Add(this.MonthlyRepLbl);
-            this.ManagerPanel.Controls.Add(this.WeeklyRepLbl);
-            this.ManagerPanel.Controls.Add(this.DailyRepLbl);
-            this.ManagerPanel.Controls.Add(this.DateReportSelector);
-            this.ManagerPanel.Controls.Add(this.ComputedSalesMonthlyTbl);
-            this.ManagerPanel.Controls.Add(this.ComputedSalesWeeklyTbl);
-            this.ManagerPanel.Controls.Add(this.ComputedSalesDailyTbl);
-            this.ManagerPanel.Controls.Add(this.GenerateDailyBtn);
-            this.ManagerPanel.Controls.Add(this.MonthlyDGV);
-            this.ManagerPanel.Controls.Add(this.WeeklyDGV);
-            this.ManagerPanel.Controls.Add(this.DailyDGV);
+            this.MainLoginContainer.SetCardName(this.ManagerPanel, "Card4");
+            this.ManagerPanel.Controls.Add(this.SalesContainerPanel);
+            this.ManagerPanel.Controls.Add(this.SalesNavBarPanel);
             this.ManagerPanel.Location = new System.Drawing.Point(0, 0);
             this.ManagerPanel.Margin = new System.Windows.Forms.Padding(4);
             this.MainLoginContainer.SetMinimumSize(this.ManagerPanel, new System.Drawing.Size(200, 100));
@@ -1012,207 +1002,232 @@
             this.ManagerPanel.Size = new System.Drawing.Size(1731, 864);
             this.ManagerPanel.TabIndex = 2;
             // 
-            // MostSalesMonthlyTbl
+            // SalesContainerPanel
             // 
-            this.MostSalesMonthlyTbl.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.MostSalesMonthlyTbl.Location = new System.Drawing.Point(1072, 446);
-            this.MostSalesMonthlyTbl.Name = "MostSalesMonthlyTbl";
-            this.MostSalesMonthlyTbl.RowHeadersWidth = 51;
-            this.MostSalesMonthlyTbl.RowTemplate.Height = 24;
-            this.MostSalesMonthlyTbl.Size = new System.Drawing.Size(446, 203);
-            this.MostSalesMonthlyTbl.TabIndex = 15;
+            this.SalesContainerPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.SalesContainerPanel.Controls.Add(this.WeeklyReportPanel);
+            this.SalesContainerPanel.Controls.Add(this.MonthlyReportPanel);
+            this.SalesContainerPanel.Controls.Add(this.DailyPanel);
+            this.SalesContainerPanel.Location = new System.Drawing.Point(236, 0);
+            this.SalesContainerPanel.Name = "SalesContainerPanel";
+            this.SalesContainerPanel.Size = new System.Drawing.Size(1495, 864);
+            this.SalesContainerPanel.TabIndex = 1;
             // 
-            // MostSalesWeeklyTbl
+            // WeeklyReportPanel
             // 
-            this.MostSalesWeeklyTbl.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.MostSalesWeeklyTbl.Location = new System.Drawing.Point(620, 446);
-            this.MostSalesWeeklyTbl.Name = "MostSalesWeeklyTbl";
-            this.MostSalesWeeklyTbl.RowHeadersWidth = 51;
-            this.MostSalesWeeklyTbl.RowTemplate.Height = 24;
-            this.MostSalesWeeklyTbl.Size = new System.Drawing.Size(446, 203);
-            this.MostSalesWeeklyTbl.TabIndex = 14;
-            // 
-            // MostSalesDailyTbl
-            // 
-            this.MostSalesDailyTbl.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.MostSalesDailyTbl.Location = new System.Drawing.Point(168, 446);
-            this.MostSalesDailyTbl.Name = "MostSalesDailyTbl";
-            this.MostSalesDailyTbl.RowHeadersWidth = 51;
-            this.MostSalesDailyTbl.RowTemplate.Height = 24;
-            this.MostSalesDailyTbl.Size = new System.Drawing.Size(446, 203);
-            this.MostSalesDailyTbl.TabIndex = 13;
-            // 
-            // MonthlyRepBtn
-            // 
-            this.MonthlyRepBtn.Location = new System.Drawing.Point(1263, 699);
-            this.MonthlyRepBtn.Name = "MonthlyRepBtn";
-            this.MonthlyRepBtn.Size = new System.Drawing.Size(145, 44);
-            this.MonthlyRepBtn.TabIndex = 12;
-            this.MonthlyRepBtn.Text = "Generate Monthly Report";
-            this.MonthlyRepBtn.UseVisualStyleBackColor = true;
-            this.MonthlyRepBtn.Click += new System.EventHandler(this.MonthlyRepBtn_Click);
+            this.WeeklyReportPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(218)))), ((int)(((byte)(206)))));
+            this.SalesContainer.SetCardName(this.WeeklyReportPanel, "Card3");
+            this.WeeklyReportPanel.Controls.Add(this.WeeklyRepBtn);
+            this.WeeklyReportPanel.Controls.Add(this.label1);
+            this.WeeklyReportPanel.Controls.Add(this.ComputedSalesWeeklyTbl);
+            this.WeeklyReportPanel.Controls.Add(this.MostSalesWeeklyTbl);
+            this.WeeklyReportPanel.Controls.Add(this.WeeklyDGV);
+            this.WeeklyReportPanel.Location = new System.Drawing.Point(0, 0);
+            this.SalesContainer.SetMinimumSize(this.WeeklyReportPanel, new System.Drawing.Size(200, 100));
+            this.WeeklyReportPanel.Name = "WeeklyReportPanel";
+            this.SalesContainer.SetPreferredSize(this.WeeklyReportPanel, new System.Drawing.Size(200, 100));
+            this.WeeklyReportPanel.Size = new System.Drawing.Size(1495, 864);
+            this.WeeklyReportPanel.TabIndex = 2;
             // 
             // WeeklyRepBtn
             // 
-            this.WeeklyRepBtn.Location = new System.Drawing.Point(781, 699);
+            this.WeeklyRepBtn.Location = new System.Drawing.Point(612, 774);
             this.WeeklyRepBtn.Name = "WeeklyRepBtn";
-            this.WeeklyRepBtn.Size = new System.Drawing.Size(145, 44);
-            this.WeeklyRepBtn.TabIndex = 11;
-            this.WeeklyRepBtn.Text = "Generate Weekly Report";
+            this.WeeklyRepBtn.Size = new System.Drawing.Size(241, 53);
+            this.WeeklyRepBtn.TabIndex = 8;
+            this.WeeklyRepBtn.Text = "Generate Report";
             this.WeeklyRepBtn.UseVisualStyleBackColor = true;
-            this.WeeklyRepBtn.Click += new System.EventHandler(this.WeeklyRepBtn_Click);
+            this.WeeklyRepBtn.Click += new System.EventHandler(this.WeeklyRepBtn_Click_1);
             // 
-            // MonthlyRepLbl
+            // label1
             // 
-            this.MonthlyRepLbl.Location = new System.Drawing.Point(12, 266);
-            this.MonthlyRepLbl.Name = "MonthlyRepLbl";
-            this.MonthlyRepLbl.Size = new System.Drawing.Size(126, 54);
-            this.MonthlyRepLbl.TabIndex = 10;
-            this.MonthlyRepLbl.Text = "Monthly";
-            // 
-            // WeeklyRepLbl
-            // 
-            this.WeeklyRepLbl.Location = new System.Drawing.Point(12, 212);
-            this.WeeklyRepLbl.Name = "WeeklyRepLbl";
-            this.WeeklyRepLbl.Size = new System.Drawing.Size(126, 54);
-            this.WeeklyRepLbl.TabIndex = 9;
-            this.WeeklyRepLbl.Text = "Weekly";
-            // 
-            // DailyRepLbl
-            // 
-            this.DailyRepLbl.Location = new System.Drawing.Point(12, 158);
-            this.DailyRepLbl.Name = "DailyRepLbl";
-            this.DailyRepLbl.Size = new System.Drawing.Size(126, 54);
-            this.DailyRepLbl.TabIndex = 8;
-            this.DailyRepLbl.Text = "Daily";
-            // 
-            // DateReportSelector
-            // 
-            this.DateReportSelector.Location = new System.Drawing.Point(70, 27);
-            this.DateReportSelector.Name = "DateReportSelector";
-            this.DateReportSelector.Size = new System.Drawing.Size(245, 22);
-            this.DateReportSelector.TabIndex = 7;
-            // 
-            // ComputedSalesMonthlyTbl
-            // 
-            this.ComputedSalesMonthlyTbl.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.ComputedSalesMonthlyTbl.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.MonthlyDate,
-            this.MonthlyTotal});
-            this.ComputedSalesMonthlyTbl.Location = new System.Drawing.Point(1072, 369);
-            this.ComputedSalesMonthlyTbl.Name = "ComputedSalesMonthlyTbl";
-            this.ComputedSalesMonthlyTbl.RowHeadersWidth = 51;
-            this.ComputedSalesMonthlyTbl.RowTemplate.Height = 24;
-            this.ComputedSalesMonthlyTbl.Size = new System.Drawing.Size(446, 71);
-            this.ComputedSalesMonthlyTbl.TabIndex = 6;
-            // 
-            // MonthlyDate
-            // 
-            this.MonthlyDate.HeaderText = "Date";
-            this.MonthlyDate.MinimumWidth = 6;
-            this.MonthlyDate.Name = "MonthlyDate";
-            this.MonthlyDate.Width = 125;
-            // 
-            // MonthlyTotal
-            // 
-            this.MonthlyTotal.HeaderText = "Monthly Total Sale";
-            this.MonthlyTotal.MinimumWidth = 6;
-            this.MonthlyTotal.Name = "MonthlyTotal";
-            this.MonthlyTotal.Width = 125;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(3, 27);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(1489, 84);
+            this.label1.TabIndex = 7;
+            this.label1.Text = "Weekly Sales Report";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // ComputedSalesWeeklyTbl
             // 
             this.ComputedSalesWeeklyTbl.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.ComputedSalesWeeklyTbl.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.WeeklyDate,
-            this.WeeklySale});
-            this.ComputedSalesWeeklyTbl.Location = new System.Drawing.Point(620, 369);
+            this.ComputedSalesWeeklyTbl.Location = new System.Drawing.Point(233, 576);
             this.ComputedSalesWeeklyTbl.Name = "ComputedSalesWeeklyTbl";
             this.ComputedSalesWeeklyTbl.RowHeadersWidth = 51;
             this.ComputedSalesWeeklyTbl.RowTemplate.Height = 24;
-            this.ComputedSalesWeeklyTbl.Size = new System.Drawing.Size(446, 71);
-            this.ComputedSalesWeeklyTbl.TabIndex = 5;
+            this.ComputedSalesWeeklyTbl.Size = new System.Drawing.Size(994, 150);
+            this.ComputedSalesWeeklyTbl.TabIndex = 6;
             // 
-            // WeeklyDate
+            // MostSalesWeeklyTbl
             // 
-            this.WeeklyDate.HeaderText = "Date";
-            this.WeeklyDate.MinimumWidth = 6;
-            this.WeeklyDate.Name = "WeeklyDate";
-            this.WeeklyDate.Width = 125;
-            // 
-            // WeeklySale
-            // 
-            this.WeeklySale.HeaderText = "Weekly Sale Total";
-            this.WeeklySale.MinimumWidth = 6;
-            this.WeeklySale.Name = "WeeklySale";
-            this.WeeklySale.Width = 125;
-            // 
-            // ComputedSalesDailyTbl
-            // 
-            this.ComputedSalesDailyTbl.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.ComputedSalesDailyTbl.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.DailyDate,
-            this.DailyTotal});
-            this.ComputedSalesDailyTbl.Location = new System.Drawing.Point(168, 369);
-            this.ComputedSalesDailyTbl.Name = "ComputedSalesDailyTbl";
-            this.ComputedSalesDailyTbl.RowHeadersWidth = 51;
-            this.ComputedSalesDailyTbl.RowTemplate.Height = 24;
-            this.ComputedSalesDailyTbl.Size = new System.Drawing.Size(446, 71);
-            this.ComputedSalesDailyTbl.TabIndex = 4;
-            // 
-            // DailyDate
-            // 
-            this.DailyDate.HeaderText = "Date";
-            this.DailyDate.MinimumWidth = 6;
-            this.DailyDate.Name = "DailyDate";
-            this.DailyDate.Width = 125;
-            // 
-            // DailyTotal
-            // 
-            this.DailyTotal.HeaderText = "Daily Total Sale";
-            this.DailyTotal.MinimumWidth = 6;
-            this.DailyTotal.Name = "DailyTotal";
-            this.DailyTotal.Width = 125;
-            // 
-            // GenerateDailyBtn
-            // 
-            this.GenerateDailyBtn.Location = new System.Drawing.Point(296, 699);
-            this.GenerateDailyBtn.Name = "GenerateDailyBtn";
-            this.GenerateDailyBtn.Size = new System.Drawing.Size(145, 44);
-            this.GenerateDailyBtn.TabIndex = 3;
-            this.GenerateDailyBtn.Text = "Generate Daily Report";
-            this.GenerateDailyBtn.UseVisualStyleBackColor = true;
-            this.GenerateDailyBtn.Click += new System.EventHandler(this.GenerateBtn_Click);
-            // 
-            // MonthlyDGV
-            // 
-            this.MonthlyDGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.MonthlyDGV.Location = new System.Drawing.Point(1072, 112);
-            this.MonthlyDGV.Name = "MonthlyDGV";
-            this.MonthlyDGV.RowHeadersWidth = 51;
-            this.MonthlyDGV.RowTemplate.Height = 24;
-            this.MonthlyDGV.Size = new System.Drawing.Size(446, 251);
-            this.MonthlyDGV.TabIndex = 2;
+            this.MostSalesWeeklyTbl.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.MostSalesWeeklyTbl.Location = new System.Drawing.Point(733, 155);
+            this.MostSalesWeeklyTbl.Name = "MostSalesWeeklyTbl";
+            this.MostSalesWeeklyTbl.RowHeadersWidth = 51;
+            this.MostSalesWeeklyTbl.RowTemplate.Height = 24;
+            this.MostSalesWeeklyTbl.Size = new System.Drawing.Size(740, 415);
+            this.MostSalesWeeklyTbl.TabIndex = 5;
             // 
             // WeeklyDGV
             // 
             this.WeeklyDGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.WeeklyDGV.Location = new System.Drawing.Point(620, 112);
+            this.WeeklyDGV.Location = new System.Drawing.Point(19, 155);
             this.WeeklyDGV.Name = "WeeklyDGV";
             this.WeeklyDGV.RowHeadersWidth = 51;
             this.WeeklyDGV.RowTemplate.Height = 24;
-            this.WeeklyDGV.Size = new System.Drawing.Size(446, 251);
-            this.WeeklyDGV.TabIndex = 1;
+            this.WeeklyDGV.Size = new System.Drawing.Size(708, 415);
+            this.WeeklyDGV.TabIndex = 4;
+            // 
+            // MonthlyReportPanel
+            // 
+            this.MonthlyReportPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(218)))), ((int)(((byte)(206)))));
+            this.SalesContainer.SetCardName(this.MonthlyReportPanel, "Card2");
+            this.MonthlyReportPanel.Controls.Add(this.MonthlyRepBtn);
+            this.MonthlyReportPanel.Controls.Add(this.label4);
+            this.MonthlyReportPanel.Controls.Add(this.ComputedSalesMonthlyTbl);
+            this.MonthlyReportPanel.Controls.Add(this.MostSalesMonthlyTbl);
+            this.MonthlyReportPanel.Controls.Add(this.MonthlyDGV);
+            this.MonthlyReportPanel.Location = new System.Drawing.Point(0, 0);
+            this.SalesContainer.SetMinimumSize(this.MonthlyReportPanel, new System.Drawing.Size(200, 100));
+            this.MonthlyReportPanel.Name = "MonthlyReportPanel";
+            this.SalesContainer.SetPreferredSize(this.MonthlyReportPanel, new System.Drawing.Size(200, 100));
+            this.MonthlyReportPanel.Size = new System.Drawing.Size(1495, 864);
+            this.MonthlyReportPanel.TabIndex = 1;
+            // 
+            // MonthlyRepBtn
+            // 
+            this.MonthlyRepBtn.Location = new System.Drawing.Point(612, 774);
+            this.MonthlyRepBtn.Name = "MonthlyRepBtn";
+            this.MonthlyRepBtn.Size = new System.Drawing.Size(241, 53);
+            this.MonthlyRepBtn.TabIndex = 8;
+            this.MonthlyRepBtn.Text = "Generate Report";
+            this.MonthlyRepBtn.UseVisualStyleBackColor = true;
+            this.MonthlyRepBtn.Click += new System.EventHandler(this.MonthlyRepBtn_Click_1);
+            // 
+            // label4
+            // 
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(3, 27);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(1489, 84);
+            this.label4.TabIndex = 7;
+            this.label4.Text = "Monthly Sales Report";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // ComputedSalesMonthlyTbl
+            // 
+            this.ComputedSalesMonthlyTbl.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.ComputedSalesMonthlyTbl.Location = new System.Drawing.Point(233, 576);
+            this.ComputedSalesMonthlyTbl.Name = "ComputedSalesMonthlyTbl";
+            this.ComputedSalesMonthlyTbl.RowHeadersWidth = 51;
+            this.ComputedSalesMonthlyTbl.RowTemplate.Height = 24;
+            this.ComputedSalesMonthlyTbl.Size = new System.Drawing.Size(994, 150);
+            this.ComputedSalesMonthlyTbl.TabIndex = 6;
+            // 
+            // MostSalesMonthlyTbl
+            // 
+            this.MostSalesMonthlyTbl.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.MostSalesMonthlyTbl.Location = new System.Drawing.Point(733, 155);
+            this.MostSalesMonthlyTbl.Name = "MostSalesMonthlyTbl";
+            this.MostSalesMonthlyTbl.RowHeadersWidth = 51;
+            this.MostSalesMonthlyTbl.RowTemplate.Height = 24;
+            this.MostSalesMonthlyTbl.Size = new System.Drawing.Size(740, 415);
+            this.MostSalesMonthlyTbl.TabIndex = 5;
+            // 
+            // MonthlyDGV
+            // 
+            this.MonthlyDGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.MonthlyDGV.Location = new System.Drawing.Point(19, 155);
+            this.MonthlyDGV.Name = "MonthlyDGV";
+            this.MonthlyDGV.RowHeadersWidth = 51;
+            this.MonthlyDGV.RowTemplate.Height = 24;
+            this.MonthlyDGV.Size = new System.Drawing.Size(708, 415);
+            this.MonthlyDGV.TabIndex = 4;
+            // 
+            // DailyPanel
+            // 
+            this.DailyPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(218)))), ((int)(((byte)(206)))));
+            this.SalesContainer.SetCardName(this.DailyPanel, "Card1");
+            this.DailyPanel.Controls.Add(this.GenerateBtn);
+            this.DailyPanel.Controls.Add(this.ComputedSalesDailyTbl);
+            this.DailyPanel.Controls.Add(this.MostSalesDailyTbl);
+            this.DailyPanel.Controls.Add(this.DailyDGV);
+            this.DailyPanel.Controls.Add(this.DailyLbl);
+            this.DailyPanel.Location = new System.Drawing.Point(0, 0);
+            this.SalesContainer.SetMinimumSize(this.DailyPanel, new System.Drawing.Size(200, 100));
+            this.DailyPanel.Name = "DailyPanel";
+            this.SalesContainer.SetPreferredSize(this.DailyPanel, new System.Drawing.Size(200, 100));
+            this.DailyPanel.Size = new System.Drawing.Size(1495, 864);
+            this.DailyPanel.TabIndex = 0;
+            // 
+            // GenerateBtn
+            // 
+            this.GenerateBtn.Location = new System.Drawing.Point(612, 774);
+            this.GenerateBtn.Name = "GenerateBtn";
+            this.GenerateBtn.Size = new System.Drawing.Size(241, 53);
+            this.GenerateBtn.TabIndex = 4;
+            this.GenerateBtn.Text = "Generate Report";
+            this.GenerateBtn.UseVisualStyleBackColor = true;
+            this.GenerateBtn.Click += new System.EventHandler(this.GenerateBtn_Click_1);
+            // 
+            // ComputedSalesDailyTbl
+            // 
+            this.ComputedSalesDailyTbl.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.ComputedSalesDailyTbl.Location = new System.Drawing.Point(233, 576);
+            this.ComputedSalesDailyTbl.Name = "ComputedSalesDailyTbl";
+            this.ComputedSalesDailyTbl.RowHeadersWidth = 51;
+            this.ComputedSalesDailyTbl.RowTemplate.Height = 24;
+            this.ComputedSalesDailyTbl.Size = new System.Drawing.Size(994, 150);
+            this.ComputedSalesDailyTbl.TabIndex = 3;
+            // 
+            // MostSalesDailyTbl
+            // 
+            this.MostSalesDailyTbl.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.MostSalesDailyTbl.Location = new System.Drawing.Point(733, 155);
+            this.MostSalesDailyTbl.Name = "MostSalesDailyTbl";
+            this.MostSalesDailyTbl.RowHeadersWidth = 51;
+            this.MostSalesDailyTbl.RowTemplate.Height = 24;
+            this.MostSalesDailyTbl.Size = new System.Drawing.Size(740, 415);
+            this.MostSalesDailyTbl.TabIndex = 2;
             // 
             // DailyDGV
             // 
             this.DailyDGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DailyDGV.Location = new System.Drawing.Point(168, 112);
+            this.DailyDGV.Location = new System.Drawing.Point(19, 155);
             this.DailyDGV.Name = "DailyDGV";
             this.DailyDGV.RowHeadersWidth = 51;
             this.DailyDGV.RowTemplate.Height = 24;
-            this.DailyDGV.Size = new System.Drawing.Size(446, 251);
-            this.DailyDGV.TabIndex = 0;
+            this.DailyDGV.Size = new System.Drawing.Size(708, 415);
+            this.DailyDGV.TabIndex = 1;
+            // 
+            // DailyLbl
+            // 
+            this.DailyLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DailyLbl.Location = new System.Drawing.Point(3, 27);
+            this.DailyLbl.Name = "DailyLbl";
+            this.DailyLbl.Size = new System.Drawing.Size(1489, 84);
+            this.DailyLbl.TabIndex = 0;
+            this.DailyLbl.Text = "Daily Sales Report";
+            this.DailyLbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // SalesNavBarPanel
+            // 
+            this.SalesNavBarPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(13)))), ((int)(((byte)(8)))));
+            this.SalesNavBarPanel.Controls.Add(this.ManagerLogoutBtn);
+            this.SalesNavBarPanel.Controls.Add(this.AdminLogoutBtn);
+            this.SalesNavBarPanel.Controls.Add(this.DateReportSelector);
+            this.SalesNavBarPanel.Location = new System.Drawing.Point(0, 0);
+            this.SalesNavBarPanel.Name = "SalesNavBarPanel";
+            this.SalesNavBarPanel.Size = new System.Drawing.Size(236, 874);
+            this.SalesNavBarPanel.TabIndex = 0;
+            // 
+            // DateReportSelector
+            // 
+            this.DateReportSelector.Location = new System.Drawing.Point(6, 44);
+            this.DateReportSelector.Name = "DateReportSelector";
+            this.DateReportSelector.Size = new System.Drawing.Size(224, 22);
+            this.DateReportSelector.TabIndex = 0;
             // 
             // StaffPanel
             // 
@@ -1437,23 +1452,23 @@
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToResizeColumns = false;
             this.dataGridView1.AllowUserToResizeRows = false;
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle9.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.Black;
-            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle13.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle13.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle13.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.Color.Black;
+            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle13;
             this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
             this.dataGridView1.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle14.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle14.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle14;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
@@ -1462,28 +1477,28 @@
             this.Column4,
             this.Column5,
             this.Column6});
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle11.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle15.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle15.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle15.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle15;
             this.dataGridView1.Location = new System.Drawing.Point(1168, 47);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView1.Name = "dataGridView1";
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle16.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle16.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle16.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle16.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle16.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle16.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle16;
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle9;
+            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle13;
             this.dataGridView1.Size = new System.Drawing.Size(528, 288);
             this.dataGridView1.TabIndex = 7;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
@@ -1590,25 +1605,31 @@
             this.AccManageContainer.LayoutMode = Syncfusion.Windows.Forms.Tools.CardLayoutMode.Fill;
             this.AccManageContainer.SelectedCard = "Card1";
             // 
+            // SalesContainer
+            // 
+            this.SalesContainer.ContainerControl = this.SalesContainerPanel;
+            this.SalesContainer.LayoutMode = Syncfusion.Windows.Forms.Tools.CardLayoutMode.Fill;
+            this.SalesContainer.SelectedCard = "Card2";
+            // 
             // AdminLogoutBtn
             // 
-            this.AdminLogoutBtn.Location = new System.Drawing.Point(643, 794);
+            this.AdminLogoutBtn.Location = new System.Drawing.Point(67, 715);
             this.AdminLogoutBtn.Name = "AdminLogoutBtn";
-            this.AdminLogoutBtn.Size = new System.Drawing.Size(112, 30);
-            this.AdminLogoutBtn.TabIndex = 16;
-            this.AdminLogoutBtn.Text = "Logout";
+            this.AdminLogoutBtn.Size = new System.Drawing.Size(75, 23);
+            this.AdminLogoutBtn.TabIndex = 1;
+            this.AdminLogoutBtn.Text = "Back";
             this.AdminLogoutBtn.UseVisualStyleBackColor = true;
-            this.AdminLogoutBtn.Click += new System.EventHandler(this.AdminLogoutBtn_Click);
+            this.AdminLogoutBtn.Click += new System.EventHandler(this.AdminLogoutBtn_Click_1);
             // 
             // ManagerLogoutBtn
             // 
-            this.ManagerLogoutBtn.Location = new System.Drawing.Point(792, 794);
+            this.ManagerLogoutBtn.Location = new System.Drawing.Point(67, 744);
             this.ManagerLogoutBtn.Name = "ManagerLogoutBtn";
-            this.ManagerLogoutBtn.Size = new System.Drawing.Size(112, 30);
-            this.ManagerLogoutBtn.TabIndex = 17;
-            this.ManagerLogoutBtn.Text = "Logout";
+            this.ManagerLogoutBtn.Size = new System.Drawing.Size(75, 23);
+            this.ManagerLogoutBtn.TabIndex = 2;
+            this.ManagerLogoutBtn.Text = "Back";
             this.ManagerLogoutBtn.UseVisualStyleBackColor = true;
-            this.ManagerLogoutBtn.Click += new System.EventHandler(this.ManagerLogoutBtn_Click);
+            this.ManagerLogoutBtn.Click += new System.EventHandler(this.ManagerLogoutBtn_Click_1);
             // 
             // CafeDeLunaDashboard
             // 
@@ -1616,9 +1637,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1731, 864);
             this.Controls.Add(this.StaffPanel);
-            this.Controls.Add(this.ManagerPanel);
             this.Controls.Add(this.AdminPanel);
             this.Controls.Add(this.LoginPanel);
+            this.Controls.Add(this.ManagerPanel);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximumSize = new System.Drawing.Size(1749, 911);
             this.MinimumSize = new System.Drawing.Size(1749, 911);
@@ -1646,15 +1667,20 @@
             ((System.ComponentModel.ISupportInitialize)(this.AccDataTbl)).EndInit();
             this.NavigationPanelAP.ResumeLayout(false);
             this.ManagerPanel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.MostSalesMonthlyTbl)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.MostSalesWeeklyTbl)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.MostSalesDailyTbl)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ComputedSalesMonthlyTbl)).EndInit();
+            this.SalesContainerPanel.ResumeLayout(false);
+            this.WeeklyReportPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.ComputedSalesWeeklyTbl)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ComputedSalesDailyTbl)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.MonthlyDGV)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MostSalesWeeklyTbl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.WeeklyDGV)).EndInit();
+            this.MonthlyReportPanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.ComputedSalesMonthlyTbl)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MostSalesMonthlyTbl)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MonthlyDGV)).EndInit();
+            this.DailyPanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.ComputedSalesDailyTbl)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MostSalesDailyTbl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DailyDGV)).EndInit();
+            this.SalesNavBarPanel.ResumeLayout(false);
             this.StaffPanel.ResumeLayout(false);
             this.StaffPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
@@ -1662,6 +1688,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.AdminPanelContainer)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.AccManageContainer)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.flowLayout1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SalesContainer)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1767,28 +1794,28 @@
         private System.Windows.Forms.Button UpdateBtn;
         private System.Windows.Forms.Button CancelMealBtn;
         private System.Windows.Forms.Button UpdateMealBtn;
-        private System.Windows.Forms.Button GenerateDailyBtn;
-        private System.Windows.Forms.DataGridView MonthlyDGV;
-        private System.Windows.Forms.DataGridView WeeklyDGV;
-        private System.Windows.Forms.DataGridView DailyDGV;
-        private System.Windows.Forms.DataGridView ComputedSalesMonthlyTbl;
-        private System.Windows.Forms.DataGridView ComputedSalesWeeklyTbl;
+        private System.Windows.Forms.Panel SalesContainerPanel;
+        private System.Windows.Forms.Panel SalesNavBarPanel;
+        private System.Windows.Forms.Panel DailyPanel;
+        private Syncfusion.Windows.Forms.Tools.CardLayout SalesContainer;
+        private System.Windows.Forms.Label DailyLbl;
+        private System.Windows.Forms.Button GenerateBtn;
         private System.Windows.Forms.DataGridView ComputedSalesDailyTbl;
-        private System.Windows.Forms.DateTimePicker DateReportSelector;
-        private System.Windows.Forms.DataGridViewTextBoxColumn MonthlyDate;
-        private System.Windows.Forms.DataGridViewTextBoxColumn MonthlyTotal;
-        private System.Windows.Forms.DataGridViewTextBoxColumn WeeklyDate;
-        private System.Windows.Forms.DataGridViewTextBoxColumn WeeklySale;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DailyDate;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DailyTotal;
-        private System.Windows.Forms.Label MonthlyRepLbl;
-        private System.Windows.Forms.Label WeeklyRepLbl;
-        private System.Windows.Forms.Label DailyRepLbl;
-        private System.Windows.Forms.Button MonthlyRepBtn;
-        private System.Windows.Forms.Button WeeklyRepBtn;
         private System.Windows.Forms.DataGridView MostSalesDailyTbl;
-        private System.Windows.Forms.DataGridView MostSalesMonthlyTbl;
+        private System.Windows.Forms.DataGridView DailyDGV;
+        private System.Windows.Forms.Panel WeeklyReportPanel;
+        private System.Windows.Forms.Panel MonthlyReportPanel;
+        private System.Windows.Forms.DateTimePicker DateReportSelector;
+        private System.Windows.Forms.DataGridView ComputedSalesWeeklyTbl;
         private System.Windows.Forms.DataGridView MostSalesWeeklyTbl;
+        private System.Windows.Forms.DataGridView WeeklyDGV;
+        private System.Windows.Forms.DataGridView ComputedSalesMonthlyTbl;
+        private System.Windows.Forms.DataGridView MostSalesMonthlyTbl;
+        private System.Windows.Forms.DataGridView MonthlyDGV;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button WeeklyRepBtn;
+        private System.Windows.Forms.Button MonthlyRepBtn;
         private System.Windows.Forms.Button ManagerLogoutBtn;
         private System.Windows.Forms.Button AdminLogoutBtn;
     }

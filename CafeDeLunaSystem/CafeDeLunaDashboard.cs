@@ -1667,8 +1667,13 @@ namespace CafeDeLunaSystem
             if (result == DialogResult.Yes)
             {
                 panelManager.ShowPanel(LoginPanel);
-
-
+                dataGridView1.Rows.Clear();
+                sbLbl.Text = "Php. 0.00";
+                ttlLbl.Text = "Php. 0.00";
+                dscLbl.Text = "Php. 0.00";
+                cashtxtBx.Text = "0.00";
+                cashtxtBx.ForeColor = Color.LightGray;
+                discChckBx.Checked = false;
                 TxtPlaceholder.SetPlaceholder(UsernameTxtBLP, "Enter your Username");
                 TxtPlaceholder.SetPlaceholder(PasswordTxtBLP, "Enter your Password");
             }
@@ -2030,31 +2035,16 @@ namespace CafeDeLunaSystem
             }
         }
 
-        private void GenerateBtn_Click(object sender, EventArgs e)
+        private void GenerateBtn_Click_1(object sender, EventArgs e)
         {
             DateTime selectedDate = DateReportSelector.Value;
             CalculateAndDisplaySalesReportDaily(DailyDGV, ComputedSalesDailyTbl, selectedDate);
 
             DataTable mostSoldItem = GetMostSoldItemForDay(selectedDate);
             MostSalesDailyTbl.DataSource = mostSoldItem;
-        }
-        private void WeeklyRepBtn_Click(object sender, EventArgs e)
-        {
-            DateTime selectedDate = DateReportSelector.Value;
-            CalculateAndDisplaySalesReportWeekly(WeeklyDGV, ComputedSalesWeeklyTbl, selectedDate);
 
-            DataTable mostSoldItem = GetMostSoldItemForWeek(selectedDate);
-            MostSalesWeeklyTbl.DataSource = mostSoldItem;
         }
 
-        private void MonthlyRepBtn_Click(object sender, EventArgs e)
-        {
-            DateTime selectedDate = DateReportSelector.Value;
-            CalculateAndDisplaySalesReportMonthly(MonthlyDGV, ComputedSalesMonthlyTbl, selectedDate);
-
-            DataTable mostSoldItem = GetMostSoldItemForMonth(selectedDate);
-            MostSalesMonthlyTbl.DataSource = mostSoldItem;
-        }
         public void CalculateAndDisplaySalesReportDaily(DataGridView dailyDGV, DataGridView computedSalesDailyTbl, DateTime selectedDate)
         {
             conn.Close();
@@ -2078,52 +2068,6 @@ namespace CafeDeLunaSystem
             computedSalesDailyTbl.Rows.Add(selectedDate.ToString("d"), dailySales);
         }
 
-        public void CalculateAndDisplaySalesReportWeekly(DataGridView weeklyDGV, DataGridView computedSalesWeeklyTbl, DateTime selectedDate)
-        {
-            conn.Close();
-            conn.Open();
-
-            // Get sales data for the selected week
-            string query = "SELECT * FROM Sales WHERE YEARWEEK(SaleDate) = YEARWEEK(@Date)";
-            using (MySqlCommand command = new MySqlCommand(query, conn))
-            {
-                command.Parameters.Add(new MySqlParameter("@Date", MySqlDbType.Date) { Value = selectedDate.Date });
-                using (MySqlDataAdapter adapter = new MySqlDataAdapter(command))
-                {
-                    DataTable salesData = new DataTable();
-                    adapter.Fill(salesData);
-                    weeklyDGV.DataSource = salesData;
-                }
-            }
-
-            // Calculate and display weekly sales
-            decimal weeklySales = CalculateSalesForWeek(selectedDate);
-            computedSalesWeeklyTbl.Rows.Add(selectedDate.AddDays(-7).ToString("d") + " - " + selectedDate.ToString("d"), weeklySales);
-        }
-
-        public void CalculateAndDisplaySalesReportMonthly(DataGridView monthlyDGV, DataGridView computedSalesMonthlyTbl, DateTime selectedDate)
-        {
-            conn.Close();
-            conn.Open();
-
-            // Get sales data for the selected month
-            string query = "SELECT * FROM Sales WHERE YEAR(SaleDate) = YEAR(@Date) AND MONTH(SaleDate) = MONTH(@Date)";
-            using (MySqlCommand command = new MySqlCommand(query, conn))
-            {
-                command.Parameters.Add(new MySqlParameter("@Date", MySqlDbType.Date) { Value = selectedDate.Date });
-                using (MySqlDataAdapter adapter = new MySqlDataAdapter(command))
-                {
-                    DataTable salesData = new DataTable();
-                    adapter.Fill(salesData);
-                    monthlyDGV.DataSource = salesData;
-                }
-            }
-
-            // Calculate and display monthly sales
-            decimal monthlySales = CalculateSalesForMonth(selectedDate);
-            computedSalesMonthlyTbl.Rows.Add(new DateTime(selectedDate.Year, selectedDate.Month, 1).ToString("d") + " - " + selectedDate.ToString("d"), monthlySales);
-        }
-
         public decimal CalculateSalesForDay(DateTime date)
         {
             string query = "SELECT SUM(Amount) AS TotalSales FROM Sales WHERE DATE(SaleDate) = @Date";
@@ -2135,28 +2079,173 @@ namespace CafeDeLunaSystem
                 return (result == DBNull.Value) ? 0 : Convert.ToDecimal(result);
             }
         }
-
-        public decimal CalculateSalesForWeek(DateTime date)
+        public DataTable GetMostSoldItemForDay(DateTime date)
         {
-            string query = "SELECT SUM(Amount) AS TotalSales FROM Sales WHERE YEARWEEK(SaleDate) = YEARWEEK(@Date)";
+
+            string query = @"
+            SELECT DATE(s.SaleDate) as SaleDate, mv.VariationName, SUM(oi.Quantity) as TotalQuantity, COUNT(*) as TotalSales
+            FROM sales s
+            INNER JOIN orderitems oi ON s.OrderID = oi.OrderID
+            INNER JOIN mealvariation mv ON oi.VariationID = mv.VariationID
+            WHERE DATE(s.SaleDate) = @Date
+            GROUP BY DATE(s.SaleDate), mv.VariationName
+            ORDER BY TotalQuantity DESC";
+            using (MySqlCommand command = new MySqlCommand(query, conn))
+            {
+                command.Parameters.Add(new MySqlParameter("@Date", MySqlDbType.Date) { Value = date.Date });
+                using (MySqlDataAdapter adapter = new MySqlDataAdapter(command))
+                {
+                    DataTable dailySummary = new DataTable();
+                    adapter.Fill(dailySummary);
+                    return dailySummary;
+                }
+            }
+        }
+
+        private void WeeklyRepBtn_Click_1(object sender, EventArgs e)
+        {
+            DateTime selectedDate = DateReportSelector.Value.Date;  // Only consider the date part
+            DateTime endDate = selectedDate.AddDays(7);  // End date is 7 days after the selected date
+
+            CalculateAndDisplaySalesReportWeekly(WeeklyDGV, ComputedSalesWeeklyTbl, selectedDate, endDate);
+
+            DataTable mostSoldItem = GetMostSoldItemForWeek(selectedDate, endDate);
+            MostSalesWeeklyTbl.DataSource = mostSoldItem;
+        }
+
+        public decimal CalculateSalesForWeek(DateTime startDate, DateTime endDate)
+        {
+            string query = "SELECT SUM(Amount) AS TotalSales FROM Sales WHERE DATE(SaleDate) BETWEEN @StartDate AND @EndDate";
 
             using (MySqlCommand command = new MySqlCommand(query, conn))
             {
-                command.Parameters.Add(new MySqlParameter("@Date", MySqlDbType.Date) { Value = date });
+                command.Parameters.Add(new MySqlParameter("@StartDate", MySqlDbType.Date) { Value = startDate });
+                command.Parameters.Add(new MySqlParameter("@EndDate", MySqlDbType.Date) { Value = endDate });
+
                 object result = command.ExecuteScalar();
                 return (result == DBNull.Value) ? 0 : Convert.ToDecimal(result);
             }
         }
 
-        public decimal CalculateSalesForMonth(DateTime date)
+        public void CalculateAndDisplaySalesReportWeekly(DataGridView weeklyDGV, DataGridView computedSalesWeeklyTbl, DateTime startDate, DateTime endDate)
         {
-            string query = "SELECT SUM(Amount) AS TotalSales FROM Sales WHERE YEAR(SaleDate) = YEAR(@Date) AND MONTH(SaleDate) = MONTH(@Date)";
+            conn.Close();
+            conn.Open();
+
+            // Get sales data for the selected week
+            string query = "SELECT * FROM Sales WHERE DATE(SaleDate) BETWEEN @StartDate AND @EndDate";
+            using (MySqlCommand command = new MySqlCommand(query, conn))
+            {
+                command.Parameters.Add(new MySqlParameter("@StartDate", MySqlDbType.Date) { Value = startDate });
+                command.Parameters.Add(new MySqlParameter("@EndDate", MySqlDbType.Date) { Value = endDate });
+                using (MySqlDataAdapter adapter = new MySqlDataAdapter(command))
+                {
+                    DataTable salesData = new DataTable();
+                    adapter.Fill(salesData);
+                    weeklyDGV.DataSource = salesData;
+                }
+            }
+
+            // Calculate and display weekly sales
+            decimal weeklySales = CalculateSalesForWeek(startDate, endDate);
+            computedSalesWeeklyTbl.Rows.Add(startDate.ToString("d") + " - " + endDate.ToString("d"), weeklySales);
+        }
+
+        public DataTable GetMostSoldItemForWeek(DateTime startDate, DateTime endDate)
+        {
+            string query = @"
+            SELECT DATE(s.SaleDate) as SaleDate, mv.VariationName, SUM(oi.Quantity) as TotalQuantity, COUNT(*) as TotalSales
+            FROM sales s
+            INNER JOIN orderitems oi ON s.OrderID = oi.OrderID
+            INNER JOIN mealvariation mv ON oi.VariationID = mv.VariationID
+            WHERE DATE(s.SaleDate) BETWEEN @StartDate AND @EndDate
+            GROUP BY DATE(s.SaleDate), mv.VariationName
+            ORDER BY DATE(s.SaleDate) ASC, TotalQuantity DESC";
 
             using (MySqlCommand command = new MySqlCommand(query, conn))
             {
-                command.Parameters.Add(new MySqlParameter("@Date", MySqlDbType.Date) { Value = date });
+                command.Parameters.Add(new MySqlParameter("@StartDate", MySqlDbType.Date) { Value = startDate });
+                command.Parameters.Add(new MySqlParameter("@EndDate", MySqlDbType.Date) { Value = endDate });
+                using (MySqlDataAdapter adapter = new MySqlDataAdapter(command))
+                {
+                    DataTable weeklySummary = new DataTable();
+                    adapter.Fill(weeklySummary);
+                    return weeklySummary;
+                }
+            }
+        }
+
+        private void MonthlyRepBtn_Click_1(object sender, EventArgs e)
+        {
+            DateTime selectedDate = DateReportSelector.Value;
+            DateTime startDate = new DateTime(selectedDate.Year, selectedDate.Month, 1);  // Start date is the first day of the selected month
+            DateTime endDate = startDate.AddMonths(1).AddDays(-1);  // End date is the last day of the selected month
+
+            CalculateAndDisplaySalesReportMonthly(MonthlyDGV, ComputedSalesMonthlyTbl, startDate, endDate);
+
+            DataTable mostSoldItem = GetMostSoldItemForMonth(startDate, endDate);
+            MostSalesMonthlyTbl.DataSource = mostSoldItem;
+        }
+
+        public decimal CalculateSalesForMonth(DateTime startDate, DateTime endDate)
+        {
+            string query = "SELECT SUM(Amount) AS TotalSales FROM Sales WHERE DATE(SaleDate) BETWEEN @StartDate AND @EndDate";
+
+            using (MySqlCommand command = new MySqlCommand(query, conn))
+            {
+                command.Parameters.Add(new MySqlParameter("@StartDate", MySqlDbType.Date) { Value = startDate });
+                command.Parameters.Add(new MySqlParameter("@EndDate", MySqlDbType.Date) { Value = endDate });
+
                 object result = command.ExecuteScalar();
                 return (result == DBNull.Value) ? 0 : Convert.ToDecimal(result);
+            }
+        }
+
+        public void CalculateAndDisplaySalesReportMonthly(DataGridView monthlyDGV, DataGridView computedSalesMonthlyTbl, DateTime startDate, DateTime endDate)
+        {
+            conn.Close();
+            conn.Open();
+
+            // Get sales data for the selected month
+            string query = "SELECT * FROM Sales WHERE DATE(SaleDate) BETWEEN @StartDate AND @EndDate";
+            using (MySqlCommand command = new MySqlCommand(query, conn))
+            {
+                command.Parameters.Add(new MySqlParameter("@StartDate", MySqlDbType.Date) { Value = startDate });
+                command.Parameters.Add(new MySqlParameter("@EndDate", MySqlDbType.Date) { Value = endDate });
+                using (MySqlDataAdapter adapter = new MySqlDataAdapter(command))
+                {
+                    DataTable salesData = new DataTable();
+                    adapter.Fill(salesData);
+                    monthlyDGV.DataSource = salesData;
+                }
+            }
+
+            // Calculate and display monthly sales
+            decimal monthlySales = CalculateSalesForMonth(startDate, endDate);
+            computedSalesMonthlyTbl.Rows.Add(startDate.ToString("d") + " - " + endDate.ToString("d"), monthlySales);
+        }
+
+        public DataTable GetMostSoldItemForMonth(DateTime startDate, DateTime endDate)
+        {
+            string query = @"
+            SELECT DATE(s.SaleDate) as SaleDate, mv.VariationName, SUM(oi.Quantity) as TotalQuantity, COUNT(*) as TotalSales
+            FROM sales s
+            INNER JOIN orderitems oi ON s.OrderID = oi.OrderID
+            INNER JOIN mealvariation mv ON oi.VariationID = mv.VariationID
+            WHERE DATE(s.SaleDate) BETWEEN @StartDate AND @EndDate
+            GROUP BY DATE(s.SaleDate), mv.VariationName
+            ORDER BY TotalQuantity DESC";
+
+            using (MySqlCommand command = new MySqlCommand(query, conn))
+            {
+                command.Parameters.Add(new MySqlParameter("@StartDate", MySqlDbType.Date) { Value = startDate });
+                command.Parameters.Add(new MySqlParameter("@EndDate", MySqlDbType.Date) { Value = endDate });
+                using (MySqlDataAdapter adapter = new MySqlDataAdapter(command))
+                {
+                    DataTable monthlySummary = new DataTable();
+                    adapter.Fill(monthlySummary);
+                    return monthlySummary;
+                }
             }
         }
 
@@ -2172,81 +2261,13 @@ namespace CafeDeLunaSystem
             }
         }
 
-        public DataTable GetMostSoldItemForDay(DateTime date)
-        {
-
-            string query = @"
-        SELECT DATE(s.SaleDate) as SaleDate, mv.VariationName, SUM(oi.Quantity) as TotalQuantity, COUNT(*) as TotalSales
-        FROM sales s
-        INNER JOIN orderitems oi ON s.OrderID = oi.OrderID
-        INNER JOIN mealvariation mv ON oi.VariationID = mv.VariationID
-        WHERE DATE(s.SaleDate) = @Date
-        GROUP BY DATE(s.SaleDate), mv.VariationName
-        ORDER BY TotalQuantity DESC";
-            using (MySqlCommand command = new MySqlCommand(query, conn))
-            {
-                command.Parameters.Add(new MySqlParameter("@Date", MySqlDbType.Date) { Value = date.Date });
-                using (MySqlDataAdapter adapter = new MySqlDataAdapter(command))
-                {
-                    DataTable dailySummary = new DataTable();
-                    adapter.Fill(dailySummary);
-                    return dailySummary;
-                }
-            }
-        }
-
-        public DataTable GetMostSoldItemForWeek(DateTime date)
-        {
-            string query = @"
-        SELECT DATE(s.SaleDate) as SaleDate, mv.VariationName, SUM(oi.Quantity) as TotalQuantity, COUNT(*) as TotalSales
-        FROM sales s
-        INNER JOIN orderitems oi ON s.OrderID = oi.OrderID
-        INNER JOIN mealvariation mv ON oi.VariationID = mv.VariationID
-        WHERE DATE(s.SaleDate) >= DATE_SUB(@Date, INTERVAL 7 DAY)
-        GROUP BY DATE(s.SaleDate), mv.VariationName
-        ORDER BY TotalQuantity DESC";
-
-            using (MySqlCommand command = new MySqlCommand(query, conn))
-            {
-                command.Parameters.Add(new MySqlParameter("@Date", MySqlDbType.Date) { Value = date.Date });
-                using (MySqlDataAdapter adapter = new MySqlDataAdapter(command))
-                {
-                    DataTable weeklySummary = new DataTable();
-                    adapter.Fill(weeklySummary);
-                    return weeklySummary;
-                }
-            }
-        }
-
-        public DataTable GetMostSoldItemForMonth(DateTime date)
-        {
-            string query = @"
-        SELECT DATE(s.SaleDate) as SaleDate, mv.VariationName, SUM(oi.Quantity) as TotalQuantity, COUNT(*) as TotalSales
-        FROM sales s
-        INNER JOIN orderitems oi ON s.OrderID = oi.OrderID
-        INNER JOIN mealvariation mv ON oi.VariationID = mv.VariationID
-        WHERE DATE(s.SaleDate) >= DATE_SUB(@Date, INTERVAL 30 DAY)
-        GROUP BY DATE(s.SaleDate), mv.VariationName
-        ORDER BY TotalQuantity DESC";
-            using (MySqlCommand command = new MySqlCommand(query, conn))
-            {
-                command.Parameters.Add(new MySqlParameter("@Date", MySqlDbType.Date) { Value = date.Date });
-                using (MySqlDataAdapter adapter = new MySqlDataAdapter(command))
-                {
-                    DataTable monthlySummary = new DataTable();
-                    adapter.Fill(monthlySummary);
-                    return monthlySummary;
-                }
-            }
-        }
-
-        private void AdminLogoutBtn_Click(object sender, EventArgs e)
+        private void AdminLogoutBtn_Click_1(object sender, EventArgs e)
         {
             panelManager.ShowPanel(AdminPanel);
             ManagerLogoutBtn.Show();
         }
 
-        private void ManagerLogoutBtn_Click(object sender, EventArgs e)
+        private void ManagerLogoutBtn_Click_1(object sender, EventArgs e)
         {
             panelManager.ShowPanel(StaffPanel);
             AdminLogoutBtn.Show();
